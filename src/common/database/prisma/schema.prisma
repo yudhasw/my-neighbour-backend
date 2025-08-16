@@ -1,0 +1,326 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enum Types
+
+enum UserRole {
+  RESIDENT
+  EMPLOYEE
+}
+
+enum EmployeeRole {
+  ADMIN
+  PROPERTY_MANAGER
+  TECHNICIAN
+  SECURITY
+  NONE
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  NONE
+}
+
+enum ResidentStatus {
+  HEAD_HOUSE_HOLD
+  FAMILY_MEMBERS
+}
+
+enum PostedBy {
+  RESIDENT
+  EMPLOYEE
+}
+
+enum UnitStatus {
+  OCCUPIED
+  VACANT
+  MAINTENANCE
+}
+
+enum PaymentStatus {
+  PAID
+  PENDING
+  OVERDUE
+  CANCELLED
+}
+
+enum PaymentMethod {
+  BANK_TRANSFER
+  E_WALLET
+  CREDIT_CARD
+  CASH
+}
+
+enum MaintenancePriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum MaintenanceStatus {
+  NEW
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentType {
+  CICILAN_KPR
+  IURAN_BULANAN
+}
+
+enum ContactRole {
+  EMPLOYEE
+  EMERGENCY_SERVICES
+}
+
+// Models
+
+model User {
+  id                     String    @id @default(uuid()) @db.Uuid
+  fullName               String    @map("nama_lengkap")
+  firstName              String    @map("nama_depan")
+  lastName               String    @map("nama_belakang")
+  dateOfBirth            DateTime? @map("tanggal_lahir")
+  contactNumber          String?   @map("nomor_kontak")
+  primaryEmail           String    @unique @map("email_utama")
+  secondaryEmail         String?   @unique @map("email_kedua")
+  passwordHash           String    @unique @map("password_terenkripsi")
+  sessionToken           String?   @unique
+  emailVerificationToken String?   @unique
+  passwordResetToken     String?   @unique
+  role                   UserRole
+  gender                 Gender    @default(NONE)
+  createdAt              DateTime  @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt              DateTime  @updatedAt @map("updated_at") @db.Timestamp()
+
+  // Relasi balik
+  resident     Resident?
+  Employees    Employees?
+  ForumPost    ForumPost[]
+  ForumComment ForumComment[]
+  Bill         Bill[]
+
+  @@map("tb_pengguna")
+}
+
+model Resident {
+  residentId             String         @id @unique @default(uuid()) @map("resident_id") @db.Uuid
+  user                   User?          @relation(fields: [residentId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  emergencyContactName   String?        @map("nama_kontak_darurat")
+  emergencyContactNumber String?        @map("nomor_kontak_darurat")
+  movedInDate            DateTime       @map("tanggal_masuk")
+  movedOutDate           DateTime?      @map("tanggal_keluar")
+  residentStatus         ResidentStatus @default(FAMILY_MEMBERS)
+  unitId                 String         @map("unit_id") @db.Uuid
+  unit                   Unit           @relation(fields: [unitId], references: [id])
+  createdAt              DateTime       @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt              DateTime       @updatedAt @map("updated_at") @db.Timestamp()
+
+  // Relasi balik
+  maintenanceRequests MaintenanceRequest[]
+  payments            Payment[]
+  Lease               Lease[]
+
+  @@map("tb_penghuni")
+}
+
+model Employees {
+  employeeId       String       @id @unique @default(uuid()) @map("employee_id") @db.Uuid
+  user             User?        @relation(fields: [employeeId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  employeeIdNumber String       @unique @map("nomor_pegawai")
+  hireDate         DateTime     @map("tanggal_perekrutan")
+  employeePosition EmployeeRole @default(NONE) @map("posisi_pegawai")
+  workingHours     Int          @map("jam_kerja_pegawai")
+  salary           Float        @map("gaji_pegawai")
+  bonus            Float        @map("bonus_pegawai")
+  createdAt        DateTime     @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt        DateTime     @updatedAt @map("updated_at") @db.Timestamp()
+
+  // Relasi balik
+  Announcement       Announcement[]
+  MaintenanceRequest MaintenanceRequest[]
+  Payment            Payment[]
+
+  @@map("tb_pegawai")
+}
+
+model MaintenanceRequest {
+  id                   String              @id @default(uuid()) @db.Uuid
+  title                String              @map("nama_permintaan")
+  description          String              @map("deskripsi_pemintaan")
+  requestDate          DateTime            @default(now())
+  priority             MaintenancePriority @map("prioritas_permintaan")
+  status               MaintenanceStatus   @map("status_permintaan")
+  residentId           String              @map("resident_id") @db.Uuid
+  resident             Resident            @relation(fields: [residentId], references: [residentId])
+  unitId               String              @map("unit_id") @db.Uuid
+  unit                 Unit                @relation(fields: [unitId], references: [id])
+  assignedToEmployeeId String?             @map("employee_id") @db.Uuid
+  assignedTo           Employees?          @relation(fields: [assignedToEmployeeId], references: [employeeId])
+  createdAt            DateTime            @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt            DateTime            @updatedAt @map("updated_at") @db.Timestamp()
+
+  @@map("tb_permintaan_pemeliharaan")
+}
+
+model Complaint {
+  id String @id @default(uuid()) @db.Uuid
+}
+
+model Payment {
+  id                String        @id @default(uuid()) @db.Uuid
+  amount            Float         @map("jumlah_pembayaran")
+  paymentDate       DateTime      @default(now())
+  paymentMethod     PaymentMethod @map("metode_pembayaran")
+  status            PaymentStatus @map("status_pembayaran")
+  paymentFor        String        @map("tujuan_pembayaram")
+  description       String?       @map("deskripsi_pembayaran")
+  residentId        String        @map("resident_id") @db.Uuid
+  resident          Resident      @relation(fields: [residentId], references: [residentId])
+  unitId            String?       @map("unit_id") @db.Uuid
+  unit              Unit?         @relation(fields: [unitId], references: [id])
+  leaseId           String?       @map("lease_id") @db.Uuid
+  lease             Lease?        @relation(fields: [leaseId], references: [id])
+  processedByUserId String?       @map("employee_id") @db.Uuid
+  processedBy       Employees?    @relation(fields: [processedByUserId], references: [employeeId])
+  billId            String        @map("bill_id") @db.Uuid
+  Bill              Bill          @relation(fields: [billId], references: [id])
+  createdAt         DateTime      @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt         DateTime      @updatedAt @map("updated_at") @db.Timestamp()
+
+  @@map("tb_pembayaran")
+}
+
+model Announcement {
+  id          String    @id @default(uuid()) @db.Uuid
+  title       String    @map("judul")
+  content     String    @map("konten_pengumuman")
+  body        String    @map("isi_pengumuman")
+  publishDate DateTime  @default(now()) @map("tanggal_publikasi") @db.Timestamp()
+  expiryDate  DateTime? @map("tanggal_selesai")
+  employeeId  String    @db.Uuid
+  employee    Employees @relation(fields: [employeeId], references: [employeeId])
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamp()
+
+  @@map("tb_pengumuman")
+}
+
+model ForumPost {
+  id          String   @id @default(uuid()) @db.Uuid
+  title       String   @map("judul")
+  content     String   @map("konten")
+  isPublished Boolean  @default(false)
+  authorRole  UserRole
+  userId      String   @map("id_penulis") @db.Uuid
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  publishedAt DateTime @default(now()) @map("tanggal_publikasi") @db.Timestamp()
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamp()
+
+  // Relasi Balik
+  tags     PostTag[]
+  comments ForumComment[]
+
+  @@map("tb_postingan_forum")
+}
+
+model PostTag {
+  id        String      @id @default(uuid()) @db.Uuid
+  tagName   String      @map("nama_tag")
+  createdAt DateTime    @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt DateTime    @updatedAt @map("updated_at") @db.Timestamp()
+  ForumPost ForumPost[]
+
+  @@map("tb_PostTag")
+}
+
+model ForumComment {
+  id        String    @id @default(uuid()) @db.Uuid
+  content   String    @map("isi_komentar")
+  userId    String    @map("id_penulis") @db.Uuid
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId    String    @map("id_postingan") @db.Uuid
+  post      ForumPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamp()
+
+  @@map("tb_komentar_forum")
+}
+
+model Unit {
+  id            String     @id @default(uuid()) @db.Uuid
+  unitNumber    String     @unique @map("nomor_unit")
+  buildingName  String?    @map("nama_unit")
+  floorNumber   Int?       @map("jumlah_lantai")
+  numberOfRooms Int?       @map("jumlah_ruangan")
+  squareFootage Int?       @map("ukuran_unit")
+  rentAmount    Float?     @map("harga_cicilan")
+  location      String     @map("lokasi_unit")
+  status        UnitStatus
+  priceSale     Float      @map("harga_jual")
+
+  // Relasi Balik
+  residents           Resident[]
+  maintenanceRequests MaintenanceRequest[]
+  payments            Payment[]
+  leases              Lease[]
+  Bill                Bill[]
+
+  @@map("tb_unit_hunian")
+}
+
+model Lease {
+  id                 String   @id @default(uuid()) @db.Uuid
+  startDate          DateTime @map("tanggal_mulai")
+  endDate            DateTime @map("tanggal_selesai")
+  monthlyRent        Float    @map("sewa_bulanan")
+  depositAmount      Float?   @map("jumlah_deposit")
+  termsAndConditions String?  @map("syarat_dan_ketentuan")
+  residentId         String   @unique @map("resident_id") @db.Uuid
+  resident           Resident @relation(fields: [residentId], references: [residentId])
+  unitId             String   @unique @map("unit_id") @db.Uuid
+  unit               Unit     @relation(fields: [unitId], references: [id])
+
+  // relasi Balik
+  payments Payment[]
+
+  @@map("tb_perjanjian_sewa")
+}
+
+model Bill {
+  id         String      @id @default(uuid()) @db.Uuid
+  amount     Float       @map("jumlah_tagihan")
+  type       PaymentType @map("tipe_pembayaran")
+  dueDate    DateTime    @map("batas_waktu_pembayaran")
+  isPaid     Boolean     @default(false) @map("sudah_dibayar")
+  unitId     String      @map("unit_id") @db.Uuid
+  unit       Unit        @relation(fields: [unitId], references: [id])
+  employeeId String      @map("employee_id") @db.Uuid
+  employee   User        @relation(fields: [employeeId], references: [id])
+
+  // Relasi Balik
+  payments Payment[]
+
+  @@map("tb_tagihan")
+}
+
+model Contact {
+  id          String      @id @default(uuid()) @db.Uuid
+  name        String      @map("nama")
+  role        ContactRole @map("jabatan") // Misal: 'Security', 'Admin', 'Emergency Services'
+  phoneNumber String      @map("nomor_telepon")
+  email       String?     @map("email")
+
+  @@map("tb_kontak_penting")
+}
