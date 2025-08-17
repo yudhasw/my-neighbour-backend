@@ -1,19 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = handler;
-exports.handler = handler;
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const common_1 = require("@nestjs/common");
 const class_validator_1 = require("class-validator");
 const costume_validation_pipe_1 = require("./common/pipes/costume-validation.pipe");
 const platform_express_1 = require("@nestjs/platform-express");
-let app;
 async function bootstrap() {
-    if (app) {
-        return app;
-    }
-    app = await core_1.NestFactory.create(app_module_1.AppModule, new platform_express_1.ExpressAdapter(), {
+    const app = await core_1.NestFactory.create(app_module_1.AppModule, new platform_express_1.ExpressAdapter(), {
         cors: true,
         bodyParser: true,
     });
@@ -46,24 +40,21 @@ async function bootstrap() {
             });
         },
     }), new costume_validation_pipe_1.CostumeValidationPipe());
-    await app.init();
-    console.log('🚀 NestJS application initialized for Vercel (Production)');
-    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'production'}`);
-    console.log(`⚡ Running in serverless mode`);
-    return app;
+    const port = process.env.BACKEND_PORT || process.env.PORT || 3000;
+    await app.listen(port);
+    console.log(`🚀 Application is running on: http://localhost:${port}`);
+    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
 }
-async function handler(req, res) {
-    try {
-        const nestApp = await bootstrap();
-        const expressApp = nestApp.getHttpAdapter().getInstance();
-        return expressApp(req, res);
-    }
-    catch (error) {
-        console.error('Handler error:', error);
-        res.status(500).json({
-            error: 'Internal server error',
-            message: error instanceof Error ? error.message : 'Unknown error',
-        });
-    }
-}
-//# sourceMappingURL=main.js.map
+process.on('uncaughtException', (error) => {
+    console.error('Uncaught Exception:', error);
+    process.exit(1);
+});
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+    process.exit(1);
+});
+bootstrap().catch((error) => {
+    console.error('Application failed to start:', error);
+    process.exit(1);
+});
+//# sourceMappingURL=main.dev.js.map
