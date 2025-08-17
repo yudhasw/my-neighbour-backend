@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-// import { AppController } from './app.controller';
-// import { AppService } from './app.service';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { RouterModule } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
+import { BackendApiModule } from './modules/backend-api.module';
 import { DatabaseModule } from './common/database/database.module';
 import { FinancialModule } from './modules/financial-module/financial.module';
 import { CommunicationModule } from './modules/communication-module/communication.module';
@@ -20,8 +21,6 @@ import { PaymentsManageModule } from './modules/financial-module/payments-module
 import { EmployeeManageModule } from './modules/user-manage-module/employee-module/employee-manage.module';
 import { ResidentManageModule } from './modules/user-manage-module/resident-module/resident-manage.module';
 import { UserManageModule } from './modules/user-manage-module/users-module/user-manage.module';
-import { BackendApiModule } from './modules/backend-api.module';
-
 @Module({
   imports: [
     DatabaseModule,
@@ -109,5 +108,7 @@ import { BackendApiModule } from './modules/backend-api.module';
       },
     ]),
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
