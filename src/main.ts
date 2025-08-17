@@ -4,18 +4,20 @@ import { AppModule } from './app.module';
 import { ValidationPipe, BadRequestException } from '@nestjs/common';
 import { useContainer, ValidationError } from 'class-validator';
 import { CostumeValidationPipe } from './common/pipes/costume-validation.pipe';
-import { Callback, Context, Handler } from 'aws-lambda';
-import { configure } from '@codegenie/serverless-express';
+import { Request, Response } from 'express';
 import {
   ExpressAdapter,
   type NestExpressApplication,
 } from '@nestjs/platform-express';
-import logger from '@codegenie/serverless-express/src/logger';
 
-let server: Handler;
+let app: NestExpressApplication;
 
-async function bootstrap(): Promise<Handler> {
-  const app = await NestFactory.create<NestExpressApplication>(
+async function bootstrap(): Promise<NestExpressApplication> {
+  if (app) {
+    return app;
+  }
+
+  app = await NestFactory.create<NestExpressApplication>(
     AppModule,
     new ExpressAdapter(),
     {
@@ -63,65 +65,24 @@ async function bootstrap(): Promise<Handler> {
   );
 
   await app.init();
-  const expressApp = app.getHttpAdapter().getInstance();
-  console.log(`Application Running in port ${process.env.BACKEND_PORT}`);
+  console.log('NestJS application initialized for Vercel');
 
-  return configure({
-    app: expressApp,
-    log: logger(),
-    binaryMimeTypes: [
-      'application/javascript',
-      'application/json',
-      'application/octet-stream',
-      'application/xml',
-      'font/eot',
-      'font/opentype',
-      'font/otf',
-      'image/jpeg',
-      'image/png',
-      'image/svg+xml',
-      'text/comma-separated-values',
-      'text/css',
-      'text/html',
-      'text/javascript',
-      'text/plain',
-      'text/text',
-      'text/xml',
-    ],
-    resolutionMode: 'PROMISE',
-  });
+  return app;
 }
 
-export const handler = async (
-  event: any,
-  context: Context,
-  callback: Callback,
-) => {
+// Export the NestJS app for Vercel
+export default async function handler(req: Request, res: Response) {
   try {
-    console.log('Lambda Event:', JSON.stringify(event, null, 2));
-    console.log('Lambda Context:', JSON.stringify(context, null, 2));
+    const nestApp = await bootstrap();
+    const expressApp = nestApp.getHttpAdapter().getInstance();
 
-    // Pastikan event memiliki struktur yang benar
-    if (!event) {
-      console.error('Event is undefined or null');
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: 'Invalid event' }),
-      };
-    }
-
-    server = server ?? (await bootstrap());
-    return server(event, context, callback);
+    // Let Express handle the request
+    return expressApp(req, res);
   } catch (error) {
     console.error('Handler error:', error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({
-        error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error',
-      }),
-    };
+    res.status(500).json({
+      error: 'Internal server error',
+      message: error instanceof Error ? error.message : 'Unknown error',
+    });
   }
-};
-
-export default handler;
+}
