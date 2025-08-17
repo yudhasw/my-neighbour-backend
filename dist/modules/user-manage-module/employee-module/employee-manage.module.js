@@ -13,13 +13,12 @@ const employee_manage_controller_1 = require("./employee-manage.controller");
 const database_module_1 = require("../../../common/database/database.module");
 const database_service_1 = require("../../../common/database/database.service");
 const user_manage_service_1 = require("../users-module/user-manage.service");
-const user_manage_module_1 = require("../users-module/user-manage.module");
 let EmployeeManageModule = class EmployeeManageModule {
 };
 exports.EmployeeManageModule = EmployeeManageModule;
 exports.EmployeeManageModule = EmployeeManageModule = __decorate([
     (0, common_1.Module)({
-        imports: [database_module_1.DatabaseModule, (0, common_1.forwardRef)(() => user_manage_module_1.UserManageModule)],
+        imports: [database_module_1.DatabaseModule],
         controllers: [employee_manage_controller_1.EmployeeManageController],
         providers: [employee_manage_service_1.EmployeeManageService, database_service_1.DatabaseService, user_manage_service_1.UserManageService],
         exports: [employee_manage_service_1.EmployeeManageService],
