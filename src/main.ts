@@ -61,7 +61,6 @@ async function bootstrap(): Promise<Handler> {
     new CostumeValidationPipe(),
   );
 
-  // await app.listen(process.env.BACKEND_PORT || 3000);
   await app.init();
 
   const expressApp = app.getHttpAdapter().getInstance();
@@ -69,11 +68,13 @@ async function bootstrap(): Promise<Handler> {
   return serverlessExpress({ app: expressApp });
 }
 
-export async function handler(
+export const handler = async (
   event: any,
   context: Context,
   callback: Callback,
-) {
+) => {
   server = server ?? (await bootstrap());
   return server(event, context, callback);
-}
+};
+
+export default handler;

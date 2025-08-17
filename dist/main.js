@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handler = handler;
+exports.handler = void 0;
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const common_1 = require("@nestjs/common");
@@ -48,8 +48,10 @@ async function bootstrap() {
     console.log(`Application Running in port ${process.env.BACKEND_PORT}`);
     return (0, serverless_express_1.default)({ app: expressApp });
 }
-async function handler(event, context, callback) {
+const handler = async (event, context, callback) => {
     server = server ?? (await bootstrap());
     return server(event, context, callback);
-}
+};
+exports.handler = handler;
+exports.default = exports.handler;
 //# sourceMappingURL=main.js.map

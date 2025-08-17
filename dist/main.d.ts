@@ -1,2 +1,3 @@
 import { Callback, Context } from 'aws-lambda';
-export declare function handler(event: any, context: Context, callback: Callback): Promise<any>;
+export declare const handler: (event: any, context: Context, callback: Callback) => Promise<any>;
+export default handler;
