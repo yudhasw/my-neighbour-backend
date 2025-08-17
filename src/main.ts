@@ -5,10 +5,12 @@ import { ValidationPipe, BadRequestException } from '@nestjs/common';
 import { useContainer, ValidationError } from 'class-validator';
 import { CostumeValidationPipe } from './common/pipes/costume-validation.pipe';
 import { Callback, Context, Handler } from 'aws-lambda';
+import { configure } from '@codegenie/serverless-express';
 import {
   ExpressAdapter,
   type NestExpressApplication,
 } from '@nestjs/platform-express';
+import logger from '@codegenie/serverless-express/src/logger';
 
 let server: Handler;
 
@@ -64,9 +66,30 @@ async function bootstrap(): Promise<Handler> {
   const expressApp = app.getHttpAdapter().getInstance();
   console.log(`Application Running in port ${process.env.BACKEND_PORT}`);
 
-  // Dynamic import untuk mengatasi masalah ES modules
-  const { configure } = await import('@codegenie/serverless-express');
-  return configure({ app: expressApp });
+  return configure({
+    app: expressApp,
+    log: logger(),
+    binaryMimeTypes: [
+      'application/javascript',
+      'application/json',
+      'application/octet-stream',
+      'application/xml',
+      'font/eot',
+      'font/opentype',
+      'font/otf',
+      'image/jpeg',
+      'image/png',
+      'image/svg+xml',
+      'text/comma-separated-values',
+      'text/css',
+      'text/html',
+      'text/javascript',
+      'text/plain',
+      'text/text',
+      'text/xml',
+    ],
+    resolutionMode: 'PROMISE',
+  });
 }
 
 export const handler = async (
@@ -74,8 +97,31 @@ export const handler = async (
   context: Context,
   callback: Callback,
 ) => {
-  server = server ?? (await bootstrap());
-  return server(event, context, callback);
+  try {
+    console.log('Lambda Event:', JSON.stringify(event, null, 2));
+    console.log('Lambda Context:', JSON.stringify(context, null, 2));
+
+    // Pastikan event memiliki struktur yang benar
+    if (!event) {
+      console.error('Event is undefined or null');
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'Invalid event' }),
+      };
+    }
+
+    server = server ?? (await bootstrap());
+    return server(event, context, callback);
+  } catch (error) {
+    console.error('Handler error:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: 'Internal server error',
+        message: error instanceof Error ? error.message : 'Unknown error',
+      }),
+    };
+  }
 };
 
 export default handler;
