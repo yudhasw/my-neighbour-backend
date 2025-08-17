@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = handler;
-exports.handler = handler;
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const common_1 = require("@nestjs/common");
@@ -47,9 +46,8 @@ async function bootstrap() {
         },
     }), new costume_validation_pipe_1.CostumeValidationPipe());
     await app.init();
-    console.log('🚀 NestJS application initialized for Vercel (Production)');
-    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'production'}`);
-    console.log(`⚡ Running in serverless mode`);
+    await app.listen(process.env.BACKEND_PORT || 3000);
+    console.log('NestJS application initialized for Vercel');
     return app;
 }
 async function handler(req, res) {
