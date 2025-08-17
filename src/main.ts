@@ -65,12 +65,12 @@ async function bootstrap(): Promise<NestExpressApplication> {
   );
 
   await app.init();
-  console.log('NestJS application initialized for Vercel');
+  console.log('🚀 NestJS application initialized for Vercel (Production)');
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'production'}`);
+  console.log(`⚡ Running in serverless mode`);
 
   return app;
 }
-
-// <!-- ->
 
 // Export the NestJS app for Vercel
 export default async function handler(req: Request, res: Response) {
@@ -88,3 +88,6 @@ export default async function handler(req: Request, res: Response) {
     });
   }
 }
+
+// Also export as named export for compatibility
+export { handler };
