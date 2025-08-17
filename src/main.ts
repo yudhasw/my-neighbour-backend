@@ -5,7 +5,6 @@ import { ValidationPipe, BadRequestException } from '@nestjs/common';
 import { useContainer, ValidationError } from 'class-validator';
 import { CostumeValidationPipe } from './common/pipes/costume-validation.pipe';
 import { Callback, Context, Handler } from 'aws-lambda';
-import * as serverlessExpress from '@codegenie/serverless-express';
 import {
   ExpressAdapter,
   type NestExpressApplication,
@@ -62,10 +61,12 @@ async function bootstrap(): Promise<Handler> {
   );
 
   await app.init();
-
   const expressApp = app.getHttpAdapter().getInstance();
   console.log(`Application Running in port ${process.env.BACKEND_PORT}`);
-  return serverlessExpress.default({ app: expressApp });
+
+  // Dynamic import untuk mengatasi masalah ES modules
+  const { configure } = await import('@codegenie/serverless-express');
+  return configure({ app: expressApp });
 }
 
 export const handler = async (

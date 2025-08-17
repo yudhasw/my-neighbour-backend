@@ -6,7 +6,6 @@ const app_module_1 = require("./app.module");
 const common_1 = require("@nestjs/common");
 const class_validator_1 = require("class-validator");
 const costume_validation_pipe_1 = require("./common/pipes/costume-validation.pipe");
-const serverlessExpress = require("@codegenie/serverless-express");
 const platform_express_1 = require("@nestjs/platform-express");
 let server;
 async function bootstrap() {
@@ -46,7 +45,8 @@ async function bootstrap() {
     await app.init();
     const expressApp = app.getHttpAdapter().getInstance();
     console.log(`Application Running in port ${process.env.BACKEND_PORT}`);
-    return serverlessExpress.default({ app: expressApp });
+    const { configure } = await Promise.resolve().then(() => require('@codegenie/serverless-express'));
+    return configure({ app: expressApp });
 }
 const handler = async (event, context, callback) => {
     server = server ?? (await bootstrap());
