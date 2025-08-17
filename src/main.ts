@@ -1,18 +1,27 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import {
-  INestApplication,
-  ValidationPipe,
-  BadRequestException,
-} from '@nestjs/common';
+import { ValidationPipe, BadRequestException } from '@nestjs/common';
 import { useContainer, ValidationError } from 'class-validator';
 import { CostumeValidationPipe } from './common/pipes/costume-validation.pipe';
+import { Callback, Context, Handler } from 'aws-lambda';
+import serverlessExpress from '@codegenie/serverless-express';
+import {
+  ExpressAdapter,
+  type NestExpressApplication,
+} from '@nestjs/platform-express';
 
-async function bootstrap() {
-  const app = await NestFactory.create<INestApplication>(AppModule, {
-    cors: true,
-    bodyParser: true,
-  });
+let server: Handler;
+
+async function bootstrap(): Promise<Handler> {
+  const app = await NestFactory.create<NestExpressApplication>(
+    AppModule,
+    new ExpressAdapter(),
+    {
+      cors: true,
+      bodyParser: true,
+    },
+  );
 
   useContainer(app.select(AppModule, { abortOnError: true }), {
     fallbackOnErrors: true,
@@ -52,7 +61,19 @@ async function bootstrap() {
     new CostumeValidationPipe(),
   );
 
-  await app.listen(process.env.BACKEND_PORT || 3000);
+  // await app.listen(process.env.BACKEND_PORT || 3000);
+  await app.init();
+
+  const expressApp = app.getHttpAdapter().getInstance();
   console.log(`Application Running in port ${process.env.BACKEND_PORT}`);
+  return serverlessExpress({ app: expressApp });
 }
-void bootstrap();
+
+export async function handler(
+  event: any,
+  context: Context,
+  callback: Callback,
+) {
+  server = server ?? (await bootstrap());
+  return server(event, context, callback);
+}

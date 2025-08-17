@@ -15,7 +15,6 @@ const financial_module_1 = require("./modules/financial-module/financial.module"
 const communication_module_1 = require("./modules/communication-module/communication.module");
 const complaint_manage_module_1 = require("./modules/compliant-module/complaint-manage.module");
 const contact_manage_module_1 = require("./modules/contact-module/contact-manage.module");
-const reports_manage_module_1 = require("./modules/reports-module/reports-manage.module");
 const security_manage_module_1 = require("./modules/security-module/security-manage.module");
 const unit_manage_module_1 = require("./modules/unit-manage-module/unit-manage.module");
 const users_manage_module_1 = require("./modules/user-manage-module/users-manage.module");
@@ -28,6 +27,7 @@ const payments_manage_module_1 = require("./modules/financial-module/payments-mo
 const employee_manage_module_1 = require("./modules/user-manage-module/employee-module/employee-manage.module");
 const resident_manage_module_1 = require("./modules/user-manage-module/resident-module/resident-manage.module");
 const user_manage_module_1 = require("./modules/user-manage-module/users-module/user-manage.module");
+const backend_api_module_1 = require("./modules/backend-api.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -35,86 +35,85 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             database_module_1.DatabaseModule,
-            financial_module_1.FinancialModule,
-            communication_module_1.CommunicationModule,
-            complaint_manage_module_1.ComplaintManageModule,
-            contact_manage_module_1.ContactManageModule,
-            reports_manage_module_1.ReportsManageModule,
-            security_manage_module_1.SecurityManageModule,
-            unit_manage_module_1.UnitManageModule,
-            users_manage_module_1.UsersManageModule,
+            backend_api_module_1.BackendApiModule,
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
                 envFilePath: '.env',
             }),
             core_1.RouterModule.register([
                 {
-                    path: 'users',
-                    module: users_manage_module_1.UsersManageModule,
+                    path: 'api',
+                    module: backend_api_module_1.BackendApiModule,
                     children: [
                         {
-                            path: 'user',
-                            module: user_manage_module_1.UserManageModule,
+                            path: 'users',
+                            module: users_manage_module_1.UsersManageModule,
+                            children: [
+                                {
+                                    path: 'user',
+                                    module: user_manage_module_1.UserManageModule,
+                                },
+                                {
+                                    path: 'resident',
+                                    module: resident_manage_module_1.ResidentManageModule,
+                                },
+                                {
+                                    path: 'employee',
+                                    module: employee_manage_module_1.EmployeeManageModule,
+                                },
+                            ],
                         },
                         {
-                            path: 'resident',
-                            module: resident_manage_module_1.ResidentManageModule,
+                            path: 'residential-units',
+                            module: unit_manage_module_1.UnitManageModule,
                         },
                         {
-                            path: 'employee',
-                            module: employee_manage_module_1.EmployeeManageModule,
-                        },
-                    ],
-                },
-                {
-                    path: 'residential-units',
-                    module: unit_manage_module_1.UnitManageModule,
-                },
-                {
-                    path: 'security-reports',
-                    module: security_manage_module_1.SecurityManageModule,
-                },
-                {
-                    path: 'financial-manage',
-                    module: financial_module_1.FinancialModule,
-                    children: [
-                        {
-                            path: 'payments',
-                            module: payments_manage_module_1.PaymentsManageModule,
+                            path: 'security-reports',
+                            module: security_manage_module_1.SecurityManageModule,
                         },
                         {
-                            path: 'billing',
-                            module: billing_manage_module_1.BillingManageModule,
+                            path: 'financial-manage',
+                            module: financial_module_1.FinancialModule,
+                            children: [
+                                {
+                                    path: 'payments',
+                                    module: payments_manage_module_1.PaymentsManageModule,
+                                },
+                                {
+                                    path: 'billing',
+                                    module: billing_manage_module_1.BillingManageModule,
+                                },
+                                {
+                                    path: 'lease',
+                                    module: leases_manage_module_1.LeasesManageModule,
+                                },
+                            ],
                         },
                         {
-                            path: 'lease',
-                            module: leases_manage_module_1.LeasesManageModule,
-                        },
-                    ],
-                },
-                {
-                    path: 'contacts',
-                    module: contact_manage_module_1.ContactManageModule,
-                },
-                {
-                    path: 'resident-compliant',
-                    module: complaint_manage_module_1.ComplaintManageModule,
-                },
-                {
-                    path: 'communications',
-                    module: communication_module_1.CommunicationModule,
-                    children: [
-                        {
-                            path: 'announcements',
-                            module: announcement_manage_module_1.AnnouncementManageModule,
+                            path: 'contacts',
+                            module: contact_manage_module_1.ContactManageModule,
                         },
                         {
-                            path: 'forum-post',
-                            module: forum_post_manage_module_1.ForumPostManageModule,
+                            path: 'resident-compliant',
+                            module: complaint_manage_module_1.ComplaintManageModule,
                         },
                         {
-                            path: 'forum-comment',
-                            module: forum_comment_manage_module_1.ForumCommentManageModule,
+                            path: 'communications',
+                            module: communication_module_1.CommunicationModule,
+                            children: [
+                                {
+                                    path: 'announcements',
+                                    module: announcement_manage_module_1.AnnouncementManageModule,
+                                },
+                                {
+                                    path: 'forum-post',
+                                    module: forum_post_manage_module_1.ForumPostManageModule,
+                                },
+                                {
+                                    path: 'forum-comment',
+                                    module: forum_comment_manage_module_1.ForumCommentManageModule,
+                                },
+                            ],
                         },
                     ],
                 },

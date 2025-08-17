@@ -1,12 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.handler = handler;
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const common_1 = require("@nestjs/common");
 const class_validator_1 = require("class-validator");
 const costume_validation_pipe_1 = require("./common/pipes/costume-validation.pipe");
+const serverless_express_1 = require("@codegenie/serverless-express");
+const platform_express_1 = require("@nestjs/platform-express");
+let server;
 async function bootstrap() {
-    const app = await core_1.NestFactory.create(app_module_1.AppModule, {
+    const app = await core_1.NestFactory.create(app_module_1.AppModule, new platform_express_1.ExpressAdapter(), {
         cors: true,
         bodyParser: true,
     });
@@ -39,8 +43,13 @@ async function bootstrap() {
             });
         },
     }), new costume_validation_pipe_1.CostumeValidationPipe());
-    await app.listen(process.env.BACKEND_PORT || 3000);
+    await app.init();
+    const expressApp = app.getHttpAdapter().getInstance();
     console.log(`Application Running in port ${process.env.BACKEND_PORT}`);
+    return (0, serverless_express_1.default)({ app: expressApp });
 }
-void bootstrap();
+async function handler(event, context, callback) {
+    server = server ?? (await bootstrap());
+    return server(event, context, callback);
+}
 //# sourceMappingURL=main.js.map
