@@ -1,3 +1,2 @@
-import { Callback, Context } from 'aws-lambda';
-export declare const handler: (event: any, context: Context, callback: Callback) => Promise<any>;
-export default handler;
+import { Request, Response } from 'express';
+export default function handler(req: Request, res: Response): Promise<any>;
