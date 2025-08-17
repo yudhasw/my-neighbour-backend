@@ -3849,6 +3849,7 @@ var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports["default"] = handler;
+exports.handler = handler;
 const core_1 = __webpack_require__(1);
 const app_module_1 = __webpack_require__(2);
 const common_1 = __webpack_require__(3);
@@ -3894,7 +3895,9 @@ async function bootstrap() {
         },
     }), new costume_validation_pipe_1.CostumeValidationPipe());
     await app.init();
-    console.log('NestJS application initialized for Vercel');
+    console.log('🚀 NestJS application initialized for Vercel (Production)');
+    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'production'}`);
+    console.log(`⚡ Running in serverless mode`);
     return app;
 }
 async function handler(req, res) {
