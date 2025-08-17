@@ -3,14 +3,35 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "webpack": false,
+    "webpack": true,
     "watchAssets": true,
     "deleteOutDir": true,
+    "tsConfigPath": "tsconfig.build.json",
     "assets": [
       {
         "include": "common/database/generated/prisma",
         "outDir": "dist/"
       }
     ]
+  },
+  "projects": {
+    "main": {
+      "type": "application",
+      "root": "src",
+      "entryFile": "main",
+      "sourceRoot": "src",
+      "compilerOptions": {
+        "tsConfigPath": "tsconfig.build.json"
+      }
+    },
+    "main.dev": {
+      "type": "application",
+      "root": "src",
+      "entryFile": "main.dev",
+      "sourceRoot": "src",
+      "compilerOptions": {
+        "tsConfigPath": "tsconfig.build.json"
+      }
+    }
   }
 }

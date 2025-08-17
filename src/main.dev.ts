@@ -1,23 +1,15 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe, BadRequestException } from '@nestjs/common';
 import { useContainer, ValidationError } from 'class-validator';
 import { CostumeValidationPipe } from './common/pipes/costume-validation.pipe';
-import { Request, Response } from 'express';
 import {
   ExpressAdapter,
   type NestExpressApplication,
 } from '@nestjs/platform-express';
 
-let app: NestExpressApplication;
-
-async function bootstrap(): Promise<NestExpressApplication> {
-  if (app) {
-    return app;
-  }
-
-  app = await NestFactory.create<NestExpressApplication>(
+async function bootstrap() {
+  const app = await NestFactory.create<NestExpressApplication>(
     AppModule,
     new ExpressAdapter(),
     {
@@ -64,27 +56,25 @@ async function bootstrap(): Promise<NestExpressApplication> {
     new CostumeValidationPipe(),
   );
 
-  await app.init();
-  console.log('NestJS application initialized for Vercel');
+  // Development-specific configurations
+  const port = process.env.BACKEND_PORT || process.env.PORT || 3000;
 
-  return app;
+  await app.listen(port);
+  console.log(`🚀 Application is running on: http://localhost:${port}`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
 }
 
-// <!-- ->
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+  process.exit(1);
+});
 
-// Export the NestJS app for Vercel
-export default async function handler(req: Request, res: Response) {
-  try {
-    const nestApp = await bootstrap();
-    const expressApp = nestApp.getHttpAdapter().getInstance();
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  process.exit(1);
+});
 
-    // Let Express handle the request
-    return expressApp(req, res);
-  } catch (error) {
-    console.error('Handler error:', error);
-    res.status(500).json({
-      error: 'Internal server error',
-      message: error instanceof Error ? error.message : 'Unknown error',
-    });
-  }
-}
+bootstrap().catch((error) => {
+  console.error('Application failed to start:', error);
+  process.exit(1);
+});

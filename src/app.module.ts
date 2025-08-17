@@ -20,7 +20,10 @@ import { LeasesManageModule } from './modules/financial-module/lease-module/leas
 import { PaymentsManageModule } from './modules/financial-module/payments-module/payments-manage.module';
 import { EmployeeManageModule } from './modules/user-manage-module/employee-module/employee-manage.module';
 import { ResidentManageModule } from './modules/user-manage-module/resident-module/resident-manage.module';
-import { UserManageModule } from './modules/user-manage-module/users-module/user-manage.module';
+import { AppUserManageModule } from './modules/user-manage-module/app-users-module/app-user-manage.module';
+import { ReportsManageModule } from './modules/reports-module/reports-manage.module';
+import { OperationalReportModule } from './modules/reports-module/operational-report-module/operational-report.module';
+import { PaymentsReportModule } from './modules/reports-module/payments-report-module/payments-report.module';
 @Module({
   imports: [
     DatabaseModule,
@@ -39,8 +42,8 @@ import { UserManageModule } from './modules/user-manage-module/users-module/user
             module: UsersManageModule,
             children: [
               {
-                path: 'user',
-                module: UserManageModule,
+                path: 'app-users',
+                module: AppUserManageModule,
               },
               {
                 path: 'resident',
@@ -101,6 +104,20 @@ import { UserManageModule } from './modules/user-manage-module/users-module/user
               {
                 path: 'forum-comment',
                 module: ForumCommentManageModule,
+              },
+            ],
+          },
+          {
+            path: 'reports',
+            module: ReportsManageModule,
+            children: [
+              {
+                path: 'operational-report',
+                module: OperationalReportModule,
+              },
+              {
+                path: 'payments-report',
+                module: PaymentsReportModule,
               },
             ],
           },
