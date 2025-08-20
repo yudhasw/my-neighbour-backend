@@ -129,7 +129,7 @@ exports.Prisma.UserScalarFieldEnum = {
   contactNumber: 'contactNumber',
   primaryEmail: 'primaryEmail',
   secondaryEmail: 'secondaryEmail',
-  passwordHash: 'passwordHash',
+  password: 'password',
   sessionToken: 'sessionToken',
   emailVerificationToken: 'emailVerificationToken',
   passwordResetToken: 'passwordResetToken',
@@ -151,7 +151,7 @@ exports.Prisma.ResidentScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.EmployeesScalarFieldEnum = {
+exports.Prisma.EmployeeScalarFieldEnum = {
   employeeId: 'employeeId',
   employeeIdNumber: 'employeeIdNumber',
   hireDate: 'hireDate',
@@ -178,7 +178,17 @@ exports.Prisma.MaintenanceRequestScalarFieldEnum = {
 };
 
 exports.Prisma.ComplaintScalarFieldEnum = {
-  id: 'id'
+  id: 'id',
+  name: 'name',
+  desciption: 'desciption',
+  status: 'status',
+  submittedAt: 'submittedAt',
+  resolvedAt: 'resolvedAt',
+  resolutionDetails: 'resolutionDetails',
+  residentId: 'residentId',
+  employeeId: 'employeeId',
+  unitId: 'unitId',
+  images: 'images'
 };
 
 exports.Prisma.PaymentScalarFieldEnum = {
@@ -248,7 +258,9 @@ exports.Prisma.UnitScalarFieldEnum = {
   rentAmount: 'rentAmount',
   location: 'location',
   status: 'status',
-  priceSale: 'priceSale'
+  priceSale: 'priceSale',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.LeaseScalarFieldEnum = {
@@ -259,7 +271,9 @@ exports.Prisma.LeaseScalarFieldEnum = {
   depositAmount: 'depositAmount',
   termsAndConditions: 'termsAndConditions',
   residentId: 'residentId',
-  unitId: 'unitId'
+  unitId: 'unitId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.BillScalarFieldEnum = {
@@ -269,7 +283,10 @@ exports.Prisma.BillScalarFieldEnum = {
   dueDate: 'dueDate',
   isPaid: 'isPaid',
   unitId: 'unitId',
-  employeeId: 'employeeId'
+  employeeId: 'employeeId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
 };
 
 exports.Prisma.ContactScalarFieldEnum = {
@@ -277,7 +294,9 @@ exports.Prisma.ContactScalarFieldEnum = {
   name: 'name',
   role: 'role',
   phoneNumber: 'phoneNumber',
-  email: 'email'
+  email: 'email',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -332,6 +351,14 @@ exports.MaintenanceStatus = exports.$Enums.MaintenanceStatus = {
   CANCELLED: 'CANCELLED'
 };
 
+exports.ComplaintStatus = exports.$Enums.ComplaintStatus = {
+  NEW: 'NEW',
+  VERIFIED: 'VERIFIED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+};
+
 exports.PaymentMethod = exports.$Enums.PaymentMethod = {
   BANK_TRANSFER: 'BANK_TRANSFER',
   E_WALLET: 'E_WALLET',
@@ -365,7 +392,7 @@ exports.ContactRole = exports.$Enums.ContactRole = {
 exports.Prisma.ModelName = {
   User: 'User',
   Resident: 'Resident',
-  Employees: 'Employees',
+  Employee: 'Employee',
   MaintenanceRequest: 'MaintenanceRequest',
   Complaint: 'Complaint',
   Payment: 'Payment',

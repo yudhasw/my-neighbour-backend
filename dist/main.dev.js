@@ -6,6 +6,8 @@ const common_1 = require("@nestjs/common");
 const class_validator_1 = require("class-validator");
 const costume_validation_pipe_1 = require("./common/pipes/costume-validation.pipe");
 const platform_express_1 = require("@nestjs/platform-express");
+const response_mapping_interceptor_1 = require("./common/interceptors/response-mapping.interceptor");
+const exception_massage_interceptor_1 = require("./common/interceptors/exception-massage.interceptor");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, new platform_express_1.ExpressAdapter(), {
         cors: true,
@@ -14,6 +16,7 @@ async function bootstrap() {
     (0, class_validator_1.useContainer)(app.select(app_module_1.AppModule, { abortOnError: true }), {
         fallbackOnErrors: true,
     });
+    app.useGlobalInterceptors(new response_mapping_interceptor_1.ResponseMappingInterceptor(), new exception_massage_interceptor_1.PrismaErrorInterceptor());
     app.useGlobalPipes(new common_1.ValidationPipe({
         whitelist: true,
         forbidNonWhitelisted: true,

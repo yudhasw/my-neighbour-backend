@@ -7,6 +7,8 @@ import {
   ExpressAdapter,
   type NestExpressApplication,
 } from '@nestjs/platform-express';
+import { ResponseMappingInterceptor } from './common/interceptors/response-mapping.interceptor';
+import { PrismaErrorInterceptor } from './common/interceptors/exception-massage.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -21,6 +23,11 @@ async function bootstrap() {
   useContainer(app.select(AppModule, { abortOnError: true }), {
     fallbackOnErrors: true,
   });
+
+  app.useGlobalInterceptors(
+    new ResponseMappingInterceptor(),
+    new PrismaErrorInterceptor(),
+  );
 
   app.useGlobalPipes(
     new ValidationPipe({

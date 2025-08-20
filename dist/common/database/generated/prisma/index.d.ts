@@ -24,10 +24,10 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  */
 export type Resident = $Result.DefaultSelection<Prisma.$ResidentPayload>
 /**
- * Model Employees
+ * Model Employee
  * 
  */
-export type Employees = $Result.DefaultSelection<Prisma.$EmployeesPayload>
+export type Employee = $Result.DefaultSelection<Prisma.$EmployeePayload>
 /**
  * Model MaintenanceRequest
  * 
@@ -196,6 +196,17 @@ export const ContactRole: {
 
 export type ContactRole = (typeof ContactRole)[keyof typeof ContactRole]
 
+
+export const ComplaintStatus: {
+  NEW: 'NEW',
+  VERIFIED: 'VERIFIED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+};
+
+export type ComplaintStatus = (typeof ComplaintStatus)[keyof typeof ComplaintStatus]
+
 }
 
 export type UserRole = $Enums.UserRole
@@ -245,6 +256,10 @@ export const PaymentType: typeof $Enums.PaymentType
 export type ContactRole = $Enums.ContactRole
 
 export const ContactRole: typeof $Enums.ContactRole
+
+export type ComplaintStatus = $Enums.ComplaintStatus
+
+export const ComplaintStatus: typeof $Enums.ComplaintStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -385,14 +400,14 @@ export class PrismaClient<
   get resident(): Prisma.ResidentDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.employees`: Exposes CRUD operations for the **Employees** model.
+   * `prisma.employee`: Exposes CRUD operations for the **Employee** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Employees
-    * const employees = await prisma.employees.findMany()
+    * const employees = await prisma.employee.findMany()
     * ```
     */
-  get employees(): Prisma.EmployeesDelegate<ExtArgs, ClientOptions>;
+  get employee(): Prisma.EmployeeDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.maintenanceRequest`: Exposes CRUD operations for the **MaintenanceRequest** model.
@@ -945,7 +960,7 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Resident: 'Resident',
-    Employees: 'Employees',
+    Employee: 'Employee',
     MaintenanceRequest: 'MaintenanceRequest',
     Complaint: 'Complaint',
     Payment: 'Payment',
@@ -975,7 +990,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "resident" | "employees" | "maintenanceRequest" | "complaint" | "payment" | "announcement" | "forumPost" | "postTag" | "forumComment" | "unit" | "lease" | "bill" | "contact"
+      modelProps: "user" | "resident" | "employee" | "maintenanceRequest" | "complaint" | "payment" | "announcement" | "forumPost" | "postTag" | "forumComment" | "unit" | "lease" | "bill" | "contact"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1127,77 +1142,77 @@ export namespace Prisma {
           }
         }
       }
-      Employees: {
-        payload: Prisma.$EmployeesPayload<ExtArgs>
-        fields: Prisma.EmployeesFieldRefs
+      Employee: {
+        payload: Prisma.$EmployeePayload<ExtArgs>
+        fields: Prisma.EmployeeFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.EmployeesFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeesPayload> | null
+            args: Prisma.EmployeeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.EmployeesFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeesPayload>
+            args: Prisma.EmployeeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
           }
           findFirst: {
-            args: Prisma.EmployeesFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeesPayload> | null
+            args: Prisma.EmployeeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.EmployeesFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeesPayload>
+            args: Prisma.EmployeeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
           }
           findMany: {
-            args: Prisma.EmployeesFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeesPayload>[]
+            args: Prisma.EmployeeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>[]
           }
           create: {
-            args: Prisma.EmployeesCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeesPayload>
+            args: Prisma.EmployeeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
           }
           createMany: {
-            args: Prisma.EmployeesCreateManyArgs<ExtArgs>
+            args: Prisma.EmployeeCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.EmployeesCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeesPayload>[]
+            args: Prisma.EmployeeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>[]
           }
           delete: {
-            args: Prisma.EmployeesDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeesPayload>
+            args: Prisma.EmployeeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
           }
           update: {
-            args: Prisma.EmployeesUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeesPayload>
+            args: Prisma.EmployeeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
           }
           deleteMany: {
-            args: Prisma.EmployeesDeleteManyArgs<ExtArgs>
+            args: Prisma.EmployeeDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.EmployeesUpdateManyArgs<ExtArgs>
+            args: Prisma.EmployeeUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.EmployeesUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeesPayload>[]
+            args: Prisma.EmployeeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>[]
           }
           upsert: {
-            args: Prisma.EmployeesUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeesPayload>
+            args: Prisma.EmployeeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
           }
           aggregate: {
-            args: Prisma.EmployeesAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateEmployees>
+            args: Prisma.EmployeeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmployee>
           }
           groupBy: {
-            args: Prisma.EmployeesGroupByArgs<ExtArgs>
-            result: $Utils.Optional<EmployeesGroupByOutputType>[]
+            args: Prisma.EmployeeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeGroupByOutputType>[]
           }
           count: {
-            args: Prisma.EmployeesCountArgs<ExtArgs>
-            result: $Utils.Optional<EmployeesCountAggregateOutputType> | number
+            args: Prisma.EmployeeCountArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeCountAggregateOutputType> | number
           }
         }
       }
@@ -2109,7 +2124,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     resident?: ResidentOmit
-    employees?: EmployeesOmit
+    employee?: EmployeeOmit
     maintenanceRequest?: MaintenanceRequestOmit
     complaint?: ComplaintOmit
     payment?: PaymentOmit
@@ -2201,15 +2216,13 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    ForumPost: number
-    ForumComment: number
-    Bill: number
+    ForumPosts: number
+    ForumComments: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ForumPost?: boolean | UserCountOutputTypeCountForumPostArgs
-    ForumComment?: boolean | UserCountOutputTypeCountForumCommentArgs
-    Bill?: boolean | UserCountOutputTypeCountBillArgs
+    ForumPosts?: boolean | UserCountOutputTypeCountForumPostsArgs
+    ForumComments?: boolean | UserCountOutputTypeCountForumCommentsArgs
   }
 
   // Custom InputTypes
@@ -2226,22 +2239,15 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountForumPostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountForumPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ForumPostWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountForumCommentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountForumCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ForumCommentWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountBillArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BillWhereInput
   }
 
 
@@ -2252,13 +2258,15 @@ export namespace Prisma {
   export type ResidentCountOutputType = {
     maintenanceRequests: number
     payments: number
-    Lease: number
+    Leases: number
+    Complaints: number
   }
 
   export type ResidentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     maintenanceRequests?: boolean | ResidentCountOutputTypeCountMaintenanceRequestsArgs
     payments?: boolean | ResidentCountOutputTypeCountPaymentsArgs
-    Lease?: boolean | ResidentCountOutputTypeCountLeaseArgs
+    Leases?: boolean | ResidentCountOutputTypeCountLeasesArgs
+    Complaints?: boolean | ResidentCountOutputTypeCountComplaintsArgs
   }
 
   // Custom InputTypes
@@ -2289,57 +2297,73 @@ export namespace Prisma {
   /**
    * ResidentCountOutputType without action
    */
-  export type ResidentCountOutputTypeCountLeaseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ResidentCountOutputTypeCountLeasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LeaseWhereInput
+  }
+
+  /**
+   * ResidentCountOutputType without action
+   */
+  export type ResidentCountOutputTypeCountComplaintsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComplaintWhereInput
   }
 
 
   /**
-   * Count Type EmployeesCountOutputType
+   * Count Type EmployeeCountOutputType
    */
 
-  export type EmployeesCountOutputType = {
-    Announcement: number
-    MaintenanceRequest: number
-    Payment: number
+  export type EmployeeCountOutputType = {
+    Announcements: number
+    MaintenanceRequests: number
+    Payments: number
+    Bills: number
   }
 
-  export type EmployeesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Announcement?: boolean | EmployeesCountOutputTypeCountAnnouncementArgs
-    MaintenanceRequest?: boolean | EmployeesCountOutputTypeCountMaintenanceRequestArgs
-    Payment?: boolean | EmployeesCountOutputTypeCountPaymentArgs
+  export type EmployeeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Announcements?: boolean | EmployeeCountOutputTypeCountAnnouncementsArgs
+    MaintenanceRequests?: boolean | EmployeeCountOutputTypeCountMaintenanceRequestsArgs
+    Payments?: boolean | EmployeeCountOutputTypeCountPaymentsArgs
+    Bills?: boolean | EmployeeCountOutputTypeCountBillsArgs
   }
 
   // Custom InputTypes
   /**
-   * EmployeesCountOutputType without action
+   * EmployeeCountOutputType without action
    */
-  export type EmployeesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the EmployeesCountOutputType
+     * Select specific fields to fetch from the EmployeeCountOutputType
      */
-    select?: EmployeesCountOutputTypeSelect<ExtArgs> | null
+    select?: EmployeeCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * EmployeesCountOutputType without action
+   * EmployeeCountOutputType without action
    */
-  export type EmployeesCountOutputTypeCountAnnouncementArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeCountOutputTypeCountAnnouncementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AnnouncementWhereInput
   }
 
   /**
-   * EmployeesCountOutputType without action
+   * EmployeeCountOutputType without action
    */
-  export type EmployeesCountOutputTypeCountMaintenanceRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeCountOutputTypeCountMaintenanceRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MaintenanceRequestWhereInput
   }
 
   /**
-   * EmployeesCountOutputType without action
+   * EmployeeCountOutputType without action
    */
-  export type EmployeesCountOutputTypeCountPaymentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeCountOutputTypeCountPaymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PaymentWhereInput
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountBillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BillWhereInput
   }
 
 
@@ -2388,11 +2412,11 @@ export namespace Prisma {
    */
 
   export type PostTagCountOutputType = {
-    ForumPost: number
+    ForumPosts: number
   }
 
   export type PostTagCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ForumPost?: boolean | PostTagCountOutputTypeCountForumPostArgs
+    ForumPosts?: boolean | PostTagCountOutputTypeCountForumPostsArgs
   }
 
   // Custom InputTypes
@@ -2409,7 +2433,7 @@ export namespace Prisma {
   /**
    * PostTagCountOutputType without action
    */
-  export type PostTagCountOutputTypeCountForumPostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PostTagCountOutputTypeCountForumPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ForumPostWhereInput
   }
 
@@ -2419,19 +2443,21 @@ export namespace Prisma {
    */
 
   export type UnitCountOutputType = {
-    residents: number
-    maintenanceRequests: number
-    payments: number
-    leases: number
-    Bill: number
+    Residents: number
+    MaintenanceRequests: number
+    Payments: number
+    Leases: number
+    Bills: number
+    Complaints: number
   }
 
   export type UnitCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    residents?: boolean | UnitCountOutputTypeCountResidentsArgs
-    maintenanceRequests?: boolean | UnitCountOutputTypeCountMaintenanceRequestsArgs
-    payments?: boolean | UnitCountOutputTypeCountPaymentsArgs
-    leases?: boolean | UnitCountOutputTypeCountLeasesArgs
-    Bill?: boolean | UnitCountOutputTypeCountBillArgs
+    Residents?: boolean | UnitCountOutputTypeCountResidentsArgs
+    MaintenanceRequests?: boolean | UnitCountOutputTypeCountMaintenanceRequestsArgs
+    Payments?: boolean | UnitCountOutputTypeCountPaymentsArgs
+    Leases?: boolean | UnitCountOutputTypeCountLeasesArgs
+    Bills?: boolean | UnitCountOutputTypeCountBillsArgs
+    Complaints?: boolean | UnitCountOutputTypeCountComplaintsArgs
   }
 
   // Custom InputTypes
@@ -2476,8 +2502,15 @@ export namespace Prisma {
   /**
    * UnitCountOutputType without action
    */
-  export type UnitCountOutputTypeCountBillArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitCountOutputTypeCountBillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BillWhereInput
+  }
+
+  /**
+   * UnitCountOutputType without action
+   */
+  export type UnitCountOutputTypeCountComplaintsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComplaintWhereInput
   }
 
 
@@ -2486,11 +2519,11 @@ export namespace Prisma {
    */
 
   export type LeaseCountOutputType = {
-    payments: number
+    Payments: number
   }
 
   export type LeaseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    payments?: boolean | LeaseCountOutputTypeCountPaymentsArgs
+    Payments?: boolean | LeaseCountOutputTypeCountPaymentsArgs
   }
 
   // Custom InputTypes
@@ -2517,11 +2550,11 @@ export namespace Prisma {
    */
 
   export type BillCountOutputType = {
-    payments: number
+    Payments: number
   }
 
   export type BillCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    payments?: boolean | BillCountOutputTypeCountPaymentsArgs
+    Payments?: boolean | BillCountOutputTypeCountPaymentsArgs
   }
 
   // Custom InputTypes
@@ -2566,7 +2599,7 @@ export namespace Prisma {
     contactNumber: string | null
     primaryEmail: string | null
     secondaryEmail: string | null
-    passwordHash: string | null
+    password: string | null
     sessionToken: string | null
     emailVerificationToken: string | null
     passwordResetToken: string | null
@@ -2585,7 +2618,7 @@ export namespace Prisma {
     contactNumber: string | null
     primaryEmail: string | null
     secondaryEmail: string | null
-    passwordHash: string | null
+    password: string | null
     sessionToken: string | null
     emailVerificationToken: string | null
     passwordResetToken: string | null
@@ -2604,7 +2637,7 @@ export namespace Prisma {
     contactNumber: number
     primaryEmail: number
     secondaryEmail: number
-    passwordHash: number
+    password: number
     sessionToken: number
     emailVerificationToken: number
     passwordResetToken: number
@@ -2625,7 +2658,7 @@ export namespace Prisma {
     contactNumber?: true
     primaryEmail?: true
     secondaryEmail?: true
-    passwordHash?: true
+    password?: true
     sessionToken?: true
     emailVerificationToken?: true
     passwordResetToken?: true
@@ -2644,7 +2677,7 @@ export namespace Prisma {
     contactNumber?: true
     primaryEmail?: true
     secondaryEmail?: true
-    passwordHash?: true
+    password?: true
     sessionToken?: true
     emailVerificationToken?: true
     passwordResetToken?: true
@@ -2663,7 +2696,7 @@ export namespace Prisma {
     contactNumber?: true
     primaryEmail?: true
     secondaryEmail?: true
-    passwordHash?: true
+    password?: true
     sessionToken?: true
     emailVerificationToken?: true
     passwordResetToken?: true
@@ -2755,12 +2788,12 @@ export namespace Prisma {
     contactNumber: string | null
     primaryEmail: string
     secondaryEmail: string | null
-    passwordHash: string
+    password: string
     sessionToken: string | null
     emailVerificationToken: string | null
     passwordResetToken: string | null
     role: $Enums.UserRole
-    gender: $Enums.Gender
+    gender: $Enums.Gender | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -2791,7 +2824,7 @@ export namespace Prisma {
     contactNumber?: boolean
     primaryEmail?: boolean
     secondaryEmail?: boolean
-    passwordHash?: boolean
+    password?: boolean
     sessionToken?: boolean
     emailVerificationToken?: boolean
     passwordResetToken?: boolean
@@ -2799,11 +2832,10 @@ export namespace Prisma {
     gender?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    resident?: boolean | User$residentArgs<ExtArgs>
-    Employees?: boolean | User$EmployeesArgs<ExtArgs>
-    ForumPost?: boolean | User$ForumPostArgs<ExtArgs>
-    ForumComment?: boolean | User$ForumCommentArgs<ExtArgs>
-    Bill?: boolean | User$BillArgs<ExtArgs>
+    Resident?: boolean | User$ResidentArgs<ExtArgs>
+    Employee?: boolean | User$EmployeeArgs<ExtArgs>
+    ForumPosts?: boolean | User$ForumPostsArgs<ExtArgs>
+    ForumComments?: boolean | User$ForumCommentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2816,7 +2848,7 @@ export namespace Prisma {
     contactNumber?: boolean
     primaryEmail?: boolean
     secondaryEmail?: boolean
-    passwordHash?: boolean
+    password?: boolean
     sessionToken?: boolean
     emailVerificationToken?: boolean
     passwordResetToken?: boolean
@@ -2835,7 +2867,7 @@ export namespace Prisma {
     contactNumber?: boolean
     primaryEmail?: boolean
     secondaryEmail?: boolean
-    passwordHash?: boolean
+    password?: boolean
     sessionToken?: boolean
     emailVerificationToken?: boolean
     passwordResetToken?: boolean
@@ -2854,7 +2886,7 @@ export namespace Prisma {
     contactNumber?: boolean
     primaryEmail?: boolean
     secondaryEmail?: boolean
-    passwordHash?: boolean
+    password?: boolean
     sessionToken?: boolean
     emailVerificationToken?: boolean
     passwordResetToken?: boolean
@@ -2864,13 +2896,12 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "firstName" | "lastName" | "dateOfBirth" | "contactNumber" | "primaryEmail" | "secondaryEmail" | "passwordHash" | "sessionToken" | "emailVerificationToken" | "passwordResetToken" | "role" | "gender" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "firstName" | "lastName" | "dateOfBirth" | "contactNumber" | "primaryEmail" | "secondaryEmail" | "password" | "sessionToken" | "emailVerificationToken" | "passwordResetToken" | "role" | "gender" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    resident?: boolean | User$residentArgs<ExtArgs>
-    Employees?: boolean | User$EmployeesArgs<ExtArgs>
-    ForumPost?: boolean | User$ForumPostArgs<ExtArgs>
-    ForumComment?: boolean | User$ForumCommentArgs<ExtArgs>
-    Bill?: boolean | User$BillArgs<ExtArgs>
+    Resident?: boolean | User$ResidentArgs<ExtArgs>
+    Employee?: boolean | User$EmployeeArgs<ExtArgs>
+    ForumPosts?: boolean | User$ForumPostsArgs<ExtArgs>
+    ForumComments?: boolean | User$ForumCommentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2879,11 +2910,10 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      resident: Prisma.$ResidentPayload<ExtArgs> | null
-      Employees: Prisma.$EmployeesPayload<ExtArgs> | null
-      ForumPost: Prisma.$ForumPostPayload<ExtArgs>[]
-      ForumComment: Prisma.$ForumCommentPayload<ExtArgs>[]
-      Bill: Prisma.$BillPayload<ExtArgs>[]
+      Resident: Prisma.$ResidentPayload<ExtArgs> | null
+      Employee: Prisma.$EmployeePayload<ExtArgs> | null
+      ForumPosts: Prisma.$ForumPostPayload<ExtArgs>[]
+      ForumComments: Prisma.$ForumCommentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2894,12 +2924,12 @@ export namespace Prisma {
       contactNumber: string | null
       primaryEmail: string
       secondaryEmail: string | null
-      passwordHash: string
+      password: string
       sessionToken: string | null
       emailVerificationToken: string | null
       passwordResetToken: string | null
       role: $Enums.UserRole
-      gender: $Enums.Gender
+      gender: $Enums.Gender | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -3296,11 +3326,10 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    resident<T extends User$residentArgs<ExtArgs> = {}>(args?: Subset<T, User$residentArgs<ExtArgs>>): Prisma__ResidentClient<$Result.GetResult<Prisma.$ResidentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    Employees<T extends User$EmployeesArgs<ExtArgs> = {}>(args?: Subset<T, User$EmployeesArgs<ExtArgs>>): Prisma__EmployeesClient<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    ForumPost<T extends User$ForumPostArgs<ExtArgs> = {}>(args?: Subset<T, User$ForumPostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ForumPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    ForumComment<T extends User$ForumCommentArgs<ExtArgs> = {}>(args?: Subset<T, User$ForumCommentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ForumCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Bill<T extends User$BillArgs<ExtArgs> = {}>(args?: Subset<T, User$BillArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Resident<T extends User$ResidentArgs<ExtArgs> = {}>(args?: Subset<T, User$ResidentArgs<ExtArgs>>): Prisma__ResidentClient<$Result.GetResult<Prisma.$ResidentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Employee<T extends User$EmployeeArgs<ExtArgs> = {}>(args?: Subset<T, User$EmployeeArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    ForumPosts<T extends User$ForumPostsArgs<ExtArgs> = {}>(args?: Subset<T, User$ForumPostsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ForumPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ForumComments<T extends User$ForumCommentsArgs<ExtArgs> = {}>(args?: Subset<T, User$ForumCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ForumCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3338,7 +3367,7 @@ export namespace Prisma {
     readonly contactNumber: FieldRef<"User", 'String'>
     readonly primaryEmail: FieldRef<"User", 'String'>
     readonly secondaryEmail: FieldRef<"User", 'String'>
-    readonly passwordHash: FieldRef<"User", 'String'>
+    readonly password: FieldRef<"User", 'String'>
     readonly sessionToken: FieldRef<"User", 'String'>
     readonly emailVerificationToken: FieldRef<"User", 'String'>
     readonly passwordResetToken: FieldRef<"User", 'String'>
@@ -3734,9 +3763,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.resident
+   * User.Resident
    */
-  export type User$residentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$ResidentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Resident
      */
@@ -3753,28 +3782,28 @@ export namespace Prisma {
   }
 
   /**
-   * User.Employees
+   * User.Employee
    */
-  export type User$EmployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$EmployeeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelect<ExtArgs> | null
+    select?: EmployeeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesInclude<ExtArgs> | null
-    where?: EmployeesWhereInput
+    include?: EmployeeInclude<ExtArgs> | null
+    where?: EmployeeWhereInput
   }
 
   /**
-   * User.ForumPost
+   * User.ForumPosts
    */
-  export type User$ForumPostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$ForumPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ForumPost
      */
@@ -3796,9 +3825,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.ForumComment
+   * User.ForumComments
    */
-  export type User$ForumCommentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$ForumCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ForumComment
      */
@@ -3817,30 +3846,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ForumCommentScalarFieldEnum | ForumCommentScalarFieldEnum[]
-  }
-
-  /**
-   * User.Bill
-   */
-  export type User$BillArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Bill
-     */
-    select?: BillSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Bill
-     */
-    omit?: BillOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BillInclude<ExtArgs> | null
-    where?: BillWhereInput
-    orderBy?: BillOrderByWithRelationInput | BillOrderByWithRelationInput[]
-    cursor?: BillWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: BillScalarFieldEnum | BillScalarFieldEnum[]
   }
 
   /**
@@ -4062,7 +4067,8 @@ export namespace Prisma {
     unit?: boolean | UnitDefaultArgs<ExtArgs>
     maintenanceRequests?: boolean | Resident$maintenanceRequestsArgs<ExtArgs>
     payments?: boolean | Resident$paymentsArgs<ExtArgs>
-    Lease?: boolean | Resident$LeaseArgs<ExtArgs>
+    Leases?: boolean | Resident$LeasesArgs<ExtArgs>
+    Complaints?: boolean | Resident$ComplaintsArgs<ExtArgs>
     _count?: boolean | ResidentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["resident"]>
 
@@ -4112,7 +4118,8 @@ export namespace Prisma {
     unit?: boolean | UnitDefaultArgs<ExtArgs>
     maintenanceRequests?: boolean | Resident$maintenanceRequestsArgs<ExtArgs>
     payments?: boolean | Resident$paymentsArgs<ExtArgs>
-    Lease?: boolean | Resident$LeaseArgs<ExtArgs>
+    Leases?: boolean | Resident$LeasesArgs<ExtArgs>
+    Complaints?: boolean | Resident$ComplaintsArgs<ExtArgs>
     _count?: boolean | ResidentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ResidentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4131,7 +4138,8 @@ export namespace Prisma {
       unit: Prisma.$UnitPayload<ExtArgs>
       maintenanceRequests: Prisma.$MaintenanceRequestPayload<ExtArgs>[]
       payments: Prisma.$PaymentPayload<ExtArgs>[]
-      Lease: Prisma.$LeasePayload<ExtArgs>[]
+      Leases: Prisma.$LeasePayload<ExtArgs>[]
+      Complaints: Prisma.$ComplaintPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       residentId: string
@@ -4541,7 +4549,8 @@ export namespace Prisma {
     unit<T extends UnitDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UnitDefaultArgs<ExtArgs>>): Prisma__UnitClient<$Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     maintenanceRequests<T extends Resident$maintenanceRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Resident$maintenanceRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaintenanceRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payments<T extends Resident$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, Resident$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Lease<T extends Resident$LeaseArgs<ExtArgs> = {}>(args?: Subset<T, Resident$LeaseArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Leases<T extends Resident$LeasesArgs<ExtArgs> = {}>(args?: Subset<T, Resident$LeasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Complaints<T extends Resident$ComplaintsArgs<ExtArgs> = {}>(args?: Subset<T, Resident$ComplaintsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComplaintPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5043,9 +5052,9 @@ export namespace Prisma {
   }
 
   /**
-   * Resident.Lease
+   * Resident.Leases
    */
-  export type Resident$LeaseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Resident$LeasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Lease
      */
@@ -5064,6 +5073,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LeaseScalarFieldEnum | LeaseScalarFieldEnum[]
+  }
+
+  /**
+   * Resident.Complaints
+   */
+  export type Resident$ComplaintsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Complaint
+     */
+    select?: ComplaintSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Complaint
+     */
+    omit?: ComplaintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintInclude<ExtArgs> | null
+    where?: ComplaintWhereInput
+    orderBy?: ComplaintOrderByWithRelationInput | ComplaintOrderByWithRelationInput[]
+    cursor?: ComplaintWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ComplaintScalarFieldEnum | ComplaintScalarFieldEnum[]
   }
 
   /**
@@ -5086,30 +5119,30 @@ export namespace Prisma {
 
 
   /**
-   * Model Employees
+   * Model Employee
    */
 
-  export type AggregateEmployees = {
-    _count: EmployeesCountAggregateOutputType | null
-    _avg: EmployeesAvgAggregateOutputType | null
-    _sum: EmployeesSumAggregateOutputType | null
-    _min: EmployeesMinAggregateOutputType | null
-    _max: EmployeesMaxAggregateOutputType | null
+  export type AggregateEmployee = {
+    _count: EmployeeCountAggregateOutputType | null
+    _avg: EmployeeAvgAggregateOutputType | null
+    _sum: EmployeeSumAggregateOutputType | null
+    _min: EmployeeMinAggregateOutputType | null
+    _max: EmployeeMaxAggregateOutputType | null
   }
 
-  export type EmployeesAvgAggregateOutputType = {
+  export type EmployeeAvgAggregateOutputType = {
     workingHours: number | null
     salary: number | null
     bonus: number | null
   }
 
-  export type EmployeesSumAggregateOutputType = {
+  export type EmployeeSumAggregateOutputType = {
     workingHours: number | null
     salary: number | null
     bonus: number | null
   }
 
-  export type EmployeesMinAggregateOutputType = {
+  export type EmployeeMinAggregateOutputType = {
     employeeId: string | null
     employeeIdNumber: string | null
     hireDate: Date | null
@@ -5121,7 +5154,7 @@ export namespace Prisma {
     updatedAt: Date | null
   }
 
-  export type EmployeesMaxAggregateOutputType = {
+  export type EmployeeMaxAggregateOutputType = {
     employeeId: string | null
     employeeIdNumber: string | null
     hireDate: Date | null
@@ -5133,7 +5166,7 @@ export namespace Prisma {
     updatedAt: Date | null
   }
 
-  export type EmployeesCountAggregateOutputType = {
+  export type EmployeeCountAggregateOutputType = {
     employeeId: number
     employeeIdNumber: number
     hireDate: number
@@ -5147,19 +5180,19 @@ export namespace Prisma {
   }
 
 
-  export type EmployeesAvgAggregateInputType = {
+  export type EmployeeAvgAggregateInputType = {
     workingHours?: true
     salary?: true
     bonus?: true
   }
 
-  export type EmployeesSumAggregateInputType = {
+  export type EmployeeSumAggregateInputType = {
     workingHours?: true
     salary?: true
     bonus?: true
   }
 
-  export type EmployeesMinAggregateInputType = {
+  export type EmployeeMinAggregateInputType = {
     employeeId?: true
     employeeIdNumber?: true
     hireDate?: true
@@ -5171,7 +5204,7 @@ export namespace Prisma {
     updatedAt?: true
   }
 
-  export type EmployeesMaxAggregateInputType = {
+  export type EmployeeMaxAggregateInputType = {
     employeeId?: true
     employeeIdNumber?: true
     hireDate?: true
@@ -5183,7 +5216,7 @@ export namespace Prisma {
     updatedAt?: true
   }
 
-  export type EmployeesCountAggregateInputType = {
+  export type EmployeeCountAggregateInputType = {
     employeeId?: true
     employeeIdNumber?: true
     hireDate?: true
@@ -5196,23 +5229,23 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type EmployeesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Employees to aggregate.
+     * Filter which Employee to aggregate.
      */
-    where?: EmployeesWhereInput
+    where?: EmployeeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Employees to fetch.
      */
-    orderBy?: EmployeesOrderByWithRelationInput | EmployeesOrderByWithRelationInput[]
+    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: EmployeesWhereUniqueInput
+    cursor?: EmployeeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -5230,59 +5263,59 @@ export namespace Prisma {
      * 
      * Count returned Employees
     **/
-    _count?: true | EmployeesCountAggregateInputType
+    _count?: true | EmployeeCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: EmployeesAvgAggregateInputType
+    _avg?: EmployeeAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: EmployeesSumAggregateInputType
+    _sum?: EmployeeSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: EmployeesMinAggregateInputType
+    _min?: EmployeeMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: EmployeesMaxAggregateInputType
+    _max?: EmployeeMaxAggregateInputType
   }
 
-  export type GetEmployeesAggregateType<T extends EmployeesAggregateArgs> = {
-        [P in keyof T & keyof AggregateEmployees]: P extends '_count' | 'count'
+  export type GetEmployeeAggregateType<T extends EmployeeAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmployee]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateEmployees[P]>
-      : GetScalarType<T[P], AggregateEmployees[P]>
+        : GetScalarType<T[P], AggregateEmployee[P]>
+      : GetScalarType<T[P], AggregateEmployee[P]>
   }
 
 
 
 
-  export type EmployeesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: EmployeesWhereInput
-    orderBy?: EmployeesOrderByWithAggregationInput | EmployeesOrderByWithAggregationInput[]
-    by: EmployeesScalarFieldEnum[] | EmployeesScalarFieldEnum
-    having?: EmployeesScalarWhereWithAggregatesInput
+  export type EmployeeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeWhereInput
+    orderBy?: EmployeeOrderByWithAggregationInput | EmployeeOrderByWithAggregationInput[]
+    by: EmployeeScalarFieldEnum[] | EmployeeScalarFieldEnum
+    having?: EmployeeScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: EmployeesCountAggregateInputType | true
-    _avg?: EmployeesAvgAggregateInputType
-    _sum?: EmployeesSumAggregateInputType
-    _min?: EmployeesMinAggregateInputType
-    _max?: EmployeesMaxAggregateInputType
+    _count?: EmployeeCountAggregateInputType | true
+    _avg?: EmployeeAvgAggregateInputType
+    _sum?: EmployeeSumAggregateInputType
+    _min?: EmployeeMinAggregateInputType
+    _max?: EmployeeMaxAggregateInputType
   }
 
-  export type EmployeesGroupByOutputType = {
+  export type EmployeeGroupByOutputType = {
     employeeId: string
     employeeIdNumber: string
     hireDate: Date
@@ -5292,28 +5325,28 @@ export namespace Prisma {
     bonus: number
     createdAt: Date
     updatedAt: Date
-    _count: EmployeesCountAggregateOutputType | null
-    _avg: EmployeesAvgAggregateOutputType | null
-    _sum: EmployeesSumAggregateOutputType | null
-    _min: EmployeesMinAggregateOutputType | null
-    _max: EmployeesMaxAggregateOutputType | null
+    _count: EmployeeCountAggregateOutputType | null
+    _avg: EmployeeAvgAggregateOutputType | null
+    _sum: EmployeeSumAggregateOutputType | null
+    _min: EmployeeMinAggregateOutputType | null
+    _max: EmployeeMaxAggregateOutputType | null
   }
 
-  type GetEmployeesGroupByPayload<T extends EmployeesGroupByArgs> = Prisma.PrismaPromise<
+  type GetEmployeeGroupByPayload<T extends EmployeeGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<EmployeesGroupByOutputType, T['by']> &
+      PickEnumerable<EmployeeGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof EmployeesGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof EmployeeGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], EmployeesGroupByOutputType[P]>
-            : GetScalarType<T[P], EmployeesGroupByOutputType[P]>
+              : GetScalarType<T[P], EmployeeGroupByOutputType[P]>
+            : GetScalarType<T[P], EmployeeGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type EmployeesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type EmployeeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     employeeId?: boolean
     employeeIdNumber?: boolean
     hireDate?: boolean
@@ -5323,14 +5356,16 @@ export namespace Prisma {
     bonus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | Employees$userArgs<ExtArgs>
-    Announcement?: boolean | Employees$AnnouncementArgs<ExtArgs>
-    MaintenanceRequest?: boolean | Employees$MaintenanceRequestArgs<ExtArgs>
-    Payment?: boolean | Employees$PaymentArgs<ExtArgs>
-    _count?: boolean | EmployeesCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["employees"]>
+    user?: boolean | Employee$userArgs<ExtArgs>
+    Announcements?: boolean | Employee$AnnouncementsArgs<ExtArgs>
+    MaintenanceRequests?: boolean | Employee$MaintenanceRequestsArgs<ExtArgs>
+    Payments?: boolean | Employee$PaymentsArgs<ExtArgs>
+    Complaint?: boolean | Employee$ComplaintArgs<ExtArgs>
+    Bills?: boolean | Employee$BillsArgs<ExtArgs>
+    _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employee"]>
 
-  export type EmployeesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type EmployeeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     employeeId?: boolean
     employeeIdNumber?: boolean
     hireDate?: boolean
@@ -5340,10 +5375,10 @@ export namespace Prisma {
     bonus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | Employees$userArgs<ExtArgs>
-  }, ExtArgs["result"]["employees"]>
+    user?: boolean | Employee$userArgs<ExtArgs>
+  }, ExtArgs["result"]["employee"]>
 
-  export type EmployeesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type EmployeeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     employeeId?: boolean
     employeeIdNumber?: boolean
     hireDate?: boolean
@@ -5353,10 +5388,10 @@ export namespace Prisma {
     bonus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | Employees$userArgs<ExtArgs>
-  }, ExtArgs["result"]["employees"]>
+    user?: boolean | Employee$userArgs<ExtArgs>
+  }, ExtArgs["result"]["employee"]>
 
-  export type EmployeesSelectScalar = {
+  export type EmployeeSelectScalar = {
     employeeId?: boolean
     employeeIdNumber?: boolean
     hireDate?: boolean
@@ -5368,28 +5403,32 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type EmployeesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"employeeId" | "employeeIdNumber" | "hireDate" | "employeePosition" | "workingHours" | "salary" | "bonus" | "createdAt" | "updatedAt", ExtArgs["result"]["employees"]>
-  export type EmployeesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Employees$userArgs<ExtArgs>
-    Announcement?: boolean | Employees$AnnouncementArgs<ExtArgs>
-    MaintenanceRequest?: boolean | Employees$MaintenanceRequestArgs<ExtArgs>
-    Payment?: boolean | Employees$PaymentArgs<ExtArgs>
-    _count?: boolean | EmployeesCountOutputTypeDefaultArgs<ExtArgs>
+  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"employeeId" | "employeeIdNumber" | "hireDate" | "employeePosition" | "workingHours" | "salary" | "bonus" | "createdAt" | "updatedAt", ExtArgs["result"]["employee"]>
+  export type EmployeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Employee$userArgs<ExtArgs>
+    Announcements?: boolean | Employee$AnnouncementsArgs<ExtArgs>
+    MaintenanceRequests?: boolean | Employee$MaintenanceRequestsArgs<ExtArgs>
+    Payments?: boolean | Employee$PaymentsArgs<ExtArgs>
+    Complaint?: boolean | Employee$ComplaintArgs<ExtArgs>
+    Bills?: boolean | Employee$BillsArgs<ExtArgs>
+    _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type EmployeesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Employees$userArgs<ExtArgs>
+  export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Employee$userArgs<ExtArgs>
   }
-  export type EmployeesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Employees$userArgs<ExtArgs>
+  export type EmployeeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Employee$userArgs<ExtArgs>
   }
 
-  export type $EmployeesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Employees"
+  export type $EmployeePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Employee"
     objects: {
       user: Prisma.$UserPayload<ExtArgs> | null
-      Announcement: Prisma.$AnnouncementPayload<ExtArgs>[]
-      MaintenanceRequest: Prisma.$MaintenanceRequestPayload<ExtArgs>[]
-      Payment: Prisma.$PaymentPayload<ExtArgs>[]
+      Announcements: Prisma.$AnnouncementPayload<ExtArgs>[]
+      MaintenanceRequests: Prisma.$MaintenanceRequestPayload<ExtArgs>[]
+      Payments: Prisma.$PaymentPayload<ExtArgs>[]
+      Complaint: Prisma.$ComplaintPayload<ExtArgs> | null
+      Bills: Prisma.$BillPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       employeeId: string
@@ -5401,136 +5440,136 @@ export namespace Prisma {
       bonus: number
       createdAt: Date
       updatedAt: Date
-    }, ExtArgs["result"]["employees"]>
+    }, ExtArgs["result"]["employee"]>
     composites: {}
   }
 
-  type EmployeesGetPayload<S extends boolean | null | undefined | EmployeesDefaultArgs> = $Result.GetResult<Prisma.$EmployeesPayload, S>
+  type EmployeeGetPayload<S extends boolean | null | undefined | EmployeeDefaultArgs> = $Result.GetResult<Prisma.$EmployeePayload, S>
 
-  type EmployeesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<EmployeesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: EmployeesCountAggregateInputType | true
+  type EmployeeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmployeeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmployeeCountAggregateInputType | true
     }
 
-  export interface EmployeesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Employees'], meta: { name: 'Employees' } }
+  export interface EmployeeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Employee'], meta: { name: 'Employee' } }
     /**
-     * Find zero or one Employees that matches the filter.
-     * @param {EmployeesFindUniqueArgs} args - Arguments to find a Employees
+     * Find zero or one Employee that matches the filter.
+     * @param {EmployeeFindUniqueArgs} args - Arguments to find a Employee
      * @example
-     * // Get one Employees
-     * const employees = await prisma.employees.findUnique({
+     * // Get one Employee
+     * const employee = await prisma.employee.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends EmployeesFindUniqueArgs>(args: SelectSubset<T, EmployeesFindUniqueArgs<ExtArgs>>): Prisma__EmployeesClient<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends EmployeeFindUniqueArgs>(args: SelectSubset<T, EmployeeFindUniqueArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Employees that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Employee that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {EmployeesFindUniqueOrThrowArgs} args - Arguments to find a Employees
+     * @param {EmployeeFindUniqueOrThrowArgs} args - Arguments to find a Employee
      * @example
-     * // Get one Employees
-     * const employees = await prisma.employees.findUniqueOrThrow({
+     * // Get one Employee
+     * const employee = await prisma.employee.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends EmployeesFindUniqueOrThrowArgs>(args: SelectSubset<T, EmployeesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmployeesClient<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends EmployeeFindUniqueOrThrowArgs>(args: SelectSubset<T, EmployeeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Employees that matches the filter.
+     * Find the first Employee that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeesFindFirstArgs} args - Arguments to find a Employees
+     * @param {EmployeeFindFirstArgs} args - Arguments to find a Employee
      * @example
-     * // Get one Employees
-     * const employees = await prisma.employees.findFirst({
+     * // Get one Employee
+     * const employee = await prisma.employee.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends EmployeesFindFirstArgs>(args?: SelectSubset<T, EmployeesFindFirstArgs<ExtArgs>>): Prisma__EmployeesClient<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends EmployeeFindFirstArgs>(args?: SelectSubset<T, EmployeeFindFirstArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Employees that matches the filter or
+     * Find the first Employee that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeesFindFirstOrThrowArgs} args - Arguments to find a Employees
+     * @param {EmployeeFindFirstOrThrowArgs} args - Arguments to find a Employee
      * @example
-     * // Get one Employees
-     * const employees = await prisma.employees.findFirstOrThrow({
+     * // Get one Employee
+     * const employee = await prisma.employee.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends EmployeesFindFirstOrThrowArgs>(args?: SelectSubset<T, EmployeesFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmployeesClient<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends EmployeeFindFirstOrThrowArgs>(args?: SelectSubset<T, EmployeeFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Employees that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {EmployeeFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Employees
-     * const employees = await prisma.employees.findMany()
+     * const employees = await prisma.employee.findMany()
      * 
      * // Get first 10 Employees
-     * const employees = await prisma.employees.findMany({ take: 10 })
+     * const employees = await prisma.employee.findMany({ take: 10 })
      * 
      * // Only select the `employeeId`
-     * const employeesWithEmployeeIdOnly = await prisma.employees.findMany({ select: { employeeId: true } })
+     * const employeeWithEmployeeIdOnly = await prisma.employee.findMany({ select: { employeeId: true } })
      * 
      */
-    findMany<T extends EmployeesFindManyArgs>(args?: SelectSubset<T, EmployeesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends EmployeeFindManyArgs>(args?: SelectSubset<T, EmployeeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Employees.
-     * @param {EmployeesCreateArgs} args - Arguments to create a Employees.
+     * Create a Employee.
+     * @param {EmployeeCreateArgs} args - Arguments to create a Employee.
      * @example
-     * // Create one Employees
-     * const Employees = await prisma.employees.create({
+     * // Create one Employee
+     * const Employee = await prisma.employee.create({
      *   data: {
-     *     // ... data to create a Employees
+     *     // ... data to create a Employee
      *   }
      * })
      * 
      */
-    create<T extends EmployeesCreateArgs>(args: SelectSubset<T, EmployeesCreateArgs<ExtArgs>>): Prisma__EmployeesClient<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends EmployeeCreateArgs>(args: SelectSubset<T, EmployeeCreateArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Employees.
-     * @param {EmployeesCreateManyArgs} args - Arguments to create many Employees.
+     * @param {EmployeeCreateManyArgs} args - Arguments to create many Employees.
      * @example
      * // Create many Employees
-     * const employees = await prisma.employees.createMany({
+     * const employee = await prisma.employee.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends EmployeesCreateManyArgs>(args?: SelectSubset<T, EmployeesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends EmployeeCreateManyArgs>(args?: SelectSubset<T, EmployeeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Employees and returns the data saved in the database.
-     * @param {EmployeesCreateManyAndReturnArgs} args - Arguments to create many Employees.
+     * @param {EmployeeCreateManyAndReturnArgs} args - Arguments to create many Employees.
      * @example
      * // Create many Employees
-     * const employees = await prisma.employees.createManyAndReturn({
+     * const employee = await prisma.employee.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
      * // Create many Employees and only return the `employeeId`
-     * const employeesWithEmployeeIdOnly = await prisma.employees.createManyAndReturn({
+     * const employeeWithEmployeeIdOnly = await prisma.employee.createManyAndReturn({
      *   select: { employeeId: true },
      *   data: [
      *     // ... provide data here
@@ -5540,28 +5579,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends EmployeesCreateManyAndReturnArgs>(args?: SelectSubset<T, EmployeesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends EmployeeCreateManyAndReturnArgs>(args?: SelectSubset<T, EmployeeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Employees.
-     * @param {EmployeesDeleteArgs} args - Arguments to delete one Employees.
+     * Delete a Employee.
+     * @param {EmployeeDeleteArgs} args - Arguments to delete one Employee.
      * @example
-     * // Delete one Employees
-     * const Employees = await prisma.employees.delete({
+     * // Delete one Employee
+     * const Employee = await prisma.employee.delete({
      *   where: {
-     *     // ... filter to delete one Employees
+     *     // ... filter to delete one Employee
      *   }
      * })
      * 
      */
-    delete<T extends EmployeesDeleteArgs>(args: SelectSubset<T, EmployeesDeleteArgs<ExtArgs>>): Prisma__EmployeesClient<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends EmployeeDeleteArgs>(args: SelectSubset<T, EmployeeDeleteArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Employees.
-     * @param {EmployeesUpdateArgs} args - Arguments to update one Employees.
+     * Update one Employee.
+     * @param {EmployeeUpdateArgs} args - Arguments to update one Employee.
      * @example
-     * // Update one Employees
-     * const employees = await prisma.employees.update({
+     * // Update one Employee
+     * const employee = await prisma.employee.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5571,30 +5610,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends EmployeesUpdateArgs>(args: SelectSubset<T, EmployeesUpdateArgs<ExtArgs>>): Prisma__EmployeesClient<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends EmployeeUpdateArgs>(args: SelectSubset<T, EmployeeUpdateArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Employees.
-     * @param {EmployeesDeleteManyArgs} args - Arguments to filter Employees to delete.
+     * @param {EmployeeDeleteManyArgs} args - Arguments to filter Employees to delete.
      * @example
      * // Delete a few Employees
-     * const { count } = await prisma.employees.deleteMany({
+     * const { count } = await prisma.employee.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends EmployeesDeleteManyArgs>(args?: SelectSubset<T, EmployeesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends EmployeeDeleteManyArgs>(args?: SelectSubset<T, EmployeeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Employees.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {EmployeeUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many Employees
-     * const employees = await prisma.employees.updateMany({
+     * const employee = await prisma.employee.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5604,14 +5643,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends EmployeesUpdateManyArgs>(args: SelectSubset<T, EmployeesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends EmployeeUpdateManyArgs>(args: SelectSubset<T, EmployeeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Employees and returns the data updated in the database.
-     * @param {EmployeesUpdateManyAndReturnArgs} args - Arguments to update many Employees.
+     * @param {EmployeeUpdateManyAndReturnArgs} args - Arguments to update many Employees.
      * @example
      * // Update many Employees
-     * const employees = await prisma.employees.updateManyAndReturn({
+     * const employee = await prisma.employee.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5621,7 +5660,7 @@ export namespace Prisma {
      * })
      * 
      * // Update zero or more Employees and only return the `employeeId`
-     * const employeesWithEmployeeIdOnly = await prisma.employees.updateManyAndReturn({
+     * const employeeWithEmployeeIdOnly = await prisma.employee.updateManyAndReturn({
      *   select: { employeeId: true },
      *   where: {
      *     // ... provide filter here
@@ -5634,56 +5673,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends EmployeesUpdateManyAndReturnArgs>(args: SelectSubset<T, EmployeesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends EmployeeUpdateManyAndReturnArgs>(args: SelectSubset<T, EmployeeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Employees.
-     * @param {EmployeesUpsertArgs} args - Arguments to update or create a Employees.
+     * Create or update one Employee.
+     * @param {EmployeeUpsertArgs} args - Arguments to update or create a Employee.
      * @example
-     * // Update or create a Employees
-     * const employees = await prisma.employees.upsert({
+     * // Update or create a Employee
+     * const employee = await prisma.employee.upsert({
      *   create: {
-     *     // ... data to create a Employees
+     *     // ... data to create a Employee
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Employees we want to update
+     *     // ... the filter for the Employee we want to update
      *   }
      * })
      */
-    upsert<T extends EmployeesUpsertArgs>(args: SelectSubset<T, EmployeesUpsertArgs<ExtArgs>>): Prisma__EmployeesClient<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends EmployeeUpsertArgs>(args: SelectSubset<T, EmployeeUpsertArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
      * Count the number of Employees.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeesCountArgs} args - Arguments to filter Employees to count.
+     * @param {EmployeeCountArgs} args - Arguments to filter Employees to count.
      * @example
      * // Count the number of Employees
-     * const count = await prisma.employees.count({
+     * const count = await prisma.employee.count({
      *   where: {
      *     // ... the filter for the Employees we want to count
      *   }
      * })
     **/
-    count<T extends EmployeesCountArgs>(
-      args?: Subset<T, EmployeesCountArgs>,
+    count<T extends EmployeeCountArgs>(
+      args?: Subset<T, EmployeeCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], EmployeesCountAggregateOutputType>
+          : GetScalarType<T['select'], EmployeeCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Employees.
+     * Allows you to perform aggregations operations on a Employee.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {EmployeeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -5703,13 +5742,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends EmployeesAggregateArgs>(args: Subset<T, EmployeesAggregateArgs>): Prisma.PrismaPromise<GetEmployeesAggregateType<T>>
+    aggregate<T extends EmployeeAggregateArgs>(args: Subset<T, EmployeeAggregateArgs>): Prisma.PrismaPromise<GetEmployeeAggregateType<T>>
 
     /**
-     * Group by Employees.
+     * Group by Employee.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeesGroupByArgs} args - Group by arguments.
+     * @param {EmployeeGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -5724,14 +5763,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends EmployeesGroupByArgs,
+      T extends EmployeeGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: EmployeesGroupByArgs['orderBy'] }
-        : { orderBy?: EmployeesGroupByArgs['orderBy'] },
+        ? { orderBy: EmployeeGroupByArgs['orderBy'] }
+        : { orderBy?: EmployeeGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -5780,25 +5819,27 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, EmployeesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmployeesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, EmployeeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmployeeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Employees model
+   * Fields of the Employee model
    */
-  readonly fields: EmployeesFieldRefs;
+  readonly fields: EmployeeFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Employees.
+   * The delegate class that acts as a "Promise-like" for Employee.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__EmployeesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends Employees$userArgs<ExtArgs> = {}>(args?: Subset<T, Employees$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    Announcement<T extends Employees$AnnouncementArgs<ExtArgs> = {}>(args?: Subset<T, Employees$AnnouncementArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    MaintenanceRequest<T extends Employees$MaintenanceRequestArgs<ExtArgs> = {}>(args?: Subset<T, Employees$MaintenanceRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaintenanceRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Payment<T extends Employees$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, Employees$PaymentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user<T extends Employee$userArgs<ExtArgs> = {}>(args?: Subset<T, Employee$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Announcements<T extends Employee$AnnouncementsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$AnnouncementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    MaintenanceRequests<T extends Employee$MaintenanceRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$MaintenanceRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaintenanceRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Payments<T extends Employee$PaymentsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$PaymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Complaint<T extends Employee$ComplaintArgs<ExtArgs> = {}>(args?: Subset<T, Employee$ComplaintArgs<ExtArgs>>): Prisma__ComplaintClient<$Result.GetResult<Prisma.$ComplaintPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Bills<T extends Employee$BillsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$BillsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5825,98 +5866,98 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Employees model
+   * Fields of the Employee model
    */
-  interface EmployeesFieldRefs {
-    readonly employeeId: FieldRef<"Employees", 'String'>
-    readonly employeeIdNumber: FieldRef<"Employees", 'String'>
-    readonly hireDate: FieldRef<"Employees", 'DateTime'>
-    readonly employeePosition: FieldRef<"Employees", 'EmployeeRole'>
-    readonly workingHours: FieldRef<"Employees", 'Int'>
-    readonly salary: FieldRef<"Employees", 'Float'>
-    readonly bonus: FieldRef<"Employees", 'Float'>
-    readonly createdAt: FieldRef<"Employees", 'DateTime'>
-    readonly updatedAt: FieldRef<"Employees", 'DateTime'>
+  interface EmployeeFieldRefs {
+    readonly employeeId: FieldRef<"Employee", 'String'>
+    readonly employeeIdNumber: FieldRef<"Employee", 'String'>
+    readonly hireDate: FieldRef<"Employee", 'DateTime'>
+    readonly employeePosition: FieldRef<"Employee", 'EmployeeRole'>
+    readonly workingHours: FieldRef<"Employee", 'Int'>
+    readonly salary: FieldRef<"Employee", 'Float'>
+    readonly bonus: FieldRef<"Employee", 'Float'>
+    readonly createdAt: FieldRef<"Employee", 'DateTime'>
+    readonly updatedAt: FieldRef<"Employee", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Employees findUnique
+   * Employee findUnique
    */
-  export type EmployeesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelect<ExtArgs> | null
+    select?: EmployeeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesInclude<ExtArgs> | null
+    include?: EmployeeInclude<ExtArgs> | null
     /**
-     * Filter, which Employees to fetch.
+     * Filter, which Employee to fetch.
      */
-    where: EmployeesWhereUniqueInput
+    where: EmployeeWhereUniqueInput
   }
 
   /**
-   * Employees findUniqueOrThrow
+   * Employee findUniqueOrThrow
    */
-  export type EmployeesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelect<ExtArgs> | null
+    select?: EmployeeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesInclude<ExtArgs> | null
+    include?: EmployeeInclude<ExtArgs> | null
     /**
-     * Filter, which Employees to fetch.
+     * Filter, which Employee to fetch.
      */
-    where: EmployeesWhereUniqueInput
+    where: EmployeeWhereUniqueInput
   }
 
   /**
-   * Employees findFirst
+   * Employee findFirst
    */
-  export type EmployeesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelect<ExtArgs> | null
+    select?: EmployeeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesInclude<ExtArgs> | null
+    include?: EmployeeInclude<ExtArgs> | null
     /**
-     * Filter, which Employees to fetch.
+     * Filter, which Employee to fetch.
      */
-    where?: EmployeesWhereInput
+    where?: EmployeeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Employees to fetch.
      */
-    orderBy?: EmployeesOrderByWithRelationInput | EmployeesOrderByWithRelationInput[]
+    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Employees.
      */
-    cursor?: EmployeesWhereUniqueInput
+    cursor?: EmployeeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -5934,41 +5975,41 @@ export namespace Prisma {
      * 
      * Filter by unique combinations of Employees.
      */
-    distinct?: EmployeesScalarFieldEnum | EmployeesScalarFieldEnum[]
+    distinct?: EmployeeScalarFieldEnum | EmployeeScalarFieldEnum[]
   }
 
   /**
-   * Employees findFirstOrThrow
+   * Employee findFirstOrThrow
    */
-  export type EmployeesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelect<ExtArgs> | null
+    select?: EmployeeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesInclude<ExtArgs> | null
+    include?: EmployeeInclude<ExtArgs> | null
     /**
-     * Filter, which Employees to fetch.
+     * Filter, which Employee to fetch.
      */
-    where?: EmployeesWhereInput
+    where?: EmployeeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Employees to fetch.
      */
-    orderBy?: EmployeesOrderByWithRelationInput | EmployeesOrderByWithRelationInput[]
+    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Employees.
      */
-    cursor?: EmployeesWhereUniqueInput
+    cursor?: EmployeeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -5986,41 +6027,41 @@ export namespace Prisma {
      * 
      * Filter by unique combinations of Employees.
      */
-    distinct?: EmployeesScalarFieldEnum | EmployeesScalarFieldEnum[]
+    distinct?: EmployeeScalarFieldEnum | EmployeeScalarFieldEnum[]
   }
 
   /**
-   * Employees findMany
+   * Employee findMany
    */
-  export type EmployeesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelect<ExtArgs> | null
+    select?: EmployeeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesInclude<ExtArgs> | null
+    include?: EmployeeInclude<ExtArgs> | null
     /**
      * Filter, which Employees to fetch.
      */
-    where?: EmployeesWhereInput
+    where?: EmployeeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Employees to fetch.
      */
-    orderBy?: EmployeesOrderByWithRelationInput | EmployeesOrderByWithRelationInput[]
+    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing Employees.
      */
-    cursor?: EmployeesWhereUniqueInput
+    cursor?: EmployeeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -6033,103 +6074,103 @@ export namespace Prisma {
      * Skip the first `n` Employees.
      */
     skip?: number
-    distinct?: EmployeesScalarFieldEnum | EmployeesScalarFieldEnum[]
+    distinct?: EmployeeScalarFieldEnum | EmployeeScalarFieldEnum[]
   }
 
   /**
-   * Employees create
+   * Employee create
    */
-  export type EmployeesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelect<ExtArgs> | null
+    select?: EmployeeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesInclude<ExtArgs> | null
+    include?: EmployeeInclude<ExtArgs> | null
     /**
-     * The data needed to create a Employees.
+     * The data needed to create a Employee.
      */
-    data: XOR<EmployeesCreateInput, EmployeesUncheckedCreateInput>
+    data: XOR<EmployeeCreateInput, EmployeeUncheckedCreateInput>
   }
 
   /**
-   * Employees createMany
+   * Employee createMany
    */
-  export type EmployeesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many Employees.
      */
-    data: EmployeesCreateManyInput | EmployeesCreateManyInput[]
+    data: EmployeeCreateManyInput | EmployeeCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Employees createManyAndReturn
+   * Employee createManyAndReturn
    */
-  export type EmployeesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelectCreateManyAndReturn<ExtArgs> | null
+    select?: EmployeeSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * The data used to create many Employees.
      */
-    data: EmployeesCreateManyInput | EmployeesCreateManyInput[]
+    data: EmployeeCreateManyInput | EmployeeCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: EmployeeIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Employees update
+   * Employee update
    */
-  export type EmployeesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelect<ExtArgs> | null
+    select?: EmployeeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesInclude<ExtArgs> | null
+    include?: EmployeeInclude<ExtArgs> | null
     /**
-     * The data needed to update a Employees.
+     * The data needed to update a Employee.
      */
-    data: XOR<EmployeesUpdateInput, EmployeesUncheckedUpdateInput>
+    data: XOR<EmployeeUpdateInput, EmployeeUncheckedUpdateInput>
     /**
-     * Choose, which Employees to update.
+     * Choose, which Employee to update.
      */
-    where: EmployeesWhereUniqueInput
+    where: EmployeeWhereUniqueInput
   }
 
   /**
-   * Employees updateMany
+   * Employee updateMany
    */
-  export type EmployeesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update Employees.
      */
-    data: XOR<EmployeesUpdateManyMutationInput, EmployeesUncheckedUpdateManyInput>
+    data: XOR<EmployeeUpdateManyMutationInput, EmployeeUncheckedUpdateManyInput>
     /**
      * Filter which Employees to update
      */
-    where?: EmployeesWhereInput
+    where?: EmployeeWhereInput
     /**
      * Limit how many Employees to update.
      */
@@ -6137,25 +6178,25 @@ export namespace Prisma {
   }
 
   /**
-   * Employees updateManyAndReturn
+   * Employee updateManyAndReturn
    */
-  export type EmployeesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: EmployeeSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * The data used to update Employees.
      */
-    data: XOR<EmployeesUpdateManyMutationInput, EmployeesUncheckedUpdateManyInput>
+    data: XOR<EmployeeUpdateManyMutationInput, EmployeeUncheckedUpdateManyInput>
     /**
      * Filter which Employees to update
      */
-    where?: EmployeesWhereInput
+    where?: EmployeeWhereInput
     /**
      * Limit how many Employees to update.
      */
@@ -6163,69 +6204,69 @@ export namespace Prisma {
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: EmployeeIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Employees upsert
+   * Employee upsert
    */
-  export type EmployeesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelect<ExtArgs> | null
+    select?: EmployeeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesInclude<ExtArgs> | null
+    include?: EmployeeInclude<ExtArgs> | null
     /**
-     * The filter to search for the Employees to update in case it exists.
+     * The filter to search for the Employee to update in case it exists.
      */
-    where: EmployeesWhereUniqueInput
+    where: EmployeeWhereUniqueInput
     /**
-     * In case the Employees found by the `where` argument doesn't exist, create a new Employees with this data.
+     * In case the Employee found by the `where` argument doesn't exist, create a new Employee with this data.
      */
-    create: XOR<EmployeesCreateInput, EmployeesUncheckedCreateInput>
+    create: XOR<EmployeeCreateInput, EmployeeUncheckedCreateInput>
     /**
-     * In case the Employees was found with the provided `where` argument, update it with this data.
+     * In case the Employee was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<EmployeesUpdateInput, EmployeesUncheckedUpdateInput>
+    update: XOR<EmployeeUpdateInput, EmployeeUncheckedUpdateInput>
   }
 
   /**
-   * Employees delete
+   * Employee delete
    */
-  export type EmployeesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelect<ExtArgs> | null
+    select?: EmployeeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesInclude<ExtArgs> | null
+    include?: EmployeeInclude<ExtArgs> | null
     /**
-     * Filter which Employees to delete.
+     * Filter which Employee to delete.
      */
-    where: EmployeesWhereUniqueInput
+    where: EmployeeWhereUniqueInput
   }
 
   /**
-   * Employees deleteMany
+   * Employee deleteMany
    */
-  export type EmployeesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Employees to delete
      */
-    where?: EmployeesWhereInput
+    where?: EmployeeWhereInput
     /**
      * Limit how many Employees to delete.
      */
@@ -6233,9 +6274,9 @@ export namespace Prisma {
   }
 
   /**
-   * Employees.user
+   * Employee.user
    */
-  export type Employees$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Employee$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -6252,9 +6293,9 @@ export namespace Prisma {
   }
 
   /**
-   * Employees.Announcement
+   * Employee.Announcements
    */
-  export type Employees$AnnouncementArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Employee$AnnouncementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Announcement
      */
@@ -6276,9 +6317,9 @@ export namespace Prisma {
   }
 
   /**
-   * Employees.MaintenanceRequest
+   * Employee.MaintenanceRequests
    */
-  export type Employees$MaintenanceRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Employee$MaintenanceRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the MaintenanceRequest
      */
@@ -6300,9 +6341,9 @@ export namespace Prisma {
   }
 
   /**
-   * Employees.Payment
+   * Employee.Payments
    */
-  export type Employees$PaymentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Employee$PaymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Payment
      */
@@ -6324,21 +6365,64 @@ export namespace Prisma {
   }
 
   /**
-   * Employees without action
+   * Employee.Complaint
    */
-  export type EmployeesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Employee$ComplaintArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Complaint
      */
-    select?: EmployeesSelect<ExtArgs> | null
+    select?: ComplaintSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Complaint
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: ComplaintOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesInclude<ExtArgs> | null
+    include?: ComplaintInclude<ExtArgs> | null
+    where?: ComplaintWhereInput
+  }
+
+  /**
+   * Employee.Bills
+   */
+  export type Employee$BillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: BillSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: BillOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BillInclude<ExtArgs> | null
+    where?: BillWhereInput
+    orderBy?: BillOrderByWithRelationInput | BillOrderByWithRelationInput[]
+    cursor?: BillWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BillScalarFieldEnum | BillScalarFieldEnum[]
+  }
+
+  /**
+   * Employee without action
+   */
+  export type EmployeeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
   }
 
 
@@ -6629,7 +6713,7 @@ export namespace Prisma {
     objects: {
       resident: Prisma.$ResidentPayload<ExtArgs>
       unit: Prisma.$UnitPayload<ExtArgs>
-      assignedTo: Prisma.$EmployeesPayload<ExtArgs> | null
+      assignedTo: Prisma.$EmployeePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7039,7 +7123,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     resident<T extends ResidentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResidentDefaultArgs<ExtArgs>>): Prisma__ResidentClient<$Result.GetResult<Prisma.$ResidentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     unit<T extends UnitDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UnitDefaultArgs<ExtArgs>>): Prisma__UnitClient<$Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    assignedTo<T extends MaintenanceRequest$assignedToArgs<ExtArgs> = {}>(args?: Subset<T, MaintenanceRequest$assignedToArgs<ExtArgs>>): Prisma__EmployeesClient<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    assignedTo<T extends MaintenanceRequest$assignedToArgs<ExtArgs> = {}>(args?: Subset<T, MaintenanceRequest$assignedToArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7480,18 +7564,18 @@ export namespace Prisma {
    */
   export type MaintenanceRequest$assignedToArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelect<ExtArgs> | null
+    select?: EmployeeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesInclude<ExtArgs> | null
-    where?: EmployeesWhereInput
+    include?: EmployeeInclude<ExtArgs> | null
+    where?: EmployeeWhereInput
   }
 
   /**
@@ -7525,28 +7609,84 @@ export namespace Prisma {
 
   export type ComplaintMinAggregateOutputType = {
     id: string | null
+    name: string | null
+    desciption: string | null
+    status: $Enums.ComplaintStatus | null
+    submittedAt: Date | null
+    resolvedAt: Date | null
+    resolutionDetails: string | null
+    residentId: string | null
+    employeeId: string | null
+    unitId: string | null
   }
 
   export type ComplaintMaxAggregateOutputType = {
     id: string | null
+    name: string | null
+    desciption: string | null
+    status: $Enums.ComplaintStatus | null
+    submittedAt: Date | null
+    resolvedAt: Date | null
+    resolutionDetails: string | null
+    residentId: string | null
+    employeeId: string | null
+    unitId: string | null
   }
 
   export type ComplaintCountAggregateOutputType = {
     id: number
+    name: number
+    desciption: number
+    status: number
+    submittedAt: number
+    resolvedAt: number
+    resolutionDetails: number
+    residentId: number
+    employeeId: number
+    unitId: number
+    images: number
     _all: number
   }
 
 
   export type ComplaintMinAggregateInputType = {
     id?: true
+    name?: true
+    desciption?: true
+    status?: true
+    submittedAt?: true
+    resolvedAt?: true
+    resolutionDetails?: true
+    residentId?: true
+    employeeId?: true
+    unitId?: true
   }
 
   export type ComplaintMaxAggregateInputType = {
     id?: true
+    name?: true
+    desciption?: true
+    status?: true
+    submittedAt?: true
+    resolvedAt?: true
+    resolutionDetails?: true
+    residentId?: true
+    employeeId?: true
+    unitId?: true
   }
 
   export type ComplaintCountAggregateInputType = {
     id?: true
+    name?: true
+    desciption?: true
+    status?: true
+    submittedAt?: true
+    resolvedAt?: true
+    resolutionDetails?: true
+    residentId?: true
+    employeeId?: true
+    unitId?: true
+    images?: true
     _all?: true
   }
 
@@ -7624,6 +7764,16 @@ export namespace Prisma {
 
   export type ComplaintGroupByOutputType = {
     id: string
+    name: string
+    desciption: string
+    status: $Enums.ComplaintStatus
+    submittedAt: Date
+    resolvedAt: Date | null
+    resolutionDetails: string | null
+    residentId: string
+    employeeId: string | null
+    unitId: string | null
+    images: string[]
     _count: ComplaintCountAggregateOutputType | null
     _min: ComplaintMinAggregateOutputType | null
     _max: ComplaintMaxAggregateOutputType | null
@@ -7645,27 +7795,105 @@ export namespace Prisma {
 
   export type ComplaintSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
+    desciption?: boolean
+    status?: boolean
+    submittedAt?: boolean
+    resolvedAt?: boolean
+    resolutionDetails?: boolean
+    residentId?: boolean
+    employeeId?: boolean
+    unitId?: boolean
+    images?: boolean
+    resident?: boolean | ResidentDefaultArgs<ExtArgs>
+    employee?: boolean | Complaint$employeeArgs<ExtArgs>
+    unit?: boolean | Complaint$unitArgs<ExtArgs>
   }, ExtArgs["result"]["complaint"]>
 
   export type ComplaintSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
+    desciption?: boolean
+    status?: boolean
+    submittedAt?: boolean
+    resolvedAt?: boolean
+    resolutionDetails?: boolean
+    residentId?: boolean
+    employeeId?: boolean
+    unitId?: boolean
+    images?: boolean
+    resident?: boolean | ResidentDefaultArgs<ExtArgs>
+    employee?: boolean | Complaint$employeeArgs<ExtArgs>
+    unit?: boolean | Complaint$unitArgs<ExtArgs>
   }, ExtArgs["result"]["complaint"]>
 
   export type ComplaintSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
+    desciption?: boolean
+    status?: boolean
+    submittedAt?: boolean
+    resolvedAt?: boolean
+    resolutionDetails?: boolean
+    residentId?: boolean
+    employeeId?: boolean
+    unitId?: boolean
+    images?: boolean
+    resident?: boolean | ResidentDefaultArgs<ExtArgs>
+    employee?: boolean | Complaint$employeeArgs<ExtArgs>
+    unit?: boolean | Complaint$unitArgs<ExtArgs>
   }, ExtArgs["result"]["complaint"]>
 
   export type ComplaintSelectScalar = {
     id?: boolean
+    name?: boolean
+    desciption?: boolean
+    status?: boolean
+    submittedAt?: boolean
+    resolvedAt?: boolean
+    resolutionDetails?: boolean
+    residentId?: boolean
+    employeeId?: boolean
+    unitId?: boolean
+    images?: boolean
   }
 
-  export type ComplaintOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id", ExtArgs["result"]["complaint"]>
+  export type ComplaintOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "desciption" | "status" | "submittedAt" | "resolvedAt" | "resolutionDetails" | "residentId" | "employeeId" | "unitId" | "images", ExtArgs["result"]["complaint"]>
+  export type ComplaintInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    resident?: boolean | ResidentDefaultArgs<ExtArgs>
+    employee?: boolean | Complaint$employeeArgs<ExtArgs>
+    unit?: boolean | Complaint$unitArgs<ExtArgs>
+  }
+  export type ComplaintIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    resident?: boolean | ResidentDefaultArgs<ExtArgs>
+    employee?: boolean | Complaint$employeeArgs<ExtArgs>
+    unit?: boolean | Complaint$unitArgs<ExtArgs>
+  }
+  export type ComplaintIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    resident?: boolean | ResidentDefaultArgs<ExtArgs>
+    employee?: boolean | Complaint$employeeArgs<ExtArgs>
+    unit?: boolean | Complaint$unitArgs<ExtArgs>
+  }
 
   export type $ComplaintPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Complaint"
-    objects: {}
+    objects: {
+      resident: Prisma.$ResidentPayload<ExtArgs>
+      employee: Prisma.$EmployeePayload<ExtArgs> | null
+      unit: Prisma.$UnitPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      name: string
+      desciption: string
+      status: $Enums.ComplaintStatus
+      submittedAt: Date
+      resolvedAt: Date | null
+      resolutionDetails: string | null
+      residentId: string
+      employeeId: string | null
+      unitId: string | null
+      images: string[]
     }, ExtArgs["result"]["complaint"]>
     composites: {}
   }
@@ -8060,6 +8288,9 @@ export namespace Prisma {
    */
   export interface Prisma__ComplaintClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    resident<T extends ResidentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResidentDefaultArgs<ExtArgs>>): Prisma__ResidentClient<$Result.GetResult<Prisma.$ResidentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    employee<T extends Complaint$employeeArgs<ExtArgs> = {}>(args?: Subset<T, Complaint$employeeArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    unit<T extends Complaint$unitArgs<ExtArgs> = {}>(args?: Subset<T, Complaint$unitArgs<ExtArgs>>): Prisma__UnitClient<$Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8090,6 +8321,16 @@ export namespace Prisma {
    */
   interface ComplaintFieldRefs {
     readonly id: FieldRef<"Complaint", 'String'>
+    readonly name: FieldRef<"Complaint", 'String'>
+    readonly desciption: FieldRef<"Complaint", 'String'>
+    readonly status: FieldRef<"Complaint", 'ComplaintStatus'>
+    readonly submittedAt: FieldRef<"Complaint", 'DateTime'>
+    readonly resolvedAt: FieldRef<"Complaint", 'DateTime'>
+    readonly resolutionDetails: FieldRef<"Complaint", 'String'>
+    readonly residentId: FieldRef<"Complaint", 'String'>
+    readonly employeeId: FieldRef<"Complaint", 'String'>
+    readonly unitId: FieldRef<"Complaint", 'String'>
+    readonly images: FieldRef<"Complaint", 'String[]'>
   }
     
 
@@ -8106,6 +8347,10 @@ export namespace Prisma {
      * Omit specific fields from the Complaint
      */
     omit?: ComplaintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintInclude<ExtArgs> | null
     /**
      * Filter, which Complaint to fetch.
      */
@@ -8125,6 +8370,10 @@ export namespace Prisma {
      */
     omit?: ComplaintOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintInclude<ExtArgs> | null
+    /**
      * Filter, which Complaint to fetch.
      */
     where: ComplaintWhereUniqueInput
@@ -8142,6 +8391,10 @@ export namespace Prisma {
      * Omit specific fields from the Complaint
      */
     omit?: ComplaintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintInclude<ExtArgs> | null
     /**
      * Filter, which Complaint to fetch.
      */
@@ -8191,6 +8444,10 @@ export namespace Prisma {
      */
     omit?: ComplaintOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintInclude<ExtArgs> | null
+    /**
      * Filter, which Complaint to fetch.
      */
     where?: ComplaintWhereInput
@@ -8239,6 +8496,10 @@ export namespace Prisma {
      */
     omit?: ComplaintOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintInclude<ExtArgs> | null
+    /**
      * Filter, which Complaints to fetch.
      */
     where?: ComplaintWhereInput
@@ -8282,9 +8543,13 @@ export namespace Prisma {
      */
     omit?: ComplaintOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintInclude<ExtArgs> | null
+    /**
      * The data needed to create a Complaint.
      */
-    data?: XOR<ComplaintCreateInput, ComplaintUncheckedCreateInput>
+    data: XOR<ComplaintCreateInput, ComplaintUncheckedCreateInput>
   }
 
   /**
@@ -8315,6 +8580,10 @@ export namespace Prisma {
      */
     data: ComplaintCreateManyInput | ComplaintCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -8329,6 +8598,10 @@ export namespace Prisma {
      * Omit specific fields from the Complaint
      */
     omit?: ComplaintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintInclude<ExtArgs> | null
     /**
      * The data needed to update a Complaint.
      */
@@ -8381,6 +8654,10 @@ export namespace Prisma {
      * Limit how many Complaints to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -8395,6 +8672,10 @@ export namespace Prisma {
      * Omit specific fields from the Complaint
      */
     omit?: ComplaintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintInclude<ExtArgs> | null
     /**
      * The filter to search for the Complaint to update in case it exists.
      */
@@ -8422,6 +8703,10 @@ export namespace Prisma {
      */
     omit?: ComplaintOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintInclude<ExtArgs> | null
+    /**
      * Filter which Complaint to delete.
      */
     where: ComplaintWhereUniqueInput
@@ -8442,6 +8727,44 @@ export namespace Prisma {
   }
 
   /**
+   * Complaint.employee
+   */
+  export type Complaint$employeeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
+    where?: EmployeeWhereInput
+  }
+
+  /**
+   * Complaint.unit
+   */
+  export type Complaint$unitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Unit
+     */
+    select?: UnitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Unit
+     */
+    omit?: UnitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnitInclude<ExtArgs> | null
+    where?: UnitWhereInput
+  }
+
+  /**
    * Complaint without action
    */
   export type ComplaintDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8453,6 +8776,10 @@ export namespace Prisma {
      * Omit specific fields from the Complaint
      */
     omit?: ComplaintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintInclude<ExtArgs> | null
   }
 
 
@@ -8823,7 +9150,7 @@ export namespace Prisma {
       resident: Prisma.$ResidentPayload<ExtArgs>
       unit: Prisma.$UnitPayload<ExtArgs> | null
       lease: Prisma.$LeasePayload<ExtArgs> | null
-      processedBy: Prisma.$EmployeesPayload<ExtArgs> | null
+      processedBy: Prisma.$EmployeePayload<ExtArgs> | null
       Bill: Prisma.$BillPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -9238,7 +9565,7 @@ export namespace Prisma {
     resident<T extends ResidentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResidentDefaultArgs<ExtArgs>>): Prisma__ResidentClient<$Result.GetResult<Prisma.$ResidentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     unit<T extends Payment$unitArgs<ExtArgs> = {}>(args?: Subset<T, Payment$unitArgs<ExtArgs>>): Prisma__UnitClient<$Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     lease<T extends Payment$leaseArgs<ExtArgs> = {}>(args?: Subset<T, Payment$leaseArgs<ExtArgs>>): Prisma__LeaseClient<$Result.GetResult<Prisma.$LeasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    processedBy<T extends Payment$processedByArgs<ExtArgs> = {}>(args?: Subset<T, Payment$processedByArgs<ExtArgs>>): Prisma__EmployeesClient<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    processedBy<T extends Payment$processedByArgs<ExtArgs> = {}>(args?: Subset<T, Payment$processedByArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Bill<T extends BillDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BillDefaultArgs<ExtArgs>>): Prisma__BillClient<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9721,18 +10048,18 @@ export namespace Prisma {
    */
   export type Payment$processedByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employees
+     * Select specific fields to fetch from the Employee
      */
-    select?: EmployeesSelect<ExtArgs> | null
+    select?: EmployeeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employees
+     * Omit specific fields from the Employee
      */
-    omit?: EmployeesOmit<ExtArgs> | null
+    omit?: EmployeeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeesInclude<ExtArgs> | null
-    where?: EmployeesWhereInput
+    include?: EmployeeInclude<ExtArgs> | null
+    where?: EmployeeWhereInput
   }
 
   /**
@@ -9950,7 +10277,7 @@ export namespace Prisma {
     employeeId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    employee?: boolean | EmployeesDefaultArgs<ExtArgs>
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["announcement"]>
 
   export type AnnouncementSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9963,7 +10290,7 @@ export namespace Prisma {
     employeeId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    employee?: boolean | EmployeesDefaultArgs<ExtArgs>
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["announcement"]>
 
   export type AnnouncementSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9976,7 +10303,7 @@ export namespace Prisma {
     employeeId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    employee?: boolean | EmployeesDefaultArgs<ExtArgs>
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["announcement"]>
 
   export type AnnouncementSelectScalar = {
@@ -9993,19 +10320,19 @@ export namespace Prisma {
 
   export type AnnouncementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "body" | "publishDate" | "expiryDate" | "employeeId" | "createdAt" | "updatedAt", ExtArgs["result"]["announcement"]>
   export type AnnouncementInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | EmployeesDefaultArgs<ExtArgs>
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
   }
   export type AnnouncementIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | EmployeesDefaultArgs<ExtArgs>
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
   }
   export type AnnouncementIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | EmployeesDefaultArgs<ExtArgs>
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
   }
 
   export type $AnnouncementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Announcement"
     objects: {
-      employee: Prisma.$EmployeesPayload<ExtArgs>
+      employee: Prisma.$EmployeePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10411,7 +10738,7 @@ export namespace Prisma {
    */
   export interface Prisma__AnnouncementClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    employee<T extends EmployeesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeesDefaultArgs<ExtArgs>>): Prisma__EmployeesClient<$Result.GetResult<Prisma.$EmployeesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12188,7 +12515,7 @@ export namespace Prisma {
     tagName?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    ForumPost?: boolean | PostTag$ForumPostArgs<ExtArgs>
+    ForumPosts?: boolean | PostTag$ForumPostsArgs<ExtArgs>
     _count?: boolean | PostTagCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["postTag"]>
 
@@ -12215,7 +12542,7 @@ export namespace Prisma {
 
   export type PostTagOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tagName" | "createdAt" | "updatedAt", ExtArgs["result"]["postTag"]>
   export type PostTagInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ForumPost?: boolean | PostTag$ForumPostArgs<ExtArgs>
+    ForumPosts?: boolean | PostTag$ForumPostsArgs<ExtArgs>
     _count?: boolean | PostTagCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PostTagIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -12224,7 +12551,7 @@ export namespace Prisma {
   export type $PostTagPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PostTag"
     objects: {
-      ForumPost: Prisma.$ForumPostPayload<ExtArgs>[]
+      ForumPosts: Prisma.$ForumPostPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12625,7 +12952,7 @@ export namespace Prisma {
    */
   export interface Prisma__PostTagClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    ForumPost<T extends PostTag$ForumPostArgs<ExtArgs> = {}>(args?: Subset<T, PostTag$ForumPostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ForumPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ForumPosts<T extends PostTag$ForumPostsArgs<ExtArgs> = {}>(args?: Subset<T, PostTag$ForumPostsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ForumPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13047,9 +13374,9 @@ export namespace Prisma {
   }
 
   /**
-   * PostTag.ForumPost
+   * PostTag.ForumPosts
    */
-  export type PostTag$ForumPostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PostTag$ForumPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ForumPost
      */
@@ -14207,6 +14534,8 @@ export namespace Prisma {
     location: string | null
     status: $Enums.UnitStatus | null
     priceSale: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UnitMaxAggregateOutputType = {
@@ -14220,6 +14549,8 @@ export namespace Prisma {
     location: string | null
     status: $Enums.UnitStatus | null
     priceSale: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UnitCountAggregateOutputType = {
@@ -14233,6 +14564,8 @@ export namespace Prisma {
     location: number
     status: number
     priceSale: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -14264,6 +14597,8 @@ export namespace Prisma {
     location?: true
     status?: true
     priceSale?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UnitMaxAggregateInputType = {
@@ -14277,6 +14612,8 @@ export namespace Prisma {
     location?: true
     status?: true
     priceSale?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UnitCountAggregateInputType = {
@@ -14290,6 +14627,8 @@ export namespace Prisma {
     location?: true
     status?: true
     priceSale?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -14390,6 +14729,8 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
+    createdAt: Date
+    updatedAt: Date
     _count: UnitCountAggregateOutputType | null
     _avg: UnitAvgAggregateOutputType | null
     _sum: UnitSumAggregateOutputType | null
@@ -14422,11 +14763,14 @@ export namespace Prisma {
     location?: boolean
     status?: boolean
     priceSale?: boolean
-    residents?: boolean | Unit$residentsArgs<ExtArgs>
-    maintenanceRequests?: boolean | Unit$maintenanceRequestsArgs<ExtArgs>
-    payments?: boolean | Unit$paymentsArgs<ExtArgs>
-    leases?: boolean | Unit$leasesArgs<ExtArgs>
-    Bill?: boolean | Unit$BillArgs<ExtArgs>
+    createdAt?: boolean
+    updatedAt?: boolean
+    Residents?: boolean | Unit$ResidentsArgs<ExtArgs>
+    MaintenanceRequests?: boolean | Unit$MaintenanceRequestsArgs<ExtArgs>
+    Payments?: boolean | Unit$PaymentsArgs<ExtArgs>
+    Leases?: boolean | Unit$LeasesArgs<ExtArgs>
+    Bills?: boolean | Unit$BillsArgs<ExtArgs>
+    Complaints?: boolean | Unit$ComplaintsArgs<ExtArgs>
     _count?: boolean | UnitCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["unit"]>
 
@@ -14441,6 +14785,8 @@ export namespace Prisma {
     location?: boolean
     status?: boolean
     priceSale?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["unit"]>
 
   export type UnitSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -14454,6 +14800,8 @@ export namespace Prisma {
     location?: boolean
     status?: boolean
     priceSale?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["unit"]>
 
   export type UnitSelectScalar = {
@@ -14467,15 +14815,18 @@ export namespace Prisma {
     location?: boolean
     status?: boolean
     priceSale?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type UnitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "unitNumber" | "buildingName" | "floorNumber" | "numberOfRooms" | "squareFootage" | "rentAmount" | "location" | "status" | "priceSale", ExtArgs["result"]["unit"]>
+  export type UnitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "unitNumber" | "buildingName" | "floorNumber" | "numberOfRooms" | "squareFootage" | "rentAmount" | "location" | "status" | "priceSale" | "createdAt" | "updatedAt", ExtArgs["result"]["unit"]>
   export type UnitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    residents?: boolean | Unit$residentsArgs<ExtArgs>
-    maintenanceRequests?: boolean | Unit$maintenanceRequestsArgs<ExtArgs>
-    payments?: boolean | Unit$paymentsArgs<ExtArgs>
-    leases?: boolean | Unit$leasesArgs<ExtArgs>
-    Bill?: boolean | Unit$BillArgs<ExtArgs>
+    Residents?: boolean | Unit$ResidentsArgs<ExtArgs>
+    MaintenanceRequests?: boolean | Unit$MaintenanceRequestsArgs<ExtArgs>
+    Payments?: boolean | Unit$PaymentsArgs<ExtArgs>
+    Leases?: boolean | Unit$LeasesArgs<ExtArgs>
+    Bills?: boolean | Unit$BillsArgs<ExtArgs>
+    Complaints?: boolean | Unit$ComplaintsArgs<ExtArgs>
     _count?: boolean | UnitCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UnitIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -14484,11 +14835,12 @@ export namespace Prisma {
   export type $UnitPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Unit"
     objects: {
-      residents: Prisma.$ResidentPayload<ExtArgs>[]
-      maintenanceRequests: Prisma.$MaintenanceRequestPayload<ExtArgs>[]
-      payments: Prisma.$PaymentPayload<ExtArgs>[]
-      leases: Prisma.$LeasePayload<ExtArgs>[]
-      Bill: Prisma.$BillPayload<ExtArgs>[]
+      Residents: Prisma.$ResidentPayload<ExtArgs>[]
+      MaintenanceRequests: Prisma.$MaintenanceRequestPayload<ExtArgs>[]
+      Payments: Prisma.$PaymentPayload<ExtArgs>[]
+      Leases: Prisma.$LeasePayload<ExtArgs>[]
+      Bills: Prisma.$BillPayload<ExtArgs>[]
+      Complaints: Prisma.$ComplaintPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -14501,6 +14853,8 @@ export namespace Prisma {
       location: string
       status: $Enums.UnitStatus
       priceSale: number
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["unit"]>
     composites: {}
   }
@@ -14895,11 +15249,12 @@ export namespace Prisma {
    */
   export interface Prisma__UnitClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    residents<T extends Unit$residentsArgs<ExtArgs> = {}>(args?: Subset<T, Unit$residentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    maintenanceRequests<T extends Unit$maintenanceRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Unit$maintenanceRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaintenanceRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    payments<T extends Unit$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, Unit$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    leases<T extends Unit$leasesArgs<ExtArgs> = {}>(args?: Subset<T, Unit$leasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Bill<T extends Unit$BillArgs<ExtArgs> = {}>(args?: Subset<T, Unit$BillArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Residents<T extends Unit$ResidentsArgs<ExtArgs> = {}>(args?: Subset<T, Unit$ResidentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    MaintenanceRequests<T extends Unit$MaintenanceRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Unit$MaintenanceRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaintenanceRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Payments<T extends Unit$PaymentsArgs<ExtArgs> = {}>(args?: Subset<T, Unit$PaymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Leases<T extends Unit$LeasesArgs<ExtArgs> = {}>(args?: Subset<T, Unit$LeasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Bills<T extends Unit$BillsArgs<ExtArgs> = {}>(args?: Subset<T, Unit$BillsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Complaints<T extends Unit$ComplaintsArgs<ExtArgs> = {}>(args?: Subset<T, Unit$ComplaintsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComplaintPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14939,6 +15294,8 @@ export namespace Prisma {
     readonly location: FieldRef<"Unit", 'String'>
     readonly status: FieldRef<"Unit", 'UnitStatus'>
     readonly priceSale: FieldRef<"Unit", 'Float'>
+    readonly createdAt: FieldRef<"Unit", 'DateTime'>
+    readonly updatedAt: FieldRef<"Unit", 'DateTime'>
   }
     
 
@@ -15327,9 +15684,9 @@ export namespace Prisma {
   }
 
   /**
-   * Unit.residents
+   * Unit.Residents
    */
-  export type Unit$residentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Unit$ResidentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Resident
      */
@@ -15351,9 +15708,9 @@ export namespace Prisma {
   }
 
   /**
-   * Unit.maintenanceRequests
+   * Unit.MaintenanceRequests
    */
-  export type Unit$maintenanceRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Unit$MaintenanceRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the MaintenanceRequest
      */
@@ -15375,9 +15732,9 @@ export namespace Prisma {
   }
 
   /**
-   * Unit.payments
+   * Unit.Payments
    */
-  export type Unit$paymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Unit$PaymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Payment
      */
@@ -15399,9 +15756,9 @@ export namespace Prisma {
   }
 
   /**
-   * Unit.leases
+   * Unit.Leases
    */
-  export type Unit$leasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Unit$LeasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Lease
      */
@@ -15423,9 +15780,9 @@ export namespace Prisma {
   }
 
   /**
-   * Unit.Bill
+   * Unit.Bills
    */
-  export type Unit$BillArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Unit$BillsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Bill
      */
@@ -15444,6 +15801,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: BillScalarFieldEnum | BillScalarFieldEnum[]
+  }
+
+  /**
+   * Unit.Complaints
+   */
+  export type Unit$ComplaintsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Complaint
+     */
+    select?: ComplaintSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Complaint
+     */
+    omit?: ComplaintOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComplaintInclude<ExtArgs> | null
+    where?: ComplaintWhereInput
+    orderBy?: ComplaintOrderByWithRelationInput | ComplaintOrderByWithRelationInput[]
+    cursor?: ComplaintWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ComplaintScalarFieldEnum | ComplaintScalarFieldEnum[]
   }
 
   /**
@@ -15496,6 +15877,8 @@ export namespace Prisma {
     termsAndConditions: string | null
     residentId: string | null
     unitId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type LeaseMaxAggregateOutputType = {
@@ -15507,6 +15890,8 @@ export namespace Prisma {
     termsAndConditions: string | null
     residentId: string | null
     unitId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type LeaseCountAggregateOutputType = {
@@ -15518,6 +15903,8 @@ export namespace Prisma {
     termsAndConditions: number
     residentId: number
     unitId: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -15541,6 +15928,8 @@ export namespace Prisma {
     termsAndConditions?: true
     residentId?: true
     unitId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type LeaseMaxAggregateInputType = {
@@ -15552,6 +15941,8 @@ export namespace Prisma {
     termsAndConditions?: true
     residentId?: true
     unitId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type LeaseCountAggregateInputType = {
@@ -15563,6 +15954,8 @@ export namespace Prisma {
     termsAndConditions?: true
     residentId?: true
     unitId?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -15661,6 +16054,8 @@ export namespace Prisma {
     termsAndConditions: string | null
     residentId: string
     unitId: string
+    createdAt: Date
+    updatedAt: Date
     _count: LeaseCountAggregateOutputType | null
     _avg: LeaseAvgAggregateOutputType | null
     _sum: LeaseSumAggregateOutputType | null
@@ -15691,9 +16086,11 @@ export namespace Prisma {
     termsAndConditions?: boolean
     residentId?: boolean
     unitId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     resident?: boolean | ResidentDefaultArgs<ExtArgs>
     unit?: boolean | UnitDefaultArgs<ExtArgs>
-    payments?: boolean | Lease$paymentsArgs<ExtArgs>
+    Payments?: boolean | Lease$PaymentsArgs<ExtArgs>
     _count?: boolean | LeaseCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["lease"]>
 
@@ -15706,6 +16103,8 @@ export namespace Prisma {
     termsAndConditions?: boolean
     residentId?: boolean
     unitId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     resident?: boolean | ResidentDefaultArgs<ExtArgs>
     unit?: boolean | UnitDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["lease"]>
@@ -15719,6 +16118,8 @@ export namespace Prisma {
     termsAndConditions?: boolean
     residentId?: boolean
     unitId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     resident?: boolean | ResidentDefaultArgs<ExtArgs>
     unit?: boolean | UnitDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["lease"]>
@@ -15732,13 +16133,15 @@ export namespace Prisma {
     termsAndConditions?: boolean
     residentId?: boolean
     unitId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type LeaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "startDate" | "endDate" | "monthlyRent" | "depositAmount" | "termsAndConditions" | "residentId" | "unitId", ExtArgs["result"]["lease"]>
+  export type LeaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "startDate" | "endDate" | "monthlyRent" | "depositAmount" | "termsAndConditions" | "residentId" | "unitId" | "createdAt" | "updatedAt", ExtArgs["result"]["lease"]>
   export type LeaseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     resident?: boolean | ResidentDefaultArgs<ExtArgs>
     unit?: boolean | UnitDefaultArgs<ExtArgs>
-    payments?: boolean | Lease$paymentsArgs<ExtArgs>
+    Payments?: boolean | Lease$PaymentsArgs<ExtArgs>
     _count?: boolean | LeaseCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LeaseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15755,7 +16158,7 @@ export namespace Prisma {
     objects: {
       resident: Prisma.$ResidentPayload<ExtArgs>
       unit: Prisma.$UnitPayload<ExtArgs>
-      payments: Prisma.$PaymentPayload<ExtArgs>[]
+      Payments: Prisma.$PaymentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -15766,6 +16169,8 @@ export namespace Prisma {
       termsAndConditions: string | null
       residentId: string
       unitId: string
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["lease"]>
     composites: {}
   }
@@ -16162,7 +16567,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     resident<T extends ResidentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResidentDefaultArgs<ExtArgs>>): Prisma__ResidentClient<$Result.GetResult<Prisma.$ResidentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     unit<T extends UnitDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UnitDefaultArgs<ExtArgs>>): Prisma__UnitClient<$Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    payments<T extends Lease$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, Lease$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Payments<T extends Lease$PaymentsArgs<ExtArgs> = {}>(args?: Subset<T, Lease$PaymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16200,6 +16605,8 @@ export namespace Prisma {
     readonly termsAndConditions: FieldRef<"Lease", 'String'>
     readonly residentId: FieldRef<"Lease", 'String'>
     readonly unitId: FieldRef<"Lease", 'String'>
+    readonly createdAt: FieldRef<"Lease", 'DateTime'>
+    readonly updatedAt: FieldRef<"Lease", 'DateTime'>
   }
     
 
@@ -16596,9 +17003,9 @@ export namespace Prisma {
   }
 
   /**
-   * Lease.payments
+   * Lease.Payments
    */
-  export type Lease$paymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Lease$PaymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Payment
      */
@@ -16666,6 +17073,9 @@ export namespace Prisma {
     isPaid: boolean | null
     unitId: string | null
     employeeId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
   }
 
   export type BillMaxAggregateOutputType = {
@@ -16676,6 +17086,9 @@ export namespace Prisma {
     isPaid: boolean | null
     unitId: string | null
     employeeId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
   }
 
   export type BillCountAggregateOutputType = {
@@ -16686,6 +17099,9 @@ export namespace Prisma {
     isPaid: number
     unitId: number
     employeeId: number
+    createdAt: number
+    updatedAt: number
+    userId: number
     _all: number
   }
 
@@ -16706,6 +17122,9 @@ export namespace Prisma {
     isPaid?: true
     unitId?: true
     employeeId?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
   }
 
   export type BillMaxAggregateInputType = {
@@ -16716,6 +17135,9 @@ export namespace Prisma {
     isPaid?: true
     unitId?: true
     employeeId?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
   }
 
   export type BillCountAggregateInputType = {
@@ -16726,6 +17148,9 @@ export namespace Prisma {
     isPaid?: true
     unitId?: true
     employeeId?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
     _all?: true
   }
 
@@ -16823,6 +17248,9 @@ export namespace Prisma {
     isPaid: boolean
     unitId: string
     employeeId: string
+    createdAt: Date
+    updatedAt: Date
+    userId: string | null
     _count: BillCountAggregateOutputType | null
     _avg: BillAvgAggregateOutputType | null
     _sum: BillSumAggregateOutputType | null
@@ -16852,9 +17280,12 @@ export namespace Prisma {
     isPaid?: boolean
     unitId?: boolean
     employeeId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
     unit?: boolean | UnitDefaultArgs<ExtArgs>
-    employee?: boolean | UserDefaultArgs<ExtArgs>
-    payments?: boolean | Bill$paymentsArgs<ExtArgs>
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    Payments?: boolean | Bill$PaymentsArgs<ExtArgs>
     _count?: boolean | BillCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bill"]>
 
@@ -16866,8 +17297,11 @@ export namespace Prisma {
     isPaid?: boolean
     unitId?: boolean
     employeeId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
     unit?: boolean | UnitDefaultArgs<ExtArgs>
-    employee?: boolean | UserDefaultArgs<ExtArgs>
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bill"]>
 
   export type BillSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -16878,8 +17312,11 @@ export namespace Prisma {
     isPaid?: boolean
     unitId?: boolean
     employeeId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
     unit?: boolean | UnitDefaultArgs<ExtArgs>
-    employee?: boolean | UserDefaultArgs<ExtArgs>
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bill"]>
 
   export type BillSelectScalar = {
@@ -16890,30 +17327,33 @@ export namespace Prisma {
     isPaid?: boolean
     unitId?: boolean
     employeeId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
   }
 
-  export type BillOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "amount" | "type" | "dueDate" | "isPaid" | "unitId" | "employeeId", ExtArgs["result"]["bill"]>
+  export type BillOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "amount" | "type" | "dueDate" | "isPaid" | "unitId" | "employeeId" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["bill"]>
   export type BillInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     unit?: boolean | UnitDefaultArgs<ExtArgs>
-    employee?: boolean | UserDefaultArgs<ExtArgs>
-    payments?: boolean | Bill$paymentsArgs<ExtArgs>
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    Payments?: boolean | Bill$PaymentsArgs<ExtArgs>
     _count?: boolean | BillCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BillIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     unit?: boolean | UnitDefaultArgs<ExtArgs>
-    employee?: boolean | UserDefaultArgs<ExtArgs>
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
   }
   export type BillIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     unit?: boolean | UnitDefaultArgs<ExtArgs>
-    employee?: boolean | UserDefaultArgs<ExtArgs>
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
   }
 
   export type $BillPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Bill"
     objects: {
       unit: Prisma.$UnitPayload<ExtArgs>
-      employee: Prisma.$UserPayload<ExtArgs>
-      payments: Prisma.$PaymentPayload<ExtArgs>[]
+      employee: Prisma.$EmployeePayload<ExtArgs>
+      Payments: Prisma.$PaymentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -16923,6 +17363,9 @@ export namespace Prisma {
       isPaid: boolean
       unitId: string
       employeeId: string
+      createdAt: Date
+      updatedAt: Date
+      userId: string | null
     }, ExtArgs["result"]["bill"]>
     composites: {}
   }
@@ -17318,8 +17761,8 @@ export namespace Prisma {
   export interface Prisma__BillClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     unit<T extends UnitDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UnitDefaultArgs<ExtArgs>>): Prisma__UnitClient<$Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    employee<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    payments<T extends Bill$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, Bill$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Payments<T extends Bill$PaymentsArgs<ExtArgs> = {}>(args?: Subset<T, Bill$PaymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -17356,6 +17799,9 @@ export namespace Prisma {
     readonly isPaid: FieldRef<"Bill", 'Boolean'>
     readonly unitId: FieldRef<"Bill", 'String'>
     readonly employeeId: FieldRef<"Bill", 'String'>
+    readonly createdAt: FieldRef<"Bill", 'DateTime'>
+    readonly updatedAt: FieldRef<"Bill", 'DateTime'>
+    readonly userId: FieldRef<"Bill", 'String'>
   }
     
 
@@ -17752,9 +18198,9 @@ export namespace Prisma {
   }
 
   /**
-   * Bill.payments
+   * Bill.Payments
    */
-  export type Bill$paymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Bill$PaymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Payment
      */
@@ -17810,6 +18256,8 @@ export namespace Prisma {
     role: $Enums.ContactRole | null
     phoneNumber: string | null
     email: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ContactMaxAggregateOutputType = {
@@ -17818,6 +18266,8 @@ export namespace Prisma {
     role: $Enums.ContactRole | null
     phoneNumber: string | null
     email: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ContactCountAggregateOutputType = {
@@ -17826,6 +18276,8 @@ export namespace Prisma {
     role: number
     phoneNumber: number
     email: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -17836,6 +18288,8 @@ export namespace Prisma {
     role?: true
     phoneNumber?: true
     email?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ContactMaxAggregateInputType = {
@@ -17844,6 +18298,8 @@ export namespace Prisma {
     role?: true
     phoneNumber?: true
     email?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ContactCountAggregateInputType = {
@@ -17852,6 +18308,8 @@ export namespace Prisma {
     role?: true
     phoneNumber?: true
     email?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -17933,6 +18391,8 @@ export namespace Prisma {
     role: $Enums.ContactRole
     phoneNumber: string
     email: string | null
+    createdAt: Date
+    updatedAt: Date
     _count: ContactCountAggregateOutputType | null
     _min: ContactMinAggregateOutputType | null
     _max: ContactMaxAggregateOutputType | null
@@ -17958,6 +18418,8 @@ export namespace Prisma {
     role?: boolean
     phoneNumber?: boolean
     email?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["contact"]>
 
   export type ContactSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -17966,6 +18428,8 @@ export namespace Prisma {
     role?: boolean
     phoneNumber?: boolean
     email?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["contact"]>
 
   export type ContactSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -17974,6 +18438,8 @@ export namespace Prisma {
     role?: boolean
     phoneNumber?: boolean
     email?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["contact"]>
 
   export type ContactSelectScalar = {
@@ -17982,9 +18448,11 @@ export namespace Prisma {
     role?: boolean
     phoneNumber?: boolean
     email?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "role" | "phoneNumber" | "email", ExtArgs["result"]["contact"]>
+  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "role" | "phoneNumber" | "email" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
 
   export type $ContactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Contact"
@@ -17995,6 +18463,8 @@ export namespace Prisma {
       role: $Enums.ContactRole
       phoneNumber: string
       email: string | null
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["contact"]>
     composites: {}
   }
@@ -18423,6 +18893,8 @@ export namespace Prisma {
     readonly role: FieldRef<"Contact", 'ContactRole'>
     readonly phoneNumber: FieldRef<"Contact", 'String'>
     readonly email: FieldRef<"Contact", 'String'>
+    readonly createdAt: FieldRef<"Contact", 'DateTime'>
+    readonly updatedAt: FieldRef<"Contact", 'DateTime'>
   }
     
 
@@ -18812,7 +19284,7 @@ export namespace Prisma {
     contactNumber: 'contactNumber',
     primaryEmail: 'primaryEmail',
     secondaryEmail: 'secondaryEmail',
-    passwordHash: 'passwordHash',
+    password: 'password',
     sessionToken: 'sessionToken',
     emailVerificationToken: 'emailVerificationToken',
     passwordResetToken: 'passwordResetToken',
@@ -18840,7 +19312,7 @@ export namespace Prisma {
   export type ResidentScalarFieldEnum = (typeof ResidentScalarFieldEnum)[keyof typeof ResidentScalarFieldEnum]
 
 
-  export const EmployeesScalarFieldEnum: {
+  export const EmployeeScalarFieldEnum: {
     employeeId: 'employeeId',
     employeeIdNumber: 'employeeIdNumber',
     hireDate: 'hireDate',
@@ -18852,7 +19324,7 @@ export namespace Prisma {
     updatedAt: 'updatedAt'
   };
 
-  export type EmployeesScalarFieldEnum = (typeof EmployeesScalarFieldEnum)[keyof typeof EmployeesScalarFieldEnum]
+  export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
 
 
   export const MaintenanceRequestScalarFieldEnum: {
@@ -18873,7 +19345,17 @@ export namespace Prisma {
 
 
   export const ComplaintScalarFieldEnum: {
-    id: 'id'
+    id: 'id',
+    name: 'name',
+    desciption: 'desciption',
+    status: 'status',
+    submittedAt: 'submittedAt',
+    resolvedAt: 'resolvedAt',
+    resolutionDetails: 'resolutionDetails',
+    residentId: 'residentId',
+    employeeId: 'employeeId',
+    unitId: 'unitId',
+    images: 'images'
   };
 
   export type ComplaintScalarFieldEnum = (typeof ComplaintScalarFieldEnum)[keyof typeof ComplaintScalarFieldEnum]
@@ -18961,7 +19443,9 @@ export namespace Prisma {
     rentAmount: 'rentAmount',
     location: 'location',
     status: 'status',
-    priceSale: 'priceSale'
+    priceSale: 'priceSale',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type UnitScalarFieldEnum = (typeof UnitScalarFieldEnum)[keyof typeof UnitScalarFieldEnum]
@@ -18975,7 +19459,9 @@ export namespace Prisma {
     depositAmount: 'depositAmount',
     termsAndConditions: 'termsAndConditions',
     residentId: 'residentId',
-    unitId: 'unitId'
+    unitId: 'unitId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type LeaseScalarFieldEnum = (typeof LeaseScalarFieldEnum)[keyof typeof LeaseScalarFieldEnum]
@@ -18988,7 +19474,10 @@ export namespace Prisma {
     dueDate: 'dueDate',
     isPaid: 'isPaid',
     unitId: 'unitId',
-    employeeId: 'employeeId'
+    employeeId: 'employeeId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId'
   };
 
   export type BillScalarFieldEnum = (typeof BillScalarFieldEnum)[keyof typeof BillScalarFieldEnum]
@@ -18999,7 +19488,9 @@ export namespace Prisma {
     name: 'name',
     role: 'role',
     phoneNumber: 'phoneNumber',
-    email: 'email'
+    email: 'email',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ContactScalarFieldEnum = (typeof ContactScalarFieldEnum)[keyof typeof ContactScalarFieldEnum]
@@ -19175,6 +19666,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'ComplaintStatus'
+   */
+  export type EnumComplaintStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ComplaintStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ComplaintStatus[]'
+   */
+  export type ListEnumComplaintStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ComplaintStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'PaymentMethod'
    */
   export type EnumPaymentMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentMethod'>
@@ -19266,19 +19771,18 @@ export namespace Prisma {
     contactNumber?: StringNullableFilter<"User"> | string | null
     primaryEmail?: StringFilter<"User"> | string
     secondaryEmail?: StringNullableFilter<"User"> | string | null
-    passwordHash?: StringFilter<"User"> | string
+    password?: StringFilter<"User"> | string
     sessionToken?: StringNullableFilter<"User"> | string | null
     emailVerificationToken?: StringNullableFilter<"User"> | string | null
     passwordResetToken?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
-    gender?: EnumGenderFilter<"User"> | $Enums.Gender
+    gender?: EnumGenderNullableFilter<"User"> | $Enums.Gender | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    resident?: XOR<ResidentNullableScalarRelationFilter, ResidentWhereInput> | null
-    Employees?: XOR<EmployeesNullableScalarRelationFilter, EmployeesWhereInput> | null
-    ForumPost?: ForumPostListRelationFilter
-    ForumComment?: ForumCommentListRelationFilter
-    Bill?: BillListRelationFilter
+    Resident?: XOR<ResidentNullableScalarRelationFilter, ResidentWhereInput> | null
+    Employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
+    ForumPosts?: ForumPostListRelationFilter
+    ForumComments?: ForumCommentListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -19290,26 +19794,25 @@ export namespace Prisma {
     contactNumber?: SortOrderInput | SortOrder
     primaryEmail?: SortOrder
     secondaryEmail?: SortOrderInput | SortOrder
-    passwordHash?: SortOrder
+    password?: SortOrder
     sessionToken?: SortOrderInput | SortOrder
     emailVerificationToken?: SortOrderInput | SortOrder
     passwordResetToken?: SortOrderInput | SortOrder
     role?: SortOrder
-    gender?: SortOrder
+    gender?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    resident?: ResidentOrderByWithRelationInput
-    Employees?: EmployeesOrderByWithRelationInput
-    ForumPost?: ForumPostOrderByRelationAggregateInput
-    ForumComment?: ForumCommentOrderByRelationAggregateInput
-    Bill?: BillOrderByRelationAggregateInput
+    Resident?: ResidentOrderByWithRelationInput
+    Employee?: EmployeeOrderByWithRelationInput
+    ForumPosts?: ForumPostOrderByRelationAggregateInput
+    ForumComments?: ForumCommentOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     primaryEmail?: string
     secondaryEmail?: string
-    passwordHash?: string
+    password?: string
     sessionToken?: string
     emailVerificationToken?: string
     passwordResetToken?: string
@@ -19322,15 +19825,14 @@ export namespace Prisma {
     dateOfBirth?: DateTimeNullableFilter<"User"> | Date | string | null
     contactNumber?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
-    gender?: EnumGenderFilter<"User"> | $Enums.Gender
+    gender?: EnumGenderNullableFilter<"User"> | $Enums.Gender | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    resident?: XOR<ResidentNullableScalarRelationFilter, ResidentWhereInput> | null
-    Employees?: XOR<EmployeesNullableScalarRelationFilter, EmployeesWhereInput> | null
-    ForumPost?: ForumPostListRelationFilter
-    ForumComment?: ForumCommentListRelationFilter
-    Bill?: BillListRelationFilter
-  }, "id" | "primaryEmail" | "secondaryEmail" | "passwordHash" | "sessionToken" | "emailVerificationToken" | "passwordResetToken">
+    Resident?: XOR<ResidentNullableScalarRelationFilter, ResidentWhereInput> | null
+    Employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
+    ForumPosts?: ForumPostListRelationFilter
+    ForumComments?: ForumCommentListRelationFilter
+  }, "id" | "primaryEmail" | "secondaryEmail" | "password" | "sessionToken" | "emailVerificationToken" | "passwordResetToken">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -19341,12 +19843,12 @@ export namespace Prisma {
     contactNumber?: SortOrderInput | SortOrder
     primaryEmail?: SortOrder
     secondaryEmail?: SortOrderInput | SortOrder
-    passwordHash?: SortOrder
+    password?: SortOrder
     sessionToken?: SortOrderInput | SortOrder
     emailVerificationToken?: SortOrderInput | SortOrder
     passwordResetToken?: SortOrderInput | SortOrder
     role?: SortOrder
-    gender?: SortOrder
+    gender?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -19366,12 +19868,12 @@ export namespace Prisma {
     contactNumber?: StringNullableWithAggregatesFilter<"User"> | string | null
     primaryEmail?: StringWithAggregatesFilter<"User"> | string
     secondaryEmail?: StringNullableWithAggregatesFilter<"User"> | string | null
-    passwordHash?: StringWithAggregatesFilter<"User"> | string
+    password?: StringWithAggregatesFilter<"User"> | string
     sessionToken?: StringNullableWithAggregatesFilter<"User"> | string | null
     emailVerificationToken?: StringNullableWithAggregatesFilter<"User"> | string | null
     passwordResetToken?: StringNullableWithAggregatesFilter<"User"> | string | null
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
-    gender?: EnumGenderWithAggregatesFilter<"User"> | $Enums.Gender
+    gender?: EnumGenderNullableWithAggregatesFilter<"User"> | $Enums.Gender | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -19393,7 +19895,8 @@ export namespace Prisma {
     unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
     maintenanceRequests?: MaintenanceRequestListRelationFilter
     payments?: PaymentListRelationFilter
-    Lease?: LeaseListRelationFilter
+    Leases?: LeaseListRelationFilter
+    Complaints?: ComplaintListRelationFilter
   }
 
   export type ResidentOrderByWithRelationInput = {
@@ -19410,7 +19913,8 @@ export namespace Prisma {
     unit?: UnitOrderByWithRelationInput
     maintenanceRequests?: MaintenanceRequestOrderByRelationAggregateInput
     payments?: PaymentOrderByRelationAggregateInput
-    Lease?: LeaseOrderByRelationAggregateInput
+    Leases?: LeaseOrderByRelationAggregateInput
+    Complaints?: ComplaintOrderByRelationAggregateInput
   }
 
   export type ResidentWhereUniqueInput = Prisma.AtLeast<{
@@ -19430,7 +19934,8 @@ export namespace Prisma {
     unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
     maintenanceRequests?: MaintenanceRequestListRelationFilter
     payments?: PaymentListRelationFilter
-    Lease?: LeaseListRelationFilter
+    Leases?: LeaseListRelationFilter
+    Complaints?: ComplaintListRelationFilter
   }, "residentId" | "residentId">
 
   export type ResidentOrderByWithAggregationInput = {
@@ -19463,26 +19968,28 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Resident"> | Date | string
   }
 
-  export type EmployeesWhereInput = {
-    AND?: EmployeesWhereInput | EmployeesWhereInput[]
-    OR?: EmployeesWhereInput[]
-    NOT?: EmployeesWhereInput | EmployeesWhereInput[]
-    employeeId?: UuidFilter<"Employees"> | string
-    employeeIdNumber?: StringFilter<"Employees"> | string
-    hireDate?: DateTimeFilter<"Employees"> | Date | string
-    employeePosition?: EnumEmployeeRoleFilter<"Employees"> | $Enums.EmployeeRole
-    workingHours?: IntFilter<"Employees"> | number
-    salary?: FloatFilter<"Employees"> | number
-    bonus?: FloatFilter<"Employees"> | number
-    createdAt?: DateTimeFilter<"Employees"> | Date | string
-    updatedAt?: DateTimeFilter<"Employees"> | Date | string
+  export type EmployeeWhereInput = {
+    AND?: EmployeeWhereInput | EmployeeWhereInput[]
+    OR?: EmployeeWhereInput[]
+    NOT?: EmployeeWhereInput | EmployeeWhereInput[]
+    employeeId?: UuidFilter<"Employee"> | string
+    employeeIdNumber?: StringFilter<"Employee"> | string
+    hireDate?: DateTimeFilter<"Employee"> | Date | string
+    employeePosition?: EnumEmployeeRoleFilter<"Employee"> | $Enums.EmployeeRole
+    workingHours?: IntFilter<"Employee"> | number
+    salary?: FloatFilter<"Employee"> | number
+    bonus?: FloatFilter<"Employee"> | number
+    createdAt?: DateTimeFilter<"Employee"> | Date | string
+    updatedAt?: DateTimeFilter<"Employee"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    Announcement?: AnnouncementListRelationFilter
-    MaintenanceRequest?: MaintenanceRequestListRelationFilter
-    Payment?: PaymentListRelationFilter
+    Announcements?: AnnouncementListRelationFilter
+    MaintenanceRequests?: MaintenanceRequestListRelationFilter
+    Payments?: PaymentListRelationFilter
+    Complaint?: XOR<ComplaintNullableScalarRelationFilter, ComplaintWhereInput> | null
+    Bills?: BillListRelationFilter
   }
 
-  export type EmployeesOrderByWithRelationInput = {
+  export type EmployeeOrderByWithRelationInput = {
     employeeId?: SortOrder
     employeeIdNumber?: SortOrder
     hireDate?: SortOrder
@@ -19493,31 +20000,35 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
-    Announcement?: AnnouncementOrderByRelationAggregateInput
-    MaintenanceRequest?: MaintenanceRequestOrderByRelationAggregateInput
-    Payment?: PaymentOrderByRelationAggregateInput
+    Announcements?: AnnouncementOrderByRelationAggregateInput
+    MaintenanceRequests?: MaintenanceRequestOrderByRelationAggregateInput
+    Payments?: PaymentOrderByRelationAggregateInput
+    Complaint?: ComplaintOrderByWithRelationInput
+    Bills?: BillOrderByRelationAggregateInput
   }
 
-  export type EmployeesWhereUniqueInput = Prisma.AtLeast<{
+  export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
     employeeId?: string
     employeeIdNumber?: string
-    AND?: EmployeesWhereInput | EmployeesWhereInput[]
-    OR?: EmployeesWhereInput[]
-    NOT?: EmployeesWhereInput | EmployeesWhereInput[]
-    hireDate?: DateTimeFilter<"Employees"> | Date | string
-    employeePosition?: EnumEmployeeRoleFilter<"Employees"> | $Enums.EmployeeRole
-    workingHours?: IntFilter<"Employees"> | number
-    salary?: FloatFilter<"Employees"> | number
-    bonus?: FloatFilter<"Employees"> | number
-    createdAt?: DateTimeFilter<"Employees"> | Date | string
-    updatedAt?: DateTimeFilter<"Employees"> | Date | string
+    AND?: EmployeeWhereInput | EmployeeWhereInput[]
+    OR?: EmployeeWhereInput[]
+    NOT?: EmployeeWhereInput | EmployeeWhereInput[]
+    hireDate?: DateTimeFilter<"Employee"> | Date | string
+    employeePosition?: EnumEmployeeRoleFilter<"Employee"> | $Enums.EmployeeRole
+    workingHours?: IntFilter<"Employee"> | number
+    salary?: FloatFilter<"Employee"> | number
+    bonus?: FloatFilter<"Employee"> | number
+    createdAt?: DateTimeFilter<"Employee"> | Date | string
+    updatedAt?: DateTimeFilter<"Employee"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    Announcement?: AnnouncementListRelationFilter
-    MaintenanceRequest?: MaintenanceRequestListRelationFilter
-    Payment?: PaymentListRelationFilter
+    Announcements?: AnnouncementListRelationFilter
+    MaintenanceRequests?: MaintenanceRequestListRelationFilter
+    Payments?: PaymentListRelationFilter
+    Complaint?: XOR<ComplaintNullableScalarRelationFilter, ComplaintWhereInput> | null
+    Bills?: BillListRelationFilter
   }, "employeeId" | "employeeId" | "employeeIdNumber">
 
-  export type EmployeesOrderByWithAggregationInput = {
+  export type EmployeeOrderByWithAggregationInput = {
     employeeId?: SortOrder
     employeeIdNumber?: SortOrder
     hireDate?: SortOrder
@@ -19527,26 +20038,26 @@ export namespace Prisma {
     bonus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: EmployeesCountOrderByAggregateInput
-    _avg?: EmployeesAvgOrderByAggregateInput
-    _max?: EmployeesMaxOrderByAggregateInput
-    _min?: EmployeesMinOrderByAggregateInput
-    _sum?: EmployeesSumOrderByAggregateInput
+    _count?: EmployeeCountOrderByAggregateInput
+    _avg?: EmployeeAvgOrderByAggregateInput
+    _max?: EmployeeMaxOrderByAggregateInput
+    _min?: EmployeeMinOrderByAggregateInput
+    _sum?: EmployeeSumOrderByAggregateInput
   }
 
-  export type EmployeesScalarWhereWithAggregatesInput = {
-    AND?: EmployeesScalarWhereWithAggregatesInput | EmployeesScalarWhereWithAggregatesInput[]
-    OR?: EmployeesScalarWhereWithAggregatesInput[]
-    NOT?: EmployeesScalarWhereWithAggregatesInput | EmployeesScalarWhereWithAggregatesInput[]
-    employeeId?: UuidWithAggregatesFilter<"Employees"> | string
-    employeeIdNumber?: StringWithAggregatesFilter<"Employees"> | string
-    hireDate?: DateTimeWithAggregatesFilter<"Employees"> | Date | string
-    employeePosition?: EnumEmployeeRoleWithAggregatesFilter<"Employees"> | $Enums.EmployeeRole
-    workingHours?: IntWithAggregatesFilter<"Employees"> | number
-    salary?: FloatWithAggregatesFilter<"Employees"> | number
-    bonus?: FloatWithAggregatesFilter<"Employees"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"Employees"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Employees"> | Date | string
+  export type EmployeeScalarWhereWithAggregatesInput = {
+    AND?: EmployeeScalarWhereWithAggregatesInput | EmployeeScalarWhereWithAggregatesInput[]
+    OR?: EmployeeScalarWhereWithAggregatesInput[]
+    NOT?: EmployeeScalarWhereWithAggregatesInput | EmployeeScalarWhereWithAggregatesInput[]
+    employeeId?: UuidWithAggregatesFilter<"Employee"> | string
+    employeeIdNumber?: StringWithAggregatesFilter<"Employee"> | string
+    hireDate?: DateTimeWithAggregatesFilter<"Employee"> | Date | string
+    employeePosition?: EnumEmployeeRoleWithAggregatesFilter<"Employee"> | $Enums.EmployeeRole
+    workingHours?: IntWithAggregatesFilter<"Employee"> | number
+    salary?: FloatWithAggregatesFilter<"Employee"> | number
+    bonus?: FloatWithAggregatesFilter<"Employee"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Employee"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Employee"> | Date | string
   }
 
   export type MaintenanceRequestWhereInput = {
@@ -19566,7 +20077,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"MaintenanceRequest"> | Date | string
     resident?: XOR<ResidentScalarRelationFilter, ResidentWhereInput>
     unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
-    assignedTo?: XOR<EmployeesNullableScalarRelationFilter, EmployeesWhereInput> | null
+    assignedTo?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
   }
 
   export type MaintenanceRequestOrderByWithRelationInput = {
@@ -19583,7 +20094,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     resident?: ResidentOrderByWithRelationInput
     unit?: UnitOrderByWithRelationInput
-    assignedTo?: EmployeesOrderByWithRelationInput
+    assignedTo?: EmployeeOrderByWithRelationInput
   }
 
   export type MaintenanceRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -19603,7 +20114,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"MaintenanceRequest"> | Date | string
     resident?: XOR<ResidentScalarRelationFilter, ResidentWhereInput>
     unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
-    assignedTo?: XOR<EmployeesNullableScalarRelationFilter, EmployeesWhereInput> | null
+    assignedTo?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
   }, "id">
 
   export type MaintenanceRequestOrderByWithAggregationInput = {
@@ -19645,21 +20156,70 @@ export namespace Prisma {
     OR?: ComplaintWhereInput[]
     NOT?: ComplaintWhereInput | ComplaintWhereInput[]
     id?: UuidFilter<"Complaint"> | string
+    name?: StringFilter<"Complaint"> | string
+    desciption?: StringFilter<"Complaint"> | string
+    status?: EnumComplaintStatusFilter<"Complaint"> | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFilter<"Complaint"> | Date | string
+    resolvedAt?: DateTimeNullableFilter<"Complaint"> | Date | string | null
+    resolutionDetails?: StringNullableFilter<"Complaint"> | string | null
+    residentId?: UuidFilter<"Complaint"> | string
+    employeeId?: UuidNullableFilter<"Complaint"> | string | null
+    unitId?: UuidNullableFilter<"Complaint"> | string | null
+    images?: StringNullableListFilter<"Complaint">
+    resident?: XOR<ResidentScalarRelationFilter, ResidentWhereInput>
+    employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
+    unit?: XOR<UnitNullableScalarRelationFilter, UnitWhereInput> | null
   }
 
   export type ComplaintOrderByWithRelationInput = {
     id?: SortOrder
+    name?: SortOrder
+    desciption?: SortOrder
+    status?: SortOrder
+    submittedAt?: SortOrder
+    resolvedAt?: SortOrderInput | SortOrder
+    resolutionDetails?: SortOrderInput | SortOrder
+    residentId?: SortOrder
+    employeeId?: SortOrderInput | SortOrder
+    unitId?: SortOrderInput | SortOrder
+    images?: SortOrder
+    resident?: ResidentOrderByWithRelationInput
+    employee?: EmployeeOrderByWithRelationInput
+    unit?: UnitOrderByWithRelationInput
   }
 
   export type ComplaintWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    employeeId?: string
     AND?: ComplaintWhereInput | ComplaintWhereInput[]
     OR?: ComplaintWhereInput[]
     NOT?: ComplaintWhereInput | ComplaintWhereInput[]
-  }, "id">
+    name?: StringFilter<"Complaint"> | string
+    desciption?: StringFilter<"Complaint"> | string
+    status?: EnumComplaintStatusFilter<"Complaint"> | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFilter<"Complaint"> | Date | string
+    resolvedAt?: DateTimeNullableFilter<"Complaint"> | Date | string | null
+    resolutionDetails?: StringNullableFilter<"Complaint"> | string | null
+    residentId?: UuidFilter<"Complaint"> | string
+    unitId?: UuidNullableFilter<"Complaint"> | string | null
+    images?: StringNullableListFilter<"Complaint">
+    resident?: XOR<ResidentScalarRelationFilter, ResidentWhereInput>
+    employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
+    unit?: XOR<UnitNullableScalarRelationFilter, UnitWhereInput> | null
+  }, "id" | "employeeId">
 
   export type ComplaintOrderByWithAggregationInput = {
     id?: SortOrder
+    name?: SortOrder
+    desciption?: SortOrder
+    status?: SortOrder
+    submittedAt?: SortOrder
+    resolvedAt?: SortOrderInput | SortOrder
+    resolutionDetails?: SortOrderInput | SortOrder
+    residentId?: SortOrder
+    employeeId?: SortOrderInput | SortOrder
+    unitId?: SortOrderInput | SortOrder
+    images?: SortOrder
     _count?: ComplaintCountOrderByAggregateInput
     _max?: ComplaintMaxOrderByAggregateInput
     _min?: ComplaintMinOrderByAggregateInput
@@ -19670,6 +20230,16 @@ export namespace Prisma {
     OR?: ComplaintScalarWhereWithAggregatesInput[]
     NOT?: ComplaintScalarWhereWithAggregatesInput | ComplaintScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"Complaint"> | string
+    name?: StringWithAggregatesFilter<"Complaint"> | string
+    desciption?: StringWithAggregatesFilter<"Complaint"> | string
+    status?: EnumComplaintStatusWithAggregatesFilter<"Complaint"> | $Enums.ComplaintStatus
+    submittedAt?: DateTimeWithAggregatesFilter<"Complaint"> | Date | string
+    resolvedAt?: DateTimeNullableWithAggregatesFilter<"Complaint"> | Date | string | null
+    resolutionDetails?: StringNullableWithAggregatesFilter<"Complaint"> | string | null
+    residentId?: UuidWithAggregatesFilter<"Complaint"> | string
+    employeeId?: UuidNullableWithAggregatesFilter<"Complaint"> | string | null
+    unitId?: UuidNullableWithAggregatesFilter<"Complaint"> | string | null
+    images?: StringNullableListFilter<"Complaint">
   }
 
   export type PaymentWhereInput = {
@@ -19693,7 +20263,7 @@ export namespace Prisma {
     resident?: XOR<ResidentScalarRelationFilter, ResidentWhereInput>
     unit?: XOR<UnitNullableScalarRelationFilter, UnitWhereInput> | null
     lease?: XOR<LeaseNullableScalarRelationFilter, LeaseWhereInput> | null
-    processedBy?: XOR<EmployeesNullableScalarRelationFilter, EmployeesWhereInput> | null
+    processedBy?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
     Bill?: XOR<BillScalarRelationFilter, BillWhereInput>
   }
 
@@ -19715,7 +20285,7 @@ export namespace Prisma {
     resident?: ResidentOrderByWithRelationInput
     unit?: UnitOrderByWithRelationInput
     lease?: LeaseOrderByWithRelationInput
-    processedBy?: EmployeesOrderByWithRelationInput
+    processedBy?: EmployeeOrderByWithRelationInput
     Bill?: BillOrderByWithRelationInput
   }
 
@@ -19740,7 +20310,7 @@ export namespace Prisma {
     resident?: XOR<ResidentScalarRelationFilter, ResidentWhereInput>
     unit?: XOR<UnitNullableScalarRelationFilter, UnitWhereInput> | null
     lease?: XOR<LeaseNullableScalarRelationFilter, LeaseWhereInput> | null
-    processedBy?: XOR<EmployeesNullableScalarRelationFilter, EmployeesWhereInput> | null
+    processedBy?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
     Bill?: XOR<BillScalarRelationFilter, BillWhereInput>
   }, "id">
 
@@ -19799,7 +20369,7 @@ export namespace Prisma {
     employeeId?: UuidFilter<"Announcement"> | string
     createdAt?: DateTimeFilter<"Announcement"> | Date | string
     updatedAt?: DateTimeFilter<"Announcement"> | Date | string
-    employee?: XOR<EmployeesScalarRelationFilter, EmployeesWhereInput>
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
   }
 
   export type AnnouncementOrderByWithRelationInput = {
@@ -19812,7 +20382,7 @@ export namespace Prisma {
     employeeId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    employee?: EmployeesOrderByWithRelationInput
+    employee?: EmployeeOrderByWithRelationInput
   }
 
   export type AnnouncementWhereUniqueInput = Prisma.AtLeast<{
@@ -19828,7 +20398,7 @@ export namespace Prisma {
     employeeId?: UuidFilter<"Announcement"> | string
     createdAt?: DateTimeFilter<"Announcement"> | Date | string
     updatedAt?: DateTimeFilter<"Announcement"> | Date | string
-    employee?: XOR<EmployeesScalarRelationFilter, EmployeesWhereInput>
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
   }, "id">
 
   export type AnnouncementOrderByWithAggregationInput = {
@@ -19950,7 +20520,7 @@ export namespace Prisma {
     tagName?: StringFilter<"PostTag"> | string
     createdAt?: DateTimeFilter<"PostTag"> | Date | string
     updatedAt?: DateTimeFilter<"PostTag"> | Date | string
-    ForumPost?: ForumPostListRelationFilter
+    ForumPosts?: ForumPostListRelationFilter
   }
 
   export type PostTagOrderByWithRelationInput = {
@@ -19958,7 +20528,7 @@ export namespace Prisma {
     tagName?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    ForumPost?: ForumPostOrderByRelationAggregateInput
+    ForumPosts?: ForumPostOrderByRelationAggregateInput
   }
 
   export type PostTagWhereUniqueInput = Prisma.AtLeast<{
@@ -19969,7 +20539,7 @@ export namespace Prisma {
     tagName?: StringFilter<"PostTag"> | string
     createdAt?: DateTimeFilter<"PostTag"> | Date | string
     updatedAt?: DateTimeFilter<"PostTag"> | Date | string
-    ForumPost?: ForumPostListRelationFilter
+    ForumPosts?: ForumPostListRelationFilter
   }, "id">
 
   export type PostTagOrderByWithAggregationInput = {
@@ -20069,11 +20639,14 @@ export namespace Prisma {
     location?: StringFilter<"Unit"> | string
     status?: EnumUnitStatusFilter<"Unit"> | $Enums.UnitStatus
     priceSale?: FloatFilter<"Unit"> | number
-    residents?: ResidentListRelationFilter
-    maintenanceRequests?: MaintenanceRequestListRelationFilter
-    payments?: PaymentListRelationFilter
-    leases?: LeaseListRelationFilter
-    Bill?: BillListRelationFilter
+    createdAt?: DateTimeFilter<"Unit"> | Date | string
+    updatedAt?: DateTimeFilter<"Unit"> | Date | string
+    Residents?: ResidentListRelationFilter
+    MaintenanceRequests?: MaintenanceRequestListRelationFilter
+    Payments?: PaymentListRelationFilter
+    Leases?: LeaseListRelationFilter
+    Bills?: BillListRelationFilter
+    Complaints?: ComplaintListRelationFilter
   }
 
   export type UnitOrderByWithRelationInput = {
@@ -20087,11 +20660,14 @@ export namespace Prisma {
     location?: SortOrder
     status?: SortOrder
     priceSale?: SortOrder
-    residents?: ResidentOrderByRelationAggregateInput
-    maintenanceRequests?: MaintenanceRequestOrderByRelationAggregateInput
-    payments?: PaymentOrderByRelationAggregateInput
-    leases?: LeaseOrderByRelationAggregateInput
-    Bill?: BillOrderByRelationAggregateInput
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    Residents?: ResidentOrderByRelationAggregateInput
+    MaintenanceRequests?: MaintenanceRequestOrderByRelationAggregateInput
+    Payments?: PaymentOrderByRelationAggregateInput
+    Leases?: LeaseOrderByRelationAggregateInput
+    Bills?: BillOrderByRelationAggregateInput
+    Complaints?: ComplaintOrderByRelationAggregateInput
   }
 
   export type UnitWhereUniqueInput = Prisma.AtLeast<{
@@ -20108,11 +20684,14 @@ export namespace Prisma {
     location?: StringFilter<"Unit"> | string
     status?: EnumUnitStatusFilter<"Unit"> | $Enums.UnitStatus
     priceSale?: FloatFilter<"Unit"> | number
-    residents?: ResidentListRelationFilter
-    maintenanceRequests?: MaintenanceRequestListRelationFilter
-    payments?: PaymentListRelationFilter
-    leases?: LeaseListRelationFilter
-    Bill?: BillListRelationFilter
+    createdAt?: DateTimeFilter<"Unit"> | Date | string
+    updatedAt?: DateTimeFilter<"Unit"> | Date | string
+    Residents?: ResidentListRelationFilter
+    MaintenanceRequests?: MaintenanceRequestListRelationFilter
+    Payments?: PaymentListRelationFilter
+    Leases?: LeaseListRelationFilter
+    Bills?: BillListRelationFilter
+    Complaints?: ComplaintListRelationFilter
   }, "id" | "unitNumber">
 
   export type UnitOrderByWithAggregationInput = {
@@ -20126,6 +20705,8 @@ export namespace Prisma {
     location?: SortOrder
     status?: SortOrder
     priceSale?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: UnitCountOrderByAggregateInput
     _avg?: UnitAvgOrderByAggregateInput
     _max?: UnitMaxOrderByAggregateInput
@@ -20147,6 +20728,8 @@ export namespace Prisma {
     location?: StringWithAggregatesFilter<"Unit"> | string
     status?: EnumUnitStatusWithAggregatesFilter<"Unit"> | $Enums.UnitStatus
     priceSale?: FloatWithAggregatesFilter<"Unit"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Unit"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Unit"> | Date | string
   }
 
   export type LeaseWhereInput = {
@@ -20161,9 +20744,11 @@ export namespace Prisma {
     termsAndConditions?: StringNullableFilter<"Lease"> | string | null
     residentId?: UuidFilter<"Lease"> | string
     unitId?: UuidFilter<"Lease"> | string
+    createdAt?: DateTimeFilter<"Lease"> | Date | string
+    updatedAt?: DateTimeFilter<"Lease"> | Date | string
     resident?: XOR<ResidentScalarRelationFilter, ResidentWhereInput>
     unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
-    payments?: PaymentListRelationFilter
+    Payments?: PaymentListRelationFilter
   }
 
   export type LeaseOrderByWithRelationInput = {
@@ -20175,9 +20760,11 @@ export namespace Prisma {
     termsAndConditions?: SortOrderInput | SortOrder
     residentId?: SortOrder
     unitId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     resident?: ResidentOrderByWithRelationInput
     unit?: UnitOrderByWithRelationInput
-    payments?: PaymentOrderByRelationAggregateInput
+    Payments?: PaymentOrderByRelationAggregateInput
   }
 
   export type LeaseWhereUniqueInput = Prisma.AtLeast<{
@@ -20192,9 +20779,11 @@ export namespace Prisma {
     monthlyRent?: FloatFilter<"Lease"> | number
     depositAmount?: FloatNullableFilter<"Lease"> | number | null
     termsAndConditions?: StringNullableFilter<"Lease"> | string | null
+    createdAt?: DateTimeFilter<"Lease"> | Date | string
+    updatedAt?: DateTimeFilter<"Lease"> | Date | string
     resident?: XOR<ResidentScalarRelationFilter, ResidentWhereInput>
     unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
-    payments?: PaymentListRelationFilter
+    Payments?: PaymentListRelationFilter
   }, "id" | "residentId" | "unitId">
 
   export type LeaseOrderByWithAggregationInput = {
@@ -20206,6 +20795,8 @@ export namespace Prisma {
     termsAndConditions?: SortOrderInput | SortOrder
     residentId?: SortOrder
     unitId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: LeaseCountOrderByAggregateInput
     _avg?: LeaseAvgOrderByAggregateInput
     _max?: LeaseMaxOrderByAggregateInput
@@ -20225,6 +20816,8 @@ export namespace Prisma {
     termsAndConditions?: StringNullableWithAggregatesFilter<"Lease"> | string | null
     residentId?: UuidWithAggregatesFilter<"Lease"> | string
     unitId?: UuidWithAggregatesFilter<"Lease"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Lease"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Lease"> | Date | string
   }
 
   export type BillWhereInput = {
@@ -20238,9 +20831,12 @@ export namespace Prisma {
     isPaid?: BoolFilter<"Bill"> | boolean
     unitId?: UuidFilter<"Bill"> | string
     employeeId?: UuidFilter<"Bill"> | string
+    createdAt?: DateTimeFilter<"Bill"> | Date | string
+    updatedAt?: DateTimeFilter<"Bill"> | Date | string
+    userId?: UuidNullableFilter<"Bill"> | string | null
     unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
-    employee?: XOR<UserScalarRelationFilter, UserWhereInput>
-    payments?: PaymentListRelationFilter
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    Payments?: PaymentListRelationFilter
   }
 
   export type BillOrderByWithRelationInput = {
@@ -20251,9 +20847,12 @@ export namespace Prisma {
     isPaid?: SortOrder
     unitId?: SortOrder
     employeeId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrderInput | SortOrder
     unit?: UnitOrderByWithRelationInput
-    employee?: UserOrderByWithRelationInput
-    payments?: PaymentOrderByRelationAggregateInput
+    employee?: EmployeeOrderByWithRelationInput
+    Payments?: PaymentOrderByRelationAggregateInput
   }
 
   export type BillWhereUniqueInput = Prisma.AtLeast<{
@@ -20267,9 +20866,12 @@ export namespace Prisma {
     isPaid?: BoolFilter<"Bill"> | boolean
     unitId?: UuidFilter<"Bill"> | string
     employeeId?: UuidFilter<"Bill"> | string
+    createdAt?: DateTimeFilter<"Bill"> | Date | string
+    updatedAt?: DateTimeFilter<"Bill"> | Date | string
+    userId?: UuidNullableFilter<"Bill"> | string | null
     unit?: XOR<UnitScalarRelationFilter, UnitWhereInput>
-    employee?: XOR<UserScalarRelationFilter, UserWhereInput>
-    payments?: PaymentListRelationFilter
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    Payments?: PaymentListRelationFilter
   }, "id">
 
   export type BillOrderByWithAggregationInput = {
@@ -20280,6 +20882,9 @@ export namespace Prisma {
     isPaid?: SortOrder
     unitId?: SortOrder
     employeeId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrderInput | SortOrder
     _count?: BillCountOrderByAggregateInput
     _avg?: BillAvgOrderByAggregateInput
     _max?: BillMaxOrderByAggregateInput
@@ -20298,6 +20903,9 @@ export namespace Prisma {
     isPaid?: BoolWithAggregatesFilter<"Bill"> | boolean
     unitId?: UuidWithAggregatesFilter<"Bill"> | string
     employeeId?: UuidWithAggregatesFilter<"Bill"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Bill"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Bill"> | Date | string
+    userId?: UuidNullableWithAggregatesFilter<"Bill"> | string | null
   }
 
   export type ContactWhereInput = {
@@ -20309,6 +20917,8 @@ export namespace Prisma {
     role?: EnumContactRoleFilter<"Contact"> | $Enums.ContactRole
     phoneNumber?: StringFilter<"Contact"> | string
     email?: StringNullableFilter<"Contact"> | string | null
+    createdAt?: DateTimeFilter<"Contact"> | Date | string
+    updatedAt?: DateTimeFilter<"Contact"> | Date | string
   }
 
   export type ContactOrderByWithRelationInput = {
@@ -20317,6 +20927,8 @@ export namespace Prisma {
     role?: SortOrder
     phoneNumber?: SortOrder
     email?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ContactWhereUniqueInput = Prisma.AtLeast<{
@@ -20328,6 +20940,8 @@ export namespace Prisma {
     role?: EnumContactRoleFilter<"Contact"> | $Enums.ContactRole
     phoneNumber?: StringFilter<"Contact"> | string
     email?: StringNullableFilter<"Contact"> | string | null
+    createdAt?: DateTimeFilter<"Contact"> | Date | string
+    updatedAt?: DateTimeFilter<"Contact"> | Date | string
   }, "id">
 
   export type ContactOrderByWithAggregationInput = {
@@ -20336,6 +20950,8 @@ export namespace Prisma {
     role?: SortOrder
     phoneNumber?: SortOrder
     email?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ContactCountOrderByAggregateInput
     _max?: ContactMaxOrderByAggregateInput
     _min?: ContactMinOrderByAggregateInput
@@ -20350,6 +20966,8 @@ export namespace Prisma {
     role?: EnumContactRoleWithAggregatesFilter<"Contact"> | $Enums.ContactRole
     phoneNumber?: StringWithAggregatesFilter<"Contact"> | string
     email?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -20361,19 +20979,18 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
     role: $Enums.UserRole
-    gender?: $Enums.Gender
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    resident?: ResidentCreateNestedOneWithoutUserInput
-    Employees?: EmployeesCreateNestedOneWithoutUserInput
-    ForumPost?: ForumPostCreateNestedManyWithoutUserInput
-    ForumComment?: ForumCommentCreateNestedManyWithoutUserInput
-    Bill?: BillCreateNestedManyWithoutEmployeeInput
+    Resident?: ResidentCreateNestedOneWithoutUserInput
+    Employee?: EmployeeCreateNestedOneWithoutUserInput
+    ForumPosts?: ForumPostCreateNestedManyWithoutUserInput
+    ForumComments?: ForumCommentCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -20385,19 +21002,18 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
     role: $Enums.UserRole
-    gender?: $Enums.Gender
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    resident?: ResidentUncheckedCreateNestedOneWithoutUserInput
-    Employees?: EmployeesUncheckedCreateNestedOneWithoutUserInput
-    ForumPost?: ForumPostUncheckedCreateNestedManyWithoutUserInput
-    ForumComment?: ForumCommentUncheckedCreateNestedManyWithoutUserInput
-    Bill?: BillUncheckedCreateNestedManyWithoutEmployeeInput
+    Resident?: ResidentUncheckedCreateNestedOneWithoutUserInput
+    Employee?: EmployeeUncheckedCreateNestedOneWithoutUserInput
+    ForumPosts?: ForumPostUncheckedCreateNestedManyWithoutUserInput
+    ForumComments?: ForumCommentUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -20409,19 +21025,18 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    resident?: ResidentUpdateOneWithoutUserNestedInput
-    Employees?: EmployeesUpdateOneWithoutUserNestedInput
-    ForumPost?: ForumPostUpdateManyWithoutUserNestedInput
-    ForumComment?: ForumCommentUpdateManyWithoutUserNestedInput
-    Bill?: BillUpdateManyWithoutEmployeeNestedInput
+    Resident?: ResidentUpdateOneWithoutUserNestedInput
+    Employee?: EmployeeUpdateOneWithoutUserNestedInput
+    ForumPosts?: ForumPostUpdateManyWithoutUserNestedInput
+    ForumComments?: ForumCommentUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -20433,19 +21048,18 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    resident?: ResidentUncheckedUpdateOneWithoutUserNestedInput
-    Employees?: EmployeesUncheckedUpdateOneWithoutUserNestedInput
-    ForumPost?: ForumPostUncheckedUpdateManyWithoutUserNestedInput
-    ForumComment?: ForumCommentUncheckedUpdateManyWithoutUserNestedInput
-    Bill?: BillUncheckedUpdateManyWithoutEmployeeNestedInput
+    Resident?: ResidentUncheckedUpdateOneWithoutUserNestedInput
+    Employee?: EmployeeUncheckedUpdateOneWithoutUserNestedInput
+    ForumPosts?: ForumPostUncheckedUpdateManyWithoutUserNestedInput
+    ForumComments?: ForumCommentUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -20457,12 +21071,12 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
     role: $Enums.UserRole
-    gender?: $Enums.Gender
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20476,12 +21090,12 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20495,12 +21109,12 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20517,7 +21131,8 @@ export namespace Prisma {
     unit: UnitCreateNestedOneWithoutResidentsInput
     maintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutResidentInput
     payments?: PaymentCreateNestedManyWithoutResidentInput
-    Lease?: LeaseCreateNestedManyWithoutResidentInput
+    Leases?: LeaseCreateNestedManyWithoutResidentInput
+    Complaints?: ComplaintCreateNestedManyWithoutResidentInput
   }
 
   export type ResidentUncheckedCreateInput = {
@@ -20532,7 +21147,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     maintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutResidentInput
     payments?: PaymentUncheckedCreateNestedManyWithoutResidentInput
-    Lease?: LeaseUncheckedCreateNestedManyWithoutResidentInput
+    Leases?: LeaseUncheckedCreateNestedManyWithoutResidentInput
+    Complaints?: ComplaintUncheckedCreateNestedManyWithoutResidentInput
   }
 
   export type ResidentUpdateInput = {
@@ -20547,7 +21163,8 @@ export namespace Prisma {
     unit?: UnitUpdateOneRequiredWithoutResidentsNestedInput
     maintenanceRequests?: MaintenanceRequestUpdateManyWithoutResidentNestedInput
     payments?: PaymentUpdateManyWithoutResidentNestedInput
-    Lease?: LeaseUpdateManyWithoutResidentNestedInput
+    Leases?: LeaseUpdateManyWithoutResidentNestedInput
+    Complaints?: ComplaintUpdateManyWithoutResidentNestedInput
   }
 
   export type ResidentUncheckedUpdateInput = {
@@ -20562,7 +21179,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     maintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutResidentNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutResidentNestedInput
-    Lease?: LeaseUncheckedUpdateManyWithoutResidentNestedInput
+    Leases?: LeaseUncheckedUpdateManyWithoutResidentNestedInput
+    Complaints?: ComplaintUncheckedUpdateManyWithoutResidentNestedInput
   }
 
   export type ResidentCreateManyInput = {
@@ -20599,7 +21217,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EmployeesCreateInput = {
+  export type EmployeeCreateInput = {
     employeeIdNumber: string
     hireDate: Date | string
     employeePosition?: $Enums.EmployeeRole
@@ -20608,13 +21226,15 @@ export namespace Prisma {
     bonus: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    user?: UserCreateNestedOneWithoutEmployeesInput
-    Announcement?: AnnouncementCreateNestedManyWithoutEmployeeInput
-    MaintenanceRequest?: MaintenanceRequestCreateNestedManyWithoutAssignedToInput
-    Payment?: PaymentCreateNestedManyWithoutProcessedByInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    Announcements?: AnnouncementCreateNestedManyWithoutEmployeeInput
+    MaintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutAssignedToInput
+    Payments?: PaymentCreateNestedManyWithoutProcessedByInput
+    Complaint?: ComplaintCreateNestedOneWithoutEmployeeInput
+    Bills?: BillCreateNestedManyWithoutEmployeeInput
   }
 
-  export type EmployeesUncheckedCreateInput = {
+  export type EmployeeUncheckedCreateInput = {
     employeeId?: string
     employeeIdNumber: string
     hireDate: Date | string
@@ -20624,12 +21244,14 @@ export namespace Prisma {
     bonus: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    Announcement?: AnnouncementUncheckedCreateNestedManyWithoutEmployeeInput
-    MaintenanceRequest?: MaintenanceRequestUncheckedCreateNestedManyWithoutAssignedToInput
-    Payment?: PaymentUncheckedCreateNestedManyWithoutProcessedByInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutEmployeeInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+    Payments?: PaymentUncheckedCreateNestedManyWithoutProcessedByInput
+    Complaint?: ComplaintUncheckedCreateNestedOneWithoutEmployeeInput
+    Bills?: BillUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
-  export type EmployeesUpdateInput = {
+  export type EmployeeUpdateInput = {
     employeeIdNumber?: StringFieldUpdateOperationsInput | string
     hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
     employeePosition?: EnumEmployeeRoleFieldUpdateOperationsInput | $Enums.EmployeeRole
@@ -20638,13 +21260,15 @@ export namespace Prisma {
     bonus?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutEmployeesNestedInput
-    Announcement?: AnnouncementUpdateManyWithoutEmployeeNestedInput
-    MaintenanceRequest?: MaintenanceRequestUpdateManyWithoutAssignedToNestedInput
-    Payment?: PaymentUpdateManyWithoutProcessedByNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutEmployeeNestedInput
+    MaintenanceRequests?: MaintenanceRequestUpdateManyWithoutAssignedToNestedInput
+    Payments?: PaymentUpdateManyWithoutProcessedByNestedInput
+    Complaint?: ComplaintUpdateOneWithoutEmployeeNestedInput
+    Bills?: BillUpdateManyWithoutEmployeeNestedInput
   }
 
-  export type EmployeesUncheckedUpdateInput = {
+  export type EmployeeUncheckedUpdateInput = {
     employeeId?: StringFieldUpdateOperationsInput | string
     employeeIdNumber?: StringFieldUpdateOperationsInput | string
     hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20654,12 +21278,14 @@ export namespace Prisma {
     bonus?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Announcement?: AnnouncementUncheckedUpdateManyWithoutEmployeeNestedInput
-    MaintenanceRequest?: MaintenanceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
-    Payment?: PaymentUncheckedUpdateManyWithoutProcessedByNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutEmployeeNestedInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+    Payments?: PaymentUncheckedUpdateManyWithoutProcessedByNestedInput
+    Complaint?: ComplaintUncheckedUpdateOneWithoutEmployeeNestedInput
+    Bills?: BillUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
-  export type EmployeesCreateManyInput = {
+  export type EmployeeCreateManyInput = {
     employeeId?: string
     employeeIdNumber: string
     hireDate: Date | string
@@ -20671,7 +21297,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type EmployeesUpdateManyMutationInput = {
+  export type EmployeeUpdateManyMutationInput = {
     employeeIdNumber?: StringFieldUpdateOperationsInput | string
     hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
     employeePosition?: EnumEmployeeRoleFieldUpdateOperationsInput | $Enums.EmployeeRole
@@ -20682,7 +21308,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EmployeesUncheckedUpdateManyInput = {
+  export type EmployeeUncheckedUpdateManyInput = {
     employeeId?: StringFieldUpdateOperationsInput | string
     employeeIdNumber?: StringFieldUpdateOperationsInput | string
     hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20705,7 +21331,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     resident: ResidentCreateNestedOneWithoutMaintenanceRequestsInput
     unit: UnitCreateNestedOneWithoutMaintenanceRequestsInput
-    assignedTo?: EmployeesCreateNestedOneWithoutMaintenanceRequestInput
+    assignedTo?: EmployeeCreateNestedOneWithoutMaintenanceRequestsInput
   }
 
   export type MaintenanceRequestUncheckedCreateInput = {
@@ -20733,7 +21359,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resident?: ResidentUpdateOneRequiredWithoutMaintenanceRequestsNestedInput
     unit?: UnitUpdateOneRequiredWithoutMaintenanceRequestsNestedInput
-    assignedTo?: EmployeesUpdateOneWithoutMaintenanceRequestNestedInput
+    assignedTo?: EmployeeUpdateOneWithoutMaintenanceRequestsNestedInput
   }
 
   export type MaintenanceRequestUncheckedUpdateInput = {
@@ -20791,30 +21417,97 @@ export namespace Prisma {
 
   export type ComplaintCreateInput = {
     id?: string
+    name: string
+    desciption: string
+    status?: $Enums.ComplaintStatus
+    submittedAt?: Date | string
+    resolvedAt?: Date | string | null
+    resolutionDetails?: string | null
+    images?: ComplaintCreateimagesInput | string[]
+    resident: ResidentCreateNestedOneWithoutComplaintsInput
+    employee?: EmployeeCreateNestedOneWithoutComplaintInput
+    unit?: UnitCreateNestedOneWithoutComplaintsInput
   }
 
   export type ComplaintUncheckedCreateInput = {
     id?: string
+    name: string
+    desciption: string
+    status?: $Enums.ComplaintStatus
+    submittedAt?: Date | string
+    resolvedAt?: Date | string | null
+    resolutionDetails?: string | null
+    residentId: string
+    employeeId?: string | null
+    unitId?: string | null
+    images?: ComplaintCreateimagesInput | string[]
   }
 
   export type ComplaintUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    desciption?: StringFieldUpdateOperationsInput | string
+    status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: ComplaintUpdateimagesInput | string[]
+    resident?: ResidentUpdateOneRequiredWithoutComplaintsNestedInput
+    employee?: EmployeeUpdateOneWithoutComplaintNestedInput
+    unit?: UnitUpdateOneWithoutComplaintsNestedInput
   }
 
   export type ComplaintUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    desciption?: StringFieldUpdateOperationsInput | string
+    status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    residentId?: StringFieldUpdateOperationsInput | string
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: ComplaintUpdateimagesInput | string[]
   }
 
   export type ComplaintCreateManyInput = {
     id?: string
+    name: string
+    desciption: string
+    status?: $Enums.ComplaintStatus
+    submittedAt?: Date | string
+    resolvedAt?: Date | string | null
+    resolutionDetails?: string | null
+    residentId: string
+    employeeId?: string | null
+    unitId?: string | null
+    images?: ComplaintCreateimagesInput | string[]
   }
 
   export type ComplaintUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    desciption?: StringFieldUpdateOperationsInput | string
+    status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: ComplaintUpdateimagesInput | string[]
   }
 
   export type ComplaintUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    desciption?: StringFieldUpdateOperationsInput | string
+    status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    residentId?: StringFieldUpdateOperationsInput | string
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: ComplaintUpdateimagesInput | string[]
   }
 
   export type PaymentCreateInput = {
@@ -20830,7 +21523,7 @@ export namespace Prisma {
     resident: ResidentCreateNestedOneWithoutPaymentsInput
     unit?: UnitCreateNestedOneWithoutPaymentsInput
     lease?: LeaseCreateNestedOneWithoutPaymentsInput
-    processedBy?: EmployeesCreateNestedOneWithoutPaymentInput
+    processedBy?: EmployeeCreateNestedOneWithoutPaymentsInput
     Bill: BillCreateNestedOneWithoutPaymentsInput
   }
 
@@ -20864,7 +21557,7 @@ export namespace Prisma {
     resident?: ResidentUpdateOneRequiredWithoutPaymentsNestedInput
     unit?: UnitUpdateOneWithoutPaymentsNestedInput
     lease?: LeaseUpdateOneWithoutPaymentsNestedInput
-    processedBy?: EmployeesUpdateOneWithoutPaymentNestedInput
+    processedBy?: EmployeeUpdateOneWithoutPaymentsNestedInput
     Bill?: BillUpdateOneRequiredWithoutPaymentsNestedInput
   }
 
@@ -20940,7 +21633,7 @@ export namespace Prisma {
     expiryDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    employee: EmployeesCreateNestedOneWithoutAnnouncementInput
+    employee: EmployeeCreateNestedOneWithoutAnnouncementsInput
   }
 
   export type AnnouncementUncheckedCreateInput = {
@@ -20964,7 +21657,7 @@ export namespace Prisma {
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employee?: EmployeesUpdateOneRequiredWithoutAnnouncementNestedInput
+    employee?: EmployeeUpdateOneRequiredWithoutAnnouncementsNestedInput
   }
 
   export type AnnouncementUncheckedUpdateInput = {
@@ -21023,8 +21716,8 @@ export namespace Prisma {
     publishedAt?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutForumPostInput
-    tags?: PostTagCreateNestedManyWithoutForumPostInput
+    user: UserCreateNestedOneWithoutForumPostsInput
+    tags?: PostTagCreateNestedManyWithoutForumPostsInput
     comments?: ForumCommentCreateNestedManyWithoutPostInput
   }
 
@@ -21038,7 +21731,7 @@ export namespace Prisma {
     publishedAt?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    tags?: PostTagUncheckedCreateNestedManyWithoutForumPostInput
+    tags?: PostTagUncheckedCreateNestedManyWithoutForumPostsInput
     comments?: ForumCommentUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -21051,8 +21744,8 @@ export namespace Prisma {
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutForumPostNestedInput
-    tags?: PostTagUpdateManyWithoutForumPostNestedInput
+    user?: UserUpdateOneRequiredWithoutForumPostsNestedInput
+    tags?: PostTagUpdateManyWithoutForumPostsNestedInput
     comments?: ForumCommentUpdateManyWithoutPostNestedInput
   }
 
@@ -21066,7 +21759,7 @@ export namespace Prisma {
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: PostTagUncheckedUpdateManyWithoutForumPostNestedInput
+    tags?: PostTagUncheckedUpdateManyWithoutForumPostsNestedInput
     comments?: ForumCommentUncheckedUpdateManyWithoutPostNestedInput
   }
 
@@ -21110,7 +21803,7 @@ export namespace Prisma {
     tagName: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    ForumPost?: ForumPostCreateNestedManyWithoutTagsInput
+    ForumPosts?: ForumPostCreateNestedManyWithoutTagsInput
   }
 
   export type PostTagUncheckedCreateInput = {
@@ -21118,7 +21811,7 @@ export namespace Prisma {
     tagName: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    ForumPost?: ForumPostUncheckedCreateNestedManyWithoutTagsInput
+    ForumPosts?: ForumPostUncheckedCreateNestedManyWithoutTagsInput
   }
 
   export type PostTagUpdateInput = {
@@ -21126,7 +21819,7 @@ export namespace Prisma {
     tagName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ForumPost?: ForumPostUpdateManyWithoutTagsNestedInput
+    ForumPosts?: ForumPostUpdateManyWithoutTagsNestedInput
   }
 
   export type PostTagUncheckedUpdateInput = {
@@ -21134,7 +21827,7 @@ export namespace Prisma {
     tagName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ForumPost?: ForumPostUncheckedUpdateManyWithoutTagsNestedInput
+    ForumPosts?: ForumPostUncheckedUpdateManyWithoutTagsNestedInput
   }
 
   export type PostTagCreateManyInput = {
@@ -21163,7 +21856,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutForumCommentInput
+    user: UserCreateNestedOneWithoutForumCommentsInput
     post: ForumPostCreateNestedOneWithoutCommentsInput
   }
 
@@ -21181,7 +21874,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutForumCommentNestedInput
+    user?: UserUpdateOneRequiredWithoutForumCommentsNestedInput
     post?: ForumPostUpdateOneRequiredWithoutCommentsNestedInput
   }
 
@@ -21230,11 +21923,14 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
-    residents?: ResidentCreateNestedManyWithoutUnitInput
-    maintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutUnitInput
-    payments?: PaymentCreateNestedManyWithoutUnitInput
-    leases?: LeaseCreateNestedManyWithoutUnitInput
-    Bill?: BillCreateNestedManyWithoutUnitInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentCreateNestedManyWithoutUnitInput
+    MaintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutUnitInput
+    Payments?: PaymentCreateNestedManyWithoutUnitInput
+    Leases?: LeaseCreateNestedManyWithoutUnitInput
+    Bills?: BillCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUncheckedCreateInput = {
@@ -21248,11 +21944,14 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
-    residents?: ResidentUncheckedCreateNestedManyWithoutUnitInput
-    maintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutUnitInput
-    payments?: PaymentUncheckedCreateNestedManyWithoutUnitInput
-    leases?: LeaseUncheckedCreateNestedManyWithoutUnitInput
-    Bill?: BillUncheckedCreateNestedManyWithoutUnitInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentUncheckedCreateNestedManyWithoutUnitInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutUnitInput
+    Payments?: PaymentUncheckedCreateNestedManyWithoutUnitInput
+    Leases?: LeaseUncheckedCreateNestedManyWithoutUnitInput
+    Bills?: BillUncheckedCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUpdateInput = {
@@ -21266,11 +21965,14 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
-    residents?: ResidentUpdateManyWithoutUnitNestedInput
-    maintenanceRequests?: MaintenanceRequestUpdateManyWithoutUnitNestedInput
-    payments?: PaymentUpdateManyWithoutUnitNestedInput
-    leases?: LeaseUpdateManyWithoutUnitNestedInput
-    Bill?: BillUpdateManyWithoutUnitNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Residents?: ResidentUpdateManyWithoutUnitNestedInput
+    MaintenanceRequests?: MaintenanceRequestUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentUpdateManyWithoutUnitNestedInput
+    Leases?: LeaseUpdateManyWithoutUnitNestedInput
+    Bills?: BillUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitUncheckedUpdateInput = {
@@ -21284,11 +21986,14 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
-    residents?: ResidentUncheckedUpdateManyWithoutUnitNestedInput
-    maintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutUnitNestedInput
-    payments?: PaymentUncheckedUpdateManyWithoutUnitNestedInput
-    leases?: LeaseUncheckedUpdateManyWithoutUnitNestedInput
-    Bill?: BillUncheckedUpdateManyWithoutUnitNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Residents?: ResidentUncheckedUpdateManyWithoutUnitNestedInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentUncheckedUpdateManyWithoutUnitNestedInput
+    Leases?: LeaseUncheckedUpdateManyWithoutUnitNestedInput
+    Bills?: BillUncheckedUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitCreateManyInput = {
@@ -21302,6 +22007,8 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UnitUpdateManyMutationInput = {
@@ -21315,6 +22022,8 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UnitUncheckedUpdateManyInput = {
@@ -21328,6 +22037,8 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LeaseCreateInput = {
@@ -21337,9 +22048,11 @@ export namespace Prisma {
     monthlyRent: number
     depositAmount?: number | null
     termsAndConditions?: string | null
-    resident: ResidentCreateNestedOneWithoutLeaseInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    resident: ResidentCreateNestedOneWithoutLeasesInput
     unit: UnitCreateNestedOneWithoutLeasesInput
-    payments?: PaymentCreateNestedManyWithoutLeaseInput
+    Payments?: PaymentCreateNestedManyWithoutLeaseInput
   }
 
   export type LeaseUncheckedCreateInput = {
@@ -21351,7 +22064,9 @@ export namespace Prisma {
     termsAndConditions?: string | null
     residentId: string
     unitId: string
-    payments?: PaymentUncheckedCreateNestedManyWithoutLeaseInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Payments?: PaymentUncheckedCreateNestedManyWithoutLeaseInput
   }
 
   export type LeaseUpdateInput = {
@@ -21361,9 +22076,11 @@ export namespace Prisma {
     monthlyRent?: FloatFieldUpdateOperationsInput | number
     depositAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     termsAndConditions?: NullableStringFieldUpdateOperationsInput | string | null
-    resident?: ResidentUpdateOneRequiredWithoutLeaseNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resident?: ResidentUpdateOneRequiredWithoutLeasesNestedInput
     unit?: UnitUpdateOneRequiredWithoutLeasesNestedInput
-    payments?: PaymentUpdateManyWithoutLeaseNestedInput
+    Payments?: PaymentUpdateManyWithoutLeaseNestedInput
   }
 
   export type LeaseUncheckedUpdateInput = {
@@ -21375,7 +22092,9 @@ export namespace Prisma {
     termsAndConditions?: NullableStringFieldUpdateOperationsInput | string | null
     residentId?: StringFieldUpdateOperationsInput | string
     unitId?: StringFieldUpdateOperationsInput | string
-    payments?: PaymentUncheckedUpdateManyWithoutLeaseNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Payments?: PaymentUncheckedUpdateManyWithoutLeaseNestedInput
   }
 
   export type LeaseCreateManyInput = {
@@ -21387,6 +22106,8 @@ export namespace Prisma {
     termsAndConditions?: string | null
     residentId: string
     unitId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type LeaseUpdateManyMutationInput = {
@@ -21396,6 +22117,8 @@ export namespace Prisma {
     monthlyRent?: FloatFieldUpdateOperationsInput | number
     depositAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     termsAndConditions?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LeaseUncheckedUpdateManyInput = {
@@ -21407,6 +22130,8 @@ export namespace Prisma {
     termsAndConditions?: NullableStringFieldUpdateOperationsInput | string | null
     residentId?: StringFieldUpdateOperationsInput | string
     unitId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BillCreateInput = {
@@ -21415,9 +22140,12 @@ export namespace Prisma {
     type: $Enums.PaymentType
     dueDate: Date | string
     isPaid?: boolean
-    unit: UnitCreateNestedOneWithoutBillInput
-    employee: UserCreateNestedOneWithoutBillInput
-    payments?: PaymentCreateNestedManyWithoutBillInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+    unit: UnitCreateNestedOneWithoutBillsInput
+    employee: EmployeeCreateNestedOneWithoutBillsInput
+    Payments?: PaymentCreateNestedManyWithoutBillInput
   }
 
   export type BillUncheckedCreateInput = {
@@ -21428,7 +22156,10 @@ export namespace Prisma {
     isPaid?: boolean
     unitId: string
     employeeId: string
-    payments?: PaymentUncheckedCreateNestedManyWithoutBillInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+    Payments?: PaymentUncheckedCreateNestedManyWithoutBillInput
   }
 
   export type BillUpdateInput = {
@@ -21437,9 +22168,12 @@ export namespace Prisma {
     type?: EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
-    unit?: UnitUpdateOneRequiredWithoutBillNestedInput
-    employee?: UserUpdateOneRequiredWithoutBillNestedInput
-    payments?: PaymentUpdateManyWithoutBillNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    unit?: UnitUpdateOneRequiredWithoutBillsNestedInput
+    employee?: EmployeeUpdateOneRequiredWithoutBillsNestedInput
+    Payments?: PaymentUpdateManyWithoutBillNestedInput
   }
 
   export type BillUncheckedUpdateInput = {
@@ -21450,7 +22184,10 @@ export namespace Prisma {
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     unitId?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    payments?: PaymentUncheckedUpdateManyWithoutBillNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    Payments?: PaymentUncheckedUpdateManyWithoutBillNestedInput
   }
 
   export type BillCreateManyInput = {
@@ -21461,6 +22198,9 @@ export namespace Prisma {
     isPaid?: boolean
     unitId: string
     employeeId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
   }
 
   export type BillUpdateManyMutationInput = {
@@ -21469,6 +22209,9 @@ export namespace Prisma {
     type?: EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type BillUncheckedUpdateManyInput = {
@@ -21479,6 +22222,9 @@ export namespace Prisma {
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     unitId?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContactCreateInput = {
@@ -21487,6 +22233,8 @@ export namespace Prisma {
     role: $Enums.ContactRole
     phoneNumber: string
     email?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ContactUncheckedCreateInput = {
@@ -21495,6 +22243,8 @@ export namespace Prisma {
     role: $Enums.ContactRole
     phoneNumber: string
     email?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ContactUpdateInput = {
@@ -21503,6 +22253,8 @@ export namespace Prisma {
     role?: EnumContactRoleFieldUpdateOperationsInput | $Enums.ContactRole
     phoneNumber?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ContactUncheckedUpdateInput = {
@@ -21511,6 +22263,8 @@ export namespace Prisma {
     role?: EnumContactRoleFieldUpdateOperationsInput | $Enums.ContactRole
     phoneNumber?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ContactCreateManyInput = {
@@ -21519,6 +22273,8 @@ export namespace Prisma {
     role: $Enums.ContactRole
     phoneNumber: string
     email?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ContactUpdateManyMutationInput = {
@@ -21527,6 +22283,8 @@ export namespace Prisma {
     role?: EnumContactRoleFieldUpdateOperationsInput | $Enums.ContactRole
     phoneNumber?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ContactUncheckedUpdateManyInput = {
@@ -21535,6 +22293,8 @@ export namespace Prisma {
     role?: EnumContactRoleFieldUpdateOperationsInput | $Enums.ContactRole
     phoneNumber?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UuidFilter<$PrismaModel = never> = {
@@ -21597,11 +22357,11 @@ export namespace Prisma {
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
-  export type EnumGenderFilter<$PrismaModel = never> = {
-    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
-    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
-    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+  export type EnumGenderNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumGenderNullableFilter<$PrismaModel> | $Enums.Gender | null
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -21620,9 +22380,9 @@ export namespace Prisma {
     isNot?: ResidentWhereInput | null
   }
 
-  export type EmployeesNullableScalarRelationFilter = {
-    is?: EmployeesWhereInput | null
-    isNot?: EmployeesWhereInput | null
+  export type EmployeeNullableScalarRelationFilter = {
+    is?: EmployeeWhereInput | null
+    isNot?: EmployeeWhereInput | null
   }
 
   export type ForumPostListRelationFilter = {
@@ -21635,12 +22395,6 @@ export namespace Prisma {
     every?: ForumCommentWhereInput
     some?: ForumCommentWhereInput
     none?: ForumCommentWhereInput
-  }
-
-  export type BillListRelationFilter = {
-    every?: BillWhereInput
-    some?: BillWhereInput
-    none?: BillWhereInput
   }
 
   export type SortOrderInput = {
@@ -21656,10 +22410,6 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type BillOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     fullName?: SortOrder
@@ -21669,7 +22419,7 @@ export namespace Prisma {
     contactNumber?: SortOrder
     primaryEmail?: SortOrder
     secondaryEmail?: SortOrder
-    passwordHash?: SortOrder
+    password?: SortOrder
     sessionToken?: SortOrder
     emailVerificationToken?: SortOrder
     passwordResetToken?: SortOrder
@@ -21688,7 +22438,7 @@ export namespace Prisma {
     contactNumber?: SortOrder
     primaryEmail?: SortOrder
     secondaryEmail?: SortOrder
-    passwordHash?: SortOrder
+    password?: SortOrder
     sessionToken?: SortOrder
     emailVerificationToken?: SortOrder
     passwordResetToken?: SortOrder
@@ -21707,7 +22457,7 @@ export namespace Prisma {
     contactNumber?: SortOrder
     primaryEmail?: SortOrder
     secondaryEmail?: SortOrder
-    passwordHash?: SortOrder
+    password?: SortOrder
     sessionToken?: SortOrder
     emailVerificationToken?: SortOrder
     passwordResetToken?: SortOrder
@@ -21792,14 +22542,14 @@ export namespace Prisma {
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
-  export type EnumGenderWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
-    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
-    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumGenderFilter<$PrismaModel>
-    _max?: NestedEnumGenderFilter<$PrismaModel>
+  export type EnumGenderNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumGenderNullableWithAggregatesFilter<$PrismaModel> | $Enums.Gender | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumGenderNullableFilter<$PrismaModel>
+    _max?: NestedEnumGenderNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -21851,6 +22601,12 @@ export namespace Prisma {
     none?: LeaseWhereInput
   }
 
+  export type ComplaintListRelationFilter = {
+    every?: ComplaintWhereInput
+    some?: ComplaintWhereInput
+    none?: ComplaintWhereInput
+  }
+
   export type MaintenanceRequestOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -21860,6 +22616,10 @@ export namespace Prisma {
   }
 
   export type LeaseOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ComplaintOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -21944,11 +22704,26 @@ export namespace Prisma {
     none?: AnnouncementWhereInput
   }
 
+  export type ComplaintNullableScalarRelationFilter = {
+    is?: ComplaintWhereInput | null
+    isNot?: ComplaintWhereInput | null
+  }
+
+  export type BillListRelationFilter = {
+    every?: BillWhereInput
+    some?: BillWhereInput
+    none?: BillWhereInput
+  }
+
   export type AnnouncementOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type EmployeesCountOrderByAggregateInput = {
+  export type BillOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EmployeeCountOrderByAggregateInput = {
     employeeId?: SortOrder
     employeeIdNumber?: SortOrder
     hireDate?: SortOrder
@@ -21960,13 +22735,13 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type EmployeesAvgOrderByAggregateInput = {
+  export type EmployeeAvgOrderByAggregateInput = {
     workingHours?: SortOrder
     salary?: SortOrder
     bonus?: SortOrder
   }
 
-  export type EmployeesMaxOrderByAggregateInput = {
+  export type EmployeeMaxOrderByAggregateInput = {
     employeeId?: SortOrder
     employeeIdNumber?: SortOrder
     hireDate?: SortOrder
@@ -21978,7 +22753,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type EmployeesMinOrderByAggregateInput = {
+  export type EmployeeMinOrderByAggregateInput = {
     employeeId?: SortOrder
     employeeIdNumber?: SortOrder
     hireDate?: SortOrder
@@ -21990,7 +22765,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type EmployeesSumOrderByAggregateInput = {
+  export type EmployeeSumOrderByAggregateInput = {
     workingHours?: SortOrder
     salary?: SortOrder
     bonus?: SortOrder
@@ -22146,16 +22921,74 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type EnumComplaintStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ComplaintStatus | EnumComplaintStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ComplaintStatus[] | ListEnumComplaintStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ComplaintStatus[] | ListEnumComplaintStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumComplaintStatusFilter<$PrismaModel> | $Enums.ComplaintStatus
+  }
+
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type UnitNullableScalarRelationFilter = {
+    is?: UnitWhereInput | null
+    isNot?: UnitWhereInput | null
+  }
+
   export type ComplaintCountOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
+    desciption?: SortOrder
+    status?: SortOrder
+    submittedAt?: SortOrder
+    resolvedAt?: SortOrder
+    resolutionDetails?: SortOrder
+    residentId?: SortOrder
+    employeeId?: SortOrder
+    unitId?: SortOrder
+    images?: SortOrder
   }
 
   export type ComplaintMaxOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
+    desciption?: SortOrder
+    status?: SortOrder
+    submittedAt?: SortOrder
+    resolvedAt?: SortOrder
+    resolutionDetails?: SortOrder
+    residentId?: SortOrder
+    employeeId?: SortOrder
+    unitId?: SortOrder
   }
 
   export type ComplaintMinOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
+    desciption?: SortOrder
+    status?: SortOrder
+    submittedAt?: SortOrder
+    resolvedAt?: SortOrder
+    resolutionDetails?: SortOrder
+    residentId?: SortOrder
+    employeeId?: SortOrder
+    unitId?: SortOrder
+  }
+
+  export type EnumComplaintStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ComplaintStatus | EnumComplaintStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ComplaintStatus[] | ListEnumComplaintStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ComplaintStatus[] | ListEnumComplaintStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumComplaintStatusWithAggregatesFilter<$PrismaModel> | $Enums.ComplaintStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumComplaintStatusFilter<$PrismaModel>
+    _max?: NestedEnumComplaintStatusFilter<$PrismaModel>
   }
 
   export type EnumPaymentMethodFilter<$PrismaModel = never> = {
@@ -22170,11 +23003,6 @@ export namespace Prisma {
     in?: $Enums.PaymentStatus[] | ListEnumPaymentStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.PaymentStatus[] | ListEnumPaymentStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumPaymentStatusFilter<$PrismaModel> | $Enums.PaymentStatus
-  }
-
-  export type UnitNullableScalarRelationFilter = {
-    is?: UnitWhereInput | null
-    isNot?: UnitWhereInput | null
   }
 
   export type LeaseNullableScalarRelationFilter = {
@@ -22266,9 +23094,9 @@ export namespace Prisma {
     _max?: NestedEnumPaymentStatusFilter<$PrismaModel>
   }
 
-  export type EmployeesScalarRelationFilter = {
-    is?: EmployeesWhereInput
-    isNot?: EmployeesWhereInput
+  export type EmployeeScalarRelationFilter = {
+    is?: EmployeeWhereInput
+    isNot?: EmployeeWhereInput
   }
 
   export type AnnouncementCountOrderByAggregateInput = {
@@ -22474,6 +23302,8 @@ export namespace Prisma {
     location?: SortOrder
     status?: SortOrder
     priceSale?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UnitAvgOrderByAggregateInput = {
@@ -22495,6 +23325,8 @@ export namespace Prisma {
     location?: SortOrder
     status?: SortOrder
     priceSale?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UnitMinOrderByAggregateInput = {
@@ -22508,6 +23340,8 @@ export namespace Prisma {
     location?: SortOrder
     status?: SortOrder
     priceSale?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UnitSumOrderByAggregateInput = {
@@ -22569,6 +23403,8 @@ export namespace Prisma {
     termsAndConditions?: SortOrder
     residentId?: SortOrder
     unitId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type LeaseAvgOrderByAggregateInput = {
@@ -22585,6 +23421,8 @@ export namespace Prisma {
     termsAndConditions?: SortOrder
     residentId?: SortOrder
     unitId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type LeaseMinOrderByAggregateInput = {
@@ -22596,6 +23434,8 @@ export namespace Prisma {
     termsAndConditions?: SortOrder
     residentId?: SortOrder
     unitId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type LeaseSumOrderByAggregateInput = {
@@ -22618,6 +23458,9 @@ export namespace Prisma {
     isPaid?: SortOrder
     unitId?: SortOrder
     employeeId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type BillAvgOrderByAggregateInput = {
@@ -22632,6 +23475,9 @@ export namespace Prisma {
     isPaid?: SortOrder
     unitId?: SortOrder
     employeeId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type BillMinOrderByAggregateInput = {
@@ -22642,6 +23488,9 @@ export namespace Prisma {
     isPaid?: SortOrder
     unitId?: SortOrder
     employeeId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type BillSumOrderByAggregateInput = {
@@ -22671,6 +23520,8 @@ export namespace Prisma {
     role?: SortOrder
     phoneNumber?: SortOrder
     email?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ContactMaxOrderByAggregateInput = {
@@ -22679,6 +23530,8 @@ export namespace Prisma {
     role?: SortOrder
     phoneNumber?: SortOrder
     email?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ContactMinOrderByAggregateInput = {
@@ -22687,6 +23540,8 @@ export namespace Prisma {
     role?: SortOrder
     phoneNumber?: SortOrder
     email?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type EnumContactRoleWithAggregatesFilter<$PrismaModel = never> = {
@@ -22705,10 +23560,10 @@ export namespace Prisma {
     connect?: ResidentWhereUniqueInput
   }
 
-  export type EmployeesCreateNestedOneWithoutUserInput = {
-    create?: XOR<EmployeesCreateWithoutUserInput, EmployeesUncheckedCreateWithoutUserInput>
-    connectOrCreate?: EmployeesCreateOrConnectWithoutUserInput
-    connect?: EmployeesWhereUniqueInput
+  export type EmployeeCreateNestedOneWithoutUserInput = {
+    create?: XOR<EmployeeCreateWithoutUserInput, EmployeeUncheckedCreateWithoutUserInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutUserInput
+    connect?: EmployeeWhereUniqueInput
   }
 
   export type ForumPostCreateNestedManyWithoutUserInput = {
@@ -22725,23 +23580,16 @@ export namespace Prisma {
     connect?: ForumCommentWhereUniqueInput | ForumCommentWhereUniqueInput[]
   }
 
-  export type BillCreateNestedManyWithoutEmployeeInput = {
-    create?: XOR<BillCreateWithoutEmployeeInput, BillUncheckedCreateWithoutEmployeeInput> | BillCreateWithoutEmployeeInput[] | BillUncheckedCreateWithoutEmployeeInput[]
-    connectOrCreate?: BillCreateOrConnectWithoutEmployeeInput | BillCreateOrConnectWithoutEmployeeInput[]
-    createMany?: BillCreateManyEmployeeInputEnvelope
-    connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
-  }
-
   export type ResidentUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<ResidentCreateWithoutUserInput, ResidentUncheckedCreateWithoutUserInput>
     connectOrCreate?: ResidentCreateOrConnectWithoutUserInput
     connect?: ResidentWhereUniqueInput
   }
 
-  export type EmployeesUncheckedCreateNestedOneWithoutUserInput = {
-    create?: XOR<EmployeesCreateWithoutUserInput, EmployeesUncheckedCreateWithoutUserInput>
-    connectOrCreate?: EmployeesCreateOrConnectWithoutUserInput
-    connect?: EmployeesWhereUniqueInput
+  export type EmployeeUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<EmployeeCreateWithoutUserInput, EmployeeUncheckedCreateWithoutUserInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutUserInput
+    connect?: EmployeeWhereUniqueInput
   }
 
   export type ForumPostUncheckedCreateNestedManyWithoutUserInput = {
@@ -22756,13 +23604,6 @@ export namespace Prisma {
     connectOrCreate?: ForumCommentCreateOrConnectWithoutUserInput | ForumCommentCreateOrConnectWithoutUserInput[]
     createMany?: ForumCommentCreateManyUserInputEnvelope
     connect?: ForumCommentWhereUniqueInput | ForumCommentWhereUniqueInput[]
-  }
-
-  export type BillUncheckedCreateNestedManyWithoutEmployeeInput = {
-    create?: XOR<BillCreateWithoutEmployeeInput, BillUncheckedCreateWithoutEmployeeInput> | BillCreateWithoutEmployeeInput[] | BillUncheckedCreateWithoutEmployeeInput[]
-    connectOrCreate?: BillCreateOrConnectWithoutEmployeeInput | BillCreateOrConnectWithoutEmployeeInput[]
-    createMany?: BillCreateManyEmployeeInputEnvelope
-    connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -22781,8 +23622,8 @@ export namespace Prisma {
     set?: $Enums.UserRole
   }
 
-  export type EnumGenderFieldUpdateOperationsInput = {
-    set?: $Enums.Gender
+  export type NullableEnumGenderFieldUpdateOperationsInput = {
+    set?: $Enums.Gender | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -22799,14 +23640,14 @@ export namespace Prisma {
     update?: XOR<XOR<ResidentUpdateToOneWithWhereWithoutUserInput, ResidentUpdateWithoutUserInput>, ResidentUncheckedUpdateWithoutUserInput>
   }
 
-  export type EmployeesUpdateOneWithoutUserNestedInput = {
-    create?: XOR<EmployeesCreateWithoutUserInput, EmployeesUncheckedCreateWithoutUserInput>
-    connectOrCreate?: EmployeesCreateOrConnectWithoutUserInput
-    upsert?: EmployeesUpsertWithoutUserInput
-    disconnect?: EmployeesWhereInput | boolean
-    delete?: EmployeesWhereInput | boolean
-    connect?: EmployeesWhereUniqueInput
-    update?: XOR<XOR<EmployeesUpdateToOneWithWhereWithoutUserInput, EmployeesUpdateWithoutUserInput>, EmployeesUncheckedUpdateWithoutUserInput>
+  export type EmployeeUpdateOneWithoutUserNestedInput = {
+    create?: XOR<EmployeeCreateWithoutUserInput, EmployeeUncheckedCreateWithoutUserInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutUserInput
+    upsert?: EmployeeUpsertWithoutUserInput
+    disconnect?: EmployeeWhereInput | boolean
+    delete?: EmployeeWhereInput | boolean
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutUserInput, EmployeeUpdateWithoutUserInput>, EmployeeUncheckedUpdateWithoutUserInput>
   }
 
   export type ForumPostUpdateManyWithoutUserNestedInput = {
@@ -22837,20 +23678,6 @@ export namespace Prisma {
     deleteMany?: ForumCommentScalarWhereInput | ForumCommentScalarWhereInput[]
   }
 
-  export type BillUpdateManyWithoutEmployeeNestedInput = {
-    create?: XOR<BillCreateWithoutEmployeeInput, BillUncheckedCreateWithoutEmployeeInput> | BillCreateWithoutEmployeeInput[] | BillUncheckedCreateWithoutEmployeeInput[]
-    connectOrCreate?: BillCreateOrConnectWithoutEmployeeInput | BillCreateOrConnectWithoutEmployeeInput[]
-    upsert?: BillUpsertWithWhereUniqueWithoutEmployeeInput | BillUpsertWithWhereUniqueWithoutEmployeeInput[]
-    createMany?: BillCreateManyEmployeeInputEnvelope
-    set?: BillWhereUniqueInput | BillWhereUniqueInput[]
-    disconnect?: BillWhereUniqueInput | BillWhereUniqueInput[]
-    delete?: BillWhereUniqueInput | BillWhereUniqueInput[]
-    connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
-    update?: BillUpdateWithWhereUniqueWithoutEmployeeInput | BillUpdateWithWhereUniqueWithoutEmployeeInput[]
-    updateMany?: BillUpdateManyWithWhereWithoutEmployeeInput | BillUpdateManyWithWhereWithoutEmployeeInput[]
-    deleteMany?: BillScalarWhereInput | BillScalarWhereInput[]
-  }
-
   export type ResidentUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<ResidentCreateWithoutUserInput, ResidentUncheckedCreateWithoutUserInput>
     connectOrCreate?: ResidentCreateOrConnectWithoutUserInput
@@ -22861,14 +23688,14 @@ export namespace Prisma {
     update?: XOR<XOR<ResidentUpdateToOneWithWhereWithoutUserInput, ResidentUpdateWithoutUserInput>, ResidentUncheckedUpdateWithoutUserInput>
   }
 
-  export type EmployeesUncheckedUpdateOneWithoutUserNestedInput = {
-    create?: XOR<EmployeesCreateWithoutUserInput, EmployeesUncheckedCreateWithoutUserInput>
-    connectOrCreate?: EmployeesCreateOrConnectWithoutUserInput
-    upsert?: EmployeesUpsertWithoutUserInput
-    disconnect?: EmployeesWhereInput | boolean
-    delete?: EmployeesWhereInput | boolean
-    connect?: EmployeesWhereUniqueInput
-    update?: XOR<XOR<EmployeesUpdateToOneWithWhereWithoutUserInput, EmployeesUpdateWithoutUserInput>, EmployeesUncheckedUpdateWithoutUserInput>
+  export type EmployeeUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<EmployeeCreateWithoutUserInput, EmployeeUncheckedCreateWithoutUserInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutUserInput
+    upsert?: EmployeeUpsertWithoutUserInput
+    disconnect?: EmployeeWhereInput | boolean
+    delete?: EmployeeWhereInput | boolean
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutUserInput, EmployeeUpdateWithoutUserInput>, EmployeeUncheckedUpdateWithoutUserInput>
   }
 
   export type ForumPostUncheckedUpdateManyWithoutUserNestedInput = {
@@ -22897,20 +23724,6 @@ export namespace Prisma {
     update?: ForumCommentUpdateWithWhereUniqueWithoutUserInput | ForumCommentUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: ForumCommentUpdateManyWithWhereWithoutUserInput | ForumCommentUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: ForumCommentScalarWhereInput | ForumCommentScalarWhereInput[]
-  }
-
-  export type BillUncheckedUpdateManyWithoutEmployeeNestedInput = {
-    create?: XOR<BillCreateWithoutEmployeeInput, BillUncheckedCreateWithoutEmployeeInput> | BillCreateWithoutEmployeeInput[] | BillUncheckedCreateWithoutEmployeeInput[]
-    connectOrCreate?: BillCreateOrConnectWithoutEmployeeInput | BillCreateOrConnectWithoutEmployeeInput[]
-    upsert?: BillUpsertWithWhereUniqueWithoutEmployeeInput | BillUpsertWithWhereUniqueWithoutEmployeeInput[]
-    createMany?: BillCreateManyEmployeeInputEnvelope
-    set?: BillWhereUniqueInput | BillWhereUniqueInput[]
-    disconnect?: BillWhereUniqueInput | BillWhereUniqueInput[]
-    delete?: BillWhereUniqueInput | BillWhereUniqueInput[]
-    connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
-    update?: BillUpdateWithWhereUniqueWithoutEmployeeInput | BillUpdateWithWhereUniqueWithoutEmployeeInput[]
-    updateMany?: BillUpdateManyWithWhereWithoutEmployeeInput | BillUpdateManyWithWhereWithoutEmployeeInput[]
-    deleteMany?: BillScalarWhereInput | BillScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutResidentInput = {
@@ -22946,6 +23759,13 @@ export namespace Prisma {
     connect?: LeaseWhereUniqueInput | LeaseWhereUniqueInput[]
   }
 
+  export type ComplaintCreateNestedManyWithoutResidentInput = {
+    create?: XOR<ComplaintCreateWithoutResidentInput, ComplaintUncheckedCreateWithoutResidentInput> | ComplaintCreateWithoutResidentInput[] | ComplaintUncheckedCreateWithoutResidentInput[]
+    connectOrCreate?: ComplaintCreateOrConnectWithoutResidentInput | ComplaintCreateOrConnectWithoutResidentInput[]
+    createMany?: ComplaintCreateManyResidentInputEnvelope
+    connect?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+  }
+
   export type MaintenanceRequestUncheckedCreateNestedManyWithoutResidentInput = {
     create?: XOR<MaintenanceRequestCreateWithoutResidentInput, MaintenanceRequestUncheckedCreateWithoutResidentInput> | MaintenanceRequestCreateWithoutResidentInput[] | MaintenanceRequestUncheckedCreateWithoutResidentInput[]
     connectOrCreate?: MaintenanceRequestCreateOrConnectWithoutResidentInput | MaintenanceRequestCreateOrConnectWithoutResidentInput[]
@@ -22965,6 +23785,13 @@ export namespace Prisma {
     connectOrCreate?: LeaseCreateOrConnectWithoutResidentInput | LeaseCreateOrConnectWithoutResidentInput[]
     createMany?: LeaseCreateManyResidentInputEnvelope
     connect?: LeaseWhereUniqueInput | LeaseWhereUniqueInput[]
+  }
+
+  export type ComplaintUncheckedCreateNestedManyWithoutResidentInput = {
+    create?: XOR<ComplaintCreateWithoutResidentInput, ComplaintUncheckedCreateWithoutResidentInput> | ComplaintCreateWithoutResidentInput[] | ComplaintUncheckedCreateWithoutResidentInput[]
+    connectOrCreate?: ComplaintCreateOrConnectWithoutResidentInput | ComplaintCreateOrConnectWithoutResidentInput[]
+    createMany?: ComplaintCreateManyResidentInputEnvelope
+    connect?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
   }
 
   export type EnumResidentStatusFieldUpdateOperationsInput = {
@@ -23031,6 +23858,20 @@ export namespace Prisma {
     deleteMany?: LeaseScalarWhereInput | LeaseScalarWhereInput[]
   }
 
+  export type ComplaintUpdateManyWithoutResidentNestedInput = {
+    create?: XOR<ComplaintCreateWithoutResidentInput, ComplaintUncheckedCreateWithoutResidentInput> | ComplaintCreateWithoutResidentInput[] | ComplaintUncheckedCreateWithoutResidentInput[]
+    connectOrCreate?: ComplaintCreateOrConnectWithoutResidentInput | ComplaintCreateOrConnectWithoutResidentInput[]
+    upsert?: ComplaintUpsertWithWhereUniqueWithoutResidentInput | ComplaintUpsertWithWhereUniqueWithoutResidentInput[]
+    createMany?: ComplaintCreateManyResidentInputEnvelope
+    set?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    disconnect?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    delete?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    connect?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    update?: ComplaintUpdateWithWhereUniqueWithoutResidentInput | ComplaintUpdateWithWhereUniqueWithoutResidentInput[]
+    updateMany?: ComplaintUpdateManyWithWhereWithoutResidentInput | ComplaintUpdateManyWithWhereWithoutResidentInput[]
+    deleteMany?: ComplaintScalarWhereInput | ComplaintScalarWhereInput[]
+  }
+
   export type MaintenanceRequestUncheckedUpdateManyWithoutResidentNestedInput = {
     create?: XOR<MaintenanceRequestCreateWithoutResidentInput, MaintenanceRequestUncheckedCreateWithoutResidentInput> | MaintenanceRequestCreateWithoutResidentInput[] | MaintenanceRequestUncheckedCreateWithoutResidentInput[]
     connectOrCreate?: MaintenanceRequestCreateOrConnectWithoutResidentInput | MaintenanceRequestCreateOrConnectWithoutResidentInput[]
@@ -23073,9 +23914,23 @@ export namespace Prisma {
     deleteMany?: LeaseScalarWhereInput | LeaseScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutEmployeesInput = {
-    create?: XOR<UserCreateWithoutEmployeesInput, UserUncheckedCreateWithoutEmployeesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutEmployeesInput
+  export type ComplaintUncheckedUpdateManyWithoutResidentNestedInput = {
+    create?: XOR<ComplaintCreateWithoutResidentInput, ComplaintUncheckedCreateWithoutResidentInput> | ComplaintCreateWithoutResidentInput[] | ComplaintUncheckedCreateWithoutResidentInput[]
+    connectOrCreate?: ComplaintCreateOrConnectWithoutResidentInput | ComplaintCreateOrConnectWithoutResidentInput[]
+    upsert?: ComplaintUpsertWithWhereUniqueWithoutResidentInput | ComplaintUpsertWithWhereUniqueWithoutResidentInput[]
+    createMany?: ComplaintCreateManyResidentInputEnvelope
+    set?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    disconnect?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    delete?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    connect?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    update?: ComplaintUpdateWithWhereUniqueWithoutResidentInput | ComplaintUpdateWithWhereUniqueWithoutResidentInput[]
+    updateMany?: ComplaintUpdateManyWithWhereWithoutResidentInput | ComplaintUpdateManyWithWhereWithoutResidentInput[]
+    deleteMany?: ComplaintScalarWhereInput | ComplaintScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutEmployeeInput = {
+    create?: XOR<UserCreateWithoutEmployeeInput, UserUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEmployeeInput
     connect?: UserWhereUniqueInput
   }
 
@@ -23100,6 +23955,19 @@ export namespace Prisma {
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
   }
 
+  export type ComplaintCreateNestedOneWithoutEmployeeInput = {
+    create?: XOR<ComplaintCreateWithoutEmployeeInput, ComplaintUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: ComplaintCreateOrConnectWithoutEmployeeInput
+    connect?: ComplaintWhereUniqueInput
+  }
+
+  export type BillCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<BillCreateWithoutEmployeeInput, BillUncheckedCreateWithoutEmployeeInput> | BillCreateWithoutEmployeeInput[] | BillUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: BillCreateOrConnectWithoutEmployeeInput | BillCreateOrConnectWithoutEmployeeInput[]
+    createMany?: BillCreateManyEmployeeInputEnvelope
+    connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
+  }
+
   export type AnnouncementUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<AnnouncementCreateWithoutEmployeeInput, AnnouncementUncheckedCreateWithoutEmployeeInput> | AnnouncementCreateWithoutEmployeeInput[] | AnnouncementUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: AnnouncementCreateOrConnectWithoutEmployeeInput | AnnouncementCreateOrConnectWithoutEmployeeInput[]
@@ -23119,6 +23987,19 @@ export namespace Prisma {
     connectOrCreate?: PaymentCreateOrConnectWithoutProcessedByInput | PaymentCreateOrConnectWithoutProcessedByInput[]
     createMany?: PaymentCreateManyProcessedByInputEnvelope
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
+  }
+
+  export type ComplaintUncheckedCreateNestedOneWithoutEmployeeInput = {
+    create?: XOR<ComplaintCreateWithoutEmployeeInput, ComplaintUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: ComplaintCreateOrConnectWithoutEmployeeInput
+    connect?: ComplaintWhereUniqueInput
+  }
+
+  export type BillUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<BillCreateWithoutEmployeeInput, BillUncheckedCreateWithoutEmployeeInput> | BillCreateWithoutEmployeeInput[] | BillUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: BillCreateOrConnectWithoutEmployeeInput | BillCreateOrConnectWithoutEmployeeInput[]
+    createMany?: BillCreateManyEmployeeInputEnvelope
+    connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
   }
 
   export type EnumEmployeeRoleFieldUpdateOperationsInput = {
@@ -23141,14 +24022,14 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type UserUpdateOneWithoutEmployeesNestedInput = {
-    create?: XOR<UserCreateWithoutEmployeesInput, UserUncheckedCreateWithoutEmployeesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutEmployeesInput
-    upsert?: UserUpsertWithoutEmployeesInput
+  export type UserUpdateOneWithoutEmployeeNestedInput = {
+    create?: XOR<UserCreateWithoutEmployeeInput, UserUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEmployeeInput
+    upsert?: UserUpsertWithoutEmployeeInput
     disconnect?: UserWhereInput | boolean
     delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEmployeesInput, UserUpdateWithoutEmployeesInput>, UserUncheckedUpdateWithoutEmployeesInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEmployeeInput, UserUpdateWithoutEmployeeInput>, UserUncheckedUpdateWithoutEmployeeInput>
   }
 
   export type AnnouncementUpdateManyWithoutEmployeeNestedInput = {
@@ -23193,6 +24074,30 @@ export namespace Prisma {
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
   }
 
+  export type ComplaintUpdateOneWithoutEmployeeNestedInput = {
+    create?: XOR<ComplaintCreateWithoutEmployeeInput, ComplaintUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: ComplaintCreateOrConnectWithoutEmployeeInput
+    upsert?: ComplaintUpsertWithoutEmployeeInput
+    disconnect?: ComplaintWhereInput | boolean
+    delete?: ComplaintWhereInput | boolean
+    connect?: ComplaintWhereUniqueInput
+    update?: XOR<XOR<ComplaintUpdateToOneWithWhereWithoutEmployeeInput, ComplaintUpdateWithoutEmployeeInput>, ComplaintUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type BillUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<BillCreateWithoutEmployeeInput, BillUncheckedCreateWithoutEmployeeInput> | BillCreateWithoutEmployeeInput[] | BillUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: BillCreateOrConnectWithoutEmployeeInput | BillCreateOrConnectWithoutEmployeeInput[]
+    upsert?: BillUpsertWithWhereUniqueWithoutEmployeeInput | BillUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: BillCreateManyEmployeeInputEnvelope
+    set?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    disconnect?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    delete?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    update?: BillUpdateWithWhereUniqueWithoutEmployeeInput | BillUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: BillUpdateManyWithWhereWithoutEmployeeInput | BillUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: BillScalarWhereInput | BillScalarWhereInput[]
+  }
+
   export type AnnouncementUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<AnnouncementCreateWithoutEmployeeInput, AnnouncementUncheckedCreateWithoutEmployeeInput> | AnnouncementCreateWithoutEmployeeInput[] | AnnouncementUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: AnnouncementCreateOrConnectWithoutEmployeeInput | AnnouncementCreateOrConnectWithoutEmployeeInput[]
@@ -23235,6 +24140,30 @@ export namespace Prisma {
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
   }
 
+  export type ComplaintUncheckedUpdateOneWithoutEmployeeNestedInput = {
+    create?: XOR<ComplaintCreateWithoutEmployeeInput, ComplaintUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: ComplaintCreateOrConnectWithoutEmployeeInput
+    upsert?: ComplaintUpsertWithoutEmployeeInput
+    disconnect?: ComplaintWhereInput | boolean
+    delete?: ComplaintWhereInput | boolean
+    connect?: ComplaintWhereUniqueInput
+    update?: XOR<XOR<ComplaintUpdateToOneWithWhereWithoutEmployeeInput, ComplaintUpdateWithoutEmployeeInput>, ComplaintUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type BillUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<BillCreateWithoutEmployeeInput, BillUncheckedCreateWithoutEmployeeInput> | BillCreateWithoutEmployeeInput[] | BillUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: BillCreateOrConnectWithoutEmployeeInput | BillCreateOrConnectWithoutEmployeeInput[]
+    upsert?: BillUpsertWithWhereUniqueWithoutEmployeeInput | BillUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: BillCreateManyEmployeeInputEnvelope
+    set?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    disconnect?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    delete?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
+    update?: BillUpdateWithWhereUniqueWithoutEmployeeInput | BillUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: BillUpdateManyWithWhereWithoutEmployeeInput | BillUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: BillScalarWhereInput | BillScalarWhereInput[]
+  }
+
   export type ResidentCreateNestedOneWithoutMaintenanceRequestsInput = {
     create?: XOR<ResidentCreateWithoutMaintenanceRequestsInput, ResidentUncheckedCreateWithoutMaintenanceRequestsInput>
     connectOrCreate?: ResidentCreateOrConnectWithoutMaintenanceRequestsInput
@@ -23247,10 +24176,10 @@ export namespace Prisma {
     connect?: UnitWhereUniqueInput
   }
 
-  export type EmployeesCreateNestedOneWithoutMaintenanceRequestInput = {
-    create?: XOR<EmployeesCreateWithoutMaintenanceRequestInput, EmployeesUncheckedCreateWithoutMaintenanceRequestInput>
-    connectOrCreate?: EmployeesCreateOrConnectWithoutMaintenanceRequestInput
-    connect?: EmployeesWhereUniqueInput
+  export type EmployeeCreateNestedOneWithoutMaintenanceRequestsInput = {
+    create?: XOR<EmployeeCreateWithoutMaintenanceRequestsInput, EmployeeUncheckedCreateWithoutMaintenanceRequestsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutMaintenanceRequestsInput
+    connect?: EmployeeWhereUniqueInput
   }
 
   export type EnumMaintenancePriorityFieldUpdateOperationsInput = {
@@ -23277,14 +24206,73 @@ export namespace Prisma {
     update?: XOR<XOR<UnitUpdateToOneWithWhereWithoutMaintenanceRequestsInput, UnitUpdateWithoutMaintenanceRequestsInput>, UnitUncheckedUpdateWithoutMaintenanceRequestsInput>
   }
 
-  export type EmployeesUpdateOneWithoutMaintenanceRequestNestedInput = {
-    create?: XOR<EmployeesCreateWithoutMaintenanceRequestInput, EmployeesUncheckedCreateWithoutMaintenanceRequestInput>
-    connectOrCreate?: EmployeesCreateOrConnectWithoutMaintenanceRequestInput
-    upsert?: EmployeesUpsertWithoutMaintenanceRequestInput
-    disconnect?: EmployeesWhereInput | boolean
-    delete?: EmployeesWhereInput | boolean
-    connect?: EmployeesWhereUniqueInput
-    update?: XOR<XOR<EmployeesUpdateToOneWithWhereWithoutMaintenanceRequestInput, EmployeesUpdateWithoutMaintenanceRequestInput>, EmployeesUncheckedUpdateWithoutMaintenanceRequestInput>
+  export type EmployeeUpdateOneWithoutMaintenanceRequestsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutMaintenanceRequestsInput, EmployeeUncheckedCreateWithoutMaintenanceRequestsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutMaintenanceRequestsInput
+    upsert?: EmployeeUpsertWithoutMaintenanceRequestsInput
+    disconnect?: EmployeeWhereInput | boolean
+    delete?: EmployeeWhereInput | boolean
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutMaintenanceRequestsInput, EmployeeUpdateWithoutMaintenanceRequestsInput>, EmployeeUncheckedUpdateWithoutMaintenanceRequestsInput>
+  }
+
+  export type ComplaintCreateimagesInput = {
+    set: string[]
+  }
+
+  export type ResidentCreateNestedOneWithoutComplaintsInput = {
+    create?: XOR<ResidentCreateWithoutComplaintsInput, ResidentUncheckedCreateWithoutComplaintsInput>
+    connectOrCreate?: ResidentCreateOrConnectWithoutComplaintsInput
+    connect?: ResidentWhereUniqueInput
+  }
+
+  export type EmployeeCreateNestedOneWithoutComplaintInput = {
+    create?: XOR<EmployeeCreateWithoutComplaintInput, EmployeeUncheckedCreateWithoutComplaintInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutComplaintInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type UnitCreateNestedOneWithoutComplaintsInput = {
+    create?: XOR<UnitCreateWithoutComplaintsInput, UnitUncheckedCreateWithoutComplaintsInput>
+    connectOrCreate?: UnitCreateOrConnectWithoutComplaintsInput
+    connect?: UnitWhereUniqueInput
+  }
+
+  export type EnumComplaintStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ComplaintStatus
+  }
+
+  export type ComplaintUpdateimagesInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ResidentUpdateOneRequiredWithoutComplaintsNestedInput = {
+    create?: XOR<ResidentCreateWithoutComplaintsInput, ResidentUncheckedCreateWithoutComplaintsInput>
+    connectOrCreate?: ResidentCreateOrConnectWithoutComplaintsInput
+    upsert?: ResidentUpsertWithoutComplaintsInput
+    connect?: ResidentWhereUniqueInput
+    update?: XOR<XOR<ResidentUpdateToOneWithWhereWithoutComplaintsInput, ResidentUpdateWithoutComplaintsInput>, ResidentUncheckedUpdateWithoutComplaintsInput>
+  }
+
+  export type EmployeeUpdateOneWithoutComplaintNestedInput = {
+    create?: XOR<EmployeeCreateWithoutComplaintInput, EmployeeUncheckedCreateWithoutComplaintInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutComplaintInput
+    upsert?: EmployeeUpsertWithoutComplaintInput
+    disconnect?: EmployeeWhereInput | boolean
+    delete?: EmployeeWhereInput | boolean
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutComplaintInput, EmployeeUpdateWithoutComplaintInput>, EmployeeUncheckedUpdateWithoutComplaintInput>
+  }
+
+  export type UnitUpdateOneWithoutComplaintsNestedInput = {
+    create?: XOR<UnitCreateWithoutComplaintsInput, UnitUncheckedCreateWithoutComplaintsInput>
+    connectOrCreate?: UnitCreateOrConnectWithoutComplaintsInput
+    upsert?: UnitUpsertWithoutComplaintsInput
+    disconnect?: UnitWhereInput | boolean
+    delete?: UnitWhereInput | boolean
+    connect?: UnitWhereUniqueInput
+    update?: XOR<XOR<UnitUpdateToOneWithWhereWithoutComplaintsInput, UnitUpdateWithoutComplaintsInput>, UnitUncheckedUpdateWithoutComplaintsInput>
   }
 
   export type ResidentCreateNestedOneWithoutPaymentsInput = {
@@ -23305,10 +24293,10 @@ export namespace Prisma {
     connect?: LeaseWhereUniqueInput
   }
 
-  export type EmployeesCreateNestedOneWithoutPaymentInput = {
-    create?: XOR<EmployeesCreateWithoutPaymentInput, EmployeesUncheckedCreateWithoutPaymentInput>
-    connectOrCreate?: EmployeesCreateOrConnectWithoutPaymentInput
-    connect?: EmployeesWhereUniqueInput
+  export type EmployeeCreateNestedOneWithoutPaymentsInput = {
+    create?: XOR<EmployeeCreateWithoutPaymentsInput, EmployeeUncheckedCreateWithoutPaymentsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutPaymentsInput
+    connect?: EmployeeWhereUniqueInput
   }
 
   export type BillCreateNestedOneWithoutPaymentsInput = {
@@ -23353,14 +24341,14 @@ export namespace Prisma {
     update?: XOR<XOR<LeaseUpdateToOneWithWhereWithoutPaymentsInput, LeaseUpdateWithoutPaymentsInput>, LeaseUncheckedUpdateWithoutPaymentsInput>
   }
 
-  export type EmployeesUpdateOneWithoutPaymentNestedInput = {
-    create?: XOR<EmployeesCreateWithoutPaymentInput, EmployeesUncheckedCreateWithoutPaymentInput>
-    connectOrCreate?: EmployeesCreateOrConnectWithoutPaymentInput
-    upsert?: EmployeesUpsertWithoutPaymentInput
-    disconnect?: EmployeesWhereInput | boolean
-    delete?: EmployeesWhereInput | boolean
-    connect?: EmployeesWhereUniqueInput
-    update?: XOR<XOR<EmployeesUpdateToOneWithWhereWithoutPaymentInput, EmployeesUpdateWithoutPaymentInput>, EmployeesUncheckedUpdateWithoutPaymentInput>
+  export type EmployeeUpdateOneWithoutPaymentsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutPaymentsInput, EmployeeUncheckedCreateWithoutPaymentsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutPaymentsInput
+    upsert?: EmployeeUpsertWithoutPaymentsInput
+    disconnect?: EmployeeWhereInput | boolean
+    delete?: EmployeeWhereInput | boolean
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutPaymentsInput, EmployeeUpdateWithoutPaymentsInput>, EmployeeUncheckedUpdateWithoutPaymentsInput>
   }
 
   export type BillUpdateOneRequiredWithoutPaymentsNestedInput = {
@@ -23371,29 +24359,29 @@ export namespace Prisma {
     update?: XOR<XOR<BillUpdateToOneWithWhereWithoutPaymentsInput, BillUpdateWithoutPaymentsInput>, BillUncheckedUpdateWithoutPaymentsInput>
   }
 
-  export type EmployeesCreateNestedOneWithoutAnnouncementInput = {
-    create?: XOR<EmployeesCreateWithoutAnnouncementInput, EmployeesUncheckedCreateWithoutAnnouncementInput>
-    connectOrCreate?: EmployeesCreateOrConnectWithoutAnnouncementInput
-    connect?: EmployeesWhereUniqueInput
+  export type EmployeeCreateNestedOneWithoutAnnouncementsInput = {
+    create?: XOR<EmployeeCreateWithoutAnnouncementsInput, EmployeeUncheckedCreateWithoutAnnouncementsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutAnnouncementsInput
+    connect?: EmployeeWhereUniqueInput
   }
 
-  export type EmployeesUpdateOneRequiredWithoutAnnouncementNestedInput = {
-    create?: XOR<EmployeesCreateWithoutAnnouncementInput, EmployeesUncheckedCreateWithoutAnnouncementInput>
-    connectOrCreate?: EmployeesCreateOrConnectWithoutAnnouncementInput
-    upsert?: EmployeesUpsertWithoutAnnouncementInput
-    connect?: EmployeesWhereUniqueInput
-    update?: XOR<XOR<EmployeesUpdateToOneWithWhereWithoutAnnouncementInput, EmployeesUpdateWithoutAnnouncementInput>, EmployeesUncheckedUpdateWithoutAnnouncementInput>
+  export type EmployeeUpdateOneRequiredWithoutAnnouncementsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutAnnouncementsInput, EmployeeUncheckedCreateWithoutAnnouncementsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutAnnouncementsInput
+    upsert?: EmployeeUpsertWithoutAnnouncementsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutAnnouncementsInput, EmployeeUpdateWithoutAnnouncementsInput>, EmployeeUncheckedUpdateWithoutAnnouncementsInput>
   }
 
-  export type UserCreateNestedOneWithoutForumPostInput = {
-    create?: XOR<UserCreateWithoutForumPostInput, UserUncheckedCreateWithoutForumPostInput>
-    connectOrCreate?: UserCreateOrConnectWithoutForumPostInput
+  export type UserCreateNestedOneWithoutForumPostsInput = {
+    create?: XOR<UserCreateWithoutForumPostsInput, UserUncheckedCreateWithoutForumPostsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutForumPostsInput
     connect?: UserWhereUniqueInput
   }
 
-  export type PostTagCreateNestedManyWithoutForumPostInput = {
-    create?: XOR<PostTagCreateWithoutForumPostInput, PostTagUncheckedCreateWithoutForumPostInput> | PostTagCreateWithoutForumPostInput[] | PostTagUncheckedCreateWithoutForumPostInput[]
-    connectOrCreate?: PostTagCreateOrConnectWithoutForumPostInput | PostTagCreateOrConnectWithoutForumPostInput[]
+  export type PostTagCreateNestedManyWithoutForumPostsInput = {
+    create?: XOR<PostTagCreateWithoutForumPostsInput, PostTagUncheckedCreateWithoutForumPostsInput> | PostTagCreateWithoutForumPostsInput[] | PostTagUncheckedCreateWithoutForumPostsInput[]
+    connectOrCreate?: PostTagCreateOrConnectWithoutForumPostsInput | PostTagCreateOrConnectWithoutForumPostsInput[]
     connect?: PostTagWhereUniqueInput | PostTagWhereUniqueInput[]
   }
 
@@ -23404,9 +24392,9 @@ export namespace Prisma {
     connect?: ForumCommentWhereUniqueInput | ForumCommentWhereUniqueInput[]
   }
 
-  export type PostTagUncheckedCreateNestedManyWithoutForumPostInput = {
-    create?: XOR<PostTagCreateWithoutForumPostInput, PostTagUncheckedCreateWithoutForumPostInput> | PostTagCreateWithoutForumPostInput[] | PostTagUncheckedCreateWithoutForumPostInput[]
-    connectOrCreate?: PostTagCreateOrConnectWithoutForumPostInput | PostTagCreateOrConnectWithoutForumPostInput[]
+  export type PostTagUncheckedCreateNestedManyWithoutForumPostsInput = {
+    create?: XOR<PostTagCreateWithoutForumPostsInput, PostTagUncheckedCreateWithoutForumPostsInput> | PostTagCreateWithoutForumPostsInput[] | PostTagUncheckedCreateWithoutForumPostsInput[]
+    connectOrCreate?: PostTagCreateOrConnectWithoutForumPostsInput | PostTagCreateOrConnectWithoutForumPostsInput[]
     connect?: PostTagWhereUniqueInput | PostTagWhereUniqueInput[]
   }
 
@@ -23421,24 +24409,24 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type UserUpdateOneRequiredWithoutForumPostNestedInput = {
-    create?: XOR<UserCreateWithoutForumPostInput, UserUncheckedCreateWithoutForumPostInput>
-    connectOrCreate?: UserCreateOrConnectWithoutForumPostInput
-    upsert?: UserUpsertWithoutForumPostInput
+  export type UserUpdateOneRequiredWithoutForumPostsNestedInput = {
+    create?: XOR<UserCreateWithoutForumPostsInput, UserUncheckedCreateWithoutForumPostsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutForumPostsInput
+    upsert?: UserUpsertWithoutForumPostsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutForumPostInput, UserUpdateWithoutForumPostInput>, UserUncheckedUpdateWithoutForumPostInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutForumPostsInput, UserUpdateWithoutForumPostsInput>, UserUncheckedUpdateWithoutForumPostsInput>
   }
 
-  export type PostTagUpdateManyWithoutForumPostNestedInput = {
-    create?: XOR<PostTagCreateWithoutForumPostInput, PostTagUncheckedCreateWithoutForumPostInput> | PostTagCreateWithoutForumPostInput[] | PostTagUncheckedCreateWithoutForumPostInput[]
-    connectOrCreate?: PostTagCreateOrConnectWithoutForumPostInput | PostTagCreateOrConnectWithoutForumPostInput[]
-    upsert?: PostTagUpsertWithWhereUniqueWithoutForumPostInput | PostTagUpsertWithWhereUniqueWithoutForumPostInput[]
+  export type PostTagUpdateManyWithoutForumPostsNestedInput = {
+    create?: XOR<PostTagCreateWithoutForumPostsInput, PostTagUncheckedCreateWithoutForumPostsInput> | PostTagCreateWithoutForumPostsInput[] | PostTagUncheckedCreateWithoutForumPostsInput[]
+    connectOrCreate?: PostTagCreateOrConnectWithoutForumPostsInput | PostTagCreateOrConnectWithoutForumPostsInput[]
+    upsert?: PostTagUpsertWithWhereUniqueWithoutForumPostsInput | PostTagUpsertWithWhereUniqueWithoutForumPostsInput[]
     set?: PostTagWhereUniqueInput | PostTagWhereUniqueInput[]
     disconnect?: PostTagWhereUniqueInput | PostTagWhereUniqueInput[]
     delete?: PostTagWhereUniqueInput | PostTagWhereUniqueInput[]
     connect?: PostTagWhereUniqueInput | PostTagWhereUniqueInput[]
-    update?: PostTagUpdateWithWhereUniqueWithoutForumPostInput | PostTagUpdateWithWhereUniqueWithoutForumPostInput[]
-    updateMany?: PostTagUpdateManyWithWhereWithoutForumPostInput | PostTagUpdateManyWithWhereWithoutForumPostInput[]
+    update?: PostTagUpdateWithWhereUniqueWithoutForumPostsInput | PostTagUpdateWithWhereUniqueWithoutForumPostsInput[]
+    updateMany?: PostTagUpdateManyWithWhereWithoutForumPostsInput | PostTagUpdateManyWithWhereWithoutForumPostsInput[]
     deleteMany?: PostTagScalarWhereInput | PostTagScalarWhereInput[]
   }
 
@@ -23456,16 +24444,16 @@ export namespace Prisma {
     deleteMany?: ForumCommentScalarWhereInput | ForumCommentScalarWhereInput[]
   }
 
-  export type PostTagUncheckedUpdateManyWithoutForumPostNestedInput = {
-    create?: XOR<PostTagCreateWithoutForumPostInput, PostTagUncheckedCreateWithoutForumPostInput> | PostTagCreateWithoutForumPostInput[] | PostTagUncheckedCreateWithoutForumPostInput[]
-    connectOrCreate?: PostTagCreateOrConnectWithoutForumPostInput | PostTagCreateOrConnectWithoutForumPostInput[]
-    upsert?: PostTagUpsertWithWhereUniqueWithoutForumPostInput | PostTagUpsertWithWhereUniqueWithoutForumPostInput[]
+  export type PostTagUncheckedUpdateManyWithoutForumPostsNestedInput = {
+    create?: XOR<PostTagCreateWithoutForumPostsInput, PostTagUncheckedCreateWithoutForumPostsInput> | PostTagCreateWithoutForumPostsInput[] | PostTagUncheckedCreateWithoutForumPostsInput[]
+    connectOrCreate?: PostTagCreateOrConnectWithoutForumPostsInput | PostTagCreateOrConnectWithoutForumPostsInput[]
+    upsert?: PostTagUpsertWithWhereUniqueWithoutForumPostsInput | PostTagUpsertWithWhereUniqueWithoutForumPostsInput[]
     set?: PostTagWhereUniqueInput | PostTagWhereUniqueInput[]
     disconnect?: PostTagWhereUniqueInput | PostTagWhereUniqueInput[]
     delete?: PostTagWhereUniqueInput | PostTagWhereUniqueInput[]
     connect?: PostTagWhereUniqueInput | PostTagWhereUniqueInput[]
-    update?: PostTagUpdateWithWhereUniqueWithoutForumPostInput | PostTagUpdateWithWhereUniqueWithoutForumPostInput[]
-    updateMany?: PostTagUpdateManyWithWhereWithoutForumPostInput | PostTagUpdateManyWithWhereWithoutForumPostInput[]
+    update?: PostTagUpdateWithWhereUniqueWithoutForumPostsInput | PostTagUpdateWithWhereUniqueWithoutForumPostsInput[]
+    updateMany?: PostTagUpdateManyWithWhereWithoutForumPostsInput | PostTagUpdateManyWithWhereWithoutForumPostsInput[]
     deleteMany?: PostTagScalarWhereInput | PostTagScalarWhereInput[]
   }
 
@@ -23521,9 +24509,9 @@ export namespace Prisma {
     deleteMany?: ForumPostScalarWhereInput | ForumPostScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutForumCommentInput = {
-    create?: XOR<UserCreateWithoutForumCommentInput, UserUncheckedCreateWithoutForumCommentInput>
-    connectOrCreate?: UserCreateOrConnectWithoutForumCommentInput
+  export type UserCreateNestedOneWithoutForumCommentsInput = {
+    create?: XOR<UserCreateWithoutForumCommentsInput, UserUncheckedCreateWithoutForumCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutForumCommentsInput
     connect?: UserWhereUniqueInput
   }
 
@@ -23533,12 +24521,12 @@ export namespace Prisma {
     connect?: ForumPostWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutForumCommentNestedInput = {
-    create?: XOR<UserCreateWithoutForumCommentInput, UserUncheckedCreateWithoutForumCommentInput>
-    connectOrCreate?: UserCreateOrConnectWithoutForumCommentInput
-    upsert?: UserUpsertWithoutForumCommentInput
+  export type UserUpdateOneRequiredWithoutForumCommentsNestedInput = {
+    create?: XOR<UserCreateWithoutForumCommentsInput, UserUncheckedCreateWithoutForumCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutForumCommentsInput
+    upsert?: UserUpsertWithoutForumCommentsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutForumCommentInput, UserUpdateWithoutForumCommentInput>, UserUncheckedUpdateWithoutForumCommentInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutForumCommentsInput, UserUpdateWithoutForumCommentsInput>, UserUncheckedUpdateWithoutForumCommentsInput>
   }
 
   export type ForumPostUpdateOneRequiredWithoutCommentsNestedInput = {
@@ -23584,6 +24572,13 @@ export namespace Prisma {
     connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
   }
 
+  export type ComplaintCreateNestedManyWithoutUnitInput = {
+    create?: XOR<ComplaintCreateWithoutUnitInput, ComplaintUncheckedCreateWithoutUnitInput> | ComplaintCreateWithoutUnitInput[] | ComplaintUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: ComplaintCreateOrConnectWithoutUnitInput | ComplaintCreateOrConnectWithoutUnitInput[]
+    createMany?: ComplaintCreateManyUnitInputEnvelope
+    connect?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+  }
+
   export type ResidentUncheckedCreateNestedManyWithoutUnitInput = {
     create?: XOR<ResidentCreateWithoutUnitInput, ResidentUncheckedCreateWithoutUnitInput> | ResidentCreateWithoutUnitInput[] | ResidentUncheckedCreateWithoutUnitInput[]
     connectOrCreate?: ResidentCreateOrConnectWithoutUnitInput | ResidentCreateOrConnectWithoutUnitInput[]
@@ -23617,6 +24612,13 @@ export namespace Prisma {
     connectOrCreate?: BillCreateOrConnectWithoutUnitInput | BillCreateOrConnectWithoutUnitInput[]
     createMany?: BillCreateManyUnitInputEnvelope
     connect?: BillWhereUniqueInput | BillWhereUniqueInput[]
+  }
+
+  export type ComplaintUncheckedCreateNestedManyWithoutUnitInput = {
+    create?: XOR<ComplaintCreateWithoutUnitInput, ComplaintUncheckedCreateWithoutUnitInput> | ComplaintCreateWithoutUnitInput[] | ComplaintUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: ComplaintCreateOrConnectWithoutUnitInput | ComplaintCreateOrConnectWithoutUnitInput[]
+    createMany?: ComplaintCreateManyUnitInputEnvelope
+    connect?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -23709,6 +24711,20 @@ export namespace Prisma {
     deleteMany?: BillScalarWhereInput | BillScalarWhereInput[]
   }
 
+  export type ComplaintUpdateManyWithoutUnitNestedInput = {
+    create?: XOR<ComplaintCreateWithoutUnitInput, ComplaintUncheckedCreateWithoutUnitInput> | ComplaintCreateWithoutUnitInput[] | ComplaintUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: ComplaintCreateOrConnectWithoutUnitInput | ComplaintCreateOrConnectWithoutUnitInput[]
+    upsert?: ComplaintUpsertWithWhereUniqueWithoutUnitInput | ComplaintUpsertWithWhereUniqueWithoutUnitInput[]
+    createMany?: ComplaintCreateManyUnitInputEnvelope
+    set?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    disconnect?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    delete?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    connect?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    update?: ComplaintUpdateWithWhereUniqueWithoutUnitInput | ComplaintUpdateWithWhereUniqueWithoutUnitInput[]
+    updateMany?: ComplaintUpdateManyWithWhereWithoutUnitInput | ComplaintUpdateManyWithWhereWithoutUnitInput[]
+    deleteMany?: ComplaintScalarWhereInput | ComplaintScalarWhereInput[]
+  }
+
   export type ResidentUncheckedUpdateManyWithoutUnitNestedInput = {
     create?: XOR<ResidentCreateWithoutUnitInput, ResidentUncheckedCreateWithoutUnitInput> | ResidentCreateWithoutUnitInput[] | ResidentUncheckedCreateWithoutUnitInput[]
     connectOrCreate?: ResidentCreateOrConnectWithoutUnitInput | ResidentCreateOrConnectWithoutUnitInput[]
@@ -23779,9 +24795,23 @@ export namespace Prisma {
     deleteMany?: BillScalarWhereInput | BillScalarWhereInput[]
   }
 
-  export type ResidentCreateNestedOneWithoutLeaseInput = {
-    create?: XOR<ResidentCreateWithoutLeaseInput, ResidentUncheckedCreateWithoutLeaseInput>
-    connectOrCreate?: ResidentCreateOrConnectWithoutLeaseInput
+  export type ComplaintUncheckedUpdateManyWithoutUnitNestedInput = {
+    create?: XOR<ComplaintCreateWithoutUnitInput, ComplaintUncheckedCreateWithoutUnitInput> | ComplaintCreateWithoutUnitInput[] | ComplaintUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: ComplaintCreateOrConnectWithoutUnitInput | ComplaintCreateOrConnectWithoutUnitInput[]
+    upsert?: ComplaintUpsertWithWhereUniqueWithoutUnitInput | ComplaintUpsertWithWhereUniqueWithoutUnitInput[]
+    createMany?: ComplaintCreateManyUnitInputEnvelope
+    set?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    disconnect?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    delete?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    connect?: ComplaintWhereUniqueInput | ComplaintWhereUniqueInput[]
+    update?: ComplaintUpdateWithWhereUniqueWithoutUnitInput | ComplaintUpdateWithWhereUniqueWithoutUnitInput[]
+    updateMany?: ComplaintUpdateManyWithWhereWithoutUnitInput | ComplaintUpdateManyWithWhereWithoutUnitInput[]
+    deleteMany?: ComplaintScalarWhereInput | ComplaintScalarWhereInput[]
+  }
+
+  export type ResidentCreateNestedOneWithoutLeasesInput = {
+    create?: XOR<ResidentCreateWithoutLeasesInput, ResidentUncheckedCreateWithoutLeasesInput>
+    connectOrCreate?: ResidentCreateOrConnectWithoutLeasesInput
     connect?: ResidentWhereUniqueInput
   }
 
@@ -23805,12 +24835,12 @@ export namespace Prisma {
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
   }
 
-  export type ResidentUpdateOneRequiredWithoutLeaseNestedInput = {
-    create?: XOR<ResidentCreateWithoutLeaseInput, ResidentUncheckedCreateWithoutLeaseInput>
-    connectOrCreate?: ResidentCreateOrConnectWithoutLeaseInput
-    upsert?: ResidentUpsertWithoutLeaseInput
+  export type ResidentUpdateOneRequiredWithoutLeasesNestedInput = {
+    create?: XOR<ResidentCreateWithoutLeasesInput, ResidentUncheckedCreateWithoutLeasesInput>
+    connectOrCreate?: ResidentCreateOrConnectWithoutLeasesInput
+    upsert?: ResidentUpsertWithoutLeasesInput
     connect?: ResidentWhereUniqueInput
-    update?: XOR<XOR<ResidentUpdateToOneWithWhereWithoutLeaseInput, ResidentUpdateWithoutLeaseInput>, ResidentUncheckedUpdateWithoutLeaseInput>
+    update?: XOR<XOR<ResidentUpdateToOneWithWhereWithoutLeasesInput, ResidentUpdateWithoutLeasesInput>, ResidentUncheckedUpdateWithoutLeasesInput>
   }
 
   export type UnitUpdateOneRequiredWithoutLeasesNestedInput = {
@@ -23849,16 +24879,16 @@ export namespace Prisma {
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
   }
 
-  export type UnitCreateNestedOneWithoutBillInput = {
-    create?: XOR<UnitCreateWithoutBillInput, UnitUncheckedCreateWithoutBillInput>
-    connectOrCreate?: UnitCreateOrConnectWithoutBillInput
+  export type UnitCreateNestedOneWithoutBillsInput = {
+    create?: XOR<UnitCreateWithoutBillsInput, UnitUncheckedCreateWithoutBillsInput>
+    connectOrCreate?: UnitCreateOrConnectWithoutBillsInput
     connect?: UnitWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutBillInput = {
-    create?: XOR<UserCreateWithoutBillInput, UserUncheckedCreateWithoutBillInput>
-    connectOrCreate?: UserCreateOrConnectWithoutBillInput
-    connect?: UserWhereUniqueInput
+  export type EmployeeCreateNestedOneWithoutBillsInput = {
+    create?: XOR<EmployeeCreateWithoutBillsInput, EmployeeUncheckedCreateWithoutBillsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutBillsInput
+    connect?: EmployeeWhereUniqueInput
   }
 
   export type PaymentCreateNestedManyWithoutBillInput = {
@@ -23879,20 +24909,20 @@ export namespace Prisma {
     set?: $Enums.PaymentType
   }
 
-  export type UnitUpdateOneRequiredWithoutBillNestedInput = {
-    create?: XOR<UnitCreateWithoutBillInput, UnitUncheckedCreateWithoutBillInput>
-    connectOrCreate?: UnitCreateOrConnectWithoutBillInput
-    upsert?: UnitUpsertWithoutBillInput
+  export type UnitUpdateOneRequiredWithoutBillsNestedInput = {
+    create?: XOR<UnitCreateWithoutBillsInput, UnitUncheckedCreateWithoutBillsInput>
+    connectOrCreate?: UnitCreateOrConnectWithoutBillsInput
+    upsert?: UnitUpsertWithoutBillsInput
     connect?: UnitWhereUniqueInput
-    update?: XOR<XOR<UnitUpdateToOneWithWhereWithoutBillInput, UnitUpdateWithoutBillInput>, UnitUncheckedUpdateWithoutBillInput>
+    update?: XOR<XOR<UnitUpdateToOneWithWhereWithoutBillsInput, UnitUpdateWithoutBillsInput>, UnitUncheckedUpdateWithoutBillsInput>
   }
 
-  export type UserUpdateOneRequiredWithoutBillNestedInput = {
-    create?: XOR<UserCreateWithoutBillInput, UserUncheckedCreateWithoutBillInput>
-    connectOrCreate?: UserCreateOrConnectWithoutBillInput
-    upsert?: UserUpsertWithoutBillInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBillInput, UserUpdateWithoutBillInput>, UserUncheckedUpdateWithoutBillInput>
+  export type EmployeeUpdateOneRequiredWithoutBillsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutBillsInput, EmployeeUncheckedCreateWithoutBillsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutBillsInput
+    upsert?: EmployeeUpsertWithoutBillsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutBillsInput, EmployeeUpdateWithoutBillsInput>, EmployeeUncheckedUpdateWithoutBillsInput>
   }
 
   export type PaymentUpdateManyWithoutBillNestedInput = {
@@ -23984,11 +25014,11 @@ export namespace Prisma {
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
-  export type NestedEnumGenderFilter<$PrismaModel = never> = {
-    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
-    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
-    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+  export type NestedEnumGenderNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumGenderNullableFilter<$PrismaModel> | $Enums.Gender | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -24096,14 +25126,14 @@ export namespace Prisma {
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
-  export type NestedEnumGenderWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
-    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
-    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumGenderFilter<$PrismaModel>
-    _max?: NestedEnumGenderFilter<$PrismaModel>
+  export type NestedEnumGenderNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumGenderNullableWithAggregatesFilter<$PrismaModel> | $Enums.Gender | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumGenderNullableFilter<$PrismaModel>
+    _max?: NestedEnumGenderNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -24254,6 +25284,23 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumComplaintStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ComplaintStatus | EnumComplaintStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ComplaintStatus[] | ListEnumComplaintStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ComplaintStatus[] | ListEnumComplaintStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumComplaintStatusFilter<$PrismaModel> | $Enums.ComplaintStatus
+  }
+
+  export type NestedEnumComplaintStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ComplaintStatus | EnumComplaintStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ComplaintStatus[] | ListEnumComplaintStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ComplaintStatus[] | ListEnumComplaintStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumComplaintStatusWithAggregatesFilter<$PrismaModel> | $Enums.ComplaintStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumComplaintStatusFilter<$PrismaModel>
+    _max?: NestedEnumComplaintStatusFilter<$PrismaModel>
   }
 
   export type NestedEnumPaymentMethodFilter<$PrismaModel = never> = {
@@ -24408,7 +25455,8 @@ export namespace Prisma {
     unit: UnitCreateNestedOneWithoutResidentsInput
     maintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutResidentInput
     payments?: PaymentCreateNestedManyWithoutResidentInput
-    Lease?: LeaseCreateNestedManyWithoutResidentInput
+    Leases?: LeaseCreateNestedManyWithoutResidentInput
+    Complaints?: ComplaintCreateNestedManyWithoutResidentInput
   }
 
   export type ResidentUncheckedCreateWithoutUserInput = {
@@ -24422,7 +25470,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     maintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutResidentInput
     payments?: PaymentUncheckedCreateNestedManyWithoutResidentInput
-    Lease?: LeaseUncheckedCreateNestedManyWithoutResidentInput
+    Leases?: LeaseUncheckedCreateNestedManyWithoutResidentInput
+    Complaints?: ComplaintUncheckedCreateNestedManyWithoutResidentInput
   }
 
   export type ResidentCreateOrConnectWithoutUserInput = {
@@ -24430,7 +25479,7 @@ export namespace Prisma {
     create: XOR<ResidentCreateWithoutUserInput, ResidentUncheckedCreateWithoutUserInput>
   }
 
-  export type EmployeesCreateWithoutUserInput = {
+  export type EmployeeCreateWithoutUserInput = {
     employeeIdNumber: string
     hireDate: Date | string
     employeePosition?: $Enums.EmployeeRole
@@ -24439,12 +25488,14 @@ export namespace Prisma {
     bonus: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    Announcement?: AnnouncementCreateNestedManyWithoutEmployeeInput
-    MaintenanceRequest?: MaintenanceRequestCreateNestedManyWithoutAssignedToInput
-    Payment?: PaymentCreateNestedManyWithoutProcessedByInput
+    Announcements?: AnnouncementCreateNestedManyWithoutEmployeeInput
+    MaintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutAssignedToInput
+    Payments?: PaymentCreateNestedManyWithoutProcessedByInput
+    Complaint?: ComplaintCreateNestedOneWithoutEmployeeInput
+    Bills?: BillCreateNestedManyWithoutEmployeeInput
   }
 
-  export type EmployeesUncheckedCreateWithoutUserInput = {
+  export type EmployeeUncheckedCreateWithoutUserInput = {
     employeeIdNumber: string
     hireDate: Date | string
     employeePosition?: $Enums.EmployeeRole
@@ -24453,14 +25504,16 @@ export namespace Prisma {
     bonus: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    Announcement?: AnnouncementUncheckedCreateNestedManyWithoutEmployeeInput
-    MaintenanceRequest?: MaintenanceRequestUncheckedCreateNestedManyWithoutAssignedToInput
-    Payment?: PaymentUncheckedCreateNestedManyWithoutProcessedByInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutEmployeeInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+    Payments?: PaymentUncheckedCreateNestedManyWithoutProcessedByInput
+    Complaint?: ComplaintUncheckedCreateNestedOneWithoutEmployeeInput
+    Bills?: BillUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
-  export type EmployeesCreateOrConnectWithoutUserInput = {
-    where: EmployeesWhereUniqueInput
-    create: XOR<EmployeesCreateWithoutUserInput, EmployeesUncheckedCreateWithoutUserInput>
+  export type EmployeeCreateOrConnectWithoutUserInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutUserInput, EmployeeUncheckedCreateWithoutUserInput>
   }
 
   export type ForumPostCreateWithoutUserInput = {
@@ -24472,7 +25525,7 @@ export namespace Prisma {
     publishedAt?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    tags?: PostTagCreateNestedManyWithoutForumPostInput
+    tags?: PostTagCreateNestedManyWithoutForumPostsInput
     comments?: ForumCommentCreateNestedManyWithoutPostInput
   }
 
@@ -24485,7 +25538,7 @@ export namespace Prisma {
     publishedAt?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    tags?: PostTagUncheckedCreateNestedManyWithoutForumPostInput
+    tags?: PostTagUncheckedCreateNestedManyWithoutForumPostsInput
     comments?: ForumCommentUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -24525,36 +25578,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type BillCreateWithoutEmployeeInput = {
-    id?: string
-    amount: number
-    type: $Enums.PaymentType
-    dueDate: Date | string
-    isPaid?: boolean
-    unit: UnitCreateNestedOneWithoutBillInput
-    payments?: PaymentCreateNestedManyWithoutBillInput
-  }
-
-  export type BillUncheckedCreateWithoutEmployeeInput = {
-    id?: string
-    amount: number
-    type: $Enums.PaymentType
-    dueDate: Date | string
-    isPaid?: boolean
-    unitId: string
-    payments?: PaymentUncheckedCreateNestedManyWithoutBillInput
-  }
-
-  export type BillCreateOrConnectWithoutEmployeeInput = {
-    where: BillWhereUniqueInput
-    create: XOR<BillCreateWithoutEmployeeInput, BillUncheckedCreateWithoutEmployeeInput>
-  }
-
-  export type BillCreateManyEmployeeInputEnvelope = {
-    data: BillCreateManyEmployeeInput | BillCreateManyEmployeeInput[]
-    skipDuplicates?: boolean
-  }
-
   export type ResidentUpsertWithoutUserInput = {
     update: XOR<ResidentUpdateWithoutUserInput, ResidentUncheckedUpdateWithoutUserInput>
     create: XOR<ResidentCreateWithoutUserInput, ResidentUncheckedCreateWithoutUserInput>
@@ -24577,7 +25600,8 @@ export namespace Prisma {
     unit?: UnitUpdateOneRequiredWithoutResidentsNestedInput
     maintenanceRequests?: MaintenanceRequestUpdateManyWithoutResidentNestedInput
     payments?: PaymentUpdateManyWithoutResidentNestedInput
-    Lease?: LeaseUpdateManyWithoutResidentNestedInput
+    Leases?: LeaseUpdateManyWithoutResidentNestedInput
+    Complaints?: ComplaintUpdateManyWithoutResidentNestedInput
   }
 
   export type ResidentUncheckedUpdateWithoutUserInput = {
@@ -24591,21 +25615,22 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     maintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutResidentNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutResidentNestedInput
-    Lease?: LeaseUncheckedUpdateManyWithoutResidentNestedInput
+    Leases?: LeaseUncheckedUpdateManyWithoutResidentNestedInput
+    Complaints?: ComplaintUncheckedUpdateManyWithoutResidentNestedInput
   }
 
-  export type EmployeesUpsertWithoutUserInput = {
-    update: XOR<EmployeesUpdateWithoutUserInput, EmployeesUncheckedUpdateWithoutUserInput>
-    create: XOR<EmployeesCreateWithoutUserInput, EmployeesUncheckedCreateWithoutUserInput>
-    where?: EmployeesWhereInput
+  export type EmployeeUpsertWithoutUserInput = {
+    update: XOR<EmployeeUpdateWithoutUserInput, EmployeeUncheckedUpdateWithoutUserInput>
+    create: XOR<EmployeeCreateWithoutUserInput, EmployeeUncheckedCreateWithoutUserInput>
+    where?: EmployeeWhereInput
   }
 
-  export type EmployeesUpdateToOneWithWhereWithoutUserInput = {
-    where?: EmployeesWhereInput
-    data: XOR<EmployeesUpdateWithoutUserInput, EmployeesUncheckedUpdateWithoutUserInput>
+  export type EmployeeUpdateToOneWithWhereWithoutUserInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutUserInput, EmployeeUncheckedUpdateWithoutUserInput>
   }
 
-  export type EmployeesUpdateWithoutUserInput = {
+  export type EmployeeUpdateWithoutUserInput = {
     employeeIdNumber?: StringFieldUpdateOperationsInput | string
     hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
     employeePosition?: EnumEmployeeRoleFieldUpdateOperationsInput | $Enums.EmployeeRole
@@ -24614,12 +25639,14 @@ export namespace Prisma {
     bonus?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Announcement?: AnnouncementUpdateManyWithoutEmployeeNestedInput
-    MaintenanceRequest?: MaintenanceRequestUpdateManyWithoutAssignedToNestedInput
-    Payment?: PaymentUpdateManyWithoutProcessedByNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutEmployeeNestedInput
+    MaintenanceRequests?: MaintenanceRequestUpdateManyWithoutAssignedToNestedInput
+    Payments?: PaymentUpdateManyWithoutProcessedByNestedInput
+    Complaint?: ComplaintUpdateOneWithoutEmployeeNestedInput
+    Bills?: BillUpdateManyWithoutEmployeeNestedInput
   }
 
-  export type EmployeesUncheckedUpdateWithoutUserInput = {
+  export type EmployeeUncheckedUpdateWithoutUserInput = {
     employeeIdNumber?: StringFieldUpdateOperationsInput | string
     hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
     employeePosition?: EnumEmployeeRoleFieldUpdateOperationsInput | $Enums.EmployeeRole
@@ -24628,9 +25655,11 @@ export namespace Prisma {
     bonus?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Announcement?: AnnouncementUncheckedUpdateManyWithoutEmployeeNestedInput
-    MaintenanceRequest?: MaintenanceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
-    Payment?: PaymentUncheckedUpdateManyWithoutProcessedByNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutEmployeeNestedInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+    Payments?: PaymentUncheckedUpdateManyWithoutProcessedByNestedInput
+    Complaint?: ComplaintUncheckedUpdateOneWithoutEmployeeNestedInput
+    Bills?: BillUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type ForumPostUpsertWithWhereUniqueWithoutUserInput = {
@@ -24692,35 +25721,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ForumComment"> | Date | string
   }
 
-  export type BillUpsertWithWhereUniqueWithoutEmployeeInput = {
-    where: BillWhereUniqueInput
-    update: XOR<BillUpdateWithoutEmployeeInput, BillUncheckedUpdateWithoutEmployeeInput>
-    create: XOR<BillCreateWithoutEmployeeInput, BillUncheckedCreateWithoutEmployeeInput>
-  }
-
-  export type BillUpdateWithWhereUniqueWithoutEmployeeInput = {
-    where: BillWhereUniqueInput
-    data: XOR<BillUpdateWithoutEmployeeInput, BillUncheckedUpdateWithoutEmployeeInput>
-  }
-
-  export type BillUpdateManyWithWhereWithoutEmployeeInput = {
-    where: BillScalarWhereInput
-    data: XOR<BillUpdateManyMutationInput, BillUncheckedUpdateManyWithoutEmployeeInput>
-  }
-
-  export type BillScalarWhereInput = {
-    AND?: BillScalarWhereInput | BillScalarWhereInput[]
-    OR?: BillScalarWhereInput[]
-    NOT?: BillScalarWhereInput | BillScalarWhereInput[]
-    id?: UuidFilter<"Bill"> | string
-    amount?: FloatFilter<"Bill"> | number
-    type?: EnumPaymentTypeFilter<"Bill"> | $Enums.PaymentType
-    dueDate?: DateTimeFilter<"Bill"> | Date | string
-    isPaid?: BoolFilter<"Bill"> | boolean
-    unitId?: UuidFilter<"Bill"> | string
-    employeeId?: UuidFilter<"Bill"> | string
-  }
-
   export type UserCreateWithoutResidentInput = {
     id?: string
     fullName: string
@@ -24730,18 +25730,17 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
     role: $Enums.UserRole
-    gender?: $Enums.Gender
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    Employees?: EmployeesCreateNestedOneWithoutUserInput
-    ForumPost?: ForumPostCreateNestedManyWithoutUserInput
-    ForumComment?: ForumCommentCreateNestedManyWithoutUserInput
-    Bill?: BillCreateNestedManyWithoutEmployeeInput
+    Employee?: EmployeeCreateNestedOneWithoutUserInput
+    ForumPosts?: ForumPostCreateNestedManyWithoutUserInput
+    ForumComments?: ForumCommentCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutResidentInput = {
@@ -24753,18 +25752,17 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
     role: $Enums.UserRole
-    gender?: $Enums.Gender
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    Employees?: EmployeesUncheckedCreateNestedOneWithoutUserInput
-    ForumPost?: ForumPostUncheckedCreateNestedManyWithoutUserInput
-    ForumComment?: ForumCommentUncheckedCreateNestedManyWithoutUserInput
-    Bill?: BillUncheckedCreateNestedManyWithoutEmployeeInput
+    Employee?: EmployeeUncheckedCreateNestedOneWithoutUserInput
+    ForumPosts?: ForumPostUncheckedCreateNestedManyWithoutUserInput
+    ForumComments?: ForumCommentUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutResidentInput = {
@@ -24783,10 +25781,13 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
-    maintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutUnitInput
-    payments?: PaymentCreateNestedManyWithoutUnitInput
-    leases?: LeaseCreateNestedManyWithoutUnitInput
-    Bill?: BillCreateNestedManyWithoutUnitInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    MaintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutUnitInput
+    Payments?: PaymentCreateNestedManyWithoutUnitInput
+    Leases?: LeaseCreateNestedManyWithoutUnitInput
+    Bills?: BillCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUncheckedCreateWithoutResidentsInput = {
@@ -24800,10 +25801,13 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
-    maintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutUnitInput
-    payments?: PaymentUncheckedCreateNestedManyWithoutUnitInput
-    leases?: LeaseUncheckedCreateNestedManyWithoutUnitInput
-    Bill?: BillUncheckedCreateNestedManyWithoutUnitInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    MaintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutUnitInput
+    Payments?: PaymentUncheckedCreateNestedManyWithoutUnitInput
+    Leases?: LeaseUncheckedCreateNestedManyWithoutUnitInput
+    Bills?: BillUncheckedCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitCreateOrConnectWithoutResidentsInput = {
@@ -24821,7 +25825,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     unit: UnitCreateNestedOneWithoutMaintenanceRequestsInput
-    assignedTo?: EmployeesCreateNestedOneWithoutMaintenanceRequestInput
+    assignedTo?: EmployeeCreateNestedOneWithoutMaintenanceRequestsInput
   }
 
   export type MaintenanceRequestUncheckedCreateWithoutResidentInput = {
@@ -24859,7 +25863,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     unit?: UnitCreateNestedOneWithoutPaymentsInput
     lease?: LeaseCreateNestedOneWithoutPaymentsInput
-    processedBy?: EmployeesCreateNestedOneWithoutPaymentInput
+    processedBy?: EmployeeCreateNestedOneWithoutPaymentsInput
     Bill: BillCreateNestedOneWithoutPaymentsInput
   }
 
@@ -24896,8 +25900,10 @@ export namespace Prisma {
     monthlyRent: number
     depositAmount?: number | null
     termsAndConditions?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     unit: UnitCreateNestedOneWithoutLeasesInput
-    payments?: PaymentCreateNestedManyWithoutLeaseInput
+    Payments?: PaymentCreateNestedManyWithoutLeaseInput
   }
 
   export type LeaseUncheckedCreateWithoutResidentInput = {
@@ -24908,7 +25914,9 @@ export namespace Prisma {
     depositAmount?: number | null
     termsAndConditions?: string | null
     unitId: string
-    payments?: PaymentUncheckedCreateNestedManyWithoutLeaseInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Payments?: PaymentUncheckedCreateNestedManyWithoutLeaseInput
   }
 
   export type LeaseCreateOrConnectWithoutResidentInput = {
@@ -24918,6 +25926,42 @@ export namespace Prisma {
 
   export type LeaseCreateManyResidentInputEnvelope = {
     data: LeaseCreateManyResidentInput | LeaseCreateManyResidentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ComplaintCreateWithoutResidentInput = {
+    id?: string
+    name: string
+    desciption: string
+    status?: $Enums.ComplaintStatus
+    submittedAt?: Date | string
+    resolvedAt?: Date | string | null
+    resolutionDetails?: string | null
+    images?: ComplaintCreateimagesInput | string[]
+    employee?: EmployeeCreateNestedOneWithoutComplaintInput
+    unit?: UnitCreateNestedOneWithoutComplaintsInput
+  }
+
+  export type ComplaintUncheckedCreateWithoutResidentInput = {
+    id?: string
+    name: string
+    desciption: string
+    status?: $Enums.ComplaintStatus
+    submittedAt?: Date | string
+    resolvedAt?: Date | string | null
+    resolutionDetails?: string | null
+    employeeId?: string | null
+    unitId?: string | null
+    images?: ComplaintCreateimagesInput | string[]
+  }
+
+  export type ComplaintCreateOrConnectWithoutResidentInput = {
+    where: ComplaintWhereUniqueInput
+    create: XOR<ComplaintCreateWithoutResidentInput, ComplaintUncheckedCreateWithoutResidentInput>
+  }
+
+  export type ComplaintCreateManyResidentInputEnvelope = {
+    data: ComplaintCreateManyResidentInput | ComplaintCreateManyResidentInput[]
     skipDuplicates?: boolean
   }
 
@@ -24941,18 +25985,17 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Employees?: EmployeesUpdateOneWithoutUserNestedInput
-    ForumPost?: ForumPostUpdateManyWithoutUserNestedInput
-    ForumComment?: ForumCommentUpdateManyWithoutUserNestedInput
-    Bill?: BillUpdateManyWithoutEmployeeNestedInput
+    Employee?: EmployeeUpdateOneWithoutUserNestedInput
+    ForumPosts?: ForumPostUpdateManyWithoutUserNestedInput
+    ForumComments?: ForumCommentUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutResidentInput = {
@@ -24964,18 +26007,17 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Employees?: EmployeesUncheckedUpdateOneWithoutUserNestedInput
-    ForumPost?: ForumPostUncheckedUpdateManyWithoutUserNestedInput
-    ForumComment?: ForumCommentUncheckedUpdateManyWithoutUserNestedInput
-    Bill?: BillUncheckedUpdateManyWithoutEmployeeNestedInput
+    Employee?: EmployeeUncheckedUpdateOneWithoutUserNestedInput
+    ForumPosts?: ForumPostUncheckedUpdateManyWithoutUserNestedInput
+    ForumComments?: ForumCommentUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UnitUpsertWithoutResidentsInput = {
@@ -25000,10 +26042,13 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
-    maintenanceRequests?: MaintenanceRequestUpdateManyWithoutUnitNestedInput
-    payments?: PaymentUpdateManyWithoutUnitNestedInput
-    leases?: LeaseUpdateManyWithoutUnitNestedInput
-    Bill?: BillUpdateManyWithoutUnitNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    MaintenanceRequests?: MaintenanceRequestUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentUpdateManyWithoutUnitNestedInput
+    Leases?: LeaseUpdateManyWithoutUnitNestedInput
+    Bills?: BillUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitUncheckedUpdateWithoutResidentsInput = {
@@ -25017,10 +26062,13 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
-    maintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutUnitNestedInput
-    payments?: PaymentUncheckedUpdateManyWithoutUnitNestedInput
-    leases?: LeaseUncheckedUpdateManyWithoutUnitNestedInput
-    Bill?: BillUncheckedUpdateManyWithoutUnitNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    MaintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentUncheckedUpdateManyWithoutUnitNestedInput
+    Leases?: LeaseUncheckedUpdateManyWithoutUnitNestedInput
+    Bills?: BillUncheckedUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type MaintenanceRequestUpsertWithWhereUniqueWithoutResidentInput = {
@@ -25120,9 +26168,44 @@ export namespace Prisma {
     termsAndConditions?: StringNullableFilter<"Lease"> | string | null
     residentId?: UuidFilter<"Lease"> | string
     unitId?: UuidFilter<"Lease"> | string
+    createdAt?: DateTimeFilter<"Lease"> | Date | string
+    updatedAt?: DateTimeFilter<"Lease"> | Date | string
   }
 
-  export type UserCreateWithoutEmployeesInput = {
+  export type ComplaintUpsertWithWhereUniqueWithoutResidentInput = {
+    where: ComplaintWhereUniqueInput
+    update: XOR<ComplaintUpdateWithoutResidentInput, ComplaintUncheckedUpdateWithoutResidentInput>
+    create: XOR<ComplaintCreateWithoutResidentInput, ComplaintUncheckedCreateWithoutResidentInput>
+  }
+
+  export type ComplaintUpdateWithWhereUniqueWithoutResidentInput = {
+    where: ComplaintWhereUniqueInput
+    data: XOR<ComplaintUpdateWithoutResidentInput, ComplaintUncheckedUpdateWithoutResidentInput>
+  }
+
+  export type ComplaintUpdateManyWithWhereWithoutResidentInput = {
+    where: ComplaintScalarWhereInput
+    data: XOR<ComplaintUpdateManyMutationInput, ComplaintUncheckedUpdateManyWithoutResidentInput>
+  }
+
+  export type ComplaintScalarWhereInput = {
+    AND?: ComplaintScalarWhereInput | ComplaintScalarWhereInput[]
+    OR?: ComplaintScalarWhereInput[]
+    NOT?: ComplaintScalarWhereInput | ComplaintScalarWhereInput[]
+    id?: UuidFilter<"Complaint"> | string
+    name?: StringFilter<"Complaint"> | string
+    desciption?: StringFilter<"Complaint"> | string
+    status?: EnumComplaintStatusFilter<"Complaint"> | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFilter<"Complaint"> | Date | string
+    resolvedAt?: DateTimeNullableFilter<"Complaint"> | Date | string | null
+    resolutionDetails?: StringNullableFilter<"Complaint"> | string | null
+    residentId?: UuidFilter<"Complaint"> | string
+    employeeId?: UuidNullableFilter<"Complaint"> | string | null
+    unitId?: UuidNullableFilter<"Complaint"> | string | null
+    images?: StringNullableListFilter<"Complaint">
+  }
+
+  export type UserCreateWithoutEmployeeInput = {
     id?: string
     fullName: string
     firstName: string
@@ -25131,21 +26214,20 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
     role: $Enums.UserRole
-    gender?: $Enums.Gender
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    resident?: ResidentCreateNestedOneWithoutUserInput
-    ForumPost?: ForumPostCreateNestedManyWithoutUserInput
-    ForumComment?: ForumCommentCreateNestedManyWithoutUserInput
-    Bill?: BillCreateNestedManyWithoutEmployeeInput
+    Resident?: ResidentCreateNestedOneWithoutUserInput
+    ForumPosts?: ForumPostCreateNestedManyWithoutUserInput
+    ForumComments?: ForumCommentCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutEmployeesInput = {
+  export type UserUncheckedCreateWithoutEmployeeInput = {
     id?: string
     fullName: string
     firstName: string
@@ -25154,23 +26236,22 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
     role: $Enums.UserRole
-    gender?: $Enums.Gender
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    resident?: ResidentUncheckedCreateNestedOneWithoutUserInput
-    ForumPost?: ForumPostUncheckedCreateNestedManyWithoutUserInput
-    ForumComment?: ForumCommentUncheckedCreateNestedManyWithoutUserInput
-    Bill?: BillUncheckedCreateNestedManyWithoutEmployeeInput
+    Resident?: ResidentUncheckedCreateNestedOneWithoutUserInput
+    ForumPosts?: ForumPostUncheckedCreateNestedManyWithoutUserInput
+    ForumComments?: ForumCommentUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutEmployeesInput = {
+  export type UserCreateOrConnectWithoutEmployeeInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutEmployeesInput, UserUncheckedCreateWithoutEmployeesInput>
+    create: XOR<UserCreateWithoutEmployeeInput, UserUncheckedCreateWithoutEmployeeInput>
   }
 
   export type AnnouncementCreateWithoutEmployeeInput = {
@@ -25283,18 +26364,85 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserUpsertWithoutEmployeesInput = {
-    update: XOR<UserUpdateWithoutEmployeesInput, UserUncheckedUpdateWithoutEmployeesInput>
-    create: XOR<UserCreateWithoutEmployeesInput, UserUncheckedCreateWithoutEmployeesInput>
+  export type ComplaintCreateWithoutEmployeeInput = {
+    id?: string
+    name: string
+    desciption: string
+    status?: $Enums.ComplaintStatus
+    submittedAt?: Date | string
+    resolvedAt?: Date | string | null
+    resolutionDetails?: string | null
+    images?: ComplaintCreateimagesInput | string[]
+    resident: ResidentCreateNestedOneWithoutComplaintsInput
+    unit?: UnitCreateNestedOneWithoutComplaintsInput
+  }
+
+  export type ComplaintUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    name: string
+    desciption: string
+    status?: $Enums.ComplaintStatus
+    submittedAt?: Date | string
+    resolvedAt?: Date | string | null
+    resolutionDetails?: string | null
+    residentId: string
+    unitId?: string | null
+    images?: ComplaintCreateimagesInput | string[]
+  }
+
+  export type ComplaintCreateOrConnectWithoutEmployeeInput = {
+    where: ComplaintWhereUniqueInput
+    create: XOR<ComplaintCreateWithoutEmployeeInput, ComplaintUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type BillCreateWithoutEmployeeInput = {
+    id?: string
+    amount: number
+    type: $Enums.PaymentType
+    dueDate: Date | string
+    isPaid?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+    unit: UnitCreateNestedOneWithoutBillsInput
+    Payments?: PaymentCreateNestedManyWithoutBillInput
+  }
+
+  export type BillUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    amount: number
+    type: $Enums.PaymentType
+    dueDate: Date | string
+    isPaid?: boolean
+    unitId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+    Payments?: PaymentUncheckedCreateNestedManyWithoutBillInput
+  }
+
+  export type BillCreateOrConnectWithoutEmployeeInput = {
+    where: BillWhereUniqueInput
+    create: XOR<BillCreateWithoutEmployeeInput, BillUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type BillCreateManyEmployeeInputEnvelope = {
+    data: BillCreateManyEmployeeInput | BillCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutEmployeeInput = {
+    update: XOR<UserUpdateWithoutEmployeeInput, UserUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<UserCreateWithoutEmployeeInput, UserUncheckedCreateWithoutEmployeeInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutEmployeesInput = {
+  export type UserUpdateToOneWithWhereWithoutEmployeeInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutEmployeesInput, UserUncheckedUpdateWithoutEmployeesInput>
+    data: XOR<UserUpdateWithoutEmployeeInput, UserUncheckedUpdateWithoutEmployeeInput>
   }
 
-  export type UserUpdateWithoutEmployeesInput = {
+  export type UserUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
@@ -25303,21 +26451,20 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    resident?: ResidentUpdateOneWithoutUserNestedInput
-    ForumPost?: ForumPostUpdateManyWithoutUserNestedInput
-    ForumComment?: ForumCommentUpdateManyWithoutUserNestedInput
-    Bill?: BillUpdateManyWithoutEmployeeNestedInput
+    Resident?: ResidentUpdateOneWithoutUserNestedInput
+    ForumPosts?: ForumPostUpdateManyWithoutUserNestedInput
+    ForumComments?: ForumCommentUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutEmployeesInput = {
+  export type UserUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
@@ -25326,18 +26473,17 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    resident?: ResidentUncheckedUpdateOneWithoutUserNestedInput
-    ForumPost?: ForumPostUncheckedUpdateManyWithoutUserNestedInput
-    ForumComment?: ForumCommentUncheckedUpdateManyWithoutUserNestedInput
-    Bill?: BillUncheckedUpdateManyWithoutEmployeeNestedInput
+    Resident?: ResidentUncheckedUpdateOneWithoutUserNestedInput
+    ForumPosts?: ForumPostUncheckedUpdateManyWithoutUserNestedInput
+    ForumComments?: ForumCommentUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AnnouncementUpsertWithWhereUniqueWithoutEmployeeInput = {
@@ -25403,6 +26549,75 @@ export namespace Prisma {
     data: XOR<PaymentUpdateManyMutationInput, PaymentUncheckedUpdateManyWithoutProcessedByInput>
   }
 
+  export type ComplaintUpsertWithoutEmployeeInput = {
+    update: XOR<ComplaintUpdateWithoutEmployeeInput, ComplaintUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<ComplaintCreateWithoutEmployeeInput, ComplaintUncheckedCreateWithoutEmployeeInput>
+    where?: ComplaintWhereInput
+  }
+
+  export type ComplaintUpdateToOneWithWhereWithoutEmployeeInput = {
+    where?: ComplaintWhereInput
+    data: XOR<ComplaintUpdateWithoutEmployeeInput, ComplaintUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type ComplaintUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    desciption?: StringFieldUpdateOperationsInput | string
+    status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: ComplaintUpdateimagesInput | string[]
+    resident?: ResidentUpdateOneRequiredWithoutComplaintsNestedInput
+    unit?: UnitUpdateOneWithoutComplaintsNestedInput
+  }
+
+  export type ComplaintUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    desciption?: StringFieldUpdateOperationsInput | string
+    status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    residentId?: StringFieldUpdateOperationsInput | string
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: ComplaintUpdateimagesInput | string[]
+  }
+
+  export type BillUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: BillWhereUniqueInput
+    update: XOR<BillUpdateWithoutEmployeeInput, BillUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<BillCreateWithoutEmployeeInput, BillUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type BillUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: BillWhereUniqueInput
+    data: XOR<BillUpdateWithoutEmployeeInput, BillUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type BillUpdateManyWithWhereWithoutEmployeeInput = {
+    where: BillScalarWhereInput
+    data: XOR<BillUpdateManyMutationInput, BillUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type BillScalarWhereInput = {
+    AND?: BillScalarWhereInput | BillScalarWhereInput[]
+    OR?: BillScalarWhereInput[]
+    NOT?: BillScalarWhereInput | BillScalarWhereInput[]
+    id?: UuidFilter<"Bill"> | string
+    amount?: FloatFilter<"Bill"> | number
+    type?: EnumPaymentTypeFilter<"Bill"> | $Enums.PaymentType
+    dueDate?: DateTimeFilter<"Bill"> | Date | string
+    isPaid?: BoolFilter<"Bill"> | boolean
+    unitId?: UuidFilter<"Bill"> | string
+    employeeId?: UuidFilter<"Bill"> | string
+    createdAt?: DateTimeFilter<"Bill"> | Date | string
+    updatedAt?: DateTimeFilter<"Bill"> | Date | string
+    userId?: UuidNullableFilter<"Bill"> | string | null
+  }
+
   export type ResidentCreateWithoutMaintenanceRequestsInput = {
     emergencyContactName?: string | null
     emergencyContactNumber?: string | null
@@ -25414,7 +26629,8 @@ export namespace Prisma {
     user?: UserCreateNestedOneWithoutResidentInput
     unit: UnitCreateNestedOneWithoutResidentsInput
     payments?: PaymentCreateNestedManyWithoutResidentInput
-    Lease?: LeaseCreateNestedManyWithoutResidentInput
+    Leases?: LeaseCreateNestedManyWithoutResidentInput
+    Complaints?: ComplaintCreateNestedManyWithoutResidentInput
   }
 
   export type ResidentUncheckedCreateWithoutMaintenanceRequestsInput = {
@@ -25428,7 +26644,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     payments?: PaymentUncheckedCreateNestedManyWithoutResidentInput
-    Lease?: LeaseUncheckedCreateNestedManyWithoutResidentInput
+    Leases?: LeaseUncheckedCreateNestedManyWithoutResidentInput
+    Complaints?: ComplaintUncheckedCreateNestedManyWithoutResidentInput
   }
 
   export type ResidentCreateOrConnectWithoutMaintenanceRequestsInput = {
@@ -25447,10 +26664,13 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
-    residents?: ResidentCreateNestedManyWithoutUnitInput
-    payments?: PaymentCreateNestedManyWithoutUnitInput
-    leases?: LeaseCreateNestedManyWithoutUnitInput
-    Bill?: BillCreateNestedManyWithoutUnitInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentCreateNestedManyWithoutUnitInput
+    Payments?: PaymentCreateNestedManyWithoutUnitInput
+    Leases?: LeaseCreateNestedManyWithoutUnitInput
+    Bills?: BillCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUncheckedCreateWithoutMaintenanceRequestsInput = {
@@ -25464,10 +26684,13 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
-    residents?: ResidentUncheckedCreateNestedManyWithoutUnitInput
-    payments?: PaymentUncheckedCreateNestedManyWithoutUnitInput
-    leases?: LeaseUncheckedCreateNestedManyWithoutUnitInput
-    Bill?: BillUncheckedCreateNestedManyWithoutUnitInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentUncheckedCreateNestedManyWithoutUnitInput
+    Payments?: PaymentUncheckedCreateNestedManyWithoutUnitInput
+    Leases?: LeaseUncheckedCreateNestedManyWithoutUnitInput
+    Bills?: BillUncheckedCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitCreateOrConnectWithoutMaintenanceRequestsInput = {
@@ -25475,7 +26698,7 @@ export namespace Prisma {
     create: XOR<UnitCreateWithoutMaintenanceRequestsInput, UnitUncheckedCreateWithoutMaintenanceRequestsInput>
   }
 
-  export type EmployeesCreateWithoutMaintenanceRequestInput = {
+  export type EmployeeCreateWithoutMaintenanceRequestsInput = {
     employeeIdNumber: string
     hireDate: Date | string
     employeePosition?: $Enums.EmployeeRole
@@ -25484,12 +26707,14 @@ export namespace Prisma {
     bonus: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    user?: UserCreateNestedOneWithoutEmployeesInput
-    Announcement?: AnnouncementCreateNestedManyWithoutEmployeeInput
-    Payment?: PaymentCreateNestedManyWithoutProcessedByInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    Announcements?: AnnouncementCreateNestedManyWithoutEmployeeInput
+    Payments?: PaymentCreateNestedManyWithoutProcessedByInput
+    Complaint?: ComplaintCreateNestedOneWithoutEmployeeInput
+    Bills?: BillCreateNestedManyWithoutEmployeeInput
   }
 
-  export type EmployeesUncheckedCreateWithoutMaintenanceRequestInput = {
+  export type EmployeeUncheckedCreateWithoutMaintenanceRequestsInput = {
     employeeId?: string
     employeeIdNumber: string
     hireDate: Date | string
@@ -25499,13 +26724,15 @@ export namespace Prisma {
     bonus: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    Announcement?: AnnouncementUncheckedCreateNestedManyWithoutEmployeeInput
-    Payment?: PaymentUncheckedCreateNestedManyWithoutProcessedByInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutEmployeeInput
+    Payments?: PaymentUncheckedCreateNestedManyWithoutProcessedByInput
+    Complaint?: ComplaintUncheckedCreateNestedOneWithoutEmployeeInput
+    Bills?: BillUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
-  export type EmployeesCreateOrConnectWithoutMaintenanceRequestInput = {
-    where: EmployeesWhereUniqueInput
-    create: XOR<EmployeesCreateWithoutMaintenanceRequestInput, EmployeesUncheckedCreateWithoutMaintenanceRequestInput>
+  export type EmployeeCreateOrConnectWithoutMaintenanceRequestsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutMaintenanceRequestsInput, EmployeeUncheckedCreateWithoutMaintenanceRequestsInput>
   }
 
   export type ResidentUpsertWithoutMaintenanceRequestsInput = {
@@ -25530,7 +26757,8 @@ export namespace Prisma {
     user?: UserUpdateOneWithoutResidentNestedInput
     unit?: UnitUpdateOneRequiredWithoutResidentsNestedInput
     payments?: PaymentUpdateManyWithoutResidentNestedInput
-    Lease?: LeaseUpdateManyWithoutResidentNestedInput
+    Leases?: LeaseUpdateManyWithoutResidentNestedInput
+    Complaints?: ComplaintUpdateManyWithoutResidentNestedInput
   }
 
   export type ResidentUncheckedUpdateWithoutMaintenanceRequestsInput = {
@@ -25544,7 +26772,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     payments?: PaymentUncheckedUpdateManyWithoutResidentNestedInput
-    Lease?: LeaseUncheckedUpdateManyWithoutResidentNestedInput
+    Leases?: LeaseUncheckedUpdateManyWithoutResidentNestedInput
+    Complaints?: ComplaintUncheckedUpdateManyWithoutResidentNestedInput
   }
 
   export type UnitUpsertWithoutMaintenanceRequestsInput = {
@@ -25569,10 +26798,13 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
-    residents?: ResidentUpdateManyWithoutUnitNestedInput
-    payments?: PaymentUpdateManyWithoutUnitNestedInput
-    leases?: LeaseUpdateManyWithoutUnitNestedInput
-    Bill?: BillUpdateManyWithoutUnitNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Residents?: ResidentUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentUpdateManyWithoutUnitNestedInput
+    Leases?: LeaseUpdateManyWithoutUnitNestedInput
+    Bills?: BillUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitUncheckedUpdateWithoutMaintenanceRequestsInput = {
@@ -25586,24 +26818,27 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
-    residents?: ResidentUncheckedUpdateManyWithoutUnitNestedInput
-    payments?: PaymentUncheckedUpdateManyWithoutUnitNestedInput
-    leases?: LeaseUncheckedUpdateManyWithoutUnitNestedInput
-    Bill?: BillUncheckedUpdateManyWithoutUnitNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Residents?: ResidentUncheckedUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentUncheckedUpdateManyWithoutUnitNestedInput
+    Leases?: LeaseUncheckedUpdateManyWithoutUnitNestedInput
+    Bills?: BillUncheckedUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintUncheckedUpdateManyWithoutUnitNestedInput
   }
 
-  export type EmployeesUpsertWithoutMaintenanceRequestInput = {
-    update: XOR<EmployeesUpdateWithoutMaintenanceRequestInput, EmployeesUncheckedUpdateWithoutMaintenanceRequestInput>
-    create: XOR<EmployeesCreateWithoutMaintenanceRequestInput, EmployeesUncheckedCreateWithoutMaintenanceRequestInput>
-    where?: EmployeesWhereInput
+  export type EmployeeUpsertWithoutMaintenanceRequestsInput = {
+    update: XOR<EmployeeUpdateWithoutMaintenanceRequestsInput, EmployeeUncheckedUpdateWithoutMaintenanceRequestsInput>
+    create: XOR<EmployeeCreateWithoutMaintenanceRequestsInput, EmployeeUncheckedCreateWithoutMaintenanceRequestsInput>
+    where?: EmployeeWhereInput
   }
 
-  export type EmployeesUpdateToOneWithWhereWithoutMaintenanceRequestInput = {
-    where?: EmployeesWhereInput
-    data: XOR<EmployeesUpdateWithoutMaintenanceRequestInput, EmployeesUncheckedUpdateWithoutMaintenanceRequestInput>
+  export type EmployeeUpdateToOneWithWhereWithoutMaintenanceRequestsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutMaintenanceRequestsInput, EmployeeUncheckedUpdateWithoutMaintenanceRequestsInput>
   }
 
-  export type EmployeesUpdateWithoutMaintenanceRequestInput = {
+  export type EmployeeUpdateWithoutMaintenanceRequestsInput = {
     employeeIdNumber?: StringFieldUpdateOperationsInput | string
     hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
     employeePosition?: EnumEmployeeRoleFieldUpdateOperationsInput | $Enums.EmployeeRole
@@ -25612,12 +26847,14 @@ export namespace Prisma {
     bonus?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutEmployeesNestedInput
-    Announcement?: AnnouncementUpdateManyWithoutEmployeeNestedInput
-    Payment?: PaymentUpdateManyWithoutProcessedByNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutEmployeeNestedInput
+    Payments?: PaymentUpdateManyWithoutProcessedByNestedInput
+    Complaint?: ComplaintUpdateOneWithoutEmployeeNestedInput
+    Bills?: BillUpdateManyWithoutEmployeeNestedInput
   }
 
-  export type EmployeesUncheckedUpdateWithoutMaintenanceRequestInput = {
+  export type EmployeeUncheckedUpdateWithoutMaintenanceRequestsInput = {
     employeeId?: StringFieldUpdateOperationsInput | string
     employeeIdNumber?: StringFieldUpdateOperationsInput | string
     hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25627,8 +26864,262 @@ export namespace Prisma {
     bonus?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Announcement?: AnnouncementUncheckedUpdateManyWithoutEmployeeNestedInput
-    Payment?: PaymentUncheckedUpdateManyWithoutProcessedByNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutEmployeeNestedInput
+    Payments?: PaymentUncheckedUpdateManyWithoutProcessedByNestedInput
+    Complaint?: ComplaintUncheckedUpdateOneWithoutEmployeeNestedInput
+    Bills?: BillUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type ResidentCreateWithoutComplaintsInput = {
+    emergencyContactName?: string | null
+    emergencyContactNumber?: string | null
+    movedInDate: Date | string
+    movedOutDate?: Date | string | null
+    residentStatus?: $Enums.ResidentStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutResidentInput
+    unit: UnitCreateNestedOneWithoutResidentsInput
+    maintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutResidentInput
+    payments?: PaymentCreateNestedManyWithoutResidentInput
+    Leases?: LeaseCreateNestedManyWithoutResidentInput
+  }
+
+  export type ResidentUncheckedCreateWithoutComplaintsInput = {
+    residentId?: string
+    emergencyContactName?: string | null
+    emergencyContactNumber?: string | null
+    movedInDate: Date | string
+    movedOutDate?: Date | string | null
+    residentStatus?: $Enums.ResidentStatus
+    unitId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    maintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutResidentInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutResidentInput
+    Leases?: LeaseUncheckedCreateNestedManyWithoutResidentInput
+  }
+
+  export type ResidentCreateOrConnectWithoutComplaintsInput = {
+    where: ResidentWhereUniqueInput
+    create: XOR<ResidentCreateWithoutComplaintsInput, ResidentUncheckedCreateWithoutComplaintsInput>
+  }
+
+  export type EmployeeCreateWithoutComplaintInput = {
+    employeeIdNumber: string
+    hireDate: Date | string
+    employeePosition?: $Enums.EmployeeRole
+    workingHours: number
+    salary: number
+    bonus: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    Announcements?: AnnouncementCreateNestedManyWithoutEmployeeInput
+    MaintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutAssignedToInput
+    Payments?: PaymentCreateNestedManyWithoutProcessedByInput
+    Bills?: BillCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutComplaintInput = {
+    employeeId?: string
+    employeeIdNumber: string
+    hireDate: Date | string
+    employeePosition?: $Enums.EmployeeRole
+    workingHours: number
+    salary: number
+    bonus: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutEmployeeInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+    Payments?: PaymentUncheckedCreateNestedManyWithoutProcessedByInput
+    Bills?: BillUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutComplaintInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutComplaintInput, EmployeeUncheckedCreateWithoutComplaintInput>
+  }
+
+  export type UnitCreateWithoutComplaintsInput = {
+    id?: string
+    unitNumber: string
+    buildingName?: string | null
+    floorNumber?: number | null
+    numberOfRooms?: number | null
+    squareFootage?: number | null
+    rentAmount?: number | null
+    location: string
+    status: $Enums.UnitStatus
+    priceSale: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentCreateNestedManyWithoutUnitInput
+    MaintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutUnitInput
+    Payments?: PaymentCreateNestedManyWithoutUnitInput
+    Leases?: LeaseCreateNestedManyWithoutUnitInput
+    Bills?: BillCreateNestedManyWithoutUnitInput
+  }
+
+  export type UnitUncheckedCreateWithoutComplaintsInput = {
+    id?: string
+    unitNumber: string
+    buildingName?: string | null
+    floorNumber?: number | null
+    numberOfRooms?: number | null
+    squareFootage?: number | null
+    rentAmount?: number | null
+    location: string
+    status: $Enums.UnitStatus
+    priceSale: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentUncheckedCreateNestedManyWithoutUnitInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutUnitInput
+    Payments?: PaymentUncheckedCreateNestedManyWithoutUnitInput
+    Leases?: LeaseUncheckedCreateNestedManyWithoutUnitInput
+    Bills?: BillUncheckedCreateNestedManyWithoutUnitInput
+  }
+
+  export type UnitCreateOrConnectWithoutComplaintsInput = {
+    where: UnitWhereUniqueInput
+    create: XOR<UnitCreateWithoutComplaintsInput, UnitUncheckedCreateWithoutComplaintsInput>
+  }
+
+  export type ResidentUpsertWithoutComplaintsInput = {
+    update: XOR<ResidentUpdateWithoutComplaintsInput, ResidentUncheckedUpdateWithoutComplaintsInput>
+    create: XOR<ResidentCreateWithoutComplaintsInput, ResidentUncheckedCreateWithoutComplaintsInput>
+    where?: ResidentWhereInput
+  }
+
+  export type ResidentUpdateToOneWithWhereWithoutComplaintsInput = {
+    where?: ResidentWhereInput
+    data: XOR<ResidentUpdateWithoutComplaintsInput, ResidentUncheckedUpdateWithoutComplaintsInput>
+  }
+
+  export type ResidentUpdateWithoutComplaintsInput = {
+    emergencyContactName?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    residentStatus?: EnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutResidentNestedInput
+    unit?: UnitUpdateOneRequiredWithoutResidentsNestedInput
+    maintenanceRequests?: MaintenanceRequestUpdateManyWithoutResidentNestedInput
+    payments?: PaymentUpdateManyWithoutResidentNestedInput
+    Leases?: LeaseUpdateManyWithoutResidentNestedInput
+  }
+
+  export type ResidentUncheckedUpdateWithoutComplaintsInput = {
+    residentId?: StringFieldUpdateOperationsInput | string
+    emergencyContactName?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    residentStatus?: EnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus
+    unitId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    maintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutResidentNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutResidentNestedInput
+    Leases?: LeaseUncheckedUpdateManyWithoutResidentNestedInput
+  }
+
+  export type EmployeeUpsertWithoutComplaintInput = {
+    update: XOR<EmployeeUpdateWithoutComplaintInput, EmployeeUncheckedUpdateWithoutComplaintInput>
+    create: XOR<EmployeeCreateWithoutComplaintInput, EmployeeUncheckedCreateWithoutComplaintInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutComplaintInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutComplaintInput, EmployeeUncheckedUpdateWithoutComplaintInput>
+  }
+
+  export type EmployeeUpdateWithoutComplaintInput = {
+    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeePosition?: EnumEmployeeRoleFieldUpdateOperationsInput | $Enums.EmployeeRole
+    workingHours?: IntFieldUpdateOperationsInput | number
+    salary?: FloatFieldUpdateOperationsInput | number
+    bonus?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutEmployeeNestedInput
+    MaintenanceRequests?: MaintenanceRequestUpdateManyWithoutAssignedToNestedInput
+    Payments?: PaymentUpdateManyWithoutProcessedByNestedInput
+    Bills?: BillUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutComplaintInput = {
+    employeeId?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeePosition?: EnumEmployeeRoleFieldUpdateOperationsInput | $Enums.EmployeeRole
+    workingHours?: IntFieldUpdateOperationsInput | number
+    salary?: FloatFieldUpdateOperationsInput | number
+    bonus?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutEmployeeNestedInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+    Payments?: PaymentUncheckedUpdateManyWithoutProcessedByNestedInput
+    Bills?: BillUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type UnitUpsertWithoutComplaintsInput = {
+    update: XOR<UnitUpdateWithoutComplaintsInput, UnitUncheckedUpdateWithoutComplaintsInput>
+    create: XOR<UnitCreateWithoutComplaintsInput, UnitUncheckedCreateWithoutComplaintsInput>
+    where?: UnitWhereInput
+  }
+
+  export type UnitUpdateToOneWithWhereWithoutComplaintsInput = {
+    where?: UnitWhereInput
+    data: XOR<UnitUpdateWithoutComplaintsInput, UnitUncheckedUpdateWithoutComplaintsInput>
+  }
+
+  export type UnitUpdateWithoutComplaintsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    unitNumber?: StringFieldUpdateOperationsInput | string
+    buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
+    squareFootage?: NullableIntFieldUpdateOperationsInput | number | null
+    rentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    location?: StringFieldUpdateOperationsInput | string
+    status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
+    priceSale?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Residents?: ResidentUpdateManyWithoutUnitNestedInput
+    MaintenanceRequests?: MaintenanceRequestUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentUpdateManyWithoutUnitNestedInput
+    Leases?: LeaseUpdateManyWithoutUnitNestedInput
+    Bills?: BillUpdateManyWithoutUnitNestedInput
+  }
+
+  export type UnitUncheckedUpdateWithoutComplaintsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    unitNumber?: StringFieldUpdateOperationsInput | string
+    buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
+    squareFootage?: NullableIntFieldUpdateOperationsInput | number | null
+    rentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    location?: StringFieldUpdateOperationsInput | string
+    status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
+    priceSale?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Residents?: ResidentUncheckedUpdateManyWithoutUnitNestedInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentUncheckedUpdateManyWithoutUnitNestedInput
+    Leases?: LeaseUncheckedUpdateManyWithoutUnitNestedInput
+    Bills?: BillUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type ResidentCreateWithoutPaymentsInput = {
@@ -25642,7 +27133,8 @@ export namespace Prisma {
     user?: UserCreateNestedOneWithoutResidentInput
     unit: UnitCreateNestedOneWithoutResidentsInput
     maintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutResidentInput
-    Lease?: LeaseCreateNestedManyWithoutResidentInput
+    Leases?: LeaseCreateNestedManyWithoutResidentInput
+    Complaints?: ComplaintCreateNestedManyWithoutResidentInput
   }
 
   export type ResidentUncheckedCreateWithoutPaymentsInput = {
@@ -25656,7 +27148,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     maintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutResidentInput
-    Lease?: LeaseUncheckedCreateNestedManyWithoutResidentInput
+    Leases?: LeaseUncheckedCreateNestedManyWithoutResidentInput
+    Complaints?: ComplaintUncheckedCreateNestedManyWithoutResidentInput
   }
 
   export type ResidentCreateOrConnectWithoutPaymentsInput = {
@@ -25675,10 +27168,13 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
-    residents?: ResidentCreateNestedManyWithoutUnitInput
-    maintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutUnitInput
-    leases?: LeaseCreateNestedManyWithoutUnitInput
-    Bill?: BillCreateNestedManyWithoutUnitInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentCreateNestedManyWithoutUnitInput
+    MaintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutUnitInput
+    Leases?: LeaseCreateNestedManyWithoutUnitInput
+    Bills?: BillCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUncheckedCreateWithoutPaymentsInput = {
@@ -25692,10 +27188,13 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
-    residents?: ResidentUncheckedCreateNestedManyWithoutUnitInput
-    maintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutUnitInput
-    leases?: LeaseUncheckedCreateNestedManyWithoutUnitInput
-    Bill?: BillUncheckedCreateNestedManyWithoutUnitInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentUncheckedCreateNestedManyWithoutUnitInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutUnitInput
+    Leases?: LeaseUncheckedCreateNestedManyWithoutUnitInput
+    Bills?: BillUncheckedCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitCreateOrConnectWithoutPaymentsInput = {
@@ -25710,7 +27209,9 @@ export namespace Prisma {
     monthlyRent: number
     depositAmount?: number | null
     termsAndConditions?: string | null
-    resident: ResidentCreateNestedOneWithoutLeaseInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    resident: ResidentCreateNestedOneWithoutLeasesInput
     unit: UnitCreateNestedOneWithoutLeasesInput
   }
 
@@ -25723,6 +27224,8 @@ export namespace Prisma {
     termsAndConditions?: string | null
     residentId: string
     unitId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type LeaseCreateOrConnectWithoutPaymentsInput = {
@@ -25730,7 +27233,7 @@ export namespace Prisma {
     create: XOR<LeaseCreateWithoutPaymentsInput, LeaseUncheckedCreateWithoutPaymentsInput>
   }
 
-  export type EmployeesCreateWithoutPaymentInput = {
+  export type EmployeeCreateWithoutPaymentsInput = {
     employeeIdNumber: string
     hireDate: Date | string
     employeePosition?: $Enums.EmployeeRole
@@ -25739,12 +27242,14 @@ export namespace Prisma {
     bonus: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    user?: UserCreateNestedOneWithoutEmployeesInput
-    Announcement?: AnnouncementCreateNestedManyWithoutEmployeeInput
-    MaintenanceRequest?: MaintenanceRequestCreateNestedManyWithoutAssignedToInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    Announcements?: AnnouncementCreateNestedManyWithoutEmployeeInput
+    MaintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutAssignedToInput
+    Complaint?: ComplaintCreateNestedOneWithoutEmployeeInput
+    Bills?: BillCreateNestedManyWithoutEmployeeInput
   }
 
-  export type EmployeesUncheckedCreateWithoutPaymentInput = {
+  export type EmployeeUncheckedCreateWithoutPaymentsInput = {
     employeeId?: string
     employeeIdNumber: string
     hireDate: Date | string
@@ -25754,13 +27259,15 @@ export namespace Prisma {
     bonus: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    Announcement?: AnnouncementUncheckedCreateNestedManyWithoutEmployeeInput
-    MaintenanceRequest?: MaintenanceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutEmployeeInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+    Complaint?: ComplaintUncheckedCreateNestedOneWithoutEmployeeInput
+    Bills?: BillUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
-  export type EmployeesCreateOrConnectWithoutPaymentInput = {
-    where: EmployeesWhereUniqueInput
-    create: XOR<EmployeesCreateWithoutPaymentInput, EmployeesUncheckedCreateWithoutPaymentInput>
+  export type EmployeeCreateOrConnectWithoutPaymentsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutPaymentsInput, EmployeeUncheckedCreateWithoutPaymentsInput>
   }
 
   export type BillCreateWithoutPaymentsInput = {
@@ -25769,8 +27276,11 @@ export namespace Prisma {
     type: $Enums.PaymentType
     dueDate: Date | string
     isPaid?: boolean
-    unit: UnitCreateNestedOneWithoutBillInput
-    employee: UserCreateNestedOneWithoutBillInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+    unit: UnitCreateNestedOneWithoutBillsInput
+    employee: EmployeeCreateNestedOneWithoutBillsInput
   }
 
   export type BillUncheckedCreateWithoutPaymentsInput = {
@@ -25781,6 +27291,9 @@ export namespace Prisma {
     isPaid?: boolean
     unitId: string
     employeeId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
   }
 
   export type BillCreateOrConnectWithoutPaymentsInput = {
@@ -25810,7 +27323,8 @@ export namespace Prisma {
     user?: UserUpdateOneWithoutResidentNestedInput
     unit?: UnitUpdateOneRequiredWithoutResidentsNestedInput
     maintenanceRequests?: MaintenanceRequestUpdateManyWithoutResidentNestedInput
-    Lease?: LeaseUpdateManyWithoutResidentNestedInput
+    Leases?: LeaseUpdateManyWithoutResidentNestedInput
+    Complaints?: ComplaintUpdateManyWithoutResidentNestedInput
   }
 
   export type ResidentUncheckedUpdateWithoutPaymentsInput = {
@@ -25824,7 +27338,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     maintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutResidentNestedInput
-    Lease?: LeaseUncheckedUpdateManyWithoutResidentNestedInput
+    Leases?: LeaseUncheckedUpdateManyWithoutResidentNestedInput
+    Complaints?: ComplaintUncheckedUpdateManyWithoutResidentNestedInput
   }
 
   export type UnitUpsertWithoutPaymentsInput = {
@@ -25849,10 +27364,13 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
-    residents?: ResidentUpdateManyWithoutUnitNestedInput
-    maintenanceRequests?: MaintenanceRequestUpdateManyWithoutUnitNestedInput
-    leases?: LeaseUpdateManyWithoutUnitNestedInput
-    Bill?: BillUpdateManyWithoutUnitNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Residents?: ResidentUpdateManyWithoutUnitNestedInput
+    MaintenanceRequests?: MaintenanceRequestUpdateManyWithoutUnitNestedInput
+    Leases?: LeaseUpdateManyWithoutUnitNestedInput
+    Bills?: BillUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitUncheckedUpdateWithoutPaymentsInput = {
@@ -25866,10 +27384,13 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
-    residents?: ResidentUncheckedUpdateManyWithoutUnitNestedInput
-    maintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutUnitNestedInput
-    leases?: LeaseUncheckedUpdateManyWithoutUnitNestedInput
-    Bill?: BillUncheckedUpdateManyWithoutUnitNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Residents?: ResidentUncheckedUpdateManyWithoutUnitNestedInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutUnitNestedInput
+    Leases?: LeaseUncheckedUpdateManyWithoutUnitNestedInput
+    Bills?: BillUncheckedUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type LeaseUpsertWithoutPaymentsInput = {
@@ -25890,7 +27411,9 @@ export namespace Prisma {
     monthlyRent?: FloatFieldUpdateOperationsInput | number
     depositAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     termsAndConditions?: NullableStringFieldUpdateOperationsInput | string | null
-    resident?: ResidentUpdateOneRequiredWithoutLeaseNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resident?: ResidentUpdateOneRequiredWithoutLeasesNestedInput
     unit?: UnitUpdateOneRequiredWithoutLeasesNestedInput
   }
 
@@ -25903,20 +27426,22 @@ export namespace Prisma {
     termsAndConditions?: NullableStringFieldUpdateOperationsInput | string | null
     residentId?: StringFieldUpdateOperationsInput | string
     unitId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EmployeesUpsertWithoutPaymentInput = {
-    update: XOR<EmployeesUpdateWithoutPaymentInput, EmployeesUncheckedUpdateWithoutPaymentInput>
-    create: XOR<EmployeesCreateWithoutPaymentInput, EmployeesUncheckedCreateWithoutPaymentInput>
-    where?: EmployeesWhereInput
+  export type EmployeeUpsertWithoutPaymentsInput = {
+    update: XOR<EmployeeUpdateWithoutPaymentsInput, EmployeeUncheckedUpdateWithoutPaymentsInput>
+    create: XOR<EmployeeCreateWithoutPaymentsInput, EmployeeUncheckedCreateWithoutPaymentsInput>
+    where?: EmployeeWhereInput
   }
 
-  export type EmployeesUpdateToOneWithWhereWithoutPaymentInput = {
-    where?: EmployeesWhereInput
-    data: XOR<EmployeesUpdateWithoutPaymentInput, EmployeesUncheckedUpdateWithoutPaymentInput>
+  export type EmployeeUpdateToOneWithWhereWithoutPaymentsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutPaymentsInput, EmployeeUncheckedUpdateWithoutPaymentsInput>
   }
 
-  export type EmployeesUpdateWithoutPaymentInput = {
+  export type EmployeeUpdateWithoutPaymentsInput = {
     employeeIdNumber?: StringFieldUpdateOperationsInput | string
     hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
     employeePosition?: EnumEmployeeRoleFieldUpdateOperationsInput | $Enums.EmployeeRole
@@ -25925,12 +27450,14 @@ export namespace Prisma {
     bonus?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutEmployeesNestedInput
-    Announcement?: AnnouncementUpdateManyWithoutEmployeeNestedInput
-    MaintenanceRequest?: MaintenanceRequestUpdateManyWithoutAssignedToNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutEmployeeNestedInput
+    MaintenanceRequests?: MaintenanceRequestUpdateManyWithoutAssignedToNestedInput
+    Complaint?: ComplaintUpdateOneWithoutEmployeeNestedInput
+    Bills?: BillUpdateManyWithoutEmployeeNestedInput
   }
 
-  export type EmployeesUncheckedUpdateWithoutPaymentInput = {
+  export type EmployeeUncheckedUpdateWithoutPaymentsInput = {
     employeeId?: StringFieldUpdateOperationsInput | string
     employeeIdNumber?: StringFieldUpdateOperationsInput | string
     hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25940,8 +27467,10 @@ export namespace Prisma {
     bonus?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Announcement?: AnnouncementUncheckedUpdateManyWithoutEmployeeNestedInput
-    MaintenanceRequest?: MaintenanceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutEmployeeNestedInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+    Complaint?: ComplaintUncheckedUpdateOneWithoutEmployeeNestedInput
+    Bills?: BillUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type BillUpsertWithoutPaymentsInput = {
@@ -25961,8 +27490,11 @@ export namespace Prisma {
     type?: EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
-    unit?: UnitUpdateOneRequiredWithoutBillNestedInput
-    employee?: UserUpdateOneRequiredWithoutBillNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    unit?: UnitUpdateOneRequiredWithoutBillsNestedInput
+    employee?: EmployeeUpdateOneRequiredWithoutBillsNestedInput
   }
 
   export type BillUncheckedUpdateWithoutPaymentsInput = {
@@ -25973,9 +27505,12 @@ export namespace Prisma {
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     unitId?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type EmployeesCreateWithoutAnnouncementInput = {
+  export type EmployeeCreateWithoutAnnouncementsInput = {
     employeeIdNumber: string
     hireDate: Date | string
     employeePosition?: $Enums.EmployeeRole
@@ -25984,12 +27519,14 @@ export namespace Prisma {
     bonus: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    user?: UserCreateNestedOneWithoutEmployeesInput
-    MaintenanceRequest?: MaintenanceRequestCreateNestedManyWithoutAssignedToInput
-    Payment?: PaymentCreateNestedManyWithoutProcessedByInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    MaintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutAssignedToInput
+    Payments?: PaymentCreateNestedManyWithoutProcessedByInput
+    Complaint?: ComplaintCreateNestedOneWithoutEmployeeInput
+    Bills?: BillCreateNestedManyWithoutEmployeeInput
   }
 
-  export type EmployeesUncheckedCreateWithoutAnnouncementInput = {
+  export type EmployeeUncheckedCreateWithoutAnnouncementsInput = {
     employeeId?: string
     employeeIdNumber: string
     hireDate: Date | string
@@ -25999,27 +27536,29 @@ export namespace Prisma {
     bonus: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    MaintenanceRequest?: MaintenanceRequestUncheckedCreateNestedManyWithoutAssignedToInput
-    Payment?: PaymentUncheckedCreateNestedManyWithoutProcessedByInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+    Payments?: PaymentUncheckedCreateNestedManyWithoutProcessedByInput
+    Complaint?: ComplaintUncheckedCreateNestedOneWithoutEmployeeInput
+    Bills?: BillUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
-  export type EmployeesCreateOrConnectWithoutAnnouncementInput = {
-    where: EmployeesWhereUniqueInput
-    create: XOR<EmployeesCreateWithoutAnnouncementInput, EmployeesUncheckedCreateWithoutAnnouncementInput>
+  export type EmployeeCreateOrConnectWithoutAnnouncementsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutAnnouncementsInput, EmployeeUncheckedCreateWithoutAnnouncementsInput>
   }
 
-  export type EmployeesUpsertWithoutAnnouncementInput = {
-    update: XOR<EmployeesUpdateWithoutAnnouncementInput, EmployeesUncheckedUpdateWithoutAnnouncementInput>
-    create: XOR<EmployeesCreateWithoutAnnouncementInput, EmployeesUncheckedCreateWithoutAnnouncementInput>
-    where?: EmployeesWhereInput
+  export type EmployeeUpsertWithoutAnnouncementsInput = {
+    update: XOR<EmployeeUpdateWithoutAnnouncementsInput, EmployeeUncheckedUpdateWithoutAnnouncementsInput>
+    create: XOR<EmployeeCreateWithoutAnnouncementsInput, EmployeeUncheckedCreateWithoutAnnouncementsInput>
+    where?: EmployeeWhereInput
   }
 
-  export type EmployeesUpdateToOneWithWhereWithoutAnnouncementInput = {
-    where?: EmployeesWhereInput
-    data: XOR<EmployeesUpdateWithoutAnnouncementInput, EmployeesUncheckedUpdateWithoutAnnouncementInput>
+  export type EmployeeUpdateToOneWithWhereWithoutAnnouncementsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutAnnouncementsInput, EmployeeUncheckedUpdateWithoutAnnouncementsInput>
   }
 
-  export type EmployeesUpdateWithoutAnnouncementInput = {
+  export type EmployeeUpdateWithoutAnnouncementsInput = {
     employeeIdNumber?: StringFieldUpdateOperationsInput | string
     hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
     employeePosition?: EnumEmployeeRoleFieldUpdateOperationsInput | $Enums.EmployeeRole
@@ -26028,12 +27567,14 @@ export namespace Prisma {
     bonus?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutEmployeesNestedInput
-    MaintenanceRequest?: MaintenanceRequestUpdateManyWithoutAssignedToNestedInput
-    Payment?: PaymentUpdateManyWithoutProcessedByNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    MaintenanceRequests?: MaintenanceRequestUpdateManyWithoutAssignedToNestedInput
+    Payments?: PaymentUpdateManyWithoutProcessedByNestedInput
+    Complaint?: ComplaintUpdateOneWithoutEmployeeNestedInput
+    Bills?: BillUpdateManyWithoutEmployeeNestedInput
   }
 
-  export type EmployeesUncheckedUpdateWithoutAnnouncementInput = {
+  export type EmployeeUncheckedUpdateWithoutAnnouncementsInput = {
     employeeId?: StringFieldUpdateOperationsInput | string
     employeeIdNumber?: StringFieldUpdateOperationsInput | string
     hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26043,11 +27584,13 @@ export namespace Prisma {
     bonus?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    MaintenanceRequest?: MaintenanceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
-    Payment?: PaymentUncheckedUpdateManyWithoutProcessedByNestedInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+    Payments?: PaymentUncheckedUpdateManyWithoutProcessedByNestedInput
+    Complaint?: ComplaintUncheckedUpdateOneWithoutEmployeeNestedInput
+    Bills?: BillUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
-  export type UserCreateWithoutForumPostInput = {
+  export type UserCreateWithoutForumPostsInput = {
     id?: string
     fullName: string
     firstName: string
@@ -26056,21 +27599,20 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
     role: $Enums.UserRole
-    gender?: $Enums.Gender
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    resident?: ResidentCreateNestedOneWithoutUserInput
-    Employees?: EmployeesCreateNestedOneWithoutUserInput
-    ForumComment?: ForumCommentCreateNestedManyWithoutUserInput
-    Bill?: BillCreateNestedManyWithoutEmployeeInput
+    Resident?: ResidentCreateNestedOneWithoutUserInput
+    Employee?: EmployeeCreateNestedOneWithoutUserInput
+    ForumComments?: ForumCommentCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutForumPostInput = {
+  export type UserUncheckedCreateWithoutForumPostsInput = {
     id?: string
     fullName: string
     firstName: string
@@ -26079,42 +27621,41 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
     role: $Enums.UserRole
-    gender?: $Enums.Gender
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    resident?: ResidentUncheckedCreateNestedOneWithoutUserInput
-    Employees?: EmployeesUncheckedCreateNestedOneWithoutUserInput
-    ForumComment?: ForumCommentUncheckedCreateNestedManyWithoutUserInput
-    Bill?: BillUncheckedCreateNestedManyWithoutEmployeeInput
+    Resident?: ResidentUncheckedCreateNestedOneWithoutUserInput
+    Employee?: EmployeeUncheckedCreateNestedOneWithoutUserInput
+    ForumComments?: ForumCommentUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutForumPostInput = {
+  export type UserCreateOrConnectWithoutForumPostsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutForumPostInput, UserUncheckedCreateWithoutForumPostInput>
+    create: XOR<UserCreateWithoutForumPostsInput, UserUncheckedCreateWithoutForumPostsInput>
   }
 
-  export type PostTagCreateWithoutForumPostInput = {
+  export type PostTagCreateWithoutForumPostsInput = {
     id?: string
     tagName: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type PostTagUncheckedCreateWithoutForumPostInput = {
+  export type PostTagUncheckedCreateWithoutForumPostsInput = {
     id?: string
     tagName: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type PostTagCreateOrConnectWithoutForumPostInput = {
+  export type PostTagCreateOrConnectWithoutForumPostsInput = {
     where: PostTagWhereUniqueInput
-    create: XOR<PostTagCreateWithoutForumPostInput, PostTagUncheckedCreateWithoutForumPostInput>
+    create: XOR<PostTagCreateWithoutForumPostsInput, PostTagUncheckedCreateWithoutForumPostsInput>
   }
 
   export type ForumCommentCreateWithoutPostInput = {
@@ -26122,7 +27663,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutForumCommentInput
+    user: UserCreateNestedOneWithoutForumCommentsInput
   }
 
   export type ForumCommentUncheckedCreateWithoutPostInput = {
@@ -26143,18 +27684,18 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserUpsertWithoutForumPostInput = {
-    update: XOR<UserUpdateWithoutForumPostInput, UserUncheckedUpdateWithoutForumPostInput>
-    create: XOR<UserCreateWithoutForumPostInput, UserUncheckedCreateWithoutForumPostInput>
+  export type UserUpsertWithoutForumPostsInput = {
+    update: XOR<UserUpdateWithoutForumPostsInput, UserUncheckedUpdateWithoutForumPostsInput>
+    create: XOR<UserCreateWithoutForumPostsInput, UserUncheckedCreateWithoutForumPostsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutForumPostInput = {
+  export type UserUpdateToOneWithWhereWithoutForumPostsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutForumPostInput, UserUncheckedUpdateWithoutForumPostInput>
+    data: XOR<UserUpdateWithoutForumPostsInput, UserUncheckedUpdateWithoutForumPostsInput>
   }
 
-  export type UserUpdateWithoutForumPostInput = {
+  export type UserUpdateWithoutForumPostsInput = {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
@@ -26163,21 +27704,20 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    resident?: ResidentUpdateOneWithoutUserNestedInput
-    Employees?: EmployeesUpdateOneWithoutUserNestedInput
-    ForumComment?: ForumCommentUpdateManyWithoutUserNestedInput
-    Bill?: BillUpdateManyWithoutEmployeeNestedInput
+    Resident?: ResidentUpdateOneWithoutUserNestedInput
+    Employee?: EmployeeUpdateOneWithoutUserNestedInput
+    ForumComments?: ForumCommentUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutForumPostInput = {
+  export type UserUncheckedUpdateWithoutForumPostsInput = {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
@@ -26186,34 +27726,33 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    resident?: ResidentUncheckedUpdateOneWithoutUserNestedInput
-    Employees?: EmployeesUncheckedUpdateOneWithoutUserNestedInput
-    ForumComment?: ForumCommentUncheckedUpdateManyWithoutUserNestedInput
-    Bill?: BillUncheckedUpdateManyWithoutEmployeeNestedInput
+    Resident?: ResidentUncheckedUpdateOneWithoutUserNestedInput
+    Employee?: EmployeeUncheckedUpdateOneWithoutUserNestedInput
+    ForumComments?: ForumCommentUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type PostTagUpsertWithWhereUniqueWithoutForumPostInput = {
+  export type PostTagUpsertWithWhereUniqueWithoutForumPostsInput = {
     where: PostTagWhereUniqueInput
-    update: XOR<PostTagUpdateWithoutForumPostInput, PostTagUncheckedUpdateWithoutForumPostInput>
-    create: XOR<PostTagCreateWithoutForumPostInput, PostTagUncheckedCreateWithoutForumPostInput>
+    update: XOR<PostTagUpdateWithoutForumPostsInput, PostTagUncheckedUpdateWithoutForumPostsInput>
+    create: XOR<PostTagCreateWithoutForumPostsInput, PostTagUncheckedCreateWithoutForumPostsInput>
   }
 
-  export type PostTagUpdateWithWhereUniqueWithoutForumPostInput = {
+  export type PostTagUpdateWithWhereUniqueWithoutForumPostsInput = {
     where: PostTagWhereUniqueInput
-    data: XOR<PostTagUpdateWithoutForumPostInput, PostTagUncheckedUpdateWithoutForumPostInput>
+    data: XOR<PostTagUpdateWithoutForumPostsInput, PostTagUncheckedUpdateWithoutForumPostsInput>
   }
 
-  export type PostTagUpdateManyWithWhereWithoutForumPostInput = {
+  export type PostTagUpdateManyWithWhereWithoutForumPostsInput = {
     where: PostTagScalarWhereInput
-    data: XOR<PostTagUpdateManyMutationInput, PostTagUncheckedUpdateManyWithoutForumPostInput>
+    data: XOR<PostTagUpdateManyMutationInput, PostTagUncheckedUpdateManyWithoutForumPostsInput>
   }
 
   export type PostTagScalarWhereInput = {
@@ -26251,7 +27790,7 @@ export namespace Prisma {
     publishedAt?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutForumPostInput
+    user: UserCreateNestedOneWithoutForumPostsInput
     comments?: ForumCommentCreateNestedManyWithoutPostInput
   }
 
@@ -26289,7 +27828,7 @@ export namespace Prisma {
     data: XOR<ForumPostUpdateManyMutationInput, ForumPostUncheckedUpdateManyWithoutTagsInput>
   }
 
-  export type UserCreateWithoutForumCommentInput = {
+  export type UserCreateWithoutForumCommentsInput = {
     id?: string
     fullName: string
     firstName: string
@@ -26298,21 +27837,20 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
     role: $Enums.UserRole
-    gender?: $Enums.Gender
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    resident?: ResidentCreateNestedOneWithoutUserInput
-    Employees?: EmployeesCreateNestedOneWithoutUserInput
-    ForumPost?: ForumPostCreateNestedManyWithoutUserInput
-    Bill?: BillCreateNestedManyWithoutEmployeeInput
+    Resident?: ResidentCreateNestedOneWithoutUserInput
+    Employee?: EmployeeCreateNestedOneWithoutUserInput
+    ForumPosts?: ForumPostCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutForumCommentInput = {
+  export type UserUncheckedCreateWithoutForumCommentsInput = {
     id?: string
     fullName: string
     firstName: string
@@ -26321,23 +27859,22 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
     role: $Enums.UserRole
-    gender?: $Enums.Gender
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    resident?: ResidentUncheckedCreateNestedOneWithoutUserInput
-    Employees?: EmployeesUncheckedCreateNestedOneWithoutUserInput
-    ForumPost?: ForumPostUncheckedCreateNestedManyWithoutUserInput
-    Bill?: BillUncheckedCreateNestedManyWithoutEmployeeInput
+    Resident?: ResidentUncheckedCreateNestedOneWithoutUserInput
+    Employee?: EmployeeUncheckedCreateNestedOneWithoutUserInput
+    ForumPosts?: ForumPostUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutForumCommentInput = {
+  export type UserCreateOrConnectWithoutForumCommentsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutForumCommentInput, UserUncheckedCreateWithoutForumCommentInput>
+    create: XOR<UserCreateWithoutForumCommentsInput, UserUncheckedCreateWithoutForumCommentsInput>
   }
 
   export type ForumPostCreateWithoutCommentsInput = {
@@ -26349,8 +27886,8 @@ export namespace Prisma {
     publishedAt?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutForumPostInput
-    tags?: PostTagCreateNestedManyWithoutForumPostInput
+    user: UserCreateNestedOneWithoutForumPostsInput
+    tags?: PostTagCreateNestedManyWithoutForumPostsInput
   }
 
   export type ForumPostUncheckedCreateWithoutCommentsInput = {
@@ -26363,7 +27900,7 @@ export namespace Prisma {
     publishedAt?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    tags?: PostTagUncheckedCreateNestedManyWithoutForumPostInput
+    tags?: PostTagUncheckedCreateNestedManyWithoutForumPostsInput
   }
 
   export type ForumPostCreateOrConnectWithoutCommentsInput = {
@@ -26371,18 +27908,18 @@ export namespace Prisma {
     create: XOR<ForumPostCreateWithoutCommentsInput, ForumPostUncheckedCreateWithoutCommentsInput>
   }
 
-  export type UserUpsertWithoutForumCommentInput = {
-    update: XOR<UserUpdateWithoutForumCommentInput, UserUncheckedUpdateWithoutForumCommentInput>
-    create: XOR<UserCreateWithoutForumCommentInput, UserUncheckedCreateWithoutForumCommentInput>
+  export type UserUpsertWithoutForumCommentsInput = {
+    update: XOR<UserUpdateWithoutForumCommentsInput, UserUncheckedUpdateWithoutForumCommentsInput>
+    create: XOR<UserCreateWithoutForumCommentsInput, UserUncheckedCreateWithoutForumCommentsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutForumCommentInput = {
+  export type UserUpdateToOneWithWhereWithoutForumCommentsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutForumCommentInput, UserUncheckedUpdateWithoutForumCommentInput>
+    data: XOR<UserUpdateWithoutForumCommentsInput, UserUncheckedUpdateWithoutForumCommentsInput>
   }
 
-  export type UserUpdateWithoutForumCommentInput = {
+  export type UserUpdateWithoutForumCommentsInput = {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
@@ -26391,21 +27928,20 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    resident?: ResidentUpdateOneWithoutUserNestedInput
-    Employees?: EmployeesUpdateOneWithoutUserNestedInput
-    ForumPost?: ForumPostUpdateManyWithoutUserNestedInput
-    Bill?: BillUpdateManyWithoutEmployeeNestedInput
+    Resident?: ResidentUpdateOneWithoutUserNestedInput
+    Employee?: EmployeeUpdateOneWithoutUserNestedInput
+    ForumPosts?: ForumPostUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutForumCommentInput = {
+  export type UserUncheckedUpdateWithoutForumCommentsInput = {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
@@ -26414,18 +27950,17 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    resident?: ResidentUncheckedUpdateOneWithoutUserNestedInput
-    Employees?: EmployeesUncheckedUpdateOneWithoutUserNestedInput
-    ForumPost?: ForumPostUncheckedUpdateManyWithoutUserNestedInput
-    Bill?: BillUncheckedUpdateManyWithoutEmployeeNestedInput
+    Resident?: ResidentUncheckedUpdateOneWithoutUserNestedInput
+    Employee?: EmployeeUncheckedUpdateOneWithoutUserNestedInput
+    ForumPosts?: ForumPostUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ForumPostUpsertWithoutCommentsInput = {
@@ -26448,8 +27983,8 @@ export namespace Prisma {
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutForumPostNestedInput
-    tags?: PostTagUpdateManyWithoutForumPostNestedInput
+    user?: UserUpdateOneRequiredWithoutForumPostsNestedInput
+    tags?: PostTagUpdateManyWithoutForumPostsNestedInput
   }
 
   export type ForumPostUncheckedUpdateWithoutCommentsInput = {
@@ -26462,7 +27997,7 @@ export namespace Prisma {
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: PostTagUncheckedUpdateManyWithoutForumPostNestedInput
+    tags?: PostTagUncheckedUpdateManyWithoutForumPostsNestedInput
   }
 
   export type ResidentCreateWithoutUnitInput = {
@@ -26476,7 +28011,8 @@ export namespace Prisma {
     user?: UserCreateNestedOneWithoutResidentInput
     maintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutResidentInput
     payments?: PaymentCreateNestedManyWithoutResidentInput
-    Lease?: LeaseCreateNestedManyWithoutResidentInput
+    Leases?: LeaseCreateNestedManyWithoutResidentInput
+    Complaints?: ComplaintCreateNestedManyWithoutResidentInput
   }
 
   export type ResidentUncheckedCreateWithoutUnitInput = {
@@ -26490,7 +28026,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     maintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutResidentInput
     payments?: PaymentUncheckedCreateNestedManyWithoutResidentInput
-    Lease?: LeaseUncheckedCreateNestedManyWithoutResidentInput
+    Leases?: LeaseUncheckedCreateNestedManyWithoutResidentInput
+    Complaints?: ComplaintUncheckedCreateNestedManyWithoutResidentInput
   }
 
   export type ResidentCreateOrConnectWithoutUnitInput = {
@@ -26513,7 +28050,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     resident: ResidentCreateNestedOneWithoutMaintenanceRequestsInput
-    assignedTo?: EmployeesCreateNestedOneWithoutMaintenanceRequestInput
+    assignedTo?: EmployeeCreateNestedOneWithoutMaintenanceRequestsInput
   }
 
   export type MaintenanceRequestUncheckedCreateWithoutUnitInput = {
@@ -26551,7 +28088,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     resident: ResidentCreateNestedOneWithoutPaymentsInput
     lease?: LeaseCreateNestedOneWithoutPaymentsInput
-    processedBy?: EmployeesCreateNestedOneWithoutPaymentInput
+    processedBy?: EmployeeCreateNestedOneWithoutPaymentsInput
     Bill: BillCreateNestedOneWithoutPaymentsInput
   }
 
@@ -26588,8 +28125,10 @@ export namespace Prisma {
     monthlyRent: number
     depositAmount?: number | null
     termsAndConditions?: string | null
-    resident: ResidentCreateNestedOneWithoutLeaseInput
-    payments?: PaymentCreateNestedManyWithoutLeaseInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    resident: ResidentCreateNestedOneWithoutLeasesInput
+    Payments?: PaymentCreateNestedManyWithoutLeaseInput
   }
 
   export type LeaseUncheckedCreateWithoutUnitInput = {
@@ -26600,7 +28139,9 @@ export namespace Prisma {
     depositAmount?: number | null
     termsAndConditions?: string | null
     residentId: string
-    payments?: PaymentUncheckedCreateNestedManyWithoutLeaseInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Payments?: PaymentUncheckedCreateNestedManyWithoutLeaseInput
   }
 
   export type LeaseCreateOrConnectWithoutUnitInput = {
@@ -26619,8 +28160,11 @@ export namespace Prisma {
     type: $Enums.PaymentType
     dueDate: Date | string
     isPaid?: boolean
-    employee: UserCreateNestedOneWithoutBillInput
-    payments?: PaymentCreateNestedManyWithoutBillInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+    employee: EmployeeCreateNestedOneWithoutBillsInput
+    Payments?: PaymentCreateNestedManyWithoutBillInput
   }
 
   export type BillUncheckedCreateWithoutUnitInput = {
@@ -26630,7 +28174,10 @@ export namespace Prisma {
     dueDate: Date | string
     isPaid?: boolean
     employeeId: string
-    payments?: PaymentUncheckedCreateNestedManyWithoutBillInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+    Payments?: PaymentUncheckedCreateNestedManyWithoutBillInput
   }
 
   export type BillCreateOrConnectWithoutUnitInput = {
@@ -26640,6 +28187,42 @@ export namespace Prisma {
 
   export type BillCreateManyUnitInputEnvelope = {
     data: BillCreateManyUnitInput | BillCreateManyUnitInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ComplaintCreateWithoutUnitInput = {
+    id?: string
+    name: string
+    desciption: string
+    status?: $Enums.ComplaintStatus
+    submittedAt?: Date | string
+    resolvedAt?: Date | string | null
+    resolutionDetails?: string | null
+    images?: ComplaintCreateimagesInput | string[]
+    resident: ResidentCreateNestedOneWithoutComplaintsInput
+    employee?: EmployeeCreateNestedOneWithoutComplaintInput
+  }
+
+  export type ComplaintUncheckedCreateWithoutUnitInput = {
+    id?: string
+    name: string
+    desciption: string
+    status?: $Enums.ComplaintStatus
+    submittedAt?: Date | string
+    resolvedAt?: Date | string | null
+    resolutionDetails?: string | null
+    residentId: string
+    employeeId?: string | null
+    images?: ComplaintCreateimagesInput | string[]
+  }
+
+  export type ComplaintCreateOrConnectWithoutUnitInput = {
+    where: ComplaintWhereUniqueInput
+    create: XOR<ComplaintCreateWithoutUnitInput, ComplaintUncheckedCreateWithoutUnitInput>
+  }
+
+  export type ComplaintCreateManyUnitInputEnvelope = {
+    data: ComplaintCreateManyUnitInput | ComplaintCreateManyUnitInput[]
     skipDuplicates?: boolean
   }
 
@@ -26738,7 +28321,23 @@ export namespace Prisma {
     data: XOR<BillUpdateManyMutationInput, BillUncheckedUpdateManyWithoutUnitInput>
   }
 
-  export type ResidentCreateWithoutLeaseInput = {
+  export type ComplaintUpsertWithWhereUniqueWithoutUnitInput = {
+    where: ComplaintWhereUniqueInput
+    update: XOR<ComplaintUpdateWithoutUnitInput, ComplaintUncheckedUpdateWithoutUnitInput>
+    create: XOR<ComplaintCreateWithoutUnitInput, ComplaintUncheckedCreateWithoutUnitInput>
+  }
+
+  export type ComplaintUpdateWithWhereUniqueWithoutUnitInput = {
+    where: ComplaintWhereUniqueInput
+    data: XOR<ComplaintUpdateWithoutUnitInput, ComplaintUncheckedUpdateWithoutUnitInput>
+  }
+
+  export type ComplaintUpdateManyWithWhereWithoutUnitInput = {
+    where: ComplaintScalarWhereInput
+    data: XOR<ComplaintUpdateManyMutationInput, ComplaintUncheckedUpdateManyWithoutUnitInput>
+  }
+
+  export type ResidentCreateWithoutLeasesInput = {
     emergencyContactName?: string | null
     emergencyContactNumber?: string | null
     movedInDate: Date | string
@@ -26750,9 +28349,10 @@ export namespace Prisma {
     unit: UnitCreateNestedOneWithoutResidentsInput
     maintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutResidentInput
     payments?: PaymentCreateNestedManyWithoutResidentInput
+    Complaints?: ComplaintCreateNestedManyWithoutResidentInput
   }
 
-  export type ResidentUncheckedCreateWithoutLeaseInput = {
+  export type ResidentUncheckedCreateWithoutLeasesInput = {
     residentId?: string
     emergencyContactName?: string | null
     emergencyContactNumber?: string | null
@@ -26764,11 +28364,12 @@ export namespace Prisma {
     updatedAt?: Date | string
     maintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutResidentInput
     payments?: PaymentUncheckedCreateNestedManyWithoutResidentInput
+    Complaints?: ComplaintUncheckedCreateNestedManyWithoutResidentInput
   }
 
-  export type ResidentCreateOrConnectWithoutLeaseInput = {
+  export type ResidentCreateOrConnectWithoutLeasesInput = {
     where: ResidentWhereUniqueInput
-    create: XOR<ResidentCreateWithoutLeaseInput, ResidentUncheckedCreateWithoutLeaseInput>
+    create: XOR<ResidentCreateWithoutLeasesInput, ResidentUncheckedCreateWithoutLeasesInput>
   }
 
   export type UnitCreateWithoutLeasesInput = {
@@ -26782,10 +28383,13 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
-    residents?: ResidentCreateNestedManyWithoutUnitInput
-    maintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutUnitInput
-    payments?: PaymentCreateNestedManyWithoutUnitInput
-    Bill?: BillCreateNestedManyWithoutUnitInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentCreateNestedManyWithoutUnitInput
+    MaintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutUnitInput
+    Payments?: PaymentCreateNestedManyWithoutUnitInput
+    Bills?: BillCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintCreateNestedManyWithoutUnitInput
   }
 
   export type UnitUncheckedCreateWithoutLeasesInput = {
@@ -26799,10 +28403,13 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
-    residents?: ResidentUncheckedCreateNestedManyWithoutUnitInput
-    maintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutUnitInput
-    payments?: PaymentUncheckedCreateNestedManyWithoutUnitInput
-    Bill?: BillUncheckedCreateNestedManyWithoutUnitInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentUncheckedCreateNestedManyWithoutUnitInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutUnitInput
+    Payments?: PaymentUncheckedCreateNestedManyWithoutUnitInput
+    Bills?: BillUncheckedCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitCreateOrConnectWithoutLeasesInput = {
@@ -26822,7 +28429,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     resident: ResidentCreateNestedOneWithoutPaymentsInput
     unit?: UnitCreateNestedOneWithoutPaymentsInput
-    processedBy?: EmployeesCreateNestedOneWithoutPaymentInput
+    processedBy?: EmployeeCreateNestedOneWithoutPaymentsInput
     Bill: BillCreateNestedOneWithoutPaymentsInput
   }
 
@@ -26852,18 +28459,18 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ResidentUpsertWithoutLeaseInput = {
-    update: XOR<ResidentUpdateWithoutLeaseInput, ResidentUncheckedUpdateWithoutLeaseInput>
-    create: XOR<ResidentCreateWithoutLeaseInput, ResidentUncheckedCreateWithoutLeaseInput>
+  export type ResidentUpsertWithoutLeasesInput = {
+    update: XOR<ResidentUpdateWithoutLeasesInput, ResidentUncheckedUpdateWithoutLeasesInput>
+    create: XOR<ResidentCreateWithoutLeasesInput, ResidentUncheckedCreateWithoutLeasesInput>
     where?: ResidentWhereInput
   }
 
-  export type ResidentUpdateToOneWithWhereWithoutLeaseInput = {
+  export type ResidentUpdateToOneWithWhereWithoutLeasesInput = {
     where?: ResidentWhereInput
-    data: XOR<ResidentUpdateWithoutLeaseInput, ResidentUncheckedUpdateWithoutLeaseInput>
+    data: XOR<ResidentUpdateWithoutLeasesInput, ResidentUncheckedUpdateWithoutLeasesInput>
   }
 
-  export type ResidentUpdateWithoutLeaseInput = {
+  export type ResidentUpdateWithoutLeasesInput = {
     emergencyContactName?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26875,9 +28482,10 @@ export namespace Prisma {
     unit?: UnitUpdateOneRequiredWithoutResidentsNestedInput
     maintenanceRequests?: MaintenanceRequestUpdateManyWithoutResidentNestedInput
     payments?: PaymentUpdateManyWithoutResidentNestedInput
+    Complaints?: ComplaintUpdateManyWithoutResidentNestedInput
   }
 
-  export type ResidentUncheckedUpdateWithoutLeaseInput = {
+  export type ResidentUncheckedUpdateWithoutLeasesInput = {
     residentId?: StringFieldUpdateOperationsInput | string
     emergencyContactName?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26889,6 +28497,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     maintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutResidentNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutResidentNestedInput
+    Complaints?: ComplaintUncheckedUpdateManyWithoutResidentNestedInput
   }
 
   export type UnitUpsertWithoutLeasesInput = {
@@ -26913,10 +28522,13 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
-    residents?: ResidentUpdateManyWithoutUnitNestedInput
-    maintenanceRequests?: MaintenanceRequestUpdateManyWithoutUnitNestedInput
-    payments?: PaymentUpdateManyWithoutUnitNestedInput
-    Bill?: BillUpdateManyWithoutUnitNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Residents?: ResidentUpdateManyWithoutUnitNestedInput
+    MaintenanceRequests?: MaintenanceRequestUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentUpdateManyWithoutUnitNestedInput
+    Bills?: BillUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitUncheckedUpdateWithoutLeasesInput = {
@@ -26930,10 +28542,13 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
-    residents?: ResidentUncheckedUpdateManyWithoutUnitNestedInput
-    maintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutUnitNestedInput
-    payments?: PaymentUncheckedUpdateManyWithoutUnitNestedInput
-    Bill?: BillUncheckedUpdateManyWithoutUnitNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Residents?: ResidentUncheckedUpdateManyWithoutUnitNestedInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentUncheckedUpdateManyWithoutUnitNestedInput
+    Bills?: BillUncheckedUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type PaymentUpsertWithWhereUniqueWithoutLeaseInput = {
@@ -26952,7 +28567,7 @@ export namespace Prisma {
     data: XOR<PaymentUpdateManyMutationInput, PaymentUncheckedUpdateManyWithoutLeaseInput>
   }
 
-  export type UnitCreateWithoutBillInput = {
+  export type UnitCreateWithoutBillsInput = {
     id?: string
     unitNumber: string
     buildingName?: string | null
@@ -26963,13 +28578,16 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
-    residents?: ResidentCreateNestedManyWithoutUnitInput
-    maintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutUnitInput
-    payments?: PaymentCreateNestedManyWithoutUnitInput
-    leases?: LeaseCreateNestedManyWithoutUnitInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentCreateNestedManyWithoutUnitInput
+    MaintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutUnitInput
+    Payments?: PaymentCreateNestedManyWithoutUnitInput
+    Leases?: LeaseCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintCreateNestedManyWithoutUnitInput
   }
 
-  export type UnitUncheckedCreateWithoutBillInput = {
+  export type UnitUncheckedCreateWithoutBillsInput = {
     id?: string
     unitNumber: string
     buildingName?: string | null
@@ -26980,66 +28598,55 @@ export namespace Prisma {
     location: string
     status: $Enums.UnitStatus
     priceSale: number
-    residents?: ResidentUncheckedCreateNestedManyWithoutUnitInput
-    maintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutUnitInput
-    payments?: PaymentUncheckedCreateNestedManyWithoutUnitInput
-    leases?: LeaseUncheckedCreateNestedManyWithoutUnitInput
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentUncheckedCreateNestedManyWithoutUnitInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutUnitInput
+    Payments?: PaymentUncheckedCreateNestedManyWithoutUnitInput
+    Leases?: LeaseUncheckedCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintUncheckedCreateNestedManyWithoutUnitInput
   }
 
-  export type UnitCreateOrConnectWithoutBillInput = {
+  export type UnitCreateOrConnectWithoutBillsInput = {
     where: UnitWhereUniqueInput
-    create: XOR<UnitCreateWithoutBillInput, UnitUncheckedCreateWithoutBillInput>
+    create: XOR<UnitCreateWithoutBillsInput, UnitUncheckedCreateWithoutBillsInput>
   }
 
-  export type UserCreateWithoutBillInput = {
-    id?: string
-    fullName: string
-    firstName: string
-    lastName: string
-    dateOfBirth?: Date | string | null
-    contactNumber?: string | null
-    primaryEmail: string
-    secondaryEmail?: string | null
-    passwordHash: string
-    sessionToken?: string | null
-    emailVerificationToken?: string | null
-    passwordResetToken?: string | null
-    role: $Enums.UserRole
-    gender?: $Enums.Gender
+  export type EmployeeCreateWithoutBillsInput = {
+    employeeIdNumber: string
+    hireDate: Date | string
+    employeePosition?: $Enums.EmployeeRole
+    workingHours: number
+    salary: number
+    bonus: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    resident?: ResidentCreateNestedOneWithoutUserInput
-    Employees?: EmployeesCreateNestedOneWithoutUserInput
-    ForumPost?: ForumPostCreateNestedManyWithoutUserInput
-    ForumComment?: ForumCommentCreateNestedManyWithoutUserInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    Announcements?: AnnouncementCreateNestedManyWithoutEmployeeInput
+    MaintenanceRequests?: MaintenanceRequestCreateNestedManyWithoutAssignedToInput
+    Payments?: PaymentCreateNestedManyWithoutProcessedByInput
+    Complaint?: ComplaintCreateNestedOneWithoutEmployeeInput
   }
 
-  export type UserUncheckedCreateWithoutBillInput = {
-    id?: string
-    fullName: string
-    firstName: string
-    lastName: string
-    dateOfBirth?: Date | string | null
-    contactNumber?: string | null
-    primaryEmail: string
-    secondaryEmail?: string | null
-    passwordHash: string
-    sessionToken?: string | null
-    emailVerificationToken?: string | null
-    passwordResetToken?: string | null
-    role: $Enums.UserRole
-    gender?: $Enums.Gender
+  export type EmployeeUncheckedCreateWithoutBillsInput = {
+    employeeId?: string
+    employeeIdNumber: string
+    hireDate: Date | string
+    employeePosition?: $Enums.EmployeeRole
+    workingHours: number
+    salary: number
+    bonus: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    resident?: ResidentUncheckedCreateNestedOneWithoutUserInput
-    Employees?: EmployeesUncheckedCreateNestedOneWithoutUserInput
-    ForumPost?: ForumPostUncheckedCreateNestedManyWithoutUserInput
-    ForumComment?: ForumCommentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutEmployeeInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedCreateNestedManyWithoutAssignedToInput
+    Payments?: PaymentUncheckedCreateNestedManyWithoutProcessedByInput
+    Complaint?: ComplaintUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
-  export type UserCreateOrConnectWithoutBillInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutBillInput, UserUncheckedCreateWithoutBillInput>
+  export type EmployeeCreateOrConnectWithoutBillsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutBillsInput, EmployeeUncheckedCreateWithoutBillsInput>
   }
 
   export type PaymentCreateWithoutBillInput = {
@@ -27055,7 +28662,7 @@ export namespace Prisma {
     resident: ResidentCreateNestedOneWithoutPaymentsInput
     unit?: UnitCreateNestedOneWithoutPaymentsInput
     lease?: LeaseCreateNestedOneWithoutPaymentsInput
-    processedBy?: EmployeesCreateNestedOneWithoutPaymentInput
+    processedBy?: EmployeeCreateNestedOneWithoutPaymentsInput
   }
 
   export type PaymentUncheckedCreateWithoutBillInput = {
@@ -27084,18 +28691,18 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UnitUpsertWithoutBillInput = {
-    update: XOR<UnitUpdateWithoutBillInput, UnitUncheckedUpdateWithoutBillInput>
-    create: XOR<UnitCreateWithoutBillInput, UnitUncheckedCreateWithoutBillInput>
+  export type UnitUpsertWithoutBillsInput = {
+    update: XOR<UnitUpdateWithoutBillsInput, UnitUncheckedUpdateWithoutBillsInput>
+    create: XOR<UnitCreateWithoutBillsInput, UnitUncheckedCreateWithoutBillsInput>
     where?: UnitWhereInput
   }
 
-  export type UnitUpdateToOneWithWhereWithoutBillInput = {
+  export type UnitUpdateToOneWithWhereWithoutBillsInput = {
     where?: UnitWhereInput
-    data: XOR<UnitUpdateWithoutBillInput, UnitUncheckedUpdateWithoutBillInput>
+    data: XOR<UnitUpdateWithoutBillsInput, UnitUncheckedUpdateWithoutBillsInput>
   }
 
-  export type UnitUpdateWithoutBillInput = {
+  export type UnitUpdateWithoutBillsInput = {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27106,13 +28713,16 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
-    residents?: ResidentUpdateManyWithoutUnitNestedInput
-    maintenanceRequests?: MaintenanceRequestUpdateManyWithoutUnitNestedInput
-    payments?: PaymentUpdateManyWithoutUnitNestedInput
-    leases?: LeaseUpdateManyWithoutUnitNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Residents?: ResidentUpdateManyWithoutUnitNestedInput
+    MaintenanceRequests?: MaintenanceRequestUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentUpdateManyWithoutUnitNestedInput
+    Leases?: LeaseUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintUpdateManyWithoutUnitNestedInput
   }
 
-  export type UnitUncheckedUpdateWithoutBillInput = {
+  export type UnitUncheckedUpdateWithoutBillsInput = {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27123,67 +28733,56 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
     priceSale?: FloatFieldUpdateOperationsInput | number
-    residents?: ResidentUncheckedUpdateManyWithoutUnitNestedInput
-    maintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutUnitNestedInput
-    payments?: PaymentUncheckedUpdateManyWithoutUnitNestedInput
-    leases?: LeaseUncheckedUpdateManyWithoutUnitNestedInput
-  }
-
-  export type UserUpsertWithoutBillInput = {
-    update: XOR<UserUpdateWithoutBillInput, UserUncheckedUpdateWithoutBillInput>
-    create: XOR<UserCreateWithoutBillInput, UserUncheckedCreateWithoutBillInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutBillInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutBillInput, UserUncheckedUpdateWithoutBillInput>
-  }
-
-  export type UserUpdateWithoutBillInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fullName?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    primaryEmail?: StringFieldUpdateOperationsInput | string
-    secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    resident?: ResidentUpdateOneWithoutUserNestedInput
-    Employees?: EmployeesUpdateOneWithoutUserNestedInput
-    ForumPost?: ForumPostUpdateManyWithoutUserNestedInput
-    ForumComment?: ForumCommentUpdateManyWithoutUserNestedInput
+    Residents?: ResidentUncheckedUpdateManyWithoutUnitNestedInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentUncheckedUpdateManyWithoutUnitNestedInput
+    Leases?: LeaseUncheckedUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintUncheckedUpdateManyWithoutUnitNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutBillInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fullName?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    primaryEmail?: StringFieldUpdateOperationsInput | string
-    secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+  export type EmployeeUpsertWithoutBillsInput = {
+    update: XOR<EmployeeUpdateWithoutBillsInput, EmployeeUncheckedUpdateWithoutBillsInput>
+    create: XOR<EmployeeCreateWithoutBillsInput, EmployeeUncheckedCreateWithoutBillsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutBillsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutBillsInput, EmployeeUncheckedUpdateWithoutBillsInput>
+  }
+
+  export type EmployeeUpdateWithoutBillsInput = {
+    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeePosition?: EnumEmployeeRoleFieldUpdateOperationsInput | $Enums.EmployeeRole
+    workingHours?: IntFieldUpdateOperationsInput | number
+    salary?: FloatFieldUpdateOperationsInput | number
+    bonus?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    resident?: ResidentUncheckedUpdateOneWithoutUserNestedInput
-    Employees?: EmployeesUncheckedUpdateOneWithoutUserNestedInput
-    ForumPost?: ForumPostUncheckedUpdateManyWithoutUserNestedInput
-    ForumComment?: ForumCommentUncheckedUpdateManyWithoutUserNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutEmployeeNestedInput
+    MaintenanceRequests?: MaintenanceRequestUpdateManyWithoutAssignedToNestedInput
+    Payments?: PaymentUpdateManyWithoutProcessedByNestedInput
+    Complaint?: ComplaintUpdateOneWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutBillsInput = {
+    employeeId?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    hireDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeePosition?: EnumEmployeeRoleFieldUpdateOperationsInput | $Enums.EmployeeRole
+    workingHours?: IntFieldUpdateOperationsInput | number
+    salary?: FloatFieldUpdateOperationsInput | number
+    bonus?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutEmployeeNestedInput
+    MaintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutAssignedToNestedInput
+    Payments?: PaymentUncheckedUpdateManyWithoutProcessedByNestedInput
+    Complaint?: ComplaintUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type PaymentUpsertWithWhereUniqueWithoutBillInput = {
@@ -27221,15 +28820,6 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type BillCreateManyEmployeeInput = {
-    id?: string
-    amount: number
-    type: $Enums.PaymentType
-    dueDate: Date | string
-    isPaid?: boolean
-    unitId: string
-  }
-
   export type ForumPostUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -27239,7 +28829,7 @@ export namespace Prisma {
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: PostTagUpdateManyWithoutForumPostNestedInput
+    tags?: PostTagUpdateManyWithoutForumPostsNestedInput
     comments?: ForumCommentUpdateManyWithoutPostNestedInput
   }
 
@@ -27252,7 +28842,7 @@ export namespace Prisma {
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: PostTagUncheckedUpdateManyWithoutForumPostNestedInput
+    tags?: PostTagUncheckedUpdateManyWithoutForumPostsNestedInput
     comments?: ForumCommentUncheckedUpdateManyWithoutPostNestedInput
   }
 
@@ -27289,35 +28879,6 @@ export namespace Prisma {
     postId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type BillUpdateWithoutEmployeeInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: FloatFieldUpdateOperationsInput | number
-    type?: EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
-    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    isPaid?: BoolFieldUpdateOperationsInput | boolean
-    unit?: UnitUpdateOneRequiredWithoutBillNestedInput
-    payments?: PaymentUpdateManyWithoutBillNestedInput
-  }
-
-  export type BillUncheckedUpdateWithoutEmployeeInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: FloatFieldUpdateOperationsInput | number
-    type?: EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
-    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    isPaid?: BoolFieldUpdateOperationsInput | boolean
-    unitId?: StringFieldUpdateOperationsInput | string
-    payments?: PaymentUncheckedUpdateManyWithoutBillNestedInput
-  }
-
-  export type BillUncheckedUpdateManyWithoutEmployeeInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    amount?: FloatFieldUpdateOperationsInput | number
-    type?: EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
-    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    isPaid?: BoolFieldUpdateOperationsInput | boolean
-    unitId?: StringFieldUpdateOperationsInput | string
   }
 
   export type MaintenanceRequestCreateManyResidentInput = {
@@ -27357,6 +28918,21 @@ export namespace Prisma {
     depositAmount?: number | null
     termsAndConditions?: string | null
     unitId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ComplaintCreateManyResidentInput = {
+    id?: string
+    name: string
+    desciption: string
+    status?: $Enums.ComplaintStatus
+    submittedAt?: Date | string
+    resolvedAt?: Date | string | null
+    resolutionDetails?: string | null
+    employeeId?: string | null
+    unitId?: string | null
+    images?: ComplaintCreateimagesInput | string[]
   }
 
   export type MaintenanceRequestUpdateWithoutResidentInput = {
@@ -27369,7 +28945,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     unit?: UnitUpdateOneRequiredWithoutMaintenanceRequestsNestedInput
-    assignedTo?: EmployeesUpdateOneWithoutMaintenanceRequestNestedInput
+    assignedTo?: EmployeeUpdateOneWithoutMaintenanceRequestsNestedInput
   }
 
   export type MaintenanceRequestUncheckedUpdateWithoutResidentInput = {
@@ -27410,7 +28986,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     unit?: UnitUpdateOneWithoutPaymentsNestedInput
     lease?: LeaseUpdateOneWithoutPaymentsNestedInput
-    processedBy?: EmployeesUpdateOneWithoutPaymentNestedInput
+    processedBy?: EmployeeUpdateOneWithoutPaymentsNestedInput
     Bill?: BillUpdateOneRequiredWithoutPaymentsNestedInput
   }
 
@@ -27453,8 +29029,10 @@ export namespace Prisma {
     monthlyRent?: FloatFieldUpdateOperationsInput | number
     depositAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     termsAndConditions?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     unit?: UnitUpdateOneRequiredWithoutLeasesNestedInput
-    payments?: PaymentUpdateManyWithoutLeaseNestedInput
+    Payments?: PaymentUpdateManyWithoutLeaseNestedInput
   }
 
   export type LeaseUncheckedUpdateWithoutResidentInput = {
@@ -27465,7 +29043,9 @@ export namespace Prisma {
     depositAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     termsAndConditions?: NullableStringFieldUpdateOperationsInput | string | null
     unitId?: StringFieldUpdateOperationsInput | string
-    payments?: PaymentUncheckedUpdateManyWithoutLeaseNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Payments?: PaymentUncheckedUpdateManyWithoutLeaseNestedInput
   }
 
   export type LeaseUncheckedUpdateManyWithoutResidentInput = {
@@ -27476,6 +29056,47 @@ export namespace Prisma {
     depositAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     termsAndConditions?: NullableStringFieldUpdateOperationsInput | string | null
     unitId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComplaintUpdateWithoutResidentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    desciption?: StringFieldUpdateOperationsInput | string
+    status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: ComplaintUpdateimagesInput | string[]
+    employee?: EmployeeUpdateOneWithoutComplaintNestedInput
+    unit?: UnitUpdateOneWithoutComplaintsNestedInput
+  }
+
+  export type ComplaintUncheckedUpdateWithoutResidentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    desciption?: StringFieldUpdateOperationsInput | string
+    status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: ComplaintUpdateimagesInput | string[]
+  }
+
+  export type ComplaintUncheckedUpdateManyWithoutResidentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    desciption?: StringFieldUpdateOperationsInput | string
+    status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: ComplaintUpdateimagesInput | string[]
   }
 
   export type AnnouncementCreateManyEmployeeInput = {
@@ -27516,6 +29137,18 @@ export namespace Prisma {
     billId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type BillCreateManyEmployeeInput = {
+    id?: string
+    amount: number
+    type: $Enums.PaymentType
+    dueDate: Date | string
+    isPaid?: boolean
+    unitId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
   }
 
   export type AnnouncementUpdateWithoutEmployeeInput = {
@@ -27638,6 +29271,44 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type BillUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    type?: EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPaid?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    unit?: UnitUpdateOneRequiredWithoutBillsNestedInput
+    Payments?: PaymentUpdateManyWithoutBillNestedInput
+  }
+
+  export type BillUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    type?: EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPaid?: BoolFieldUpdateOperationsInput | boolean
+    unitId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    Payments?: PaymentUncheckedUpdateManyWithoutBillNestedInput
+  }
+
+  export type BillUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: FloatFieldUpdateOperationsInput | number
+    type?: EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    isPaid?: BoolFieldUpdateOperationsInput | boolean
+    unitId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type ForumCommentCreateManyPostInput = {
     id?: string
     content: string
@@ -27646,21 +29317,21 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type PostTagUpdateWithoutForumPostInput = {
+  export type PostTagUpdateWithoutForumPostsInput = {
     id?: StringFieldUpdateOperationsInput | string
     tagName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PostTagUncheckedUpdateWithoutForumPostInput = {
+  export type PostTagUncheckedUpdateWithoutForumPostsInput = {
     id?: StringFieldUpdateOperationsInput | string
     tagName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PostTagUncheckedUpdateManyWithoutForumPostInput = {
+  export type PostTagUncheckedUpdateManyWithoutForumPostsInput = {
     id?: StringFieldUpdateOperationsInput | string
     tagName?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27672,7 +29343,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutForumCommentNestedInput
+    user?: UserUpdateOneRequiredWithoutForumCommentsNestedInput
   }
 
   export type ForumCommentUncheckedUpdateWithoutPostInput = {
@@ -27700,7 +29371,7 @@ export namespace Prisma {
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutForumPostNestedInput
+    user?: UserUpdateOneRequiredWithoutForumPostsNestedInput
     comments?: ForumCommentUpdateManyWithoutPostNestedInput
   }
 
@@ -27777,6 +29448,8 @@ export namespace Prisma {
     depositAmount?: number | null
     termsAndConditions?: string | null
     residentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type BillCreateManyUnitInput = {
@@ -27786,6 +29459,22 @@ export namespace Prisma {
     dueDate: Date | string
     isPaid?: boolean
     employeeId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+  }
+
+  export type ComplaintCreateManyUnitInput = {
+    id?: string
+    name: string
+    desciption: string
+    status?: $Enums.ComplaintStatus
+    submittedAt?: Date | string
+    resolvedAt?: Date | string | null
+    resolutionDetails?: string | null
+    residentId: string
+    employeeId?: string | null
+    images?: ComplaintCreateimagesInput | string[]
   }
 
   export type ResidentUpdateWithoutUnitInput = {
@@ -27799,7 +29488,8 @@ export namespace Prisma {
     user?: UserUpdateOneWithoutResidentNestedInput
     maintenanceRequests?: MaintenanceRequestUpdateManyWithoutResidentNestedInput
     payments?: PaymentUpdateManyWithoutResidentNestedInput
-    Lease?: LeaseUpdateManyWithoutResidentNestedInput
+    Leases?: LeaseUpdateManyWithoutResidentNestedInput
+    Complaints?: ComplaintUpdateManyWithoutResidentNestedInput
   }
 
   export type ResidentUncheckedUpdateWithoutUnitInput = {
@@ -27813,7 +29503,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     maintenanceRequests?: MaintenanceRequestUncheckedUpdateManyWithoutResidentNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutResidentNestedInput
-    Lease?: LeaseUncheckedUpdateManyWithoutResidentNestedInput
+    Leases?: LeaseUncheckedUpdateManyWithoutResidentNestedInput
+    Complaints?: ComplaintUncheckedUpdateManyWithoutResidentNestedInput
   }
 
   export type ResidentUncheckedUpdateManyWithoutUnitInput = {
@@ -27837,7 +29528,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resident?: ResidentUpdateOneRequiredWithoutMaintenanceRequestsNestedInput
-    assignedTo?: EmployeesUpdateOneWithoutMaintenanceRequestNestedInput
+    assignedTo?: EmployeeUpdateOneWithoutMaintenanceRequestsNestedInput
   }
 
   export type MaintenanceRequestUncheckedUpdateWithoutUnitInput = {
@@ -27878,7 +29569,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resident?: ResidentUpdateOneRequiredWithoutPaymentsNestedInput
     lease?: LeaseUpdateOneWithoutPaymentsNestedInput
-    processedBy?: EmployeesUpdateOneWithoutPaymentNestedInput
+    processedBy?: EmployeeUpdateOneWithoutPaymentsNestedInput
     Bill?: BillUpdateOneRequiredWithoutPaymentsNestedInput
   }
 
@@ -27921,8 +29612,10 @@ export namespace Prisma {
     monthlyRent?: FloatFieldUpdateOperationsInput | number
     depositAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     termsAndConditions?: NullableStringFieldUpdateOperationsInput | string | null
-    resident?: ResidentUpdateOneRequiredWithoutLeaseNestedInput
-    payments?: PaymentUpdateManyWithoutLeaseNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resident?: ResidentUpdateOneRequiredWithoutLeasesNestedInput
+    Payments?: PaymentUpdateManyWithoutLeaseNestedInput
   }
 
   export type LeaseUncheckedUpdateWithoutUnitInput = {
@@ -27933,7 +29626,9 @@ export namespace Prisma {
     depositAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     termsAndConditions?: NullableStringFieldUpdateOperationsInput | string | null
     residentId?: StringFieldUpdateOperationsInput | string
-    payments?: PaymentUncheckedUpdateManyWithoutLeaseNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Payments?: PaymentUncheckedUpdateManyWithoutLeaseNestedInput
   }
 
   export type LeaseUncheckedUpdateManyWithoutUnitInput = {
@@ -27944,6 +29639,8 @@ export namespace Prisma {
     depositAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     termsAndConditions?: NullableStringFieldUpdateOperationsInput | string | null
     residentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BillUpdateWithoutUnitInput = {
@@ -27952,8 +29649,11 @@ export namespace Prisma {
     type?: EnumPaymentTypeFieldUpdateOperationsInput | $Enums.PaymentType
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
-    employee?: UserUpdateOneRequiredWithoutBillNestedInput
-    payments?: PaymentUpdateManyWithoutBillNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    employee?: EmployeeUpdateOneRequiredWithoutBillsNestedInput
+    Payments?: PaymentUpdateManyWithoutBillNestedInput
   }
 
   export type BillUncheckedUpdateWithoutUnitInput = {
@@ -27963,7 +29663,10 @@ export namespace Prisma {
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     employeeId?: StringFieldUpdateOperationsInput | string
-    payments?: PaymentUncheckedUpdateManyWithoutBillNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    Payments?: PaymentUncheckedUpdateManyWithoutBillNestedInput
   }
 
   export type BillUncheckedUpdateManyWithoutUnitInput = {
@@ -27973,6 +29676,48 @@ export namespace Prisma {
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     employeeId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ComplaintUpdateWithoutUnitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    desciption?: StringFieldUpdateOperationsInput | string
+    status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: ComplaintUpdateimagesInput | string[]
+    resident?: ResidentUpdateOneRequiredWithoutComplaintsNestedInput
+    employee?: EmployeeUpdateOneWithoutComplaintNestedInput
+  }
+
+  export type ComplaintUncheckedUpdateWithoutUnitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    desciption?: StringFieldUpdateOperationsInput | string
+    status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    residentId?: StringFieldUpdateOperationsInput | string
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: ComplaintUpdateimagesInput | string[]
+  }
+
+  export type ComplaintUncheckedUpdateManyWithoutUnitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    desciption?: StringFieldUpdateOperationsInput | string
+    status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    residentId?: StringFieldUpdateOperationsInput | string
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: ComplaintUpdateimagesInput | string[]
   }
 
   export type PaymentCreateManyLeaseInput = {
@@ -28003,7 +29748,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resident?: ResidentUpdateOneRequiredWithoutPaymentsNestedInput
     unit?: UnitUpdateOneWithoutPaymentsNestedInput
-    processedBy?: EmployeesUpdateOneWithoutPaymentNestedInput
+    processedBy?: EmployeeUpdateOneWithoutPaymentsNestedInput
     Bill?: BillUpdateOneRequiredWithoutPaymentsNestedInput
   }
 
@@ -28068,7 +29813,7 @@ export namespace Prisma {
     resident?: ResidentUpdateOneRequiredWithoutPaymentsNestedInput
     unit?: UnitUpdateOneWithoutPaymentsNestedInput
     lease?: LeaseUpdateOneWithoutPaymentsNestedInput
-    processedBy?: EmployeesUpdateOneWithoutPaymentNestedInput
+    processedBy?: EmployeeUpdateOneWithoutPaymentsNestedInput
   }
 
   export type PaymentUncheckedUpdateWithoutBillInput = {

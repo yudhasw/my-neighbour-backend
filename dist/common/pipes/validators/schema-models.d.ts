@@ -1,0 +1,1 @@
+export type SchemaModels = 'user' | 'resident' | 'employee' | 'maintenanceRequest' | 'complaint' | 'payment' | 'announcement' | 'forumPost' | 'postTage' | 'forumComment' | 'lease' | 'bill' | 'unit' | 'contact';

@@ -29,13 +29,13 @@ let AppUserManageController = class AppUserManageController {
         return this.appUserManageService.findAll();
     }
     findOne(id) {
-        return this.appUserManageService.findOne(+id);
+        return this.appUserManageService.findOne(id);
     }
     update(id, updateAppUserManageDto) {
-        return this.appUserManageService.update(+id, updateAppUserManageDto);
+        return this.appUserManageService.update(id, updateAppUserManageDto);
     }
     remove(id) {
-        return this.appUserManageService.remove(+id);
+        return this.appUserManageService.remove(id);
     }
 };
 exports.AppUserManageController = AppUserManageController;

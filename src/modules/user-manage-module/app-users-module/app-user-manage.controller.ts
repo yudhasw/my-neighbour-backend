@@ -27,7 +27,7 @@ export class AppUserManageController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.appUserManageService.findOne(+id);
+    return this.appUserManageService.findOne(id);
   }
 
   @Patch(':id')
@@ -35,11 +35,11 @@ export class AppUserManageController {
     @Param('id') id: string,
     @Body() updateAppUserManageDto: UpdateAppUserManageDto,
   ) {
-    return this.appUserManageService.update(+id, updateAppUserManageDto);
+    return this.appUserManageService.update(id, updateAppUserManageDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.appUserManageService.remove(+id);
+    return this.appUserManageService.remove(id);
   }
 }

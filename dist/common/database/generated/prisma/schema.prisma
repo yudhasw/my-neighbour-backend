@@ -6,7 +6,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL_LOCAL")
 }
 
 // Enum Types
@@ -84,6 +84,14 @@ enum ContactRole {
   EMERGENCY_SERVICES
 }
 
+enum ComplaintStatus {
+  NEW
+  VERIFIED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
 // Models
 
 model User {
@@ -95,21 +103,20 @@ model User {
   contactNumber          String?   @map("nomor_kontak")
   primaryEmail           String    @unique @map("email_utama")
   secondaryEmail         String?   @unique @map("email_kedua")
-  passwordHash           String    @unique @map("password_terenkripsi")
+  password               String    @unique @map("password_terenkripsi")
   sessionToken           String?   @unique
   emailVerificationToken String?   @unique
   passwordResetToken     String?   @unique
   role                   UserRole
-  gender                 Gender    @default(NONE)
+  gender                 Gender?   @default(NONE)
   createdAt              DateTime  @default(now()) @map("created_at") @db.Timestamp()
   updatedAt              DateTime  @updatedAt @map("updated_at") @db.Timestamp()
 
   // Relasi balik
-  resident     Resident?
-  Employees    Employees?
-  ForumPost    ForumPost[]
-  ForumComment ForumComment[]
-  Bill         Bill[]
+  Resident      Resident?
+  Employee      Employee?
+  ForumPosts    ForumPost[]
+  ForumComments ForumComment[]
 
   @@map("tb_pengguna")
 }
@@ -130,12 +137,13 @@ model Resident {
   // Relasi balik
   maintenanceRequests MaintenanceRequest[]
   payments            Payment[]
-  Lease               Lease[]
+  Leases              Lease[]
+  Complaints          Complaint[]
 
   @@map("tb_penghuni")
 }
 
-model Employees {
+model Employee {
   employeeId       String       @id @unique @default(uuid()) @map("employee_id") @db.Uuid
   user             User?        @relation(fields: [employeeId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   employeeIdNumber String       @unique @map("nomor_pegawai")
@@ -148,9 +156,11 @@ model Employees {
   updatedAt        DateTime     @updatedAt @map("updated_at") @db.Timestamp()
 
   // Relasi balik
-  Announcement       Announcement[]
-  MaintenanceRequest MaintenanceRequest[]
-  Payment            Payment[]
+  Announcements       Announcement[]
+  MaintenanceRequests MaintenanceRequest[]
+  Payments            Payment[]
+  Complaint           Complaint?
+  Bills               Bill[]
 
   @@map("tb_pegawai")
 }
@@ -167,7 +177,7 @@ model MaintenanceRequest {
   unitId               String              @map("unit_id") @db.Uuid
   unit                 Unit                @relation(fields: [unitId], references: [id])
   assignedToEmployeeId String?             @map("employee_id") @db.Uuid
-  assignedTo           Employees?          @relation(fields: [assignedToEmployeeId], references: [employeeId])
+  assignedTo           Employee?           @relation(fields: [assignedToEmployeeId], references: [employeeId])
   createdAt            DateTime            @default(now()) @map("created_at") @db.Timestamp()
   updatedAt            DateTime            @updatedAt @map("updated_at") @db.Timestamp()
 
@@ -175,7 +185,22 @@ model MaintenanceRequest {
 }
 
 model Complaint {
-  id String @id @default(uuid()) @db.Uuid
+  id                String          @id @default(uuid()) @db.Uuid
+  name              String          @map("judul_keluhan")
+  desciption        String          @map("deskripsi_keluhan")
+  status            ComplaintStatus @default(NEW) @map("status_keluhan")
+  submittedAt       DateTime        @default(now()) @map("tanggal_pengajuan")
+  resolvedAt        DateTime?       @map("tanggal_penyelesaian")
+  resolutionDetails String?         @map("detail_penyelesaian")
+  residentId        String          @map("resident_id") @db.Uuid
+  resident          Resident        @relation(fields: [residentId], references: [residentId], onDelete: Cascade, onUpdate: Cascade)
+  employeeId        String?         @unique @map("employee") @db.Uuid
+  employee          Employee?       @relation(fields: [employeeId], references: [employeeId], onDelete: Cascade, onUpdate: Cascade)
+  unitId            String?         @map("unit_id") @db.Uuid
+  unit              Unit?           @relation(fields: [unitId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  images            String[]        @map("url_gambar")
+
+  @@map("tb_keluhan_penghuni")
 }
 
 model Payment {
@@ -193,7 +218,7 @@ model Payment {
   leaseId           String?       @map("lease_id") @db.Uuid
   lease             Lease?        @relation(fields: [leaseId], references: [id])
   processedByUserId String?       @map("employee_id") @db.Uuid
-  processedBy       Employees?    @relation(fields: [processedByUserId], references: [employeeId])
+  processedBy       Employee?     @relation(fields: [processedByUserId], references: [employeeId])
   billId            String        @map("bill_id") @db.Uuid
   Bill              Bill          @relation(fields: [billId], references: [id])
   createdAt         DateTime      @default(now()) @map("created_at") @db.Timestamp()
@@ -207,10 +232,10 @@ model Announcement {
   title       String    @map("judul")
   content     String    @map("konten_pengumuman")
   body        String    @map("isi_pengumuman")
-  publishDate DateTime  @default(now()) @map("tanggal_publikasi") @db.Timestamp()
+  publishDate DateTime  @default(now()) @map("tanggal_publikasi")
   expiryDate  DateTime? @map("tanggal_selesai")
   employeeId  String    @db.Uuid
-  employee    Employees @relation(fields: [employeeId], references: [employeeId])
+  employee    Employee  @relation(fields: [employeeId], references: [employeeId])
   createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamp()
   updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamp()
 
@@ -225,7 +250,7 @@ model ForumPost {
   authorRole  UserRole
   userId      String   @map("id_penulis") @db.Uuid
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  publishedAt DateTime @default(now()) @map("tanggal_publikasi") @db.Timestamp()
+  publishedAt DateTime @default(now()) @map("tanggal_publikasi")
   createdAt   DateTime @default(now()) @map("created_at") @db.Timestamp()
   updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamp()
 
@@ -237,11 +262,13 @@ model ForumPost {
 }
 
 model PostTag {
-  id        String      @id @default(uuid()) @db.Uuid
-  tagName   String      @map("nama_tag")
-  createdAt DateTime    @default(now()) @map("created_at") @db.Timestamp()
-  updatedAt DateTime    @updatedAt @map("updated_at") @db.Timestamp()
-  ForumPost ForumPost[]
+  id        String   @id @default(uuid()) @db.Uuid
+  tagName   String   @map("nama_tag")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp()
+
+  //relasi balik
+  ForumPosts ForumPost[]
 
   @@map("tb_PostTag")
 }
@@ -270,13 +297,16 @@ model Unit {
   location      String     @map("lokasi_unit")
   status        UnitStatus
   priceSale     Float      @map("harga_jual")
+  createdAt     DateTime   @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt     DateTime   @updatedAt @map("updated_at") @db.Timestamp()
 
   // Relasi Balik
-  residents           Resident[]
-  maintenanceRequests MaintenanceRequest[]
-  payments            Payment[]
-  leases              Lease[]
-  Bill                Bill[]
+  Residents           Resident[]
+  MaintenanceRequests MaintenanceRequest[]
+  Payments            Payment[]
+  Leases              Lease[]
+  Bills               Bill[]
+  Complaints          Complaint[]
 
   @@map("tb_unit_hunian")
 }
@@ -292,9 +322,11 @@ model Lease {
   resident           Resident @relation(fields: [residentId], references: [residentId])
   unitId             String   @unique @map("unit_id") @db.Uuid
   unit               Unit     @relation(fields: [unitId], references: [id])
+  createdAt          DateTime @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt          DateTime @updatedAt @map("updated_at") @db.Timestamp()
 
   // relasi Balik
-  payments Payment[]
+  Payments Payment[]
 
   @@map("tb_perjanjian_sewa")
 }
@@ -308,10 +340,13 @@ model Bill {
   unitId     String      @map("unit_id") @db.Uuid
   unit       Unit        @relation(fields: [unitId], references: [id])
   employeeId String      @map("employee_id") @db.Uuid
-  employee   User        @relation(fields: [employeeId], references: [id])
+  employee   Employee    @relation(fields: [employeeId], references: [employeeId])
+  createdAt  DateTime    @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt  DateTime    @updatedAt @map("updated_at") @db.Timestamp()
 
   // Relasi Balik
-  payments Payment[]
+  Payments Payment[]
+  userId   String?   @db.Uuid
 
   @@map("tb_tagihan")
 }
@@ -322,6 +357,8 @@ model Contact {
   role        ContactRole @map("jabatan") // Misal: 'Security', 'Admin', 'Emergency Services'
   phoneNumber String      @map("nomor_telepon")
   email       String?     @map("email")
+  createdAt   DateTime    @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt   DateTime    @updatedAt @map("updated_at") @db.Timestamp()
 
   @@map("tb_kontak_penting")
 }

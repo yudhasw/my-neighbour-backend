@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppUserManageService } from './app-user-manage.service';
+import { AppUserManageService } from '../../../src/modules/user-manage-module/app-users-module/app-user-manage.service';
 
 describe('AppUserManageService', () => {
   let service: AppUserManageService;

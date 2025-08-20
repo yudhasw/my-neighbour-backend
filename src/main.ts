@@ -9,6 +9,8 @@ import {
   ExpressAdapter,
   type NestExpressApplication,
 } from '@nestjs/platform-express';
+import { PrismaErrorInterceptor } from './common/interceptors/exception-massage.interceptor';
+import { ResponseMappingInterceptor } from './common/interceptors/response-mapping.interceptor';
 
 let app: NestExpressApplication;
 
@@ -62,6 +64,11 @@ async function bootstrap(): Promise<NestExpressApplication> {
       },
     }),
     new CostumeValidationPipe(),
+  );
+
+  app.useGlobalInterceptors(
+    new ResponseMappingInterceptor(),
+    new PrismaErrorInterceptor(),
   );
 
   await app.init();

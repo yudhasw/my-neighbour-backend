@@ -1,2 +1,1 @@
-export declare class IsUniqueConstraint {
-}
+export type IsUniqueConstraint = '';

@@ -7,6 +7,8 @@ const common_1 = require("@nestjs/common");
 const class_validator_1 = require("class-validator");
 const costume_validation_pipe_1 = require("./common/pipes/costume-validation.pipe");
 const platform_express_1 = require("@nestjs/platform-express");
+const exception_massage_interceptor_1 = require("./common/interceptors/exception-massage.interceptor");
+const response_mapping_interceptor_1 = require("./common/interceptors/response-mapping.interceptor");
 let app;
 async function bootstrap() {
     if (app) {
@@ -45,6 +47,7 @@ async function bootstrap() {
             });
         },
     }), new costume_validation_pipe_1.CostumeValidationPipe());
+    app.useGlobalInterceptors(new response_mapping_interceptor_1.ResponseMappingInterceptor(), new exception_massage_interceptor_1.PrismaErrorInterceptor());
     await app.init();
     console.log('NestJS application initialized for Vercel');
     return app;
