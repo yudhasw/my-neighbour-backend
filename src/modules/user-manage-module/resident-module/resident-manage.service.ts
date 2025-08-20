@@ -1,26 +1,157 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateResidentManageDto } from '../../../dtos/requests/create/create-resident-manage.dto';
 import { UpdateResidentManageDto } from '../../../dtos/requests/update/update-resident-manage.dto';
+import { DatabaseService } from '../../../common/database/database.service';
 
 @Injectable()
 export class ResidentManageService {
-  create(createRequest: CreateResidentManageDto) {
-    return 'This action adds a new residentManage';
+  constructor(private readonly prisma: DatabaseService) {}
+  async create(createRequest: CreateResidentManageDto) {
+    try {
+      return await this.prisma.residents.create({
+        data: {
+          residentId: createRequest.residentId,
+          emergencyContactName: createRequest.emergencyContactName,
+          emergencyContactNumber: createRequest.emergencyContactNumber,
+          movedInDate: createRequest.movedInDate,
+          movedOutDate: createRequest.movedOutDate,
+          residentStatus: createRequest.residentStatus,
+          unitId: createRequest.unitId,
+        },
+      });
+    } catch (error) {
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Membuat Data Pengguna Aplikasi',
+      );
+    }
   }
 
-  findAll() {
-    return `This action returns all residentManage`;
+  async findAll() {
+    try {
+      return await this.prisma.residents.findMany({
+        include: {
+          _count: { select: { Complaints: true, payments: true } },
+          user: {
+            select: {
+              fullName: true,
+              firstName: true,
+              lastName: true,
+              contactNumber: true,
+              dateOfBirth: true,
+              gender: true,
+              primaryEmail: true,
+            },
+          },
+        },
+        orderBy: { user: { fullName: 'asc' } },
+      });
+    } catch (error) {
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi',
+      );
+    }
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} residentManage`;
+  async findOne(id: string) {
+    try {
+      return await this.prisma.residents.findUniqueOrThrow({
+        where: { residentId: id },
+        include: {
+          _count: { select: { Complaints: true, payments: true } },
+          user: {
+            select: {
+              fullName: true,
+              firstName: true,
+              lastName: true,
+              contactNumber: true,
+              dateOfBirth: true,
+              gender: true,
+              primaryEmail: true,
+            },
+          },
+          payments: {
+            select: {
+              amount: true,
+              paymentFor: true,
+              paymentMethod: true,
+              paymentDate: true,
+              description: true,
+            },
+            orderBy: {
+              paymentDate: 'asc',
+            },
+          },
+        },
+      });
+    } catch (error) {
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi',
+      );
+    }
   }
 
-  update(id: string, updateRequest: UpdateResidentManageDto) {
-    return `This action updates a #${id} residentManage`;
+  async update(id: string, updateRequest: UpdateResidentManageDto) {
+    try {
+      const existData = await this.prisma.residents.findUnique({
+        where: { residentId: id },
+      });
+
+      return await this.prisma.residents.update({
+        where: { residentId: id },
+        data: {
+          emergencyContactName:
+            updateRequest.emergencyContactName ??
+            existData?.emergencyContactName,
+          emergencyContactNumber:
+            updateRequest.emergencyContactNumber ??
+            existData?.emergencyContactNumber,
+          movedInDate: updateRequest.movedInDate ?? existData?.movedInDate,
+          movedOutDate: updateRequest.movedOutDate ?? existData?.movedOutDate,
+          residentStatus:
+            updateRequest.residentStatus ?? existData?.residentStatus,
+          unitId: updateRequest.unitId ?? existData?.unitId,
+          updatedAt: new Date(),
+        },
+      });
+    } catch (error) {
+      if ((error as Error).name === 'NotFoundError') {
+        throw new NotFoundException(
+          `Pengguna aplikasi dengan id: ${id} tidak ditemukan`,
+        );
+      }
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi', // Perbaiki pesan error
+      );
+    }
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} residentManage`;
+  async remove(id: string) {
+    try {
+      await this.prisma.residents.findUnique({
+        where: { residentId: id },
+      });
+
+      return await this.prisma.residents.delete({
+        where: { residentId: id },
+      });
+    } catch (error) {
+      if ((error as Error).name === 'NotFoundError') {
+        throw new NotFoundException(
+          `Pengguna aplikasi dengan id: ${id} tidak ditemukan`,
+        );
+      }
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Menghapus Data Pengguna Aplikasi',
+      );
+    }
   }
 }

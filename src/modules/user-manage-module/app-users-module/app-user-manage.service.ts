@@ -15,7 +15,7 @@ export class AppUserManageService {
     try {
       const hashedPassword = await this.passwordHashing(createRequest.password);
 
-      return await this.prisma.user.create({
+      return await this.prisma.users.create({
         data: {
           fullName: createRequest.fullName,
           firstName: createRequest.firstName,
@@ -30,14 +30,14 @@ export class AppUserManageService {
       // Tangkap error untuk debugging
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Membuat Data Pengguna Aplikasi',
+        'Terjadi Kesalahan Saat Membuat Data Penghuni',
       );
     }
   }
 
   async findAll() {
     try {
-      return await this.prisma.user.findMany({
+      return await this.prisma.users.findMany({
         select: {
           // Pilihan yang lebih baik daripada include dengan omit
           id: true,
@@ -80,14 +80,14 @@ export class AppUserManageService {
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi',
+        'Terjadi Kesalahan Saat Mendapatkan Data Penghuni',
       );
     }
   }
 
   async findOne(id: string) {
     try {
-      return await this.prisma.user.findUniqueOrThrow({
+      return await this.prisma.users.findUniqueOrThrow({
         where: { id: id },
         include: {
           Employee: {
@@ -142,23 +142,23 @@ export class AppUserManageService {
       // Catch specific errors like NotFoundError
       if ((error as Error).name === 'NotFoundError') {
         throw new NotFoundException(
-          `Pengguna aplikasi dengan id: ${id} tidak ditemukan`,
+          `Penghuni dengan id: ${id} tidak ditemukan`,
         );
       }
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi', // Perbaiki pesan error
+        'Terjadi Kesalahan Saat Mendapatkan Data Penghuni', // Perbaiki pesan error
       );
     }
   }
 
   async update(id: string, updateRequest: UpdateAppUserManageDto) {
     try {
-      const existData = await this.prisma.user.findUniqueOrThrow({
+      const existData = await this.prisma.users.findUniqueOrThrow({
         where: { id: id },
       });
 
-      return this.prisma.user.update({
+      return this.prisma.users.update({
         where: { id: id },
         data: {
           fullName: updateRequest.fullName ?? existData.fullName,
@@ -177,34 +177,33 @@ export class AppUserManageService {
     } catch (error) {
       if ((error as Error).name === 'NotFoundError') {
         throw new NotFoundException(
-          `Pengguna aplikasi dengan id: ${id} tidak ditemukan`,
+          `Penghuni dengan id: ${id} tidak ditemukan`,
         );
       }
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Pengguna Aplikasi',
+        'Terjadi Kesalahan Saat Mendapatkan Penghuni',
       );
     }
   }
 
   async remove(id: string) {
     try {
-      // Gunakan findUniqueOrThrow untuk validasi sebelum menghapus
-      await this.prisma.user.findUniqueOrThrow({
+      await this.prisma.users.findUniqueOrThrow({
         where: { id: id },
       });
-      return await this.prisma.user.delete({
+      return await this.prisma.users.delete({
         where: { id: id },
       });
     } catch (error) {
       if ((error as Error).name === 'NotFoundError') {
         throw new NotFoundException(
-          `Pengguna aplikasi dengan id: ${id} tidak ditemukan`,
+          `Penghuni dengan id: ${id} tidak ditemukan`,
         );
       }
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Menghapus Data Pengguna Aplikasi',
+        'Terjadi Kesalahan Saat Menghapus Data Penghuni',
       );
     }
   }

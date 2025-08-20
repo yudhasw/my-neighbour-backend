@@ -120,7 +120,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
+exports.Prisma.UsersScalarFieldEnum = {
   id: 'id',
   fullName: 'fullName',
   firstName: 'firstName',
@@ -139,7 +139,7 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ResidentScalarFieldEnum = {
+exports.Prisma.ResidentsScalarFieldEnum = {
   residentId: 'residentId',
   emergencyContactName: 'emergencyContactName',
   emergencyContactNumber: 'emergencyContactNumber',
@@ -151,7 +151,7 @@ exports.Prisma.ResidentScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.EmployeeScalarFieldEnum = {
+exports.Prisma.EmployeesScalarFieldEnum = {
   employeeId: 'employeeId',
   employeeIdNumber: 'employeeIdNumber',
   hireDate: 'hireDate',
@@ -163,7 +163,7 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.MaintenanceRequestScalarFieldEnum = {
+exports.Prisma.MaintenanceRequestsScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
@@ -177,7 +177,7 @@ exports.Prisma.MaintenanceRequestScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ComplaintScalarFieldEnum = {
+exports.Prisma.ComplaintsScalarFieldEnum = {
   id: 'id',
   name: 'name',
   desciption: 'desciption',
@@ -191,7 +191,7 @@ exports.Prisma.ComplaintScalarFieldEnum = {
   images: 'images'
 };
 
-exports.Prisma.PaymentScalarFieldEnum = {
+exports.Prisma.PaymentsScalarFieldEnum = {
   id: 'id',
   amount: 'amount',
   paymentDate: 'paymentDate',
@@ -208,7 +208,7 @@ exports.Prisma.PaymentScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.AnnouncementScalarFieldEnum = {
+exports.Prisma.AnnouncementsScalarFieldEnum = {
   id: 'id',
   title: 'title',
   content: 'content',
@@ -220,7 +220,7 @@ exports.Prisma.AnnouncementScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ForumPostScalarFieldEnum = {
+exports.Prisma.ForumPostsScalarFieldEnum = {
   id: 'id',
   title: 'title',
   content: 'content',
@@ -232,14 +232,14 @@ exports.Prisma.ForumPostScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.PostTagScalarFieldEnum = {
+exports.Prisma.PostTagsScalarFieldEnum = {
   id: 'id',
   tagName: 'tagName',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ForumCommentScalarFieldEnum = {
+exports.Prisma.ForumCommentsScalarFieldEnum = {
   id: 'id',
   content: 'content',
   userId: 'userId',
@@ -248,7 +248,7 @@ exports.Prisma.ForumCommentScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.UnitScalarFieldEnum = {
+exports.Prisma.UnitsScalarFieldEnum = {
   id: 'id',
   unitNumber: 'unitNumber',
   buildingName: 'buildingName',
@@ -263,7 +263,7 @@ exports.Prisma.UnitScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.LeaseScalarFieldEnum = {
+exports.Prisma.LeasesScalarFieldEnum = {
   id: 'id',
   startDate: 'startDate',
   endDate: 'endDate',
@@ -276,7 +276,7 @@ exports.Prisma.LeaseScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.BillScalarFieldEnum = {
+exports.Prisma.BillsScalarFieldEnum = {
   id: 'id',
   amount: 'amount',
   type: 'type',
@@ -285,11 +285,10 @@ exports.Prisma.BillScalarFieldEnum = {
   unitId: 'unitId',
   employeeId: 'employeeId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  userId: 'userId'
+  updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ContactScalarFieldEnum = {
+exports.Prisma.ContactsScalarFieldEnum = {
   id: 'id',
   name: 'name',
   role: 'role',
@@ -390,20 +389,20 @@ exports.ContactRole = exports.$Enums.ContactRole = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User',
-  Resident: 'Resident',
-  Employee: 'Employee',
-  MaintenanceRequest: 'MaintenanceRequest',
-  Complaint: 'Complaint',
-  Payment: 'Payment',
-  Announcement: 'Announcement',
-  ForumPost: 'ForumPost',
-  PostTag: 'PostTag',
-  ForumComment: 'ForumComment',
-  Unit: 'Unit',
-  Lease: 'Lease',
-  Bill: 'Bill',
-  Contact: 'Contact'
+  Users: 'Users',
+  Residents: 'Residents',
+  Employees: 'Employees',
+  MaintenanceRequests: 'MaintenanceRequests',
+  Complaints: 'Complaints',
+  Payments: 'Payments',
+  Announcements: 'Announcements',
+  ForumPosts: 'ForumPosts',
+  PostTags: 'PostTags',
+  ForumComments: 'ForumComments',
+  Units: 'Units',
+  Leases: 'Leases',
+  Bills: 'Bills',
+  Contacts: 'Contacts'
 };
 
 /**
