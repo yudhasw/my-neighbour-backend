@@ -16,6 +16,7 @@ const employee_manage_module_1 = require("../user-manage-module/employee-module/
 const resident_manage_module_1 = require("../user-manage-module/resident-module/resident-manage.module");
 const resident_manage_service_1 = require("../user-manage-module/resident-module/resident-manage.service");
 const employee_manage_service_1 = require("../user-manage-module/employee-module/employee-manage.service");
+const generalHelper_1 = require("../../common/helper/generalHelper");
 let ComplaintManageModule = class ComplaintManageModule {
 };
 exports.ComplaintManageModule = ComplaintManageModule;
@@ -28,6 +29,7 @@ exports.ComplaintManageModule = ComplaintManageModule = __decorate([
             database_service_1.DatabaseService,
             resident_manage_service_1.ResidentManageService,
             employee_manage_service_1.EmployeeManageService,
+            generalHelper_1.GeneralHelper,
         ],
         exports: [complaint_manage_service_1.ComplaintManageService],
     })
