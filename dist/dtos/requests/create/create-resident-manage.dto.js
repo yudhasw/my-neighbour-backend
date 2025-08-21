@@ -13,6 +13,7 @@ exports.CreateResidentManageDto = void 0;
 const class_validator_1 = require("class-validator");
 const prisma_1 = require("../../../common/database/generated/prisma");
 const class_transformer_1 = require("class-transformer");
+const is_unique_validators_1 = require("../../../common/pipes/validators/is-unique-validators");
 class CreateResidentManageDto {
     residentId;
     emergencyContactName;
@@ -27,6 +28,7 @@ __decorate([
     (0, class_validator_1.IsUUID)('4', { message: 'ID penghuni harus berupa UUID versi 4 yang valid.' }),
     (0, class_validator_1.IsNotEmpty)({ message: 'ID penghuni tidak boleh kosong.' }),
     (0, class_validator_1.IsString)({ message: 'Nama kontak darurat harus berupa teks.' }),
+    (0, is_unique_validators_1.IsUnique)({ field: 'residentId', model: 'residents' }, { message: 'Resident Sudah terdaftar' }),
     __metadata("design:type", String)
 ], CreateResidentManageDto.prototype, "residentId", void 0);
 __decorate([
@@ -42,13 +44,14 @@ __decorate([
 ], CreateResidentManageDto.prototype, "emergencyContactNumber", void 0);
 __decorate([
     (0, class_validator_1.IsDate)({ message: 'Tanggal masuk harus berupa format tanggal yang valid.' }),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'Tanggal Masuk tidak boleh kosong' }),
     (0, class_transformer_1.Type)(() => Date),
     __metadata("design:type", Date)
 ], CreateResidentManageDto.prototype, "movedInDate", void 0);
 __decorate([
     (0, class_validator_1.IsDate)({ message: 'Tanggal keluar harus berupa format tanggal yang valid.' }),
     (0, class_validator_1.ValidateIf)((o) => o.movedOutDate !== null),
+    (0, class_validator_1.IsOptional)(),
     (0, class_transformer_1.Type)(() => Date),
     __metadata("design:type", Date)
 ], CreateResidentManageDto.prototype, "movedOutDate", void 0);
@@ -65,7 +68,7 @@ __decorate([
         message: 'ID Unit Hunian harus berupa UUID versi 4 yang valid.',
     }),
     (0, class_validator_1.IsString)({ message: 'Nama kontak darurat harus berupa teks.' }),
-    (0, class_validator_1.IsNotEmpty)({ message: 'ID Unit Hunian tidak boleh kosong.' }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateResidentManageDto.prototype, "unitId", void 0);
 //# sourceMappingURL=create-resident-manage.dto.js.map

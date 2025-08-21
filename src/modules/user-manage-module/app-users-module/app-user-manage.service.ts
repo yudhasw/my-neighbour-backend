@@ -7,6 +7,7 @@ import * as bcrypt from 'bcrypt';
 import { CreateAppUserManageDto } from '../../../dtos/requests/create/create-app-user-manage.dto';
 import { UpdateAppUserManageDto } from '../../../dtos/requests/update/update-app-user-manage.dto';
 import { DatabaseService } from '../../../common/database/database.service';
+import { PrismaClientKnownRequestError } from '../../../common/database/generated/prisma/runtime/library';
 
 @Injectable()
 export class AppUserManageService {
@@ -24,6 +25,9 @@ export class AppUserManageService {
           password: hashedPassword,
           role: createRequest.role,
           gender: createRequest.gender,
+        },
+        omit: {
+          password: true,
         },
       });
     } catch (error) {
@@ -158,7 +162,13 @@ export class AppUserManageService {
         where: { id: id },
       });
 
-      return this.prisma.users.update({
+      if (!existData) {
+        throw new NotFoundException(
+          `Resident dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
+      const updatedData = await this.prisma.users.update({
         where: { id: id },
         data: {
           fullName: updateRequest.fullName ?? existData.fullName,
@@ -173,13 +183,27 @@ export class AppUserManageService {
           dateOfBirth: updateRequest.dateOfBirth ?? existData.dateOfBirth,
           updatedAt: new Date(),
         },
+        omit: {
+          password: true,
+        },
       });
+
+      return updatedData;
     } catch (error) {
       if ((error as Error).name === 'NotFoundError') {
         throw new NotFoundException(
           `Penghuni dengan id: ${id} tidak ditemukan`,
         );
       }
+
+      if (error instanceof PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException(
+            `Resident dengan id: ${id} tidak ditemukan`,
+          );
+        }
+      }
+
       console.error((error as Error).message);
       throw new InternalServerErrorException(
         'Terjadi Kesalahan Saat Mendapatkan Penghuni',
@@ -189,9 +213,16 @@ export class AppUserManageService {
 
   async remove(id: string) {
     try {
-      await this.prisma.users.findUniqueOrThrow({
+      const existData = await this.prisma.users.findUniqueOrThrow({
         where: { id: id },
       });
+
+      if (!existData) {
+        throw new NotFoundException(
+          `Resident dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
       return await this.prisma.users.delete({
         where: { id: id },
       });
@@ -201,6 +232,15 @@ export class AppUserManageService {
           `Penghuni dengan id: ${id} tidak ditemukan`,
         );
       }
+
+      if (error instanceof PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException(
+            `Resident dengan id: ${id} tidak ditemukan`,
+          );
+        }
+      }
+
       console.error((error as Error).message);
       throw new InternalServerErrorException(
         'Terjadi Kesalahan Saat Menghapus Data Penghuni',

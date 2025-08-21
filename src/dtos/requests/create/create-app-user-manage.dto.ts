@@ -5,6 +5,8 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  IsStrongPassword,
+  MaxLength,
   MinLength,
 } from 'class-validator';
 import { Gender, UserRole } from '../../../common/database/generated/prisma';
@@ -36,7 +38,7 @@ export class CreateAppUserManageDto {
   @IsString({ message: 'Email utama harus berupa teks' })
   @IsNotEmpty({ message: 'Email utama tidak boleh kosong' })
   @IsUnique(
-    { field: 'primaryEmail', model: 'user' },
+    { field: 'primaryEmail', model: 'users' },
     { message: 'Email utama sudah digunakan' },
   )
   @IsEmail(
@@ -53,7 +55,7 @@ export class CreateAppUserManageDto {
   @IsString({ message: 'Email sekunder harus berupa teks' })
   @IsOptional()
   @IsUnique(
-    { field: 'secondaryEmail', model: 'user' },
+    { field: 'secondaryEmail', model: 'users' },
     { message: 'Email sekunder sudah digunakan' },
   )
   @IsEmail(
@@ -69,14 +71,33 @@ export class CreateAppUserManageDto {
 
   @IsString({ message: 'Password harus berupa teks' })
   @IsNotEmpty({ message: 'Password tidak boleh kosong' })
-  @MinLength(8, { message: 'Password minimal 8 karakter' })
+  @MinLength(4, { message: 'Password minimal 4 karakter' })
+  @IsStrongPassword(
+    {
+      minLength: 4,
+      minLowercase: 1,
+      minNumbers: 3,
+      minSymbols: 1,
+      minUppercase: 1,
+    },
+    {
+      message: 'Kata sandi harus minimal 4 karakter, 3 angka, dan 1 simbol.',
+    },
+  )
+  @MaxLength(15, {
+    message: 'Password maksimal 15 karakter',
+  })
   readonly password: string;
 
   @IsNotEmpty({ message: 'Peran tidak boleh kosong' })
-  @IsEnum(UserRole, { message: 'Peran tidak valid' })
+  @IsEnum(UserRole, {
+    message: 'Peran tidak valid: ' + Object.values(UserRole).join(', '),
+  })
   readonly role: UserRole;
 
   @IsNotEmpty({ message: 'Jenis kelamin tidak boleh kosong' })
-  @IsEnum(Gender, { message: 'Jenis kelamin tidak valid' })
+  @IsEnum(Gender, {
+    message: 'Jenis kelamin tidak valid: ' + Object.values(Gender).join(', '),
+  })
   readonly gender: Gender;
 }

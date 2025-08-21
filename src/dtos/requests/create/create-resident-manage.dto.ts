@@ -11,11 +11,16 @@ import {
 } from 'class-validator';
 import { ResidentStatus } from '../../../common/database/generated/prisma';
 import { Type } from 'class-transformer';
+import { IsUnique } from 'src/common/pipes/validators/is-unique-validators';
 
 export class CreateResidentManageDto {
   @IsUUID('4', { message: 'ID penghuni harus berupa UUID versi 4 yang valid.' })
   @IsNotEmpty({ message: 'ID penghuni tidak boleh kosong.' })
   @IsString({ message: 'Nama kontak darurat harus berupa teks.' })
+  @IsUnique(
+    { field: 'residentId', model: 'residents' },
+    { message: 'Resident Sudah terdaftar' },
+  )
   readonly residentId: string;
 
   @IsString({ message: 'Nama kontak darurat harus berupa teks.' })
@@ -28,12 +33,13 @@ export class CreateResidentManageDto {
   readonly emergencyContactNumber: string;
 
   @IsDate({ message: 'Tanggal masuk harus berupa format tanggal yang valid.' })
-  @IsOptional()
+  @IsNotEmpty({ message: 'Tanggal Masuk tidak boleh kosong' })
   @Type(() => Date)
   readonly movedInDate: Date;
 
   @IsDate({ message: 'Tanggal keluar harus berupa format tanggal yang valid.' })
   @ValidateIf((o) => o.movedOutDate !== null)
+  @IsOptional()
   @Type(() => Date)
   readonly movedOutDate: Date;
 
@@ -49,6 +55,7 @@ export class CreateResidentManageDto {
     message: 'ID Unit Hunian harus berupa UUID versi 4 yang valid.',
   })
   @IsString({ message: 'Nama kontak darurat harus berupa teks.' })
-  @IsNotEmpty({ message: 'ID Unit Hunian tidak boleh kosong.' })
+  // @IsNotEmpty({ message: 'ID Unit Hunian tidak boleh kosong.' })
+  @IsOptional()
   readonly unitId: string;
 }

@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResidentManageService = void 0;
 const common_1 = require("@nestjs/common");
 const database_service_1 = require("../../../common/database/database.service");
+const library_1 = require("../../../common/database/generated/prisma/runtime/library");
 let ResidentManageService = class ResidentManageService {
     prisma;
     constructor(prisma) {
@@ -103,26 +104,35 @@ let ResidentManageService = class ResidentManageService {
             const existData = await this.prisma.residents.findUnique({
                 where: { residentId: id },
             });
-            return await this.prisma.residents.update({
+            if (!existData) {
+                throw new common_1.NotFoundException(`Resident dengan id: ${id} tidak ditemukan`);
+            }
+            const updatedData = await this.prisma.residents.update({
                 where: { residentId: id },
                 data: {
                     emergencyContactName: updateRequest.emergencyContactName ??
-                        existData?.emergencyContactName,
+                        existData.emergencyContactName,
                     emergencyContactNumber: updateRequest.emergencyContactNumber ??
-                        existData?.emergencyContactNumber,
-                    movedInDate: updateRequest.movedInDate ?? existData?.movedInDate,
-                    movedOutDate: updateRequest.movedOutDate ?? existData?.movedOutDate,
-                    residentStatus: updateRequest.residentStatus ?? existData?.residentStatus,
-                    unitId: updateRequest.unitId ?? existData?.unitId,
+                        existData.emergencyContactNumber,
+                    movedInDate: updateRequest.movedInDate ?? existData.movedInDate,
+                    movedOutDate: updateRequest.movedOutDate ?? existData.movedOutDate,
+                    residentStatus: updateRequest.residentStatus ?? existData.residentStatus,
+                    unitId: updateRequest.unitId ?? existData.unitId,
                     updatedAt: new Date(),
                 },
             });
+            return updatedData;
         }
         catch (error) {
-            if (error.name === 'NotFoundError') {
-                throw new common_1.NotFoundException(`Pengguna aplikasi dengan id: ${id} tidak ditemukan`);
+            if (error instanceof common_1.NotFoundException) {
+                throw error;
             }
-            console.error(error.message);
+            if (error instanceof library_1.PrismaClientKnownRequestError) {
+                if (error.code === 'P2025') {
+                    throw new common_1.NotFoundException(`Resident dengan id: ${id} tidak ditemukan`);
+                }
+            }
+            console.error(error.message, error.cause);
             throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi');
         }
     }

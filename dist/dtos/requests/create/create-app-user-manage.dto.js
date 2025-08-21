@@ -56,7 +56,7 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsString)({ message: 'Email utama harus berupa teks' }),
     (0, class_validator_1.IsNotEmpty)({ message: 'Email utama tidak boleh kosong' }),
-    (0, is_unique_validators_1.IsUnique)({ field: 'primaryEmail', model: 'user' }, { message: 'Email utama sudah digunakan' }),
+    (0, is_unique_validators_1.IsUnique)({ field: 'primaryEmail', model: 'users' }, { message: 'Email utama sudah digunakan' }),
     (0, class_validator_1.IsEmail)({
         ignore_max_length: true,
         allow_display_name: true,
@@ -68,7 +68,7 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsString)({ message: 'Email sekunder harus berupa teks' }),
     (0, class_validator_1.IsOptional)(),
-    (0, is_unique_validators_1.IsUnique)({ field: 'secondaryEmail', model: 'user' }, { message: 'Email sekunder sudah digunakan' }),
+    (0, is_unique_validators_1.IsUnique)({ field: 'secondaryEmail', model: 'users' }, { message: 'Email sekunder sudah digunakan' }),
     (0, class_validator_1.IsEmail)({
         ignore_max_length: true,
         allow_display_name: true,
@@ -80,17 +80,33 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsString)({ message: 'Password harus berupa teks' }),
     (0, class_validator_1.IsNotEmpty)({ message: 'Password tidak boleh kosong' }),
-    (0, class_validator_1.MinLength)(8, { message: 'Password minimal 8 karakter' }),
+    (0, class_validator_1.MinLength)(4, { message: 'Password minimal 4 karakter' }),
+    (0, class_validator_1.IsStrongPassword)({
+        minLength: 4,
+        minLowercase: 1,
+        minNumbers: 3,
+        minSymbols: 1,
+        minUppercase: 1,
+    }, {
+        message: 'Kata sandi harus minimal 4 karakter, 3 angka, dan 1 simbol.',
+    }),
+    (0, class_validator_1.MaxLength)(15, {
+        message: 'Password maksimal 15 karakter',
+    }),
     __metadata("design:type", String)
 ], CreateAppUserManageDto.prototype, "password", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'Peran tidak boleh kosong' }),
-    (0, class_validator_1.IsEnum)(prisma_1.UserRole, { message: 'Peran tidak valid' }),
+    (0, class_validator_1.IsEnum)(prisma_1.UserRole, {
+        message: 'Peran tidak valid: ' + Object.values(prisma_1.UserRole).join(', '),
+    }),
     __metadata("design:type", String)
 ], CreateAppUserManageDto.prototype, "role", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'Jenis kelamin tidak boleh kosong' }),
-    (0, class_validator_1.IsEnum)(prisma_1.Gender, { message: 'Jenis kelamin tidak valid' }),
+    (0, class_validator_1.IsEnum)(prisma_1.Gender, {
+        message: 'Jenis kelamin tidak valid: ' + Object.values(prisma_1.Gender).join(', '),
+    }),
     __metadata("design:type", String)
 ], CreateAppUserManageDto.prototype, "gender", void 0);
 //# sourceMappingURL=create-app-user-manage.dto.js.map

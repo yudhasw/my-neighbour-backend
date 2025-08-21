@@ -6,6 +6,7 @@ import {
 import { CreateResidentManageDto } from '../../../dtos/requests/create/create-resident-manage.dto';
 import { UpdateResidentManageDto } from '../../../dtos/requests/update/update-resident-manage.dto';
 import { DatabaseService } from '../../../common/database/database.service';
+import { PrismaClientKnownRequestError } from '../../../common/database/generated/prisma/runtime/library';
 
 @Injectable()
 export class ResidentManageService {
@@ -103,30 +104,44 @@ export class ResidentManageService {
         where: { residentId: id },
       });
 
-      return await this.prisma.residents.update({
+      if (!existData) {
+        throw new NotFoundException(
+          `Resident dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
+      const updatedData = await this.prisma.residents.update({
         where: { residentId: id },
         data: {
           emergencyContactName:
             updateRequest.emergencyContactName ??
-            existData?.emergencyContactName,
+            existData.emergencyContactName,
           emergencyContactNumber:
             updateRequest.emergencyContactNumber ??
-            existData?.emergencyContactNumber,
-          movedInDate: updateRequest.movedInDate ?? existData?.movedInDate,
-          movedOutDate: updateRequest.movedOutDate ?? existData?.movedOutDate,
+            existData.emergencyContactNumber,
+          movedInDate: updateRequest.movedInDate ?? existData.movedInDate,
+          movedOutDate: updateRequest.movedOutDate ?? existData.movedOutDate,
           residentStatus:
-            updateRequest.residentStatus ?? existData?.residentStatus,
-          unitId: updateRequest.unitId ?? existData?.unitId,
+            updateRequest.residentStatus ?? existData.residentStatus,
+          unitId: updateRequest.unitId ?? existData.unitId,
           updatedAt: new Date(),
         },
       });
+
+      return updatedData;
     } catch (error) {
-      if ((error as Error).name === 'NotFoundError') {
-        throw new NotFoundException(
-          `Pengguna aplikasi dengan id: ${id} tidak ditemukan`,
-        );
+      if (error instanceof NotFoundException) {
+        throw error;
       }
-      console.error((error as Error).message);
+
+      if (error instanceof PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException(
+            `Resident dengan id: ${id} tidak ditemukan`,
+          );
+        }
+      }
+      console.error((error as Error).message, (error as Error).cause);
       throw new InternalServerErrorException(
         'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi', // Perbaiki pesan error
       );
