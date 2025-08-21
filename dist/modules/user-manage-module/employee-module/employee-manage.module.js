@@ -13,6 +13,7 @@ const employee_manage_controller_1 = require("./employee-manage.controller");
 const database_module_1 = require("../../../common/database/database.module");
 const database_service_1 = require("../../../common/database/database.service");
 const app_user_manage_service_1 = require("../app-users-module/app-user-manage.service");
+const generalHelper_1 = require("../../../common/helper/generalHelper");
 let EmployeeManageModule = class EmployeeManageModule {
 };
 exports.EmployeeManageModule = EmployeeManageModule;
@@ -20,7 +21,12 @@ exports.EmployeeManageModule = EmployeeManageModule = __decorate([
     (0, common_1.Module)({
         imports: [database_module_1.DatabaseModule],
         controllers: [employee_manage_controller_1.EmployeeManageController],
-        providers: [employee_manage_service_1.EmployeeManageService, database_service_1.DatabaseService, app_user_manage_service_1.AppUserManageService],
+        providers: [
+            employee_manage_service_1.EmployeeManageService,
+            database_service_1.DatabaseService,
+            app_user_manage_service_1.AppUserManageService,
+            generalHelper_1.GeneralHelper,
+        ],
         exports: [employee_manage_service_1.EmployeeManageService],
     })
 ], EmployeeManageModule);
