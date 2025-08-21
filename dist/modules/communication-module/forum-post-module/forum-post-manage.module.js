@@ -11,8 +11,9 @@ const common_1 = require("@nestjs/common");
 const forum_post_manage_service_1 = require("./forum-post-manage.service");
 const forum_post_manage_controller_1 = require("./forum-post-manage.controller");
 const database_service_1 = require("../../../common/database/database.service");
-const employee_manage_service_1 = require("../../user-manage-module/employee-module/employee-manage.service");
-const resident_manage_service_1 = require("../../user-manage-module/resident-module/resident-manage.service");
+const employee_manage_service_1 = require("../../../modules/user-manage-module/employee-module/employee-manage.service");
+const resident_manage_service_1 = require("../../../modules/user-manage-module/resident-module/resident-manage.service");
+const generalHelper_1 = require("../../../common/helper/generalHelper");
 let ForumPostManageModule = class ForumPostManageModule {
 };
 exports.ForumPostManageModule = ForumPostManageModule;
@@ -24,6 +25,7 @@ exports.ForumPostManageModule = ForumPostManageModule = __decorate([
             database_service_1.DatabaseService,
             employee_manage_service_1.EmployeeManageService,
             resident_manage_service_1.ResidentManageService,
+            generalHelper_1.GeneralHelper,
         ],
         exports: [forum_post_manage_service_1.ForumPostManageService],
     })

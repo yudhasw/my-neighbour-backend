@@ -6,8 +6,8 @@ import {
 import { CreateEmployeeManageDto } from '../../../dtos/requests/create/create-employee-manage.dto';
 import { UpdateEmployeeManageDto } from '../../../dtos/requests/update/update-employee-manage.dto';
 import { DatabaseService } from '../../../common/database/database.service';
-import { GeneralHelper } from 'src/common/helper/generalHelper';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import { GeneralHelper } from '../../../common/helper/generalHelper';
+import { PrismaClientKnownRequestError } from '../../../common/database/generated/prisma/runtime/library';
 
 @Injectable()
 export class EmployeeManageService {

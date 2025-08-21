@@ -13,7 +13,7 @@ exports.EmployeeManageService = void 0;
 const common_1 = require("@nestjs/common");
 const database_service_1 = require("../../../common/database/database.service");
 const generalHelper_1 = require("../../../common/helper/generalHelper");
-const library_1 = require("@prisma/client/runtime/library");
+const library_1 = require("../../../common/database/generated/prisma/runtime/library");
 let EmployeeManageService = class EmployeeManageService {
     prisma;
     helper;

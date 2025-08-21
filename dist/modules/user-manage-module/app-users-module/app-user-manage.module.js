@@ -16,6 +16,7 @@ const resident_manage_module_1 = require("../resident-module/resident-manage.mod
 const database_service_1 = require("../../../common/database/database.service");
 const employee_manage_service_1 = require("../employee-module/employee-manage.service");
 const resident_manage_service_1 = require("../resident-module/resident-manage.service");
+const generalHelper_1 = require("../../../common/helper/generalHelper");
 let AppUserManageModule = class AppUserManageModule {
 };
 exports.AppUserManageModule = AppUserManageModule;
@@ -28,6 +29,7 @@ exports.AppUserManageModule = AppUserManageModule = __decorate([
             database_service_1.DatabaseService,
             resident_manage_service_1.ResidentManageService,
             employee_manage_service_1.EmployeeManageService,
+            generalHelper_1.GeneralHelper,
         ],
         exports: [app_user_manage_service_1.AppUserManageService],
     })

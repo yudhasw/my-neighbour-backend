@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { EmployeeManageService } from './employee-manage.service';
 import { EmployeeManageController } from './employee-manage.controller';
-import { DatabaseModule } from 'src/common/database/database.module';
-import { DatabaseService } from 'src/common/database/database.service';
+import { DatabaseModule } from '../../../common/database/database.module';
+import { DatabaseService } from '../../../common/database/database.service';
 import { AppUserManageService } from '../app-users-module/app-user-manage.service';
 
 @Module({

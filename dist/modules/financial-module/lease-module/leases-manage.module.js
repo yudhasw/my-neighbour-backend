@@ -11,10 +11,10 @@ const common_1 = require("@nestjs/common");
 const leases_manage_service_1 = require("./leases-manage.service");
 const leases_manage_controller_1 = require("./leases-manage.controller");
 const database_module_1 = require("../../../common/database/database.module");
-const unit_manage_module_1 = require("../../unit-manage-module/unit-manage.module");
-const resident_manage_module_1 = require("../../user-manage-module/resident-module/resident-manage.module");
-const unit_manage_service_1 = require("../../unit-manage-module/unit-manage.service");
-const resident_manage_service_1 = require("../../user-manage-module/resident-module/resident-manage.service");
+const unit_manage_module_1 = require("../../../modules/unit-manage-module/unit-manage.module");
+const resident_manage_module_1 = require("../../../modules/user-manage-module/resident-module/resident-manage.module");
+const unit_manage_service_1 = require("../../../modules/unit-manage-module/unit-manage.service");
+const resident_manage_service_1 = require("../../../modules/user-manage-module/resident-module/resident-manage.service");
 const database_service_1 = require("../../../common/database/database.service");
 let LeasesManageModule = class LeasesManageModule {
 };

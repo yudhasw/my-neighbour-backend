@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { BillingManageService } from './billing-manage.service';
 import { BillingManageController } from './billing-manage.controller';
-import { DatabaseModule } from 'src/common/database/database.module';
-import { DatabaseService } from 'src/common/database/database.service';
-import { UnitManageModule } from 'src/modules/unit-manage-module/unit-manage.module';
-import { UnitManageService } from 'src/modules/unit-manage-module/unit-manage.service';
-import { EmployeeManageModule } from 'src/modules/user-manage-module/employee-module/employee-manage.module';
-import { EmployeeManageService } from 'src/modules/user-manage-module/employee-module/employee-manage.service';
+import { DatabaseModule } from '../../../common/database/database.module';
+import { DatabaseService } from '../../../common/database/database.service';
+import { UnitManageModule } from '../../../modules/unit-manage-module/unit-manage.module';
+import { UnitManageService } from '../../../modules/unit-manage-module/unit-manage.service';
+import { EmployeeManageModule } from '../../../modules/user-manage-module/employee-module/employee-manage.module';
+import { EmployeeManageService } from '../../../modules/user-manage-module/employee-module/employee-manage.service';
+import { GeneralHelper } from '../../../common/helper/generalHelper';
 
 @Module({
   imports: [DatabaseModule, EmployeeManageModule, UnitManageModule],
@@ -16,6 +17,7 @@ import { EmployeeManageService } from 'src/modules/user-manage-module/employee-m
     DatabaseService,
     EmployeeManageService,
     UnitManageService,
+    GeneralHelper,
   ],
   exports: [BillingManageService],
 })
