@@ -17,6 +17,7 @@ const unit_manage_module_1 = require("../../unit-manage-module/unit-manage.modul
 const database_service_1 = require("../../../common/database/database.service");
 const resident_manage_service_1 = require("../../user-manage-module/resident-module/resident-manage.service");
 const unit_manage_service_1 = require("../../unit-manage-module/unit-manage.service");
+const generalHelper_1 = require("../../../common/helper/generalHelper");
 let PaymentsManageModule = class PaymentsManageModule {
 };
 exports.PaymentsManageModule = PaymentsManageModule;
@@ -34,6 +35,7 @@ exports.PaymentsManageModule = PaymentsManageModule = __decorate([
             database_service_1.DatabaseService,
             resident_manage_service_1.ResidentManageService,
             unit_manage_service_1.UnitManageService,
+            generalHelper_1.GeneralHelper,
         ],
         exports: [payments_manage_service_1.PaymentsManageService],
     })

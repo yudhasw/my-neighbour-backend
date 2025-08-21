@@ -106,7 +106,7 @@ export class ResidentManageService {
 
       if (!existData) {
         throw new NotFoundException(
-          `Resident dengan id: ${id} tidak ditemukan`,
+          `Penghuni dengan id: ${id} tidak ditemukan`,
         );
       }
 
@@ -137,7 +137,7 @@ export class ResidentManageService {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2025') {
           throw new NotFoundException(
-            `Resident dengan id: ${id} tidak ditemukan`,
+            `Penghuni dengan id: ${id} tidak ditemukan`,
           );
         }
       }

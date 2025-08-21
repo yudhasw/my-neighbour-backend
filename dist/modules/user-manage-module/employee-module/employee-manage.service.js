@@ -37,7 +37,7 @@ let EmployeeManageService = class EmployeeManageService {
         }
         catch (error) {
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Membuat Data Pengguna Aplikasi');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Membuat Data Pegawai');
         }
     }
     async findAll() {
@@ -70,7 +70,7 @@ let EmployeeManageService = class EmployeeManageService {
         }
         catch (error) {
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pegawai');
         }
     }
     async findOne(id) {
@@ -128,7 +128,7 @@ let EmployeeManageService = class EmployeeManageService {
         }
         catch (error) {
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pegawai');
         }
     }
     async update(id, updateRequest) {
@@ -137,7 +137,7 @@ let EmployeeManageService = class EmployeeManageService {
                 where: { employeeId: id },
             });
             if (!existData) {
-                throw new common_1.NotFoundException(`Resident dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Pegawai dengan id: ${id} tidak ditemukan`);
             }
             const updatedData = this.prisma.employees.update({
                 where: { employeeId: id },
@@ -159,11 +159,11 @@ let EmployeeManageService = class EmployeeManageService {
             }
             if (error instanceof library_1.PrismaClientKnownRequestError) {
                 if (error.code === 'P2025') {
-                    throw new common_1.NotFoundException(`Resident dengan id: ${id} tidak ditemukan`);
+                    throw new common_1.NotFoundException(`Pegawai dengan id: ${id} tidak ditemukan`);
                 }
             }
             console.error(error.message, error.cause);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pegawai');
         }
     }
     async remove(id) {
@@ -172,7 +172,7 @@ let EmployeeManageService = class EmployeeManageService {
                 where: { employeeId: id },
             });
             if (!existData) {
-                throw new common_1.NotFoundException(`Resident dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Pegawai dengan id: ${id} tidak ditemukan`);
             }
             return await this.prisma.employees.delete({
                 where: { employeeId: id },
@@ -184,11 +184,11 @@ let EmployeeManageService = class EmployeeManageService {
             }
             if (error instanceof library_1.PrismaClientKnownRequestError) {
                 if (error.code === 'P2025') {
-                    throw new common_1.NotFoundException(`Resident dengan id: ${id} tidak ditemukan`);
+                    throw new common_1.NotFoundException(`Pegawai dengan id: ${id} tidak ditemukan`);
                 }
             }
             console.error(error.message, error.cause);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pegawai');
         }
     }
 };

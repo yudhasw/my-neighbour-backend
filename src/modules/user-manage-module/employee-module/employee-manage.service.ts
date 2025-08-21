@@ -31,7 +31,7 @@ export class EmployeeManageService {
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Membuat Data Pengguna Aplikasi',
+        'Terjadi Kesalahan Saat Membuat Data Pegawai',
       );
     }
   }
@@ -66,7 +66,7 @@ export class EmployeeManageService {
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi',
+        'Terjadi Kesalahan Saat Mendapatkan Data Pegawai',
       );
     }
   }
@@ -126,7 +126,7 @@ export class EmployeeManageService {
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi',
+        'Terjadi Kesalahan Saat Mendapatkan Data Pegawai',
       );
     }
   }
@@ -138,9 +138,7 @@ export class EmployeeManageService {
       });
 
       if (!existData) {
-        throw new NotFoundException(
-          `Resident dengan id: ${id} tidak ditemukan`,
-        );
+        throw new NotFoundException(`Pegawai dengan id: ${id} tidak ditemukan`);
       }
 
       const updatedData = this.prisma.employees.update({
@@ -169,13 +167,13 @@ export class EmployeeManageService {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2025') {
           throw new NotFoundException(
-            `Resident dengan id: ${id} tidak ditemukan`,
+            `Pegawai dengan id: ${id} tidak ditemukan`,
           );
         }
       }
       console.error((error as Error).message, (error as Error).cause);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi', // Perbaiki pesan error
+        'Terjadi Kesalahan Saat Mendapatkan Data Pegawai', // Perbaiki pesan error
       );
     }
   }
@@ -187,9 +185,7 @@ export class EmployeeManageService {
       });
 
       if (!existData) {
-        throw new NotFoundException(
-          `Resident dengan id: ${id} tidak ditemukan`,
-        );
+        throw new NotFoundException(`Pegawai dengan id: ${id} tidak ditemukan`);
       }
 
       return await this.prisma.employees.delete({
@@ -203,13 +199,13 @@ export class EmployeeManageService {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2025') {
           throw new NotFoundException(
-            `Resident dengan id: ${id} tidak ditemukan`,
+            `Pegawai dengan id: ${id} tidak ditemukan`,
           );
         }
       }
       console.error((error as Error).message, (error as Error).cause);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi', // Perbaiki pesan error
+        'Terjadi Kesalahan Saat Mendapatkan Data Pegawai', // Perbaiki pesan error
       );
     }
   }

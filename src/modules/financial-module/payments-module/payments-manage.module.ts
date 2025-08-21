@@ -8,6 +8,7 @@ import { UnitManageModule } from '../../unit-manage-module/unit-manage.module';
 import { DatabaseService } from 'src/common/database/database.service';
 import { ResidentManageService } from 'src/modules/user-manage-module/resident-module/resident-manage.service';
 import { UnitManageService } from 'src/modules/unit-manage-module/unit-manage.service';
+import { GeneralHelper } from 'src/common/helper/generalHelper';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UnitManageService } from 'src/modules/unit-manage-module/unit-manage.se
     DatabaseService,
     ResidentManageService,
     UnitManageService,
+    GeneralHelper,
   ],
   exports: [PaymentsManageService],
 })

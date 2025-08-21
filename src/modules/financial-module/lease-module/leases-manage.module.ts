@@ -7,6 +7,7 @@ import { ResidentManageModule } from '../../../modules/user-manage-module/reside
 import { UnitManageService } from '../../../modules/unit-manage-module/unit-manage.service';
 import { ResidentManageService } from '../../../modules/user-manage-module/resident-module/resident-manage.service';
 import { DatabaseService } from '../../../common/database/database.service';
+import { GeneralHelper } from 'src/common/helper/generalHelper';
 
 @Module({
   imports: [DatabaseModule, UnitManageModule, ResidentManageModule],
@@ -16,6 +17,7 @@ import { DatabaseService } from '../../../common/database/database.service';
     DatabaseService,
     UnitManageService,
     ResidentManageService,
+    GeneralHelper,
   ],
   exports: [LeasesManageService],
 })

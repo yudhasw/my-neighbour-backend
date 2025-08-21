@@ -105,7 +105,7 @@ let ResidentManageService = class ResidentManageService {
                 where: { residentId: id },
             });
             if (!existData) {
-                throw new common_1.NotFoundException(`Resident dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Penghuni dengan id: ${id} tidak ditemukan`);
             }
             const updatedData = await this.prisma.residents.update({
                 where: { residentId: id },
@@ -129,7 +129,7 @@ let ResidentManageService = class ResidentManageService {
             }
             if (error instanceof library_1.PrismaClientKnownRequestError) {
                 if (error.code === 'P2025') {
-                    throw new common_1.NotFoundException(`Resident dengan id: ${id} tidak ditemukan`);
+                    throw new common_1.NotFoundException(`Penghuni dengan id: ${id} tidak ditemukan`);
                 }
             }
             console.error(error.message, error.cause);
