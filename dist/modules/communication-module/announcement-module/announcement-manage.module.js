@@ -12,6 +12,7 @@ const announcement_manage_service_1 = require("./announcement-manage.service");
 const announcement_manage_controller_1 = require("./announcement-manage.controller");
 const database_service_1 = require("../../../common/database/database.service");
 const employee_manage_service_1 = require("../../user-manage-module/employee-module/employee-manage.service");
+const generalHelper_1 = require("../../../common/helper/generalHelper");
 let AnnouncementManageModule = class AnnouncementManageModule {
 };
 exports.AnnouncementManageModule = AnnouncementManageModule;
@@ -22,6 +23,7 @@ exports.AnnouncementManageModule = AnnouncementManageModule = __decorate([
             announcement_manage_service_1.AnnouncementManageService,
             database_service_1.DatabaseService,
             employee_manage_service_1.EmployeeManageService,
+            generalHelper_1.GeneralHelper,
         ],
         exports: [announcement_manage_service_1.AnnouncementManageService],
     })
