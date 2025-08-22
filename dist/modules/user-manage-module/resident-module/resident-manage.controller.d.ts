@@ -5,14 +5,14 @@ export declare class ResidentManageController {
     private readonly residentManageService;
     constructor(residentManageService: ResidentManageService);
     create(createResidentManageDto: CreateResidentManageDto): Promise<{
+        createdAt: Date;
+        updatedAt: Date;
+        residentId: string;
         emergencyContactName: string | null;
         emergencyContactNumber: string | null;
         movedInDate: Date;
         movedOutDate: Date | null;
         residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
-        createdAt: Date;
-        updatedAt: Date;
-        residentId: string;
         unitId: string | null;
     }>;
     findAll(): Promise<({
@@ -30,17 +30,24 @@ export declare class ResidentManageController {
             Complaints: number;
         };
     } & {
+        createdAt: Date;
+        updatedAt: Date;
+        residentId: string;
         emergencyContactName: string | null;
         emergencyContactNumber: string | null;
         movedInDate: Date;
         movedOutDate: Date | null;
         residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
-        createdAt: Date;
-        updatedAt: Date;
-        residentId: string;
         unitId: string | null;
     })[]>;
     findOne(id: string): Promise<{
+        payments: {
+            description: string | null;
+            amount: number;
+            paymentDate: Date;
+            paymentMethod: import("src/common/database/generated/prisma").$Enums.PaymentMethod;
+            paymentFor: string;
+        }[];
         user: {
             fullName: string;
             firstName: string;
@@ -50,48 +57,41 @@ export declare class ResidentManageController {
             primaryEmail: string;
             gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
         };
-        payments: {
-            amount: number;
-            paymentDate: Date;
-            paymentMethod: import("src/common/database/generated/prisma").$Enums.PaymentMethod;
-            paymentFor: string;
-            description: string | null;
-        }[];
         _count: {
             payments: number;
             Complaints: number;
         };
     } & {
+        createdAt: Date;
+        updatedAt: Date;
+        residentId: string;
         emergencyContactName: string | null;
         emergencyContactNumber: string | null;
         movedInDate: Date;
         movedOutDate: Date | null;
         residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
-        createdAt: Date;
-        updatedAt: Date;
-        residentId: string;
         unitId: string | null;
     }>;
     update(id: string, updateResidentManageDto: UpdateResidentManageDto): Promise<{
+        createdAt: Date;
+        updatedAt: Date;
+        residentId: string;
         emergencyContactName: string | null;
         emergencyContactNumber: string | null;
         movedInDate: Date;
         movedOutDate: Date | null;
         residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
-        createdAt: Date;
-        updatedAt: Date;
-        residentId: string;
         unitId: string | null;
     }>;
     remove(id: string): Promise<{
+        createdAt: Date;
+        updatedAt: Date;
+        residentId: string;
         emergencyContactName: string | null;
         emergencyContactNumber: string | null;
         movedInDate: Date;
         movedOutDate: Date | null;
         residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
-        createdAt: Date;
-        updatedAt: Date;
-        residentId: string;
         unitId: string | null;
     }>;
 }

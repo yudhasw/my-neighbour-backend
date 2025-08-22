@@ -33,6 +33,8 @@ const app_user_manage_module_1 = require("./modules/user-manage-module/app-users
 const reports_manage_module_1 = require("./modules/reports-module/reports-manage.module");
 const operational_report_module_1 = require("./modules/reports-module/operational-report-module/operational-report.module");
 const payments_report_module_1 = require("./modules/reports-module/payments-report-module/payments-report.module");
+const auth_module_1 = require("./common/security/auth/auth.module");
+const mailer_manage_module_1 = require("./common/helper/mail/mailer-manage.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -41,6 +43,8 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             database_module_1.DatabaseModule,
             backend_api_module_1.BackendApiModule,
+            auth_module_1.AuthModule,
+            mailer_manage_module_1.MailerManageModule,
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
                 envFilePath: '.env',
@@ -50,6 +54,10 @@ exports.AppModule = AppModule = __decorate([
                     path: 'api',
                     module: backend_api_module_1.BackendApiModule,
                     children: [
+                        {
+                            path: 'auth',
+                            module: auth_module_1.AuthModule,
+                        },
                         {
                             path: 'users',
                             module: users_manage_module_1.UsersManageModule,
@@ -133,6 +141,10 @@ exports.AppModule = AppModule = __decorate([
                                     module: payments_report_module_1.PaymentsReportModule,
                                 },
                             ],
+                        },
+                        {
+                            path: 'mail',
+                            module: mailer_manage_module_1.MailerManageModule,
                         },
                     ],
                 },

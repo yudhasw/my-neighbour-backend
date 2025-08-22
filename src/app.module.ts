@@ -24,10 +24,14 @@ import { AppUserManageModule } from './modules/user-manage-module/app-users-modu
 import { ReportsManageModule } from './modules/reports-module/reports-manage.module';
 import { OperationalReportModule } from './modules/reports-module/operational-report-module/operational-report.module';
 import { PaymentsReportModule } from './modules/reports-module/payments-report-module/payments-report.module';
+import { AuthModule } from './common/security/auth/auth.module';
+import { MailerManageModule } from './common/helper/mail/mailer-manage.module';
 @Module({
   imports: [
     DatabaseModule,
     BackendApiModule,
+    AuthModule,
+    MailerManageModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
@@ -37,6 +41,10 @@ import { PaymentsReportModule } from './modules/reports-module/payments-report-m
         path: 'api',
         module: BackendApiModule,
         children: [
+          {
+            path: 'auth',
+            module: AuthModule,
+          },
           {
             path: 'users',
             module: UsersManageModule,
@@ -120,6 +128,10 @@ import { PaymentsReportModule } from './modules/reports-module/payments-report-m
                 module: PaymentsReportModule,
               },
             ],
+          },
+          {
+            path: 'mail',
+            module: MailerManageModule,
           },
         ],
       },

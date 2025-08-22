@@ -5,15 +5,15 @@ export declare class EmployeeManageController {
     private readonly employeeManageService;
     constructor(employeeManageService: EmployeeManageService);
     create(createEmployeeManageDto: CreateEmployeeManageDto): Promise<{
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         employeeIdNumber: string;
         hireDate: Date;
         employeePosition: import("src/common/database/generated/prisma").$Enums.EmployeeRole;
         workingHours: number;
         salary: number;
         bonus: number | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }>;
     findAll(): Promise<({
         user: {
@@ -26,20 +26,20 @@ export declare class EmployeeManageController {
             gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
         };
         _count: {
-            Announcements: number;
             MaintenanceRequests: number;
             Payments: number;
+            Announcements: number;
         };
     } & {
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         employeeIdNumber: string;
         hireDate: Date;
         employeePosition: import("src/common/database/generated/prisma").$Enums.EmployeeRole;
         workingHours: number;
         salary: number;
         bonus: number | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     })[]>;
     findOne(id: string): Promise<{
         user: {
@@ -51,18 +51,23 @@ export declare class EmployeeManageController {
             primaryEmail: string;
             gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
         };
+        _count: {
+            MaintenanceRequests: number;
+            Payments: number;
+            Announcements: number;
+        };
+        MaintenanceRequests: {
+            title: string;
+            status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+            description: string;
+            priority: import("src/common/database/generated/prisma").$Enums.MaintenancePriority;
+        }[];
         Announcements: {
             title: string;
             content: string;
             body: string;
             publishDate: Date;
             expiryDate: Date | null;
-        }[];
-        MaintenanceRequests: {
-            status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
-            title: string;
-            description: string;
-            priority: import("src/common/database/generated/prisma").$Enums.MaintenancePriority;
         }[];
         Complaint: {
             name: string;
@@ -72,42 +77,37 @@ export declare class EmployeeManageController {
             resolvedAt: Date | null;
             resolutionDetails: string | null;
         } | null;
-        _count: {
-            Announcements: number;
-            MaintenanceRequests: number;
-            Payments: number;
-        };
     } & {
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         employeeIdNumber: string;
         hireDate: Date;
         employeePosition: import("src/common/database/generated/prisma").$Enums.EmployeeRole;
         workingHours: number;
         salary: number;
         bonus: number | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }>;
     update(id: string, updateEmployeeManageDto: UpdateEmployeeManageDto): Promise<{
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         employeeIdNumber: string;
         hireDate: Date;
         employeePosition: import("src/common/database/generated/prisma").$Enums.EmployeeRole;
         workingHours: number;
         salary: number;
         bonus: number | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }>;
     remove(id: string): Promise<{
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         employeeIdNumber: string;
         hireDate: Date;
         employeePosition: import("src/common/database/generated/prisma").$Enums.EmployeeRole;
         workingHours: number;
         salary: number;
         bonus: number | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }>;
 }
