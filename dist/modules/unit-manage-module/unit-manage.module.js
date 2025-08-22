@@ -12,7 +12,6 @@ const unit_manage_service_1 = require("./unit-manage.service");
 const unit_manage_controller_1 = require("./unit-manage.controller");
 const database_module_1 = require("../../common/database/database.module");
 const database_service_1 = require("../../common/database/database.service");
-const resident_manage_service_1 = require("../user-manage-module/resident-module/resident-manage.service");
 const resident_manage_module_1 = require("../user-manage-module/resident-module/resident-manage.module");
 const generalHelper_1 = require("../../common/helper/generalHelper");
 let UnitManageModule = class UnitManageModule {
@@ -20,15 +19,9 @@ let UnitManageModule = class UnitManageModule {
 exports.UnitManageModule = UnitManageModule;
 exports.UnitManageModule = UnitManageModule = __decorate([
     (0, common_1.Module)({
-        imports: [database_module_1.DatabaseModule, resident_manage_module_1.ResidentManageModule],
+        imports: [database_module_1.DatabaseModule, resident_manage_module_1.ResidentManageModule, UnitManageModule],
         controllers: [unit_manage_controller_1.UnitManageController],
-        providers: [
-            unit_manage_service_1.UnitManageService,
-            database_service_1.DatabaseService,
-            resident_manage_service_1.ResidentManageService,
-            database_service_1.DatabaseService,
-            generalHelper_1.GeneralHelper,
-        ],
+        providers: [unit_manage_service_1.UnitManageService, database_service_1.DatabaseService, generalHelper_1.GeneralHelper],
         exports: [unit_manage_service_1.UnitManageService],
     })
 ], UnitManageModule);

@@ -7,12 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const path = require("path");
+const core_1 = require("@nestjs/core");
 const common_1 = require("@nestjs/common");
+const mailer_1 = require("@nestjs-modules/mailer");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const core_1 = require("@nestjs/core");
 const config_1 = require("@nestjs/config");
+const pug_adapter_1 = require("@nestjs-modules/mailer/dist/adapters/pug.adapter");
 const backend_api_module_1 = require("./modules/backend-api.module");
+const auth_module_1 = require("./common/security/auth/auth.module");
+const mailer_manage_module_1 = require("./common/helper/mail/mailer-manage.module");
 const database_module_1 = require("./common/database/database.module");
 const financial_module_1 = require("./modules/financial-module/financial.module");
 const communication_module_1 = require("./modules/communication-module/communication.module");
@@ -33,8 +38,6 @@ const app_user_manage_module_1 = require("./modules/user-manage-module/app-users
 const reports_manage_module_1 = require("./modules/reports-module/reports-manage.module");
 const operational_report_module_1 = require("./modules/reports-module/operational-report-module/operational-report.module");
 const payments_report_module_1 = require("./modules/reports-module/payments-report-module/payments-report.module");
-const auth_module_1 = require("./common/security/auth/auth.module");
-const mailer_manage_module_1 = require("./common/helper/mail/mailer-manage.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -149,6 +152,33 @@ exports.AppModule = AppModule = __decorate([
                     ],
                 },
             ]),
+            mailer_1.MailerModule.forRootAsync({
+                inject: [config_1.ConfigService],
+                useFactory: (configService) => ({
+                    transport: {
+                        host: configService.get('MAIL_HOST', 'smtp.gmail.com'),
+                        port: configService.get('MAIL_PORT', 587),
+                        secure: configService.get('MAIL_PORT', 587) === 465,
+                        auth: {
+                            user: configService.get('MAIL_USER'),
+                            pass: configService.get('MAIL_PASSWORD'),
+                        },
+                        tls: {
+                            rejectUnauthorized: false,
+                        },
+                    },
+                    defaults: {
+                        from: configService.get('MAIL_FROM_NAME', 'noreply@example.com'),
+                    },
+                    template: {
+                        dir: path.join(__dirname, './templates'),
+                        adapter: new pug_adapter_1.PugAdapter(),
+                        options: {
+                            strict: true,
+                        },
+                    },
+                }),
+            }),
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

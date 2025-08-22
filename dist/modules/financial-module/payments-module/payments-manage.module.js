@@ -15,28 +15,22 @@ const leases_manage_module_1 = require("../lease-module/leases-manage.module");
 const resident_manage_module_1 = require("../../user-manage-module/resident-module/resident-manage.module");
 const unit_manage_module_1 = require("../../unit-manage-module/unit-manage.module");
 const database_service_1 = require("../../../common/database/database.service");
-const resident_manage_service_1 = require("../../user-manage-module/resident-module/resident-manage.service");
-const unit_manage_service_1 = require("../../unit-manage-module/unit-manage.service");
 const generalHelper_1 = require("../../../common/helper/generalHelper");
+const database_module_1 = require("../../../common/database/database.module");
 let PaymentsManageModule = class PaymentsManageModule {
 };
 exports.PaymentsManageModule = PaymentsManageModule;
 exports.PaymentsManageModule = PaymentsManageModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            database_module_1.DatabaseModule,
             billing_manage_module_1.BillingManageModule,
             leases_manage_module_1.LeasesManageModule,
             resident_manage_module_1.ResidentManageModule,
             unit_manage_module_1.UnitManageModule,
         ],
         controllers: [payments_manage_controller_1.PaymentsManageController],
-        providers: [
-            payments_manage_service_1.PaymentsManageService,
-            database_service_1.DatabaseService,
-            resident_manage_service_1.ResidentManageService,
-            unit_manage_service_1.UnitManageService,
-            generalHelper_1.GeneralHelper,
-        ],
+        providers: [payments_manage_service_1.PaymentsManageService, database_service_1.DatabaseService, generalHelper_1.GeneralHelper],
         exports: [payments_manage_service_1.PaymentsManageService],
     })
 ], PaymentsManageModule);

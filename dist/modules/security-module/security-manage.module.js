@@ -13,7 +13,6 @@ const security_manage_controller_1 = require("./security-manage.controller");
 const database_module_1 = require("../../common/database/database.module");
 const database_service_1 = require("../../common/database/database.service");
 const employee_manage_module_1 = require("../user-manage-module/employee-module/employee-manage.module");
-const employee_manage_service_1 = require("../user-manage-module/employee-module/employee-manage.service");
 const generalHelper_1 = require("../../common/helper/generalHelper");
 let SecurityManageModule = class SecurityManageModule {
 };
@@ -22,12 +21,7 @@ exports.SecurityManageModule = SecurityManageModule = __decorate([
     (0, common_1.Module)({
         imports: [database_module_1.DatabaseModule, employee_manage_module_1.EmployeeManageModule],
         controllers: [security_manage_controller_1.SecurityManageController],
-        providers: [
-            security_manage_service_1.SecurityManageService,
-            database_service_1.DatabaseService,
-            employee_manage_service_1.EmployeeManageService,
-            generalHelper_1.GeneralHelper,
-        ],
+        providers: [security_manage_service_1.SecurityManageService, database_service_1.DatabaseService, generalHelper_1.GeneralHelper],
         exports: [security_manage_service_1.SecurityManageService],
     })
 ], SecurityManageModule);

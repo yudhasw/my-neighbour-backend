@@ -11,20 +11,16 @@ const common_1 = require("@nestjs/common");
 const announcement_manage_service_1 = require("./announcement-manage.service");
 const announcement_manage_controller_1 = require("./announcement-manage.controller");
 const database_service_1 = require("../../../common/database/database.service");
-const employee_manage_service_1 = require("../../user-manage-module/employee-module/employee-manage.service");
 const generalHelper_1 = require("../../../common/helper/generalHelper");
+const employee_manage_module_1 = require("../../../modules/user-manage-module/employee-module/employee-manage.module");
 let AnnouncementManageModule = class AnnouncementManageModule {
 };
 exports.AnnouncementManageModule = AnnouncementManageModule;
 exports.AnnouncementManageModule = AnnouncementManageModule = __decorate([
     (0, common_1.Module)({
+        imports: [employee_manage_module_1.EmployeeManageModule],
         controllers: [announcement_manage_controller_1.AnnouncementManageController],
-        providers: [
-            announcement_manage_service_1.AnnouncementManageService,
-            database_service_1.DatabaseService,
-            employee_manage_service_1.EmployeeManageService,
-            generalHelper_1.GeneralHelper,
-        ],
+        providers: [announcement_manage_service_1.AnnouncementManageService, database_service_1.DatabaseService, generalHelper_1.GeneralHelper],
         exports: [announcement_manage_service_1.AnnouncementManageService],
     })
 ], AnnouncementManageModule);

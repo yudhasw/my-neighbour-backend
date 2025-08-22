@@ -10,23 +10,19 @@ exports.ForumCommentManageModule = void 0;
 const common_1 = require("@nestjs/common");
 const forum_comment_manage_service_1 = require("./forum-comment-manage.service");
 const forum_comment_manage_controller_1 = require("./forum-comment-manage.controller");
-const employee_manage_service_1 = require("../../../modules/user-manage-module/employee-module/employee-manage.service");
-const resident_manage_service_1 = require("../../../modules/user-manage-module/resident-module/resident-manage.service");
 const database_service_1 = require("../../../common/database/database.service");
 const generalHelper_1 = require("../../../common/helper/generalHelper");
+const app_user_manage_module_1 = require("../../../modules/user-manage-module/app-users-module/app-user-manage.module");
+const employee_manage_module_1 = require("../../../modules/user-manage-module/employee-module/employee-manage.module");
+const resident_manage_module_1 = require("../../../modules/user-manage-module/resident-module/resident-manage.module");
 let ForumCommentManageModule = class ForumCommentManageModule {
 };
 exports.ForumCommentManageModule = ForumCommentManageModule;
 exports.ForumCommentManageModule = ForumCommentManageModule = __decorate([
     (0, common_1.Module)({
+        imports: [app_user_manage_module_1.AppUserManageModule, employee_manage_module_1.EmployeeManageModule, resident_manage_module_1.ResidentManageModule],
         controllers: [forum_comment_manage_controller_1.ForumCommentManageController],
-        providers: [
-            forum_comment_manage_service_1.ForumCommentManageService,
-            employee_manage_service_1.EmployeeManageService,
-            resident_manage_service_1.ResidentManageService,
-            database_service_1.DatabaseService,
-            generalHelper_1.GeneralHelper,
-        ],
+        providers: [forum_comment_manage_service_1.ForumCommentManageService, database_service_1.DatabaseService, generalHelper_1.GeneralHelper],
         exports: [forum_comment_manage_service_1.ForumCommentManageService],
     })
 ], ForumCommentManageModule);

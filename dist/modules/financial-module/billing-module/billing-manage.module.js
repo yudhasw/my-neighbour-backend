@@ -13,9 +13,7 @@ const billing_manage_controller_1 = require("./billing-manage.controller");
 const database_module_1 = require("../../../common/database/database.module");
 const database_service_1 = require("../../../common/database/database.service");
 const unit_manage_module_1 = require("../../../modules/unit-manage-module/unit-manage.module");
-const unit_manage_service_1 = require("../../../modules/unit-manage-module/unit-manage.service");
 const employee_manage_module_1 = require("../../../modules/user-manage-module/employee-module/employee-manage.module");
-const employee_manage_service_1 = require("../../../modules/user-manage-module/employee-module/employee-manage.service");
 const generalHelper_1 = require("../../../common/helper/generalHelper");
 let BillingManageModule = class BillingManageModule {
 };
@@ -24,13 +22,7 @@ exports.BillingManageModule = BillingManageModule = __decorate([
     (0, common_1.Module)({
         imports: [database_module_1.DatabaseModule, employee_manage_module_1.EmployeeManageModule, unit_manage_module_1.UnitManageModule],
         controllers: [billing_manage_controller_1.BillingManageController],
-        providers: [
-            billing_manage_service_1.BillingManageService,
-            database_service_1.DatabaseService,
-            employee_manage_service_1.EmployeeManageService,
-            unit_manage_service_1.UnitManageService,
-            generalHelper_1.GeneralHelper,
-        ],
+        providers: [billing_manage_service_1.BillingManageService, database_service_1.DatabaseService, generalHelper_1.GeneralHelper],
         exports: [billing_manage_service_1.BillingManageService],
     })
 ], BillingManageModule);

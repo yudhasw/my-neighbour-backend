@@ -6,25 +6,19 @@ import { LeasesManageModule } from '../lease-module/leases-manage.module';
 import { ResidentManageModule } from '../../user-manage-module/resident-module/resident-manage.module';
 import { UnitManageModule } from '../../unit-manage-module/unit-manage.module';
 import { DatabaseService } from 'src/common/database/database.service';
-import { ResidentManageService } from 'src/modules/user-manage-module/resident-module/resident-manage.service';
-import { UnitManageService } from 'src/modules/unit-manage-module/unit-manage.service';
 import { GeneralHelper } from 'src/common/helper/generalHelper';
+import { DatabaseModule } from 'src/common/database/database.module';
 
 @Module({
   imports: [
+    DatabaseModule,
     BillingManageModule,
     LeasesManageModule,
     ResidentManageModule,
     UnitManageModule,
   ],
   controllers: [PaymentsManageController],
-  providers: [
-    PaymentsManageService,
-    DatabaseService,
-    ResidentManageService,
-    UnitManageService,
-    GeneralHelper,
-  ],
+  providers: [PaymentsManageService, DatabaseService, GeneralHelper],
   exports: [PaymentsManageService],
 })
 export class PaymentsManageModule {}

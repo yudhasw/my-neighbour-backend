@@ -1,9 +1,14 @@
+import * as path from 'path';
+import { RouterModule } from '@nestjs/core';
 import { Module } from '@nestjs/common';
+import { MailerModule } from '@nestjs-modules/mailer';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { RouterModule } from '@nestjs/core';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 import { BackendApiModule } from './modules/backend-api.module';
+import { AuthModule } from './common/security/auth/auth.module';
+import { MailerManageModule } from './common/helper/mail/mailer-manage.module';
 import { DatabaseModule } from './common/database/database.module';
 import { FinancialModule } from './modules/financial-module/financial.module';
 import { CommunicationModule } from './modules/communication-module/communication.module';
@@ -24,8 +29,6 @@ import { AppUserManageModule } from './modules/user-manage-module/app-users-modu
 import { ReportsManageModule } from './modules/reports-module/reports-manage.module';
 import { OperationalReportModule } from './modules/reports-module/operational-report-module/operational-report.module';
 import { PaymentsReportModule } from './modules/reports-module/payments-report-module/payments-report.module';
-import { AuthModule } from './common/security/auth/auth.module';
-import { MailerManageModule } from './common/helper/mail/mailer-manage.module';
 @Module({
   imports: [
     DatabaseModule,
@@ -136,6 +139,36 @@ import { MailerManageModule } from './common/helper/mail/mailer-manage.module';
         ],
       },
     ]),
+    MailerModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        transport: {
+          host: configService.get<string>('MAIL_HOST', 'smtp.gmail.com'),
+          port: configService.get<number>('MAIL_PORT', 587),
+          secure: configService.get<number>('MAIL_PORT', 587) === 465,
+          auth: {
+            user: configService.get<string>('MAIL_USER'),
+            pass: configService.get<string>('MAIL_PASSWORD'),
+          },
+          tls: {
+            rejectUnauthorized: false,
+          },
+        },
+        defaults: {
+          from: configService.get<string>(
+            'MAIL_FROM_NAME',
+            'noreply@example.com',
+          ),
+        },
+        template: {
+          dir: path.join(__dirname, './templates'),
+          adapter: new PugAdapter(),
+          options: {
+            strict: true,
+          },
+        },
+      }),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

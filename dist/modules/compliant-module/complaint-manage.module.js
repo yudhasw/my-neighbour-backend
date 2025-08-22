@@ -14,8 +14,6 @@ const database_module_1 = require("../../common/database/database.module");
 const database_service_1 = require("../../common/database/database.service");
 const employee_manage_module_1 = require("../user-manage-module/employee-module/employee-manage.module");
 const resident_manage_module_1 = require("../user-manage-module/resident-module/resident-manage.module");
-const resident_manage_service_1 = require("../user-manage-module/resident-module/resident-manage.service");
-const employee_manage_service_1 = require("../user-manage-module/employee-module/employee-manage.service");
 const generalHelper_1 = require("../../common/helper/generalHelper");
 let ComplaintManageModule = class ComplaintManageModule {
 };
@@ -24,13 +22,7 @@ exports.ComplaintManageModule = ComplaintManageModule = __decorate([
     (0, common_1.Module)({
         imports: [database_module_1.DatabaseModule, employee_manage_module_1.EmployeeManageModule, resident_manage_module_1.ResidentManageModule],
         controllers: [complaint_manage_controller_1.ComplaintManageController],
-        providers: [
-            complaint_manage_service_1.ComplaintManageService,
-            database_service_1.DatabaseService,
-            resident_manage_service_1.ResidentManageService,
-            employee_manage_service_1.EmployeeManageService,
-            generalHelper_1.GeneralHelper,
-        ],
+        providers: [complaint_manage_service_1.ComplaintManageService, database_service_1.DatabaseService, generalHelper_1.GeneralHelper],
         exports: [complaint_manage_service_1.ComplaintManageService],
     })
 ], ComplaintManageModule);

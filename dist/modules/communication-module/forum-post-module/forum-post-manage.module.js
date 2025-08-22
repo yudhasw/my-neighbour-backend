@@ -11,22 +11,18 @@ const common_1 = require("@nestjs/common");
 const forum_post_manage_service_1 = require("./forum-post-manage.service");
 const forum_post_manage_controller_1 = require("./forum-post-manage.controller");
 const database_service_1 = require("../../../common/database/database.service");
-const employee_manage_service_1 = require("../../../modules/user-manage-module/employee-module/employee-manage.service");
-const resident_manage_service_1 = require("../../../modules/user-manage-module/resident-module/resident-manage.service");
 const generalHelper_1 = require("../../../common/helper/generalHelper");
+const app_user_manage_module_1 = require("../../../modules/user-manage-module/app-users-module/app-user-manage.module");
+const employee_manage_module_1 = require("../../../modules/user-manage-module/employee-module/employee-manage.module");
+const resident_manage_module_1 = require("../../../modules/user-manage-module/resident-module/resident-manage.module");
 let ForumPostManageModule = class ForumPostManageModule {
 };
 exports.ForumPostManageModule = ForumPostManageModule;
 exports.ForumPostManageModule = ForumPostManageModule = __decorate([
     (0, common_1.Module)({
+        imports: [app_user_manage_module_1.AppUserManageModule, employee_manage_module_1.EmployeeManageModule, resident_manage_module_1.ResidentManageModule],
         controllers: [forum_post_manage_controller_1.ForumPostManageController],
-        providers: [
-            forum_post_manage_service_1.ForumPostManageService,
-            database_service_1.DatabaseService,
-            employee_manage_service_1.EmployeeManageService,
-            resident_manage_service_1.ResidentManageService,
-            generalHelper_1.GeneralHelper,
-        ],
+        providers: [forum_post_manage_service_1.ForumPostManageService, database_service_1.DatabaseService, generalHelper_1.GeneralHelper],
         exports: [forum_post_manage_service_1.ForumPostManageService],
     })
 ], ForumPostManageModule);
