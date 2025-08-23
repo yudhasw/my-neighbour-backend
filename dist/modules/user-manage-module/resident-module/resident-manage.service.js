@@ -28,13 +28,13 @@ let ResidentManageService = class ResidentManageService {
                     movedInDate: createRequest.movedInDate,
                     movedOutDate: createRequest.movedOutDate,
                     residentStatus: createRequest.residentStatus,
-                    unitId: createRequest.unitId,
+                    unitId: createRequest.unitId ?? null,
                 },
             });
         }
         catch (error) {
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Membuat Data Pengguna Aplikasi');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Membuat Data Penghuni');
         }
     }
     async findAll() {
@@ -59,7 +59,7 @@ let ResidentManageService = class ResidentManageService {
         }
         catch (error) {
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Penghuni');
         }
     }
     async findOne(id) {
@@ -96,7 +96,7 @@ let ResidentManageService = class ResidentManageService {
         }
         catch (error) {
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Penghuni');
         }
     }
     async update(id, updateRequest) {
@@ -133,7 +133,7 @@ let ResidentManageService = class ResidentManageService {
                 }
             }
             console.error(error.message, error.cause);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Penghuni');
         }
     }
     async remove(id) {
@@ -147,10 +147,10 @@ let ResidentManageService = class ResidentManageService {
         }
         catch (error) {
             if (error.name === 'NotFoundError') {
-                throw new common_1.NotFoundException(`Pengguna aplikasi dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Penghuni dengan id: ${id} tidak ditemukan`);
             }
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Menghapus Data Pengguna Aplikasi');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Menghapus Data Penghuni');
         }
     }
 };

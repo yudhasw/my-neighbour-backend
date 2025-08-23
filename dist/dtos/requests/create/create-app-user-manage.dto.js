@@ -18,6 +18,7 @@ class CreateAppUserManageDto {
     fullName;
     firstName;
     lastName;
+    username;
     dateOfBirth;
     contactNumber;
     primaryEmail;
@@ -42,6 +43,14 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'Nama belakang tidak boleh kosong' }),
     __metadata("design:type", String)
 ], CreateAppUserManageDto.prototype, "lastName", void 0);
+__decorate([
+    (0, class_validator_1.IsString)({ message: 'Username harus berupa teks' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'Username tidak boleh kosong' }),
+    (0, is_unique_validators_1.IsUnique)({ field: 'username', model: 'users' }, { message: 'Username sudah terdaftar ' }),
+    (0, class_validator_1.MinLength)(5, { message: 'Username harus lebih dari 5 karakter' }),
+    (0, class_validator_1.MaxLength)(15, { message: 'Username harus kurang dari 15 karakter' }),
+    __metadata("design:type", String)
+], CreateAppUserManageDto.prototype, "username", void 0);
 __decorate([
     (0, class_validator_1.IsDate)({ message: 'Tanggal lahir harus berupa format tanggal' }),
     (0, class_validator_1.IsOptional)(),

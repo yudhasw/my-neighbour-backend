@@ -9,6 +9,7 @@ export declare class AppUserManageController {
         fullName: string;
         firstName: string;
         lastName: string;
+        username: string;
         dateOfBirth: Date | null;
         contactNumber: string | null;
         primaryEmail: string;
@@ -26,16 +27,13 @@ export declare class AppUserManageController {
         fullName: string;
         firstName: string;
         lastName: string;
+        username: string;
         primaryEmail: string;
         secondaryEmail: string | null;
         role: import("src/common/database/generated/prisma").$Enums.UserRole;
         gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
         createdAt: Date;
         updatedAt: Date;
-        _count: {
-            ForumPosts: number;
-            ForumComments: number;
-        };
         Resident: {
             emergencyContactName: string | null;
             emergencyContactNumber: string | null;
@@ -43,13 +41,17 @@ export declare class AppUserManageController {
             movedOutDate: Date | null;
         }[];
         Employee: {
-            employeeIdNumber: string;
+            employeeNumberId: string;
             hireDate: Date;
             employeePosition: import("src/common/database/generated/prisma").$Enums.EmployeeRole;
             workingHours: number;
             salary: number;
             bonus: number | null;
         }[];
+        _count: {
+            ForumPosts: number;
+            ForumComments: number;
+        };
     }[]>;
     findOne(id: string): Promise<{
         Resident: {
@@ -65,7 +67,7 @@ export declare class AppUserManageController {
             } | null;
         }[];
         Employee: {
-            employeeIdNumber: string;
+            employeeNumberId: string;
             hireDate: Date;
             employeePosition: import("src/common/database/generated/prisma").$Enums.EmployeeRole;
             workingHours: number;
@@ -73,7 +75,7 @@ export declare class AppUserManageController {
             bonus: number | null;
             Announcements: {
                 title: string;
-                body: string;
+                content: string;
                 publishDate: Date;
                 expiryDate: Date | null;
             }[];
@@ -89,6 +91,7 @@ export declare class AppUserManageController {
         fullName: string;
         firstName: string;
         lastName: string;
+        username: string;
         dateOfBirth: Date | null;
         contactNumber: string | null;
         primaryEmail: string;
@@ -107,6 +110,7 @@ export declare class AppUserManageController {
         fullName: string;
         firstName: string;
         lastName: string;
+        username: string;
         dateOfBirth: Date | null;
         contactNumber: string | null;
         primaryEmail: string;
@@ -124,6 +128,7 @@ export declare class AppUserManageController {
         fullName: string;
         firstName: string;
         lastName: string;
+        username: string;
         dateOfBirth: Date | null;
         contactNumber: string | null;
         primaryEmail: string;

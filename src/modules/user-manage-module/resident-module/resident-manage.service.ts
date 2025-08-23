@@ -21,13 +21,13 @@ export class ResidentManageService {
           movedInDate: createRequest.movedInDate,
           movedOutDate: createRequest.movedOutDate,
           residentStatus: createRequest.residentStatus,
-          unitId: createRequest.unitId,
+          unitId: createRequest.unitId ?? null,
         },
       });
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Membuat Data Pengguna Aplikasi',
+        'Terjadi Kesalahan Saat Membuat Data Penghuni',
       );
     }
   }
@@ -54,7 +54,7 @@ export class ResidentManageService {
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi',
+        'Terjadi Kesalahan Saat Mendapatkan Data Penghuni',
       );
     }
   }
@@ -93,7 +93,7 @@ export class ResidentManageService {
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi',
+        'Terjadi Kesalahan Saat Mendapatkan Data Penghuni',
       );
     }
   }
@@ -143,7 +143,7 @@ export class ResidentManageService {
       }
       console.error((error as Error).message, (error as Error).cause);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi', // Perbaiki pesan error
+        'Terjadi Kesalahan Saat Mendapatkan Data Penghuni', // Perbaiki pesan error
       );
     }
   }
@@ -160,12 +160,12 @@ export class ResidentManageService {
     } catch (error) {
       if ((error as Error).name === 'NotFoundError') {
         throw new NotFoundException(
-          `Pengguna aplikasi dengan id: ${id} tidak ditemukan`,
+          `Penghuni dengan id: ${id} tidak ditemukan`,
         );
       }
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Menghapus Data Pengguna Aplikasi',
+        'Terjadi Kesalahan Saat Menghapus Data Penghuni',
       );
     }
   }

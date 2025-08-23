@@ -1,25 +1,142 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateAnnouncementManageDto } from '../../../dtos/requests/create/create-announcement-manage.dto';
 import { UpdateAnnouncementManageDto } from '../../../dtos/requests/update/update-announcement-manage.dto';
+import { DatabaseService } from 'src/common/database/database.service';
+import { PrismaClientKnownRequestError } from '../../../common/database/generated/prisma/runtime/library';
 @Injectable()
 export class AnnouncementManageService {
-  create(createRequest: CreateAnnouncementManageDto) {
-    return 'This action adds a new announcementManage';
+  constructor(private readonly prisma: DatabaseService) {}
+  async create(createRequest: CreateAnnouncementManageDto) {
+    try {
+      return await this.prisma.announcements.create({
+        data: {
+          title: createRequest.title,
+          content: createRequest.content,
+          attachments: createRequest.attachments,
+          employee: { connect: { employeeId: createRequest.employeeId } },
+          expiryDate: createRequest.expiryDate,
+          publishDate: createRequest.publishDate,
+        },
+      });
+    } catch (error) {
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Membuat Data Pengumuman',
+      );
+    }
   }
 
-  findAll() {
-    return `This action returns all announcementManage`;
+  async findAll() {
+    try {
+      return await this.prisma.announcements.findMany();
+    } catch (error) {
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Mendapatkan Data Pengumuman',
+      );
+    }
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} announcementManage`;
+  async findOne(id: string) {
+    try {
+      return await this.prisma.announcements.findUniqueOrThrow({
+        where: { id: id },
+      });
+    } catch (error) {
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Mendapatkan Data Pengumuman',
+      );
+    }
   }
 
-  update(id: string, updateRequest: UpdateAnnouncementManageDto) {
-    return `This action updates a #${id} announcementManage`;
+  async update(id: string, updateRequest: UpdateAnnouncementManageDto) {
+    try {
+      const existData = await this.prisma.announcements.findUniqueOrThrow({
+        where: { id: id },
+      });
+
+      if (!existData) {
+        throw new NotFoundException(
+          `Pengguna Aplikasi dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
+      return await this.prisma.announcements.update({
+        where: { id: id },
+        data: {
+          title: updateRequest.title ?? existData.title,
+          content: updateRequest.content ?? existData.content,
+          attachments: updateRequest.attachments ?? existData.attachments,
+          employee: {
+            connect: {
+              employeeId: updateRequest.employeeId ?? existData.employeeId,
+            },
+          },
+          expiryDate: updateRequest.expiryDate ?? existData.expiryDate,
+          publishDate: updateRequest.publishDate ?? existData.publishDate,
+        },
+      });
+    } catch (error) {
+      if ((error as Error).name === 'NotFoundError') {
+        throw new NotFoundException(
+          `Pengumuman dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
+      if (error instanceof PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException(
+            `Pengumuman dengan id: ${id} tidak ditemukan`,
+          );
+        }
+      }
+
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Mendapatkan Pengumuman',
+      );
+    }
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} announcementManage`;
+  async remove(id: string) {
+    try {
+      const existData = await this.prisma.announcements.findUniqueOrThrow({
+        where: { id: id },
+      });
+
+      if (!existData) {
+        throw new NotFoundException(
+          `Pengguna Aplikasi dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
+      return await this.prisma.announcements.delete({
+        where: { id: id },
+      });
+    } catch (error) {
+      if ((error as Error).name === 'NotFoundError') {
+        throw new NotFoundException(
+          `Pengumuman dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
+      if (error instanceof PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException(
+            `Pengumuman dengan id: ${id} tidak ditemukan`,
+          );
+        }
+      }
+
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Menghapus Data Pengumuman',
+      );
+    }
   }
 }

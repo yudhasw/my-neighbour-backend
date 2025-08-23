@@ -161,7 +161,7 @@ import { PaymentsReportModule } from './modules/reports-module/payments-report-m
           ),
         },
         template: {
-          dir: path.join(__dirname, './templates'),
+          dir: path.join(__dirname, '../templates'),
           adapter: new PugAdapter(),
           options: {
             strict: true,

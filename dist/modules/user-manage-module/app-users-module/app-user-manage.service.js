@@ -27,6 +27,7 @@ let AppUserManageService = class AppUserManageService {
                     fullName: createRequest.fullName,
                     firstName: createRequest.firstName,
                     lastName: createRequest.lastName,
+                    username: createRequest.username,
                     primaryEmail: createRequest.primaryEmail,
                     password: hashedPassword,
                     role: createRequest.role,
@@ -39,7 +40,7 @@ let AppUserManageService = class AppUserManageService {
         }
         catch (error) {
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Membuat Data Penghuni');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Membuat Data Pengguna Aplikasi');
         }
     }
     async findAll() {
@@ -50,6 +51,7 @@ let AppUserManageService = class AppUserManageService {
                     fullName: true,
                     firstName: true,
                     lastName: true,
+                    username: true,
                     primaryEmail: true,
                     secondaryEmail: true,
                     role: true,
@@ -58,7 +60,7 @@ let AppUserManageService = class AppUserManageService {
                     updatedAt: true,
                     Employee: {
                         select: {
-                            employeeIdNumber: true,
+                            employeeNumberId: true,
                             employeePosition: true,
                             hireDate: true,
                             workingHours: true,
@@ -85,7 +87,7 @@ let AppUserManageService = class AppUserManageService {
         }
         catch (error) {
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Penghuni');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi');
         }
     }
     async findOne(id) {
@@ -95,7 +97,7 @@ let AppUserManageService = class AppUserManageService {
                 include: {
                     Employee: {
                         select: {
-                            employeeIdNumber: true,
+                            employeeNumberId: true,
                             employeePosition: true,
                             hireDate: true,
                             workingHours: true,
@@ -112,7 +114,7 @@ let AppUserManageService = class AppUserManageService {
                             Announcements: {
                                 select: {
                                     title: true,
-                                    body: true,
+                                    content: true,
                                     publishDate: true,
                                     expiryDate: true,
                                 },
@@ -141,10 +143,10 @@ let AppUserManageService = class AppUserManageService {
         }
         catch (error) {
             if (error.name === 'NotFoundError') {
-                throw new common_1.NotFoundException(`Penghuni dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Pengguna Aplikasi dengan id: ${id} tidak ditemukan`);
             }
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Penghuni');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi');
         }
     }
     async update(id, updateRequest) {
@@ -153,7 +155,7 @@ let AppUserManageService = class AppUserManageService {
                 where: { id: id },
             });
             if (!existData) {
-                throw new common_1.NotFoundException(`Resident dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Pengguna Aplikasi dengan id: ${id} tidak ditemukan`);
             }
             const updatedData = await this.prisma.users.update({
                 where: { id: id },
@@ -161,6 +163,7 @@ let AppUserManageService = class AppUserManageService {
                     fullName: updateRequest.fullName ?? existData.fullName,
                     firstName: updateRequest.firstName ?? existData.firstName,
                     lastName: updateRequest.lastName ?? existData.lastName,
+                    username: updateRequest.username ?? existData.username,
                     primaryEmail: updateRequest.primaryEmail ?? existData.primaryEmail,
                     role: updateRequest.role ?? existData.role,
                     gender: updateRequest.gender ?? existData.gender,
@@ -177,15 +180,15 @@ let AppUserManageService = class AppUserManageService {
         }
         catch (error) {
             if (error.name === 'NotFoundError') {
-                throw new common_1.NotFoundException(`Penghuni dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Pengguna Aplikasi dengan id: ${id} tidak ditemukan`);
             }
             if (error instanceof library_1.PrismaClientKnownRequestError) {
                 if (error.code === 'P2025') {
-                    throw new common_1.NotFoundException(`Resident dengan id: ${id} tidak ditemukan`);
+                    throw new common_1.NotFoundException(`Pengguna Aplikasi dengan id: ${id} tidak ditemukan`);
                 }
             }
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Penghuni');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Pengguna Aplikasi');
         }
     }
     async remove(id) {
@@ -194,7 +197,7 @@ let AppUserManageService = class AppUserManageService {
                 where: { id: id },
             });
             if (!existData) {
-                throw new common_1.NotFoundException(`Resident dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Pengguna Aplikasi dengan id: ${id} tidak ditemukan`);
             }
             return await this.prisma.users.delete({
                 where: { id: id },
@@ -202,7 +205,7 @@ let AppUserManageService = class AppUserManageService {
         }
         catch (error) {
             if (error.name === 'NotFoundError') {
-                throw new common_1.NotFoundException(`Penghuni dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Pengguna Aplikasi dengan id: ${id} tidak ditemukan`);
             }
             if (error instanceof library_1.PrismaClientKnownRequestError) {
                 if (error.code === 'P2025') {
@@ -210,7 +213,7 @@ let AppUserManageService = class AppUserManageService {
                 }
             }
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Menghapus Data Penghuni');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Menghapus Data Pengguna Aplikasi');
         }
     }
     async passwordHashing(password) {

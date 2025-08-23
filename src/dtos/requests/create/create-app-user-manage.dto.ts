@@ -26,6 +26,16 @@ export class CreateAppUserManageDto {
   @IsNotEmpty({ message: 'Nama belakang tidak boleh kosong' })
   readonly lastName: string;
 
+  @IsString({ message: 'Username harus berupa teks' })
+  @IsNotEmpty({ message: 'Username tidak boleh kosong' })
+  @IsUnique(
+    { field: 'username', model: 'users' },
+    { message: 'Username sudah terdaftar ' },
+  )
+  @MinLength(5, { message: 'Username harus lebih dari 5 karakter' })
+  @MaxLength(15, { message: 'Username harus kurang dari 15 karakter' })
+  readonly username: string;
+
   @IsDate({ message: 'Tanggal lahir harus berupa format tanggal' })
   @IsOptional()
   @Type(() => Date)

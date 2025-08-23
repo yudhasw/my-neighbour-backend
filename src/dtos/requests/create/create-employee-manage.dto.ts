@@ -17,7 +17,10 @@ import { Type } from 'class-transformer';
 export class CreateEmployeeManageDto {
   @IsUUID('4', { message: 'ID karyawan harus berupa UUID versi 4 yang valid.' })
   @IsNotEmpty({ message: 'ID karyawan tidak boleh kosong.' })
-  @IsUnique({ field: 'employeeId', model: 'employees' })
+  @IsUnique(
+    { field: 'employeeId', model: 'employees' },
+    { message: 'pegawai sudah terdaftar' },
+  )
   readonly employeeId: string;
 
   @IsString({ message: 'Nomor identitas karyawan harus berupa teks.' })

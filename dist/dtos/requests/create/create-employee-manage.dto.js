@@ -27,7 +27,7 @@ exports.CreateEmployeeManageDto = CreateEmployeeManageDto;
 __decorate([
     (0, class_validator_1.IsUUID)('4', { message: 'ID karyawan harus berupa UUID versi 4 yang valid.' }),
     (0, class_validator_1.IsNotEmpty)({ message: 'ID karyawan tidak boleh kosong.' }),
-    (0, is_unique_validators_1.IsUnique)({ field: 'employeeId', model: 'employees' }),
+    (0, is_unique_validators_1.IsUnique)({ field: 'employeeId', model: 'employees' }, { message: 'pegawai sudah terdaftar' }),
     __metadata("design:type", String)
 ], CreateEmployeeManageDto.prototype, "employeeId", void 0);
 __decorate([

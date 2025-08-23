@@ -21,6 +21,7 @@ export class AppUserManageService {
           fullName: createRequest.fullName,
           firstName: createRequest.firstName,
           lastName: createRequest.lastName,
+          username: createRequest.username,
           primaryEmail: createRequest.primaryEmail,
           password: hashedPassword,
           role: createRequest.role,
@@ -34,7 +35,7 @@ export class AppUserManageService {
       // Tangkap error untuk debugging
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Membuat Data Penghuni',
+        'Terjadi Kesalahan Saat Membuat Data Pengguna Aplikasi',
       );
     }
   }
@@ -48,6 +49,7 @@ export class AppUserManageService {
           fullName: true,
           firstName: true,
           lastName: true,
+          username: true,
           primaryEmail: true,
           secondaryEmail: true,
           role: true,
@@ -57,7 +59,7 @@ export class AppUserManageService {
           // Relasi
           Employee: {
             select: {
-              employeeIdNumber: true,
+              employeeNumberId: true,
               employeePosition: true,
               hireDate: true,
               workingHours: true,
@@ -84,7 +86,7 @@ export class AppUserManageService {
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Data Penghuni',
+        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi',
       );
     }
   }
@@ -96,7 +98,7 @@ export class AppUserManageService {
         include: {
           Employee: {
             select: {
-              employeeIdNumber: true,
+              employeeNumberId: true,
               employeePosition: true,
               hireDate: true,
               workingHours: true,
@@ -114,7 +116,7 @@ export class AppUserManageService {
               Announcements: {
                 select: {
                   title: true,
-                  body: true,
+                  content: true,
                   publishDate: true,
                   expiryDate: true,
                 },
@@ -146,12 +148,12 @@ export class AppUserManageService {
       // Catch specific errors like NotFoundError
       if ((error as Error).name === 'NotFoundError') {
         throw new NotFoundException(
-          `Penghuni dengan id: ${id} tidak ditemukan`,
+          `Pengguna Aplikasi dengan id: ${id} tidak ditemukan`,
         );
       }
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Data Penghuni', // Perbaiki pesan error
+        'Terjadi Kesalahan Saat Mendapatkan Data Pengguna Aplikasi', // Perbaiki pesan error
       );
     }
   }
@@ -164,7 +166,7 @@ export class AppUserManageService {
 
       if (!existData) {
         throw new NotFoundException(
-          `Resident dengan id: ${id} tidak ditemukan`,
+          `Pengguna Aplikasi dengan id: ${id} tidak ditemukan`,
         );
       }
 
@@ -174,6 +176,7 @@ export class AppUserManageService {
           fullName: updateRequest.fullName ?? existData.fullName,
           firstName: updateRequest.firstName ?? existData.firstName,
           lastName: updateRequest.lastName ?? existData.lastName,
+          username: updateRequest.username ?? existData.username,
           primaryEmail: updateRequest.primaryEmail ?? existData.primaryEmail,
           role: updateRequest.role ?? existData.role,
           gender: updateRequest.gender ?? existData.gender,
@@ -192,21 +195,21 @@ export class AppUserManageService {
     } catch (error) {
       if ((error as Error).name === 'NotFoundError') {
         throw new NotFoundException(
-          `Penghuni dengan id: ${id} tidak ditemukan`,
+          `Pengguna Aplikasi dengan id: ${id} tidak ditemukan`,
         );
       }
 
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2025') {
           throw new NotFoundException(
-            `Resident dengan id: ${id} tidak ditemukan`,
+            `Pengguna Aplikasi dengan id: ${id} tidak ditemukan`,
           );
         }
       }
 
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Penghuni',
+        'Terjadi Kesalahan Saat Mendapatkan Pengguna Aplikasi',
       );
     }
   }
@@ -219,7 +222,7 @@ export class AppUserManageService {
 
       if (!existData) {
         throw new NotFoundException(
-          `Resident dengan id: ${id} tidak ditemukan`,
+          `Pengguna Aplikasi dengan id: ${id} tidak ditemukan`,
         );
       }
 
@@ -229,7 +232,7 @@ export class AppUserManageService {
     } catch (error) {
       if ((error as Error).name === 'NotFoundError') {
         throw new NotFoundException(
-          `Penghuni dengan id: ${id} tidak ditemukan`,
+          `Pengguna Aplikasi dengan id: ${id} tidak ditemukan`,
         );
       }
 
@@ -243,7 +246,7 @@ export class AppUserManageService {
 
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Menghapus Data Penghuni',
+        'Terjadi Kesalahan Saat Menghapus Data Pengguna Aplikasi',
       );
     }
   }

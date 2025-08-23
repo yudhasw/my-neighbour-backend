@@ -171,7 +171,7 @@ exports.AppModule = AppModule = __decorate([
                         from: configService.get('MAIL_FROM_NAME', 'noreply@example.com'),
                     },
                     template: {
-                        dir: path.join(__dirname, './templates'),
+                        dir: path.join(__dirname, '../templates'),
                         adapter: new pug_adapter_1.PugAdapter(),
                         options: {
                             strict: true,

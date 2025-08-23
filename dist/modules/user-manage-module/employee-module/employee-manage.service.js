@@ -26,7 +26,7 @@ let EmployeeManageService = class EmployeeManageService {
             return await this.prisma.employees.create({
                 data: {
                     employeeId: createRequest.employeeId,
-                    employeeIdNumber: createRequest.employeeNumberId,
+                    employeeNumberId: createRequest.employeeNumberId,
                     hireDate: createRequest.hireDate,
                     salary: this.helper.twoDecimal(createRequest.salary),
                     workingHours: createRequest.workingHours,
@@ -64,7 +64,7 @@ let EmployeeManageService = class EmployeeManageService {
                     },
                 },
                 orderBy: {
-                    employeeIdNumber: 'asc',
+                    employeeNumberId: 'asc',
                 },
             });
         }
@@ -142,7 +142,7 @@ let EmployeeManageService = class EmployeeManageService {
             const updatedData = this.prisma.employees.update({
                 where: { employeeId: id },
                 data: {
-                    employeeIdNumber: updateRequest.employeeNumberId ?? existData?.employeeIdNumber,
+                    employeeNumberId: updateRequest.employeeNumberId ?? existData?.employeeNumberId,
                     hireDate: updateRequest.hireDate,
                     salary: this.helper.twoDecimal(updateRequest.salary) ?? existData?.salary,
                     workingHours: updateRequest.workingHours ?? existData?.workingHours,

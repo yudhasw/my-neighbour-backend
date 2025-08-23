@@ -125,6 +125,7 @@ exports.Prisma.UsersScalarFieldEnum = {
   fullName: 'fullName',
   firstName: 'firstName',
   lastName: 'lastName',
+  username: 'username',
   dateOfBirth: 'dateOfBirth',
   contactNumber: 'contactNumber',
   primaryEmail: 'primaryEmail',
@@ -153,7 +154,7 @@ exports.Prisma.ResidentsScalarFieldEnum = {
 
 exports.Prisma.EmployeesScalarFieldEnum = {
   employeeId: 'employeeId',
-  employeeIdNumber: 'employeeIdNumber',
+  employeeNumberId: 'employeeNumberId',
   hireDate: 'hireDate',
   employeePosition: 'employeePosition',
   workingHours: 'workingHours',
@@ -212,7 +213,7 @@ exports.Prisma.AnnouncementsScalarFieldEnum = {
   id: 'id',
   title: 'title',
   content: 'content',
-  body: 'body',
+  attachments: 'attachments',
   publishDate: 'publishDate',
   expiryDate: 'expiryDate',
   employeeId: 'employeeId',
