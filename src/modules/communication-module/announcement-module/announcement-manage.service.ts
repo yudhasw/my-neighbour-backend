@@ -32,7 +32,11 @@ export class AnnouncementManageService {
 
   async findAll() {
     try {
-      return await this.prisma.announcements.findMany();
+      return await this.prisma.announcements.findMany({
+        orderBy: {
+          title: 'asc',
+        },
+      });
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
@@ -45,6 +49,25 @@ export class AnnouncementManageService {
     try {
       return await this.prisma.announcements.findUniqueOrThrow({
         where: { id: id },
+        include: {
+          employee: {
+            select: {
+              employeeNumberId: true,
+              employeePosition: true,
+            },
+            include: {
+              user: {
+                select: {
+                  fullName: true,
+                  firstName: true,
+                  lastName: true,
+                  contactNumber: true,
+                  username: true,
+                },
+              },
+            },
+          },
+        },
       });
     } catch (error) {
       console.error((error as Error).message);
@@ -62,7 +85,7 @@ export class AnnouncementManageService {
 
       if (!existData) {
         throw new NotFoundException(
-          `Pengguna Aplikasi dengan id: ${id} tidak ditemukan`,
+          `Data Pengumuman dengan id: ${id} tidak ditemukan`,
         );
       }
 
@@ -111,7 +134,7 @@ export class AnnouncementManageService {
 
       if (!existData) {
         throw new NotFoundException(
-          `Pengguna Aplikasi dengan id: ${id} tidak ditemukan`,
+          `Data Pengumuman dengan id: ${id} tidak ditemukan`,
         );
       }
 

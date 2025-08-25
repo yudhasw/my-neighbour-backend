@@ -1,26 +1,167 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateForumCommentManageDto } from '../../../dtos/requests/create/create-forum-comment-manage.dto';
 import { UpdateForumCommentManageDto } from '../../../dtos/requests/update/update-forum-comment-manage.dto';
+import { DatabaseService } from '../../../common/database/database.service';
+import { PrismaClientKnownRequestError } from '../../../common/database/generated/prisma/runtime/library';
 
 @Injectable()
 export class ForumCommentManageService {
-  create(createRequest: CreateForumCommentManageDto) {
-    return 'This action adds a new forumCommentManage';
+  constructor(private readonly prisma: DatabaseService) {}
+  async create(createRequest: CreateForumCommentManageDto) {
+    try {
+      return await this.prisma.forumComments.create({
+        data: {
+          content: createRequest.content,
+          postId: createRequest.postId,
+          userId: createRequest.userId,
+        },
+      });
+    } catch (error) {
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Membuat Data Pengumuman',
+      );
+    }
   }
 
-  findAll() {
-    return `This action returns all forumCommentManage`;
+  async findAll() {
+    try {
+      return await this.prisma.forumComments.findMany({
+        include: {
+          user: {
+            select: {
+              fullName: true,
+              firstName: true,
+              lastName: true,
+              role: true,
+              username: true,
+            },
+          },
+        },
+        orderBy: {
+          createdAt: 'asc',
+        },
+      });
+    } catch (error) {
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Membuat Data Pengumuman',
+      );
+    }
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} forumCommentManage`;
+  async findOne(id: string) {
+    try {
+      return await this.prisma.forumComments.findUniqueOrThrow({
+        where: { id: id },
+        include: {
+          user: {
+            select: {
+              fullName: true,
+              firstName: true,
+              lastName: true,
+              role: true,
+              username: true,
+            },
+          },
+          post: {
+            select: {
+              title: true,
+              content: true,
+              attachments: true,
+              tags: true,
+            },
+          },
+        },
+      });
+    } catch (error) {
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Membuat Data Pengumuman',
+      );
+    }
   }
 
-  update(id: string, updateRequest: UpdateForumCommentManageDto) {
-    return `This action updates a #${id} forumCommentManage`;
+  async update(id: string, updateRequest: UpdateForumCommentManageDto) {
+    try {
+      const existData = await this.prisma.forumComments.findUnique({
+        where: { id: id },
+      });
+
+      if (!existData) {
+        throw new NotFoundException(
+          `Data Pengumuman dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
+      return await this.prisma.forumComments.update({
+        where: { id: id },
+        data: {
+          content: updateRequest.content,
+          postId: updateRequest.postId,
+          userId: updateRequest.userId,
+        },
+      });
+    } catch (error) {
+      if ((error as Error).name === 'NotFoundError') {
+        throw new NotFoundException(
+          `Pengumuman dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
+      if (error instanceof PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException(
+            `Pengumuman dengan id: ${id} tidak ditemukan`,
+          );
+        }
+      }
+
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Mendapatkan Pengumuman',
+      );
+    }
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} forumCommentManage`;
+  async remove(id: string) {
+    try {
+      const existData = await this.prisma.forumComments.findUnique({
+        where: { id: id },
+      });
+
+      if (!existData) {
+        throw new NotFoundException(
+          `Data Pengumuman dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
+      return await this.prisma.forumComments.delete({
+        where: { id: id },
+      });
+    } catch (error) {
+      if ((error as Error).name === 'NotFoundError') {
+        throw new NotFoundException(
+          `Pengumuman dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
+      if (error instanceof PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException(
+            `Pengumuman dengan id: ${id} tidak ditemukan`,
+          );
+        }
+      }
+
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Mendapatkan Pengumuman',
+      );
+    }
   }
 }

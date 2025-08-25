@@ -225,7 +225,7 @@ exports.Prisma.ForumPostsScalarFieldEnum = {
   id: 'id',
   title: 'title',
   content: 'content',
-  isPublished: 'isPublished',
+  attachments: 'attachments',
   authorRole: 'authorRole',
   userId: 'userId',
   publishedAt: 'publishedAt',

@@ -1,1 +1,58 @@
-export class CreateForumPostManageDto {}
+import { Type } from 'class-transformer';
+import {
+  IsString,
+  IsNotEmpty,
+  MinLength,
+  IsOptional,
+  IsDate,
+  IsUUID,
+  IsEnum,
+} from 'class-validator';
+import { UserRole } from '../../../common/database/generated/prisma';
+import { IsUnique } from 'src/common/pipes/validators/is-unique-validators';
+
+export class CreateForumPostManageDto {
+  @IsString({ message: 'Judul pengumuman harus berupa teks.' })
+  @IsNotEmpty({ message: 'Judul pengumuman tidak boleh kosong.' })
+  @MinLength(5, {
+    message: 'Judul pengumuman harus memiliki setidaknya 5 karakter.',
+  })
+  readonly title: string;
+
+  @IsString({ message: 'Isi pengumuman harus berupa teks.' })
+  @IsNotEmpty({ message: 'Isi pengumuman tidak boleh kosong.' })
+  readonly content: string;
+
+  @IsString({ message: 'Lampiran harus berupa array teks (URL).' })
+  @IsOptional({ message: 'Lampiran pengumuman bersifat opsional.' })
+  readonly attachments?: string[];
+
+  @IsEnum(UserRole, {
+    message: 'Peran Penulis tidak valid : ' + Object.values(UserRole).join(','),
+  })
+  readonly authorRole: UserRole;
+
+  @IsDate({
+    message: 'Tanggal publikasi harus berupa format tanggal yang valid.',
+  })
+  @IsNotEmpty({ message: 'Tanggal publikasi tidak boleh kosong.' })
+  @Type(() => Date)
+  readonly publishDate: Date;
+
+  @IsUUID('4', {
+    message: 'ID Pengguna aplikasi harus berupa UUID versi 4 yang valid.',
+  })
+  @IsString({ message: 'ID Pengguna aplikasi harus berupa teks' })
+  @IsNotEmpty({ message: 'ID Pengguna aplikasi tidak boleh kosong.' })
+  readonly userId: string;
+
+  @IsString({ message: 'Label Forum Harus berupa teks' })
+  @IsUnique({ field: 'tagName', model: 'postTags' })
+  @IsOptional({ message: 'Label Forum Bersifat Optional' })
+  readonly tagName: string;
+
+  @IsUUID('4', { message: 'ID Label harus berupa UUID versi 4 yang valid.' })
+  @IsString({ message: 'ID Label harus berupa teks' })
+  @IsOptional({ message: 'ID Label Bersifat Optional.' })
+  readonly tagId: string;
+}

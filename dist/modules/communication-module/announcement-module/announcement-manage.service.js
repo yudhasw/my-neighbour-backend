@@ -38,7 +38,11 @@ let AnnouncementManageService = class AnnouncementManageService {
     }
     async findAll() {
         try {
-            return await this.prisma.announcements.findMany();
+            return await this.prisma.announcements.findMany({
+                orderBy: {
+                    title: 'asc',
+                },
+            });
         }
         catch (error) {
             console.error(error.message);
@@ -49,6 +53,25 @@ let AnnouncementManageService = class AnnouncementManageService {
         try {
             return await this.prisma.announcements.findUniqueOrThrow({
                 where: { id: id },
+                include: {
+                    employee: {
+                        select: {
+                            employeeNumberId: true,
+                            employeePosition: true,
+                        },
+                        include: {
+                            user: {
+                                select: {
+                                    fullName: true,
+                                    firstName: true,
+                                    lastName: true,
+                                    contactNumber: true,
+                                    username: true,
+                                },
+                            },
+                        },
+                    },
+                },
             });
         }
         catch (error) {
@@ -62,7 +85,7 @@ let AnnouncementManageService = class AnnouncementManageService {
                 where: { id: id },
             });
             if (!existData) {
-                throw new common_1.NotFoundException(`Pengguna Aplikasi dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Data Pengumuman dengan id: ${id} tidak ditemukan`);
             }
             return await this.prisma.announcements.update({
                 where: { id: id },
@@ -99,7 +122,7 @@ let AnnouncementManageService = class AnnouncementManageService {
                 where: { id: id },
             });
             if (!existData) {
-                throw new common_1.NotFoundException(`Pengguna Aplikasi dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Data Pengumuman dengan id: ${id} tidak ditemukan`);
             }
             return await this.prisma.announcements.delete({
                 where: { id: id },

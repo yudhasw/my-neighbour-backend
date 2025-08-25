@@ -4,9 +4,71 @@ import { UpdateForumCommentManageDto } from '../../../dtos/requests/update/updat
 export declare class ForumCommentManageController {
     private readonly forumCommentManageService;
     constructor(forumCommentManageService: ForumCommentManageService);
-    create(createForumCommentManageDto: CreateForumCommentManageDto): string;
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateForumCommentManageDto: UpdateForumCommentManageDto): string;
-    remove(id: string): string;
+    create(createForumCommentManageDto: CreateForumCommentManageDto): Promise<{
+        id: string;
+        content: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+        postId: string;
+    }>;
+    findAll(): Promise<({
+        user: {
+            fullName: string;
+            firstName: string;
+            lastName: string;
+            username: string;
+            role: import("src/common/database/generated/prisma").$Enums.UserRole;
+        };
+    } & {
+        id: string;
+        content: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+        postId: string;
+    })[]>;
+    findOne(id: string): Promise<{
+        user: {
+            fullName: string;
+            firstName: string;
+            lastName: string;
+            username: string;
+            role: import("src/common/database/generated/prisma").$Enums.UserRole;
+        };
+        post: {
+            content: string;
+            title: string;
+            attachments: string[];
+            tags: {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                tagName: string;
+            }[];
+        };
+    } & {
+        id: string;
+        content: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+        postId: string;
+    }>;
+    update(id: string, updateForumCommentManageDto: UpdateForumCommentManageDto): Promise<{
+        id: string;
+        content: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+        postId: string;
+    }>;
+    remove(id: string): Promise<{
+        id: string;
+        content: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+        postId: string;
+    }>;
 }

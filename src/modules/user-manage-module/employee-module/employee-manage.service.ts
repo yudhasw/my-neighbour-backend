@@ -115,8 +115,8 @@ export class EmployeeManageService {
           Announcements: {
             select: {
               title: true,
-              body: true,
               content: true,
+              attachments: true,
               publishDate: true,
               expiryDate: true,
             },

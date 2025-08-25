@@ -7,7 +7,7 @@ export type SchemaModels =
   | 'payments'
   | 'announcements'
   | 'forumPosts'
-  | 'postTages'
+  | 'postTags'
   | 'forumComments'
   | 'leases'
   | 'bills'

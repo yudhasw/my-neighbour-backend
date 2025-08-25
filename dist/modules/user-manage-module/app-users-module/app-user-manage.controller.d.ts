@@ -34,6 +34,10 @@ export declare class AppUserManageController {
         gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
         createdAt: Date;
         updatedAt: Date;
+        _count: {
+            ForumPosts: number;
+            ForumComments: number;
+        };
         Resident: {
             emergencyContactName: string | null;
             emergencyContactNumber: string | null;
@@ -48,10 +52,6 @@ export declare class AppUserManageController {
             salary: number;
             bonus: number | null;
         }[];
-        _count: {
-            ForumPosts: number;
-            ForumComments: number;
-        };
     }[]>;
     findOne(id: string): Promise<{
         Resident: {

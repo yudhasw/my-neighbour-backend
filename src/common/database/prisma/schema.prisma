@@ -95,7 +95,7 @@ enum ComplaintStatus {
 // Models
 
 model Users {
-  id                     String    @id @default(uuid()) @db.Uuid
+  id                     String    @id @default(uuid()) @map("pengguna_id") @db.Uuid
   fullName               String    @map("nama_lengkap")
   firstName              String    @map("nama_depan")
   lastName               String    @map("nama_belakang")
@@ -186,7 +186,7 @@ model MaintenanceRequests {
 }
 
 model Complaints {
-  id                String          @id @default(uuid()) @db.Uuid
+  id                String          @id @default(uuid()) @map("keluhan_id") @db.Uuid
   name              String          @map("judul_keluhan")
   desciption        String          @map("deskripsi_keluhan")
   status            ComplaintStatus @default(NEW) @map("status_keluhan")
@@ -205,7 +205,7 @@ model Complaints {
 }
 
 model Payments {
-  id                String        @id @default(uuid()) @db.Uuid
+  id                String        @id @default(uuid()) @map("pembayaran_id") @db.Uuid
   amount            Float         @map("jumlah_pembayaran")
   paymentDate       DateTime      @default(now())
   paymentMethod     PaymentMethod @map("metode_pembayaran")
@@ -229,7 +229,7 @@ model Payments {
 }
 
 model Announcements {
-  id          String    @id @default(uuid()) @db.Uuid
+  id          String    @id @default(uuid()) @map("pengumuman_id") @db.Uuid
   title       String    @map("judul")
   content     String    @map("isi_pengumuman")
   attachments String[]  @map("lampiran_pengumuman")
@@ -244,12 +244,12 @@ model Announcements {
 }
 
 model ForumPosts {
-  id          String   @id @default(uuid()) @db.Uuid
+  id          String   @id @default(uuid()) @map("forum_post_id") @db.Uuid
   title       String   @map("judul")
   content     String   @map("konten")
-  isPublished Boolean  @default(false)
+  attachments String[] @map("lampiran_pengumuman")
   authorRole  UserRole
-  userId      String   @map("id_penulis") @db.Uuid
+  userId      String   @map("pengguna_id") @db.Uuid
   user        Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
   publishedAt DateTime @default(now()) @map("tanggal_publikasi")
   createdAt   DateTime @default(now()) @map("created_at") @db.Timestamp()
@@ -263,8 +263,8 @@ model ForumPosts {
 }
 
 model PostTags {
-  id        String   @id @default(uuid()) @db.Uuid
-  tagName   String   @map("nama_tag")
+  id        String   @id @default(uuid()) @map("label_id") @db.Uuid
+  tagName   String   @map("nama_label")
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamp()
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp()
 
@@ -275,9 +275,9 @@ model PostTags {
 }
 
 model ForumComments {
-  id        String     @id @default(uuid()) @db.Uuid
+  id        String     @id @default(uuid()) @map("forum_comment_id") @db.Uuid
   content   String     @map("isi_komentar")
-  userId    String     @map("id_penulis") @db.Uuid
+  userId    String     @map("pengguna_id") @db.Uuid
   user      Users      @relation(fields: [userId], references: [id], onDelete: Cascade)
   postId    String     @map("id_postingan") @db.Uuid
   post      ForumPosts @relation(fields: [postId], references: [id], onDelete: Cascade)
@@ -288,7 +288,7 @@ model ForumComments {
 }
 
 model Units {
-  id            String     @id @default(uuid()) @db.Uuid
+  id            String     @id @default(uuid()) @map("unit_id") @db.Uuid
   unitNumber    String     @unique @map("nomor_unit")
   buildingName  String?    @map("nama_unit")
   floorNumber   Int?       @map("jumlah_lantai")
@@ -333,7 +333,7 @@ model Leases {
 }
 
 model Bills {
-  id         String      @id @default(uuid()) @db.Uuid
+  id         String      @id @default(uuid()) @map("tagihan_id") @db.Uuid
   amount     Float       @map("jumlah_tagihan")
   type       PaymentType @map("tipe_pembayaran")
   dueDate    DateTime    @map("batas_waktu_pembayaran")
@@ -352,7 +352,7 @@ model Bills {
 }
 
 model Contacts {
-  id          String      @id @default(uuid()) @db.Uuid
+  id          String      @id @default(uuid()) @map("kontak_id") @db.Uuid
   name        String      @map("nama")
   role        ContactRole @map("jabatan") // Misal: 'Security', 'Admin', 'Emergency Services'
   phoneNumber String      @map("nomor_telepon")

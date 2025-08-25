@@ -11223,7 +11223,6 @@ export namespace Prisma {
     id: string | null
     title: string | null
     content: string | null
-    isPublished: boolean | null
     authorRole: $Enums.UserRole | null
     userId: string | null
     publishedAt: Date | null
@@ -11235,7 +11234,6 @@ export namespace Prisma {
     id: string | null
     title: string | null
     content: string | null
-    isPublished: boolean | null
     authorRole: $Enums.UserRole | null
     userId: string | null
     publishedAt: Date | null
@@ -11247,7 +11245,7 @@ export namespace Prisma {
     id: number
     title: number
     content: number
-    isPublished: number
+    attachments: number
     authorRole: number
     userId: number
     publishedAt: number
@@ -11261,7 +11259,6 @@ export namespace Prisma {
     id?: true
     title?: true
     content?: true
-    isPublished?: true
     authorRole?: true
     userId?: true
     publishedAt?: true
@@ -11273,7 +11270,6 @@ export namespace Prisma {
     id?: true
     title?: true
     content?: true
-    isPublished?: true
     authorRole?: true
     userId?: true
     publishedAt?: true
@@ -11285,7 +11281,7 @@ export namespace Prisma {
     id?: true
     title?: true
     content?: true
-    isPublished?: true
+    attachments?: true
     authorRole?: true
     userId?: true
     publishedAt?: true
@@ -11370,7 +11366,7 @@ export namespace Prisma {
     id: string
     title: string
     content: string
-    isPublished: boolean
+    attachments: string[]
     authorRole: $Enums.UserRole
     userId: string
     publishedAt: Date
@@ -11399,7 +11395,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     content?: boolean
-    isPublished?: boolean
+    attachments?: boolean
     authorRole?: boolean
     userId?: boolean
     publishedAt?: boolean
@@ -11415,7 +11411,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     content?: boolean
-    isPublished?: boolean
+    attachments?: boolean
     authorRole?: boolean
     userId?: boolean
     publishedAt?: boolean
@@ -11428,7 +11424,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     content?: boolean
-    isPublished?: boolean
+    attachments?: boolean
     authorRole?: boolean
     userId?: boolean
     publishedAt?: boolean
@@ -11441,7 +11437,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     content?: boolean
-    isPublished?: boolean
+    attachments?: boolean
     authorRole?: boolean
     userId?: boolean
     publishedAt?: boolean
@@ -11449,7 +11445,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ForumPostsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "isPublished" | "authorRole" | "userId" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["forumPosts"]>
+  export type ForumPostsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "attachments" | "authorRole" | "userId" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["forumPosts"]>
   export type ForumPostsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
     tags?: boolean | ForumPosts$tagsArgs<ExtArgs>
@@ -11474,7 +11470,7 @@ export namespace Prisma {
       id: string
       title: string
       content: string
-      isPublished: boolean
+      attachments: string[]
       authorRole: $Enums.UserRole
       userId: string
       publishedAt: Date
@@ -11909,7 +11905,7 @@ export namespace Prisma {
     readonly id: FieldRef<"ForumPosts", 'String'>
     readonly title: FieldRef<"ForumPosts", 'String'>
     readonly content: FieldRef<"ForumPosts", 'String'>
-    readonly isPublished: FieldRef<"ForumPosts", 'Boolean'>
+    readonly attachments: FieldRef<"ForumPosts", 'String[]'>
     readonly authorRole: FieldRef<"ForumPosts", 'UserRole'>
     readonly userId: FieldRef<"ForumPosts", 'String'>
     readonly publishedAt: FieldRef<"ForumPosts", 'DateTime'>
@@ -19406,7 +19402,7 @@ export namespace Prisma {
     id: 'id',
     title: 'title',
     content: 'content',
-    isPublished: 'isPublished',
+    attachments: 'attachments',
     authorRole: 'authorRole',
     userId: 'userId',
     publishedAt: 'publishedAt',
@@ -19713,13 +19709,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'UnitStatus'
    */
   export type EnumUnitStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UnitStatus'>
@@ -19744,6 +19733,13 @@ export namespace Prisma {
    * Reference to a field of type 'PaymentType[]'
    */
   export type ListEnumPaymentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -20448,7 +20444,7 @@ export namespace Prisma {
     id?: UuidFilter<"ForumPosts"> | string
     title?: StringFilter<"ForumPosts"> | string
     content?: StringFilter<"ForumPosts"> | string
-    isPublished?: BoolFilter<"ForumPosts"> | boolean
+    attachments?: StringNullableListFilter<"ForumPosts">
     authorRole?: EnumUserRoleFilter<"ForumPosts"> | $Enums.UserRole
     userId?: UuidFilter<"ForumPosts"> | string
     publishedAt?: DateTimeFilter<"ForumPosts"> | Date | string
@@ -20463,7 +20459,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    isPublished?: SortOrder
+    attachments?: SortOrder
     authorRole?: SortOrder
     userId?: SortOrder
     publishedAt?: SortOrder
@@ -20481,7 +20477,7 @@ export namespace Prisma {
     NOT?: ForumPostsWhereInput | ForumPostsWhereInput[]
     title?: StringFilter<"ForumPosts"> | string
     content?: StringFilter<"ForumPosts"> | string
-    isPublished?: BoolFilter<"ForumPosts"> | boolean
+    attachments?: StringNullableListFilter<"ForumPosts">
     authorRole?: EnumUserRoleFilter<"ForumPosts"> | $Enums.UserRole
     userId?: UuidFilter<"ForumPosts"> | string
     publishedAt?: DateTimeFilter<"ForumPosts"> | Date | string
@@ -20496,7 +20492,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    isPublished?: SortOrder
+    attachments?: SortOrder
     authorRole?: SortOrder
     userId?: SortOrder
     publishedAt?: SortOrder
@@ -20514,7 +20510,7 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"ForumPosts"> | string
     title?: StringWithAggregatesFilter<"ForumPosts"> | string
     content?: StringWithAggregatesFilter<"ForumPosts"> | string
-    isPublished?: BoolWithAggregatesFilter<"ForumPosts"> | boolean
+    attachments?: StringNullableListFilter<"ForumPosts">
     authorRole?: EnumUserRoleWithAggregatesFilter<"ForumPosts"> | $Enums.UserRole
     userId?: UuidWithAggregatesFilter<"ForumPosts"> | string
     publishedAt?: DateTimeWithAggregatesFilter<"ForumPosts"> | Date | string
@@ -21723,7 +21719,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    isPublished?: boolean
+    attachments?: ForumPostsCreateattachmentsInput | string[]
     authorRole: $Enums.UserRole
     publishedAt?: Date | string
     createdAt?: Date | string
@@ -21737,7 +21733,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    isPublished?: boolean
+    attachments?: ForumPostsCreateattachmentsInput | string[]
     authorRole: $Enums.UserRole
     userId: string
     publishedAt?: Date | string
@@ -21751,7 +21747,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    attachments?: ForumPostsUpdateattachmentsInput | string[]
     authorRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21765,7 +21761,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    attachments?: ForumPostsUpdateattachmentsInput | string[]
     authorRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     userId?: StringFieldUpdateOperationsInput | string
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21779,7 +21775,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    isPublished?: boolean
+    attachments?: ForumPostsCreateattachmentsInput | string[]
     authorRole: $Enums.UserRole
     userId: string
     publishedAt?: Date | string
@@ -21791,7 +21787,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    attachments?: ForumPostsUpdateattachmentsInput | string[]
     authorRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21802,7 +21798,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    attachments?: ForumPostsUpdateattachmentsInput | string[]
     authorRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     userId?: StringFieldUpdateOperationsInput | string
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23183,11 +23179,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type PostTagsListRelationFilter = {
     every?: PostTagsWhereInput
     some?: PostTagsWhereInput
@@ -23202,7 +23193,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    isPublished?: SortOrder
+    attachments?: SortOrder
     authorRole?: SortOrder
     userId?: SortOrder
     publishedAt?: SortOrder
@@ -23214,7 +23205,6 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    isPublished?: SortOrder
     authorRole?: SortOrder
     userId?: SortOrder
     publishedAt?: SortOrder
@@ -23226,20 +23216,11 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    isPublished?: SortOrder
     authorRole?: SortOrder
     userId?: SortOrder
     publishedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type PostTagsCountOrderByAggregateInput = {
@@ -23456,6 +23437,11 @@ export namespace Prisma {
     not?: NestedEnumPaymentTypeFilter<$PrismaModel> | $Enums.PaymentType
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type BillsCountOrderByAggregateInput = {
     id?: SortOrder
     amount?: SortOrder
@@ -23508,6 +23494,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPaymentTypeFilter<$PrismaModel>
     _max?: NestedEnumPaymentTypeFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type EnumContactRoleFilter<$PrismaModel = never> = {
@@ -24411,6 +24405,10 @@ export namespace Prisma {
     update?: XOR<XOR<EmployeesUpdateToOneWithWhereWithoutAnnouncementsInput, EmployeesUpdateWithoutAnnouncementsInput>, EmployeesUncheckedUpdateWithoutAnnouncementsInput>
   }
 
+  export type ForumPostsCreateattachmentsInput = {
+    set: string[]
+  }
+
   export type UsersCreateNestedOneWithoutForumPostsInput = {
     create?: XOR<UsersCreateWithoutForumPostsInput, UsersUncheckedCreateWithoutForumPostsInput>
     connectOrCreate?: UsersCreateOrConnectWithoutForumPostsInput
@@ -24443,8 +24441,9 @@ export namespace Prisma {
     connect?: ForumCommentsWhereUniqueInput | ForumCommentsWhereUniqueInput[]
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
+  export type ForumPostsUpdateattachmentsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type UsersUpdateOneRequiredWithoutForumPostsNestedInput = {
@@ -24939,6 +24938,10 @@ export namespace Prisma {
     set?: $Enums.PaymentType
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type UnitsUpdateOneRequiredWithoutBillsNestedInput = {
     create?: XOR<UnitsCreateWithoutBillsInput, UnitsUncheckedCreateWithoutBillsInput>
     connectOrCreate?: UnitsCreateOrConnectWithoutBillsInput
@@ -25394,19 +25397,6 @@ export namespace Prisma {
     _max?: NestedEnumPaymentStatusFilter<$PrismaModel>
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type NestedEnumUnitStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.UnitStatus | EnumUnitStatusFieldRefInput<$PrismaModel>
     in?: $Enums.UnitStatus[] | ListEnumUnitStatusFieldRefInput<$PrismaModel>
@@ -25447,6 +25437,11 @@ export namespace Prisma {
     not?: NestedEnumPaymentTypeFilter<$PrismaModel> | $Enums.PaymentType
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedEnumPaymentTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentType | EnumPaymentTypeFieldRefInput<$PrismaModel>
     in?: $Enums.PaymentType[] | ListEnumPaymentTypeFieldRefInput<$PrismaModel>
@@ -25455,6 +25450,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPaymentTypeFilter<$PrismaModel>
     _max?: NestedEnumPaymentTypeFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedEnumContactRoleFilter<$PrismaModel = never> = {
@@ -25560,7 +25563,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    isPublished?: boolean
+    attachments?: ForumPostsCreateattachmentsInput | string[]
     authorRole: $Enums.UserRole
     publishedAt?: Date | string
     createdAt?: Date | string
@@ -25573,7 +25576,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    isPublished?: boolean
+    attachments?: ForumPostsCreateattachmentsInput | string[]
     authorRole: $Enums.UserRole
     publishedAt?: Date | string
     createdAt?: Date | string
@@ -25703,7 +25706,7 @@ export namespace Prisma {
     id?: UuidFilter<"ForumPosts"> | string
     title?: StringFilter<"ForumPosts"> | string
     content?: StringFilter<"ForumPosts"> | string
-    isPublished?: BoolFilter<"ForumPosts"> | boolean
+    attachments?: StringNullableListFilter<"ForumPosts">
     authorRole?: EnumUserRoleFilter<"ForumPosts"> | $Enums.UserRole
     userId?: UuidFilter<"ForumPosts"> | string
     publishedAt?: DateTimeFilter<"ForumPosts"> | Date | string
@@ -27808,7 +27811,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    isPublished?: boolean
+    attachments?: ForumPostsCreateattachmentsInput | string[]
     authorRole: $Enums.UserRole
     publishedAt?: Date | string
     createdAt?: Date | string
@@ -27821,7 +27824,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    isPublished?: boolean
+    attachments?: ForumPostsCreateattachmentsInput | string[]
     authorRole: $Enums.UserRole
     userId: string
     publishedAt?: Date | string
@@ -27906,7 +27909,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    isPublished?: boolean
+    attachments?: ForumPostsCreateattachmentsInput | string[]
     authorRole: $Enums.UserRole
     publishedAt?: Date | string
     createdAt?: Date | string
@@ -27919,7 +27922,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    isPublished?: boolean
+    attachments?: ForumPostsCreateattachmentsInput | string[]
     authorRole: $Enums.UserRole
     userId: string
     publishedAt?: Date | string
@@ -28005,7 +28008,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    attachments?: ForumPostsUpdateattachmentsInput | string[]
     authorRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28018,7 +28021,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    attachments?: ForumPostsUpdateattachmentsInput | string[]
     authorRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     userId?: StringFieldUpdateOperationsInput | string
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28837,7 +28840,7 @@ export namespace Prisma {
     id?: string
     title: string
     content: string
-    isPublished?: boolean
+    attachments?: ForumPostsCreateattachmentsInput | string[]
     authorRole: $Enums.UserRole
     publishedAt?: Date | string
     createdAt?: Date | string
@@ -28940,7 +28943,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    attachments?: ForumPostsUpdateattachmentsInput | string[]
     authorRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28953,7 +28956,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    attachments?: ForumPostsUpdateattachmentsInput | string[]
     authorRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28966,7 +28969,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    attachments?: ForumPostsUpdateattachmentsInput | string[]
     authorRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29478,7 +29481,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    attachments?: ForumPostsUpdateattachmentsInput | string[]
     authorRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29491,7 +29494,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    attachments?: ForumPostsUpdateattachmentsInput | string[]
     authorRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     userId?: StringFieldUpdateOperationsInput | string
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29504,7 +29507,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    attachments?: ForumPostsUpdateattachmentsInput | string[]
     authorRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     userId?: StringFieldUpdateOperationsInput | string
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
