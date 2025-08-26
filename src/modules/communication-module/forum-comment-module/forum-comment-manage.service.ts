@@ -23,7 +23,7 @@ export class ForumCommentManageService {
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Membuat Data Pengumuman',
+        'Terjadi Kesalahan Saat Membuat Data Comment post ',
       );
     }
   }
@@ -49,7 +49,7 @@ export class ForumCommentManageService {
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Membuat Data Pengumuman',
+        'Terjadi Kesalahan Saat Membuat Data Comment post ',
       );
     }
   }
@@ -81,20 +81,20 @@ export class ForumCommentManageService {
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Membuat Data Pengumuman',
+        'Terjadi Kesalahan Saat Membuat Data Comment post ',
       );
     }
   }
 
   async update(id: string, updateRequest: UpdateForumCommentManageDto) {
     try {
-      const existData = await this.prisma.forumComments.findUnique({
+      const existData = await this.prisma.forumComments.findUniqueOrThrow({
         where: { id: id },
       });
 
       if (!existData) {
         throw new NotFoundException(
-          `Data Pengumuman dengan id: ${id} tidak ditemukan`,
+          `Data Comment post  dengan id: ${id} tidak ditemukan`,
         );
       }
 
@@ -104,26 +104,27 @@ export class ForumCommentManageService {
           content: updateRequest.content,
           postId: updateRequest.postId,
           userId: updateRequest.userId,
+          updatedAt: new Date(),
         },
       });
     } catch (error) {
       if ((error as Error).name === 'NotFoundError') {
         throw new NotFoundException(
-          `Pengumuman dengan id: ${id} tidak ditemukan`,
+          `Comment post  dengan id: ${id} tidak ditemukan`,
         );
       }
 
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2025') {
           throw new NotFoundException(
-            `Pengumuman dengan id: ${id} tidak ditemukan`,
+            `Comment post  dengan id: ${id} tidak ditemukan`,
           );
         }
       }
 
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Pengumuman',
+        'Terjadi Kesalahan Saat Mendapatkan Comment post ',
       );
     }
   }
@@ -136,7 +137,7 @@ export class ForumCommentManageService {
 
       if (!existData) {
         throw new NotFoundException(
-          `Data Pengumuman dengan id: ${id} tidak ditemukan`,
+          `Data Comment post  dengan id: ${id} tidak ditemukan`,
         );
       }
 
@@ -146,21 +147,21 @@ export class ForumCommentManageService {
     } catch (error) {
       if ((error as Error).name === 'NotFoundError') {
         throw new NotFoundException(
-          `Pengumuman dengan id: ${id} tidak ditemukan`,
+          `Comment post  dengan id: ${id} tidak ditemukan`,
         );
       }
 
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2025') {
           throw new NotFoundException(
-            `Pengumuman dengan id: ${id} tidak ditemukan`,
+            `Comment post  dengan id: ${id} tidak ditemukan`,
           );
         }
       }
 
       console.error((error as Error).message);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Pengumuman',
+        'Terjadi Kesalahan Saat Mendapatkan Comment post ',
       );
     }
   }

@@ -7,20 +7,20 @@ export declare class ForumPostManageService {
     create(createRequest: CreateForumPostManageDto): Promise<{
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
         content: string;
         attachments: string[];
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
         publishedAt: Date;
-        createdAt: Date;
-        updatedAt: Date;
         userId: string;
     }>;
     findAll(): Promise<({
         user: {
-            username: string;
             fullName: string;
             firstName: string;
             lastName: string;
+            username: string;
             role: import("src/common/database/generated/prisma").$Enums.UserRole;
         };
         _count: {
@@ -30,20 +30,20 @@ export declare class ForumPostManageService {
     } & {
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
         content: string;
         attachments: string[];
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
         publishedAt: Date;
-        createdAt: Date;
-        updatedAt: Date;
         userId: string;
     })[]>;
     findOne(id: string): Promise<{
         user: {
-            username: string;
             fullName: string;
             firstName: string;
             lastName: string;
+            username: string;
             role: import("src/common/database/generated/prisma").$Enums.UserRole;
         };
         tags: {
@@ -54,43 +54,43 @@ export declare class ForumPostManageService {
         }[];
         comments: {
             id: string;
-            content: string;
             createdAt: Date;
             updatedAt: Date;
+            content: string;
             userId: string;
             postId: string;
         }[];
     } & {
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
         content: string;
         attachments: string[];
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
         publishedAt: Date;
-        createdAt: Date;
-        updatedAt: Date;
         userId: string;
     }>;
     update(id: string, updateRequest: UpdateForumPostManageDto): Promise<{
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
         content: string;
         attachments: string[];
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
         publishedAt: Date;
-        createdAt: Date;
-        updatedAt: Date;
         userId: string;
     }>;
     remove(id: string): Promise<{
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
         content: string;
         attachments: string[];
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
         publishedAt: Date;
-        createdAt: Date;
-        updatedAt: Date;
         userId: string;
     }>;
 }

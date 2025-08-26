@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { CreateAnnouncementManageDto } from '../../../dtos/requests/create/create-announcement-manage.dto';
 import { UpdateAnnouncementManageDto } from '../../../dtos/requests/update/update-announcement-manage.dto';
-import { DatabaseService } from 'src/common/database/database.service';
+import { DatabaseService } from '../../../common/database/database.service';
 import { PrismaClientKnownRequestError } from '../../../common/database/generated/prisma/runtime/library';
 @Injectable()
 export class AnnouncementManageService {
@@ -102,6 +102,7 @@ export class AnnouncementManageService {
           },
           expiryDate: updateRequest.expiryDate ?? existData.expiryDate,
           publishDate: updateRequest.publishDate ?? existData.publishDate,
+          updatedAt: new Date(),
         },
       });
     } catch (error) {

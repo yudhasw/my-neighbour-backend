@@ -6622,7 +6622,7 @@ export namespace Prisma {
     title: string
     description: string
     requestDate: Date
-    priority: $Enums.MaintenancePriority
+    priority: $Enums.MaintenancePriority | null
     status: $Enums.MaintenanceStatus
     residentId: string
     unitId: string
@@ -6742,7 +6742,7 @@ export namespace Prisma {
       title: string
       description: string
       requestDate: Date
-      priority: $Enums.MaintenancePriority
+      priority: $Enums.MaintenancePriority | null
       status: $Enums.MaintenanceStatus
       residentId: string
       unitId: string
@@ -7631,8 +7631,9 @@ export namespace Prisma {
 
   export type ComplaintsMinAggregateOutputType = {
     id: string | null
-    name: string | null
-    desciption: string | null
+    title: string | null
+    description: string | null
+    category: $Enums.MaintenancePriority | null
     status: $Enums.ComplaintStatus | null
     submittedAt: Date | null
     resolvedAt: Date | null
@@ -7640,12 +7641,15 @@ export namespace Prisma {
     residentId: string | null
     employeeId: string | null
     unitId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ComplaintsMaxAggregateOutputType = {
     id: string | null
-    name: string | null
-    desciption: string | null
+    title: string | null
+    description: string | null
+    category: $Enums.MaintenancePriority | null
     status: $Enums.ComplaintStatus | null
     submittedAt: Date | null
     resolvedAt: Date | null
@@ -7653,12 +7657,15 @@ export namespace Prisma {
     residentId: string | null
     employeeId: string | null
     unitId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ComplaintsCountAggregateOutputType = {
     id: number
-    name: number
-    desciption: number
+    title: number
+    description: number
+    category: number
     status: number
     submittedAt: number
     resolvedAt: number
@@ -7667,14 +7674,17 @@ export namespace Prisma {
     employeeId: number
     unitId: number
     images: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
   export type ComplaintsMinAggregateInputType = {
     id?: true
-    name?: true
-    desciption?: true
+    title?: true
+    description?: true
+    category?: true
     status?: true
     submittedAt?: true
     resolvedAt?: true
@@ -7682,12 +7692,15 @@ export namespace Prisma {
     residentId?: true
     employeeId?: true
     unitId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ComplaintsMaxAggregateInputType = {
     id?: true
-    name?: true
-    desciption?: true
+    title?: true
+    description?: true
+    category?: true
     status?: true
     submittedAt?: true
     resolvedAt?: true
@@ -7695,12 +7708,15 @@ export namespace Prisma {
     residentId?: true
     employeeId?: true
     unitId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ComplaintsCountAggregateInputType = {
     id?: true
-    name?: true
-    desciption?: true
+    title?: true
+    description?: true
+    category?: true
     status?: true
     submittedAt?: true
     resolvedAt?: true
@@ -7709,6 +7725,8 @@ export namespace Prisma {
     employeeId?: true
     unitId?: true
     images?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -7786,8 +7804,9 @@ export namespace Prisma {
 
   export type ComplaintsGroupByOutputType = {
     id: string
-    name: string
-    desciption: string
+    title: string
+    description: string
+    category: $Enums.MaintenancePriority
     status: $Enums.ComplaintStatus
     submittedAt: Date
     resolvedAt: Date | null
@@ -7796,6 +7815,8 @@ export namespace Prisma {
     employeeId: string | null
     unitId: string | null
     images: string[]
+    createdAt: Date
+    updatedAt: Date
     _count: ComplaintsCountAggregateOutputType | null
     _min: ComplaintsMinAggregateOutputType | null
     _max: ComplaintsMaxAggregateOutputType | null
@@ -7817,8 +7838,9 @@ export namespace Prisma {
 
   export type ComplaintsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
-    desciption?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
     status?: boolean
     submittedAt?: boolean
     resolvedAt?: boolean
@@ -7827,6 +7849,8 @@ export namespace Prisma {
     employeeId?: boolean
     unitId?: boolean
     images?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     resident?: boolean | ResidentsDefaultArgs<ExtArgs>
     employee?: boolean | Complaints$employeeArgs<ExtArgs>
     unit?: boolean | Complaints$unitArgs<ExtArgs>
@@ -7834,8 +7858,9 @@ export namespace Prisma {
 
   export type ComplaintsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
-    desciption?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
     status?: boolean
     submittedAt?: boolean
     resolvedAt?: boolean
@@ -7844,6 +7869,8 @@ export namespace Prisma {
     employeeId?: boolean
     unitId?: boolean
     images?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     resident?: boolean | ResidentsDefaultArgs<ExtArgs>
     employee?: boolean | Complaints$employeeArgs<ExtArgs>
     unit?: boolean | Complaints$unitArgs<ExtArgs>
@@ -7851,8 +7878,9 @@ export namespace Prisma {
 
   export type ComplaintsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
-    desciption?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
     status?: boolean
     submittedAt?: boolean
     resolvedAt?: boolean
@@ -7861,6 +7889,8 @@ export namespace Prisma {
     employeeId?: boolean
     unitId?: boolean
     images?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     resident?: boolean | ResidentsDefaultArgs<ExtArgs>
     employee?: boolean | Complaints$employeeArgs<ExtArgs>
     unit?: boolean | Complaints$unitArgs<ExtArgs>
@@ -7868,8 +7898,9 @@ export namespace Prisma {
 
   export type ComplaintsSelectScalar = {
     id?: boolean
-    name?: boolean
-    desciption?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
     status?: boolean
     submittedAt?: boolean
     resolvedAt?: boolean
@@ -7878,9 +7909,11 @@ export namespace Prisma {
     employeeId?: boolean
     unitId?: boolean
     images?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ComplaintsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "desciption" | "status" | "submittedAt" | "resolvedAt" | "resolutionDetails" | "residentId" | "employeeId" | "unitId" | "images", ExtArgs["result"]["complaints"]>
+  export type ComplaintsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "status" | "submittedAt" | "resolvedAt" | "resolutionDetails" | "residentId" | "employeeId" | "unitId" | "images" | "createdAt" | "updatedAt", ExtArgs["result"]["complaints"]>
   export type ComplaintsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     resident?: boolean | ResidentsDefaultArgs<ExtArgs>
     employee?: boolean | Complaints$employeeArgs<ExtArgs>
@@ -7906,8 +7939,9 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      name: string
-      desciption: string
+      title: string
+      description: string
+      category: $Enums.MaintenancePriority
       status: $Enums.ComplaintStatus
       submittedAt: Date
       resolvedAt: Date | null
@@ -7916,6 +7950,8 @@ export namespace Prisma {
       employeeId: string | null
       unitId: string | null
       images: string[]
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["complaints"]>
     composites: {}
   }
@@ -8343,8 +8379,9 @@ export namespace Prisma {
    */
   interface ComplaintsFieldRefs {
     readonly id: FieldRef<"Complaints", 'String'>
-    readonly name: FieldRef<"Complaints", 'String'>
-    readonly desciption: FieldRef<"Complaints", 'String'>
+    readonly title: FieldRef<"Complaints", 'String'>
+    readonly description: FieldRef<"Complaints", 'String'>
+    readonly category: FieldRef<"Complaints", 'MaintenancePriority'>
     readonly status: FieldRef<"Complaints", 'ComplaintStatus'>
     readonly submittedAt: FieldRef<"Complaints", 'DateTime'>
     readonly resolvedAt: FieldRef<"Complaints", 'DateTime'>
@@ -8353,6 +8390,8 @@ export namespace Prisma {
     readonly employeeId: FieldRef<"Complaints", 'String'>
     readonly unitId: FieldRef<"Complaints", 'String'>
     readonly images: FieldRef<"Complaints", 'String[]'>
+    readonly createdAt: FieldRef<"Complaints", 'DateTime'>
+    readonly updatedAt: FieldRef<"Complaints", 'DateTime'>
   }
     
 
@@ -19348,8 +19387,9 @@ export namespace Prisma {
 
   export const ComplaintsScalarFieldEnum: {
     id: 'id',
-    name: 'name',
-    desciption: 'desciption',
+    title: 'title',
+    description: 'description',
+    category: 'category',
     status: 'status',
     submittedAt: 'submittedAt',
     resolvedAt: 'resolvedAt',
@@ -19357,7 +19397,9 @@ export namespace Prisma {
     residentId: 'residentId',
     employeeId: 'employeeId',
     unitId: 'unitId',
-    images: 'images'
+    images: 'images',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ComplaintsScalarFieldEnum = (typeof ComplaintsScalarFieldEnum)[keyof typeof ComplaintsScalarFieldEnum]
@@ -20074,7 +20116,7 @@ export namespace Prisma {
     title?: StringFilter<"MaintenanceRequests"> | string
     description?: StringFilter<"MaintenanceRequests"> | string
     requestDate?: DateTimeFilter<"MaintenanceRequests"> | Date | string
-    priority?: EnumMaintenancePriorityFilter<"MaintenanceRequests"> | $Enums.MaintenancePriority
+    priority?: EnumMaintenancePriorityNullableFilter<"MaintenanceRequests"> | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFilter<"MaintenanceRequests"> | $Enums.MaintenanceStatus
     residentId?: UuidFilter<"MaintenanceRequests"> | string
     unitId?: UuidFilter<"MaintenanceRequests"> | string
@@ -20091,7 +20133,7 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     requestDate?: SortOrder
-    priority?: SortOrder
+    priority?: SortOrderInput | SortOrder
     status?: SortOrder
     residentId?: SortOrder
     unitId?: SortOrder
@@ -20111,7 +20153,7 @@ export namespace Prisma {
     title?: StringFilter<"MaintenanceRequests"> | string
     description?: StringFilter<"MaintenanceRequests"> | string
     requestDate?: DateTimeFilter<"MaintenanceRequests"> | Date | string
-    priority?: EnumMaintenancePriorityFilter<"MaintenanceRequests"> | $Enums.MaintenancePriority
+    priority?: EnumMaintenancePriorityNullableFilter<"MaintenanceRequests"> | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFilter<"MaintenanceRequests"> | $Enums.MaintenanceStatus
     residentId?: UuidFilter<"MaintenanceRequests"> | string
     unitId?: UuidFilter<"MaintenanceRequests"> | string
@@ -20128,7 +20170,7 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     requestDate?: SortOrder
-    priority?: SortOrder
+    priority?: SortOrderInput | SortOrder
     status?: SortOrder
     residentId?: SortOrder
     unitId?: SortOrder
@@ -20148,7 +20190,7 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"MaintenanceRequests"> | string
     description?: StringWithAggregatesFilter<"MaintenanceRequests"> | string
     requestDate?: DateTimeWithAggregatesFilter<"MaintenanceRequests"> | Date | string
-    priority?: EnumMaintenancePriorityWithAggregatesFilter<"MaintenanceRequests"> | $Enums.MaintenancePriority
+    priority?: EnumMaintenancePriorityNullableWithAggregatesFilter<"MaintenanceRequests"> | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusWithAggregatesFilter<"MaintenanceRequests"> | $Enums.MaintenanceStatus
     residentId?: UuidWithAggregatesFilter<"MaintenanceRequests"> | string
     unitId?: UuidWithAggregatesFilter<"MaintenanceRequests"> | string
@@ -20162,8 +20204,9 @@ export namespace Prisma {
     OR?: ComplaintsWhereInput[]
     NOT?: ComplaintsWhereInput | ComplaintsWhereInput[]
     id?: UuidFilter<"Complaints"> | string
-    name?: StringFilter<"Complaints"> | string
-    desciption?: StringFilter<"Complaints"> | string
+    title?: StringFilter<"Complaints"> | string
+    description?: StringFilter<"Complaints"> | string
+    category?: EnumMaintenancePriorityFilter<"Complaints"> | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFilter<"Complaints"> | $Enums.ComplaintStatus
     submittedAt?: DateTimeFilter<"Complaints"> | Date | string
     resolvedAt?: DateTimeNullableFilter<"Complaints"> | Date | string | null
@@ -20172,6 +20215,8 @@ export namespace Prisma {
     employeeId?: UuidNullableFilter<"Complaints"> | string | null
     unitId?: UuidNullableFilter<"Complaints"> | string | null
     images?: StringNullableListFilter<"Complaints">
+    createdAt?: DateTimeFilter<"Complaints"> | Date | string
+    updatedAt?: DateTimeFilter<"Complaints"> | Date | string
     resident?: XOR<ResidentsScalarRelationFilter, ResidentsWhereInput>
     employee?: XOR<EmployeesNullableScalarRelationFilter, EmployeesWhereInput> | null
     unit?: XOR<UnitsNullableScalarRelationFilter, UnitsWhereInput> | null
@@ -20179,8 +20224,9 @@ export namespace Prisma {
 
   export type ComplaintsOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
-    desciption?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
     status?: SortOrder
     submittedAt?: SortOrder
     resolvedAt?: SortOrderInput | SortOrder
@@ -20189,6 +20235,8 @@ export namespace Prisma {
     employeeId?: SortOrderInput | SortOrder
     unitId?: SortOrderInput | SortOrder
     images?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     resident?: ResidentsOrderByWithRelationInput
     employee?: EmployeesOrderByWithRelationInput
     unit?: UnitsOrderByWithRelationInput
@@ -20200,8 +20248,9 @@ export namespace Prisma {
     AND?: ComplaintsWhereInput | ComplaintsWhereInput[]
     OR?: ComplaintsWhereInput[]
     NOT?: ComplaintsWhereInput | ComplaintsWhereInput[]
-    name?: StringFilter<"Complaints"> | string
-    desciption?: StringFilter<"Complaints"> | string
+    title?: StringFilter<"Complaints"> | string
+    description?: StringFilter<"Complaints"> | string
+    category?: EnumMaintenancePriorityFilter<"Complaints"> | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFilter<"Complaints"> | $Enums.ComplaintStatus
     submittedAt?: DateTimeFilter<"Complaints"> | Date | string
     resolvedAt?: DateTimeNullableFilter<"Complaints"> | Date | string | null
@@ -20209,6 +20258,8 @@ export namespace Prisma {
     residentId?: UuidFilter<"Complaints"> | string
     unitId?: UuidNullableFilter<"Complaints"> | string | null
     images?: StringNullableListFilter<"Complaints">
+    createdAt?: DateTimeFilter<"Complaints"> | Date | string
+    updatedAt?: DateTimeFilter<"Complaints"> | Date | string
     resident?: XOR<ResidentsScalarRelationFilter, ResidentsWhereInput>
     employee?: XOR<EmployeesNullableScalarRelationFilter, EmployeesWhereInput> | null
     unit?: XOR<UnitsNullableScalarRelationFilter, UnitsWhereInput> | null
@@ -20216,8 +20267,9 @@ export namespace Prisma {
 
   export type ComplaintsOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
-    desciption?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
     status?: SortOrder
     submittedAt?: SortOrder
     resolvedAt?: SortOrderInput | SortOrder
@@ -20226,6 +20278,8 @@ export namespace Prisma {
     employeeId?: SortOrderInput | SortOrder
     unitId?: SortOrderInput | SortOrder
     images?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ComplaintsCountOrderByAggregateInput
     _max?: ComplaintsMaxOrderByAggregateInput
     _min?: ComplaintsMinOrderByAggregateInput
@@ -20236,8 +20290,9 @@ export namespace Prisma {
     OR?: ComplaintsScalarWhereWithAggregatesInput[]
     NOT?: ComplaintsScalarWhereWithAggregatesInput | ComplaintsScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"Complaints"> | string
-    name?: StringWithAggregatesFilter<"Complaints"> | string
-    desciption?: StringWithAggregatesFilter<"Complaints"> | string
+    title?: StringWithAggregatesFilter<"Complaints"> | string
+    description?: StringWithAggregatesFilter<"Complaints"> | string
+    category?: EnumMaintenancePriorityWithAggregatesFilter<"Complaints"> | $Enums.MaintenancePriority
     status?: EnumComplaintStatusWithAggregatesFilter<"Complaints"> | $Enums.ComplaintStatus
     submittedAt?: DateTimeWithAggregatesFilter<"Complaints"> | Date | string
     resolvedAt?: DateTimeNullableWithAggregatesFilter<"Complaints"> | Date | string | null
@@ -20246,6 +20301,8 @@ export namespace Prisma {
     employeeId?: UuidNullableWithAggregatesFilter<"Complaints"> | string | null
     unitId?: UuidNullableWithAggregatesFilter<"Complaints"> | string | null
     images?: StringNullableListFilter<"Complaints">
+    createdAt?: DateTimeWithAggregatesFilter<"Complaints"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Complaints"> | Date | string
   }
 
   export type PaymentsWhereInput = {
@@ -21333,7 +21390,7 @@ export namespace Prisma {
     title: string
     description: string
     requestDate?: Date | string
-    priority: $Enums.MaintenancePriority
+    priority?: $Enums.MaintenancePriority | null
     status: $Enums.MaintenanceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -21347,7 +21404,7 @@ export namespace Prisma {
     title: string
     description: string
     requestDate?: Date | string
-    priority: $Enums.MaintenancePriority
+    priority?: $Enums.MaintenancePriority | null
     status: $Enums.MaintenanceStatus
     residentId: string
     unitId: string
@@ -21361,7 +21418,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     requestDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priority?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
+    priority?: NullableEnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFieldUpdateOperationsInput | $Enums.MaintenanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21375,7 +21432,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     requestDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priority?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
+    priority?: NullableEnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFieldUpdateOperationsInput | $Enums.MaintenanceStatus
     residentId?: StringFieldUpdateOperationsInput | string
     unitId?: StringFieldUpdateOperationsInput | string
@@ -21389,7 +21446,7 @@ export namespace Prisma {
     title: string
     description: string
     requestDate?: Date | string
-    priority: $Enums.MaintenancePriority
+    priority?: $Enums.MaintenancePriority | null
     status: $Enums.MaintenanceStatus
     residentId: string
     unitId: string
@@ -21403,7 +21460,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     requestDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priority?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
+    priority?: NullableEnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFieldUpdateOperationsInput | $Enums.MaintenanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21414,7 +21471,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     requestDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priority?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
+    priority?: NullableEnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFieldUpdateOperationsInput | $Enums.MaintenanceStatus
     residentId?: StringFieldUpdateOperationsInput | string
     unitId?: StringFieldUpdateOperationsInput | string
@@ -21425,13 +21482,16 @@ export namespace Prisma {
 
   export type ComplaintsCreateInput = {
     id?: string
-    name: string
-    desciption: string
+    title: string
+    description: string
+    category: $Enums.MaintenancePriority
     status?: $Enums.ComplaintStatus
     submittedAt?: Date | string
     resolvedAt?: Date | string | null
     resolutionDetails?: string | null
     images?: ComplaintsCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
     resident: ResidentsCreateNestedOneWithoutComplaintsInput
     employee?: EmployeesCreateNestedOneWithoutComplaintInput
     unit?: UnitsCreateNestedOneWithoutComplaintsInput
@@ -21439,8 +21499,9 @@ export namespace Prisma {
 
   export type ComplaintsUncheckedCreateInput = {
     id?: string
-    name: string
-    desciption: string
+    title: string
+    description: string
+    category: $Enums.MaintenancePriority
     status?: $Enums.ComplaintStatus
     submittedAt?: Date | string
     resolvedAt?: Date | string | null
@@ -21449,17 +21510,22 @@ export namespace Prisma {
     employeeId?: string | null
     unitId?: string | null
     images?: ComplaintsCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ComplaintsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    desciption?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
     images?: ComplaintsUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resident?: ResidentsUpdateOneRequiredWithoutComplaintsNestedInput
     employee?: EmployeesUpdateOneWithoutComplaintNestedInput
     unit?: UnitsUpdateOneWithoutComplaintsNestedInput
@@ -21467,8 +21533,9 @@ export namespace Prisma {
 
   export type ComplaintsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    desciption?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -21477,12 +21544,15 @@ export namespace Prisma {
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     unitId?: NullableStringFieldUpdateOperationsInput | string | null
     images?: ComplaintsUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ComplaintsCreateManyInput = {
     id?: string
-    name: string
-    desciption: string
+    title: string
+    description: string
+    category: $Enums.MaintenancePriority
     status?: $Enums.ComplaintStatus
     submittedAt?: Date | string
     resolvedAt?: Date | string | null
@@ -21491,23 +21561,29 @@ export namespace Prisma {
     employeeId?: string | null
     unitId?: string | null
     images?: ComplaintsCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ComplaintsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    desciption?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
     images?: ComplaintsUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ComplaintsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    desciption?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -21516,6 +21592,8 @@ export namespace Prisma {
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     unitId?: NullableStringFieldUpdateOperationsInput | string | null
     images?: ComplaintsUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PaymentsCreateInput = {
@@ -22881,11 +22959,11 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
-  export type EnumMaintenancePriorityFilter<$PrismaModel = never> = {
-    equals?: $Enums.MaintenancePriority | EnumMaintenancePriorityFieldRefInput<$PrismaModel>
-    in?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
-    notIn?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
-    not?: NestedEnumMaintenancePriorityFilter<$PrismaModel> | $Enums.MaintenancePriority
+  export type EnumMaintenancePriorityNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.MaintenancePriority | EnumMaintenancePriorityFieldRefInput<$PrismaModel> | null
+    in?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumMaintenancePriorityNullableFilter<$PrismaModel> | $Enums.MaintenancePriority | null
   }
 
   export type EnumMaintenanceStatusFilter<$PrismaModel = never> = {
@@ -22952,14 +23030,14 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type EnumMaintenancePriorityWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.MaintenancePriority | EnumMaintenancePriorityFieldRefInput<$PrismaModel>
-    in?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
-    notIn?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
-    not?: NestedEnumMaintenancePriorityWithAggregatesFilter<$PrismaModel> | $Enums.MaintenancePriority
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumMaintenancePriorityFilter<$PrismaModel>
-    _max?: NestedEnumMaintenancePriorityFilter<$PrismaModel>
+  export type EnumMaintenancePriorityNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MaintenancePriority | EnumMaintenancePriorityFieldRefInput<$PrismaModel> | null
+    in?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumMaintenancePriorityNullableWithAggregatesFilter<$PrismaModel> | $Enums.MaintenancePriority | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumMaintenancePriorityNullableFilter<$PrismaModel>
+    _max?: NestedEnumMaintenancePriorityNullableFilter<$PrismaModel>
   }
 
   export type EnumMaintenanceStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -22970,6 +23048,13 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumMaintenanceStatusFilter<$PrismaModel>
     _max?: NestedEnumMaintenanceStatusFilter<$PrismaModel>
+  }
+
+  export type EnumMaintenancePriorityFilter<$PrismaModel = never> = {
+    equals?: $Enums.MaintenancePriority | EnumMaintenancePriorityFieldRefInput<$PrismaModel>
+    in?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
+    not?: NestedEnumMaintenancePriorityFilter<$PrismaModel> | $Enums.MaintenancePriority
   }
 
   export type EnumComplaintStatusFilter<$PrismaModel = never> = {
@@ -22989,8 +23074,9 @@ export namespace Prisma {
 
   export type ComplaintsCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    desciption?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
     status?: SortOrder
     submittedAt?: SortOrder
     resolvedAt?: SortOrder
@@ -22999,12 +23085,15 @@ export namespace Prisma {
     employeeId?: SortOrder
     unitId?: SortOrder
     images?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ComplaintsMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    desciption?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
     status?: SortOrder
     submittedAt?: SortOrder
     resolvedAt?: SortOrder
@@ -23012,12 +23101,15 @@ export namespace Prisma {
     residentId?: SortOrder
     employeeId?: SortOrder
     unitId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ComplaintsMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    desciption?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
     status?: SortOrder
     submittedAt?: SortOrder
     resolvedAt?: SortOrder
@@ -23025,6 +23117,18 @@ export namespace Prisma {
     residentId?: SortOrder
     employeeId?: SortOrder
     unitId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumMaintenancePriorityWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MaintenancePriority | EnumMaintenancePriorityFieldRefInput<$PrismaModel>
+    in?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
+    not?: NestedEnumMaintenancePriorityWithAggregatesFilter<$PrismaModel> | $Enums.MaintenancePriority
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMaintenancePriorityFilter<$PrismaModel>
+    _max?: NestedEnumMaintenancePriorityFilter<$PrismaModel>
   }
 
   export type EnumComplaintStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -24205,8 +24309,8 @@ export namespace Prisma {
     connect?: EmployeesWhereUniqueInput
   }
 
-  export type EnumMaintenancePriorityFieldUpdateOperationsInput = {
-    set?: $Enums.MaintenancePriority
+  export type NullableEnumMaintenancePriorityFieldUpdateOperationsInput = {
+    set?: $Enums.MaintenancePriority | null
   }
 
   export type EnumMaintenanceStatusFieldUpdateOperationsInput = {
@@ -24259,6 +24363,10 @@ export namespace Prisma {
     create?: XOR<UnitsCreateWithoutComplaintsInput, UnitsUncheckedCreateWithoutComplaintsInput>
     connectOrCreate?: UnitsCreateOrConnectWithoutComplaintsInput
     connect?: UnitsWhereUniqueInput
+  }
+
+  export type EnumMaintenancePriorityFieldUpdateOperationsInput = {
+    set?: $Enums.MaintenancePriority
   }
 
   export type EnumComplaintStatusFieldUpdateOperationsInput = {
@@ -25312,11 +25420,11 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
-  export type NestedEnumMaintenancePriorityFilter<$PrismaModel = never> = {
-    equals?: $Enums.MaintenancePriority | EnumMaintenancePriorityFieldRefInput<$PrismaModel>
-    in?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
-    notIn?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
-    not?: NestedEnumMaintenancePriorityFilter<$PrismaModel> | $Enums.MaintenancePriority
+  export type NestedEnumMaintenancePriorityNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.MaintenancePriority | EnumMaintenancePriorityFieldRefInput<$PrismaModel> | null
+    in?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumMaintenancePriorityNullableFilter<$PrismaModel> | $Enums.MaintenancePriority | null
   }
 
   export type NestedEnumMaintenanceStatusFilter<$PrismaModel = never> = {
@@ -25326,14 +25434,14 @@ export namespace Prisma {
     not?: NestedEnumMaintenanceStatusFilter<$PrismaModel> | $Enums.MaintenanceStatus
   }
 
-  export type NestedEnumMaintenancePriorityWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.MaintenancePriority | EnumMaintenancePriorityFieldRefInput<$PrismaModel>
-    in?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
-    notIn?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
-    not?: NestedEnumMaintenancePriorityWithAggregatesFilter<$PrismaModel> | $Enums.MaintenancePriority
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumMaintenancePriorityFilter<$PrismaModel>
-    _max?: NestedEnumMaintenancePriorityFilter<$PrismaModel>
+  export type NestedEnumMaintenancePriorityNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MaintenancePriority | EnumMaintenancePriorityFieldRefInput<$PrismaModel> | null
+    in?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumMaintenancePriorityNullableWithAggregatesFilter<$PrismaModel> | $Enums.MaintenancePriority | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumMaintenancePriorityNullableFilter<$PrismaModel>
+    _max?: NestedEnumMaintenancePriorityNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumMaintenanceStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -25346,11 +25454,28 @@ export namespace Prisma {
     _max?: NestedEnumMaintenanceStatusFilter<$PrismaModel>
   }
 
+  export type NestedEnumMaintenancePriorityFilter<$PrismaModel = never> = {
+    equals?: $Enums.MaintenancePriority | EnumMaintenancePriorityFieldRefInput<$PrismaModel>
+    in?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
+    not?: NestedEnumMaintenancePriorityFilter<$PrismaModel> | $Enums.MaintenancePriority
+  }
+
   export type NestedEnumComplaintStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.ComplaintStatus | EnumComplaintStatusFieldRefInput<$PrismaModel>
     in?: $Enums.ComplaintStatus[] | ListEnumComplaintStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.ComplaintStatus[] | ListEnumComplaintStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumComplaintStatusFilter<$PrismaModel> | $Enums.ComplaintStatus
+  }
+
+  export type NestedEnumMaintenancePriorityWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MaintenancePriority | EnumMaintenancePriorityFieldRefInput<$PrismaModel>
+    in?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MaintenancePriority[] | ListEnumMaintenancePriorityFieldRefInput<$PrismaModel>
+    not?: NestedEnumMaintenancePriorityWithAggregatesFilter<$PrismaModel> | $Enums.MaintenancePriority
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMaintenancePriorityFilter<$PrismaModel>
+    _max?: NestedEnumMaintenancePriorityFilter<$PrismaModel>
   }
 
   export type NestedEnumComplaintStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -25843,7 +25968,7 @@ export namespace Prisma {
     title: string
     description: string
     requestDate?: Date | string
-    priority: $Enums.MaintenancePriority
+    priority?: $Enums.MaintenancePriority | null
     status: $Enums.MaintenanceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25856,7 +25981,7 @@ export namespace Prisma {
     title: string
     description: string
     requestDate?: Date | string
-    priority: $Enums.MaintenancePriority
+    priority?: $Enums.MaintenancePriority | null
     status: $Enums.MaintenanceStatus
     unitId: string
     assignedToEmployeeId?: string | null
@@ -25954,21 +26079,25 @@ export namespace Prisma {
 
   export type ComplaintsCreateWithoutResidentInput = {
     id?: string
-    name: string
-    desciption: string
+    title: string
+    description: string
+    category: $Enums.MaintenancePriority
     status?: $Enums.ComplaintStatus
     submittedAt?: Date | string
     resolvedAt?: Date | string | null
     resolutionDetails?: string | null
     images?: ComplaintsCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
     employee?: EmployeesCreateNestedOneWithoutComplaintInput
     unit?: UnitsCreateNestedOneWithoutComplaintsInput
   }
 
   export type ComplaintsUncheckedCreateWithoutResidentInput = {
     id?: string
-    name: string
-    desciption: string
+    title: string
+    description: string
+    category: $Enums.MaintenancePriority
     status?: $Enums.ComplaintStatus
     submittedAt?: Date | string
     resolvedAt?: Date | string | null
@@ -25976,6 +26105,8 @@ export namespace Prisma {
     employeeId?: string | null
     unitId?: string | null
     images?: ComplaintsCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ComplaintsCreateOrConnectWithoutResidentInput = {
@@ -26120,7 +26251,7 @@ export namespace Prisma {
     title?: StringFilter<"MaintenanceRequests"> | string
     description?: StringFilter<"MaintenanceRequests"> | string
     requestDate?: DateTimeFilter<"MaintenanceRequests"> | Date | string
-    priority?: EnumMaintenancePriorityFilter<"MaintenanceRequests"> | $Enums.MaintenancePriority
+    priority?: EnumMaintenancePriorityNullableFilter<"MaintenanceRequests"> | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFilter<"MaintenanceRequests"> | $Enums.MaintenanceStatus
     residentId?: UuidFilter<"MaintenanceRequests"> | string
     unitId?: UuidFilter<"MaintenanceRequests"> | string
@@ -26218,8 +26349,9 @@ export namespace Prisma {
     OR?: ComplaintsScalarWhereInput[]
     NOT?: ComplaintsScalarWhereInput | ComplaintsScalarWhereInput[]
     id?: UuidFilter<"Complaints"> | string
-    name?: StringFilter<"Complaints"> | string
-    desciption?: StringFilter<"Complaints"> | string
+    title?: StringFilter<"Complaints"> | string
+    description?: StringFilter<"Complaints"> | string
+    category?: EnumMaintenancePriorityFilter<"Complaints"> | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFilter<"Complaints"> | $Enums.ComplaintStatus
     submittedAt?: DateTimeFilter<"Complaints"> | Date | string
     resolvedAt?: DateTimeNullableFilter<"Complaints"> | Date | string | null
@@ -26228,6 +26360,8 @@ export namespace Prisma {
     employeeId?: UuidNullableFilter<"Complaints"> | string | null
     unitId?: UuidNullableFilter<"Complaints"> | string | null
     images?: StringNullableListFilter<"Complaints">
+    createdAt?: DateTimeFilter<"Complaints"> | Date | string
+    updatedAt?: DateTimeFilter<"Complaints"> | Date | string
   }
 
   export type UsersCreateWithoutEmployeeInput = {
@@ -26318,7 +26452,7 @@ export namespace Prisma {
     title: string
     description: string
     requestDate?: Date | string
-    priority: $Enums.MaintenancePriority
+    priority?: $Enums.MaintenancePriority | null
     status: $Enums.MaintenanceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26331,7 +26465,7 @@ export namespace Prisma {
     title: string
     description: string
     requestDate?: Date | string
-    priority: $Enums.MaintenancePriority
+    priority?: $Enums.MaintenancePriority | null
     status: $Enums.MaintenanceStatus
     residentId: string
     unitId: string
@@ -26393,21 +26527,25 @@ export namespace Prisma {
 
   export type ComplaintsCreateWithoutEmployeeInput = {
     id?: string
-    name: string
-    desciption: string
+    title: string
+    description: string
+    category: $Enums.MaintenancePriority
     status?: $Enums.ComplaintStatus
     submittedAt?: Date | string
     resolvedAt?: Date | string | null
     resolutionDetails?: string | null
     images?: ComplaintsCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
     resident: ResidentsCreateNestedOneWithoutComplaintsInput
     unit?: UnitsCreateNestedOneWithoutComplaintsInput
   }
 
   export type ComplaintsUncheckedCreateWithoutEmployeeInput = {
     id?: string
-    name: string
-    desciption: string
+    title: string
+    description: string
+    category: $Enums.MaintenancePriority
     status?: $Enums.ComplaintStatus
     submittedAt?: Date | string
     resolvedAt?: Date | string | null
@@ -26415,6 +26553,8 @@ export namespace Prisma {
     residentId: string
     unitId?: string | null
     images?: ComplaintsCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ComplaintsCreateOrConnectWithoutEmployeeInput = {
@@ -26589,21 +26729,25 @@ export namespace Prisma {
 
   export type ComplaintsUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    desciption?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
     images?: ComplaintsUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resident?: ResidentsUpdateOneRequiredWithoutComplaintsNestedInput
     unit?: UnitsUpdateOneWithoutComplaintsNestedInput
   }
 
   export type ComplaintsUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    desciption?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -26611,6 +26755,8 @@ export namespace Prisma {
     residentId?: StringFieldUpdateOperationsInput | string
     unitId?: NullableStringFieldUpdateOperationsInput | string | null
     images?: ComplaintsUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BillsUpsertWithWhereUniqueWithoutEmployeeInput = {
@@ -28075,7 +28221,7 @@ export namespace Prisma {
     title: string
     description: string
     requestDate?: Date | string
-    priority: $Enums.MaintenancePriority
+    priority?: $Enums.MaintenancePriority | null
     status: $Enums.MaintenanceStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -28088,7 +28234,7 @@ export namespace Prisma {
     title: string
     description: string
     requestDate?: Date | string
-    priority: $Enums.MaintenancePriority
+    priority?: $Enums.MaintenancePriority | null
     status: $Enums.MaintenanceStatus
     residentId: string
     assignedToEmployeeId?: string | null
@@ -28220,21 +28366,25 @@ export namespace Prisma {
 
   export type ComplaintsCreateWithoutUnitInput = {
     id?: string
-    name: string
-    desciption: string
+    title: string
+    description: string
+    category: $Enums.MaintenancePriority
     status?: $Enums.ComplaintStatus
     submittedAt?: Date | string
     resolvedAt?: Date | string | null
     resolutionDetails?: string | null
     images?: ComplaintsCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
     resident: ResidentsCreateNestedOneWithoutComplaintsInput
     employee?: EmployeesCreateNestedOneWithoutComplaintInput
   }
 
   export type ComplaintsUncheckedCreateWithoutUnitInput = {
     id?: string
-    name: string
-    desciption: string
+    title: string
+    description: string
+    category: $Enums.MaintenancePriority
     status?: $Enums.ComplaintStatus
     submittedAt?: Date | string
     resolvedAt?: Date | string | null
@@ -28242,6 +28392,8 @@ export namespace Prisma {
     residentId: string
     employeeId?: string | null
     images?: ComplaintsCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ComplaintsCreateOrConnectWithoutUnitInput = {
@@ -29005,7 +29157,7 @@ export namespace Prisma {
     title: string
     description: string
     requestDate?: Date | string
-    priority: $Enums.MaintenancePriority
+    priority?: $Enums.MaintenancePriority | null
     status: $Enums.MaintenanceStatus
     unitId: string
     assignedToEmployeeId?: string | null
@@ -29043,8 +29195,9 @@ export namespace Prisma {
 
   export type ComplaintsCreateManyResidentInput = {
     id?: string
-    name: string
-    desciption: string
+    title: string
+    description: string
+    category: $Enums.MaintenancePriority
     status?: $Enums.ComplaintStatus
     submittedAt?: Date | string
     resolvedAt?: Date | string | null
@@ -29052,6 +29205,8 @@ export namespace Prisma {
     employeeId?: string | null
     unitId?: string | null
     images?: ComplaintsCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type MaintenanceRequestsUpdateWithoutResidentInput = {
@@ -29059,7 +29214,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     requestDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priority?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
+    priority?: NullableEnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFieldUpdateOperationsInput | $Enums.MaintenanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29072,7 +29227,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     requestDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priority?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
+    priority?: NullableEnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFieldUpdateOperationsInput | $Enums.MaintenanceStatus
     unitId?: StringFieldUpdateOperationsInput | string
     assignedToEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29085,7 +29240,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     requestDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priority?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
+    priority?: NullableEnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFieldUpdateOperationsInput | $Enums.MaintenanceStatus
     unitId?: StringFieldUpdateOperationsInput | string
     assignedToEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29181,21 +29336,25 @@ export namespace Prisma {
 
   export type ComplaintsUpdateWithoutResidentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    desciption?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
     images?: ComplaintsUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employee?: EmployeesUpdateOneWithoutComplaintNestedInput
     unit?: UnitsUpdateOneWithoutComplaintsNestedInput
   }
 
   export type ComplaintsUncheckedUpdateWithoutResidentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    desciption?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29203,12 +29362,15 @@ export namespace Prisma {
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     unitId?: NullableStringFieldUpdateOperationsInput | string | null
     images?: ComplaintsUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ComplaintsUncheckedUpdateManyWithoutResidentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    desciption?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29216,6 +29378,8 @@ export namespace Prisma {
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     unitId?: NullableStringFieldUpdateOperationsInput | string | null
     images?: ComplaintsUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AnnouncementsCreateManyEmployeeInput = {
@@ -29234,7 +29398,7 @@ export namespace Prisma {
     title: string
     description: string
     requestDate?: Date | string
-    priority: $Enums.MaintenancePriority
+    priority?: $Enums.MaintenancePriority | null
     status: $Enums.MaintenanceStatus
     residentId: string
     unitId: string
@@ -29307,7 +29471,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     requestDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priority?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
+    priority?: NullableEnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFieldUpdateOperationsInput | $Enums.MaintenanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29320,7 +29484,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     requestDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priority?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
+    priority?: NullableEnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFieldUpdateOperationsInput | $Enums.MaintenanceStatus
     residentId?: StringFieldUpdateOperationsInput | string
     unitId?: StringFieldUpdateOperationsInput | string
@@ -29333,7 +29497,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     requestDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priority?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
+    priority?: NullableEnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFieldUpdateOperationsInput | $Enums.MaintenanceStatus
     residentId?: StringFieldUpdateOperationsInput | string
     unitId?: StringFieldUpdateOperationsInput | string
@@ -29531,7 +29695,7 @@ export namespace Prisma {
     title: string
     description: string
     requestDate?: Date | string
-    priority: $Enums.MaintenancePriority
+    priority?: $Enums.MaintenancePriority | null
     status: $Enums.MaintenanceStatus
     residentId: string
     assignedToEmployeeId?: string | null
@@ -29580,8 +29744,9 @@ export namespace Prisma {
 
   export type ComplaintsCreateManyUnitInput = {
     id?: string
-    name: string
-    desciption: string
+    title: string
+    description: string
+    category: $Enums.MaintenancePriority
     status?: $Enums.ComplaintStatus
     submittedAt?: Date | string
     resolvedAt?: Date | string | null
@@ -29589,6 +29754,8 @@ export namespace Prisma {
     residentId: string
     employeeId?: string | null
     images?: ComplaintsCreateimagesInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ResidentsUpdateWithoutUnitInput = {
@@ -29637,7 +29804,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     requestDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priority?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
+    priority?: NullableEnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFieldUpdateOperationsInput | $Enums.MaintenanceStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29650,7 +29817,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     requestDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priority?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
+    priority?: NullableEnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFieldUpdateOperationsInput | $Enums.MaintenanceStatus
     residentId?: StringFieldUpdateOperationsInput | string
     assignedToEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29663,7 +29830,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     requestDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    priority?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
+    priority?: NullableEnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority | null
     status?: EnumMaintenanceStatusFieldUpdateOperationsInput | $Enums.MaintenanceStatus
     residentId?: StringFieldUpdateOperationsInput | string
     assignedToEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29794,21 +29961,25 @@ export namespace Prisma {
 
   export type ComplaintsUpdateWithoutUnitInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    desciption?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     resolutionDetails?: NullableStringFieldUpdateOperationsInput | string | null
     images?: ComplaintsUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resident?: ResidentsUpdateOneRequiredWithoutComplaintsNestedInput
     employee?: EmployeesUpdateOneWithoutComplaintNestedInput
   }
 
   export type ComplaintsUncheckedUpdateWithoutUnitInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    desciption?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29816,12 +29987,15 @@ export namespace Prisma {
     residentId?: StringFieldUpdateOperationsInput | string
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     images?: ComplaintsUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ComplaintsUncheckedUpdateManyWithoutUnitInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    desciption?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: EnumMaintenancePriorityFieldUpdateOperationsInput | $Enums.MaintenancePriority
     status?: EnumComplaintStatusFieldUpdateOperationsInput | $Enums.ComplaintStatus
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29829,6 +30003,8 @@ export namespace Prisma {
     residentId?: StringFieldUpdateOperationsInput | string
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     images?: ComplaintsUpdateimagesInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PaymentsCreateManyLeaseInput = {

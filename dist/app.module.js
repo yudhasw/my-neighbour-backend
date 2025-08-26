@@ -21,7 +21,6 @@ const mailer_manage_module_1 = require("./common/helper/mail/mailer-manage.modul
 const database_module_1 = require("./common/database/database.module");
 const financial_module_1 = require("./modules/financial-module/financial.module");
 const communication_module_1 = require("./modules/communication-module/communication.module");
-const complaint_manage_module_1 = require("./modules/compliant-module/complaint-manage.module");
 const contact_manage_module_1 = require("./modules/contact-module/contact-manage.module");
 const security_manage_module_1 = require("./modules/security-module/security-manage.module");
 const unit_manage_module_1 = require("./modules/unit-manage-module/unit-manage.module");
@@ -38,6 +37,9 @@ const app_user_manage_module_1 = require("./modules/user-manage-module/app-users
 const reports_manage_module_1 = require("./modules/reports-module/reports-manage.module");
 const operational_report_module_1 = require("./modules/reports-module/operational-report-module/operational-report.module");
 const payments_report_module_1 = require("./modules/reports-module/payments-report-module/payments-report.module");
+const request_manage_module_1 = require("./modules/request-module/request-manage.module");
+const complaint_manage_module_1 = require("./modules/request-module/compliant-module/complaint-manage.module");
+const maintanance_request_manage_module_1 = require("./modules/request-module/maintanance-request-module/maintanance-request-manage.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -110,8 +112,18 @@ exports.AppModule = AppModule = __decorate([
                             module: contact_manage_module_1.ContactManageModule,
                         },
                         {
-                            path: 'resident-compliant',
-                            module: complaint_manage_module_1.ComplaintManageModule,
+                            path: 'resident-request',
+                            module: request_manage_module_1.RequestManageModule,
+                            children: [
+                                {
+                                    path: 'resident-compliant',
+                                    module: complaint_manage_module_1.ComplaintManageModule,
+                                },
+                                {
+                                    path: 'resident-maintanance-request',
+                                    module: maintanance_request_manage_module_1.MaintananceRequestManageModule,
+                                },
+                            ],
                         },
                         {
                             path: 'communications',

@@ -27,8 +27,8 @@ export declare class EmployeeManageController {
         };
         _count: {
             MaintenanceRequests: number;
-            Payments: number;
             Announcements: number;
+            Payments: number;
         };
     } & {
         createdAt: Date;
@@ -42,6 +42,12 @@ export declare class EmployeeManageController {
         bonus: number | null;
     })[]>;
     findOne(id: string): Promise<{
+        MaintenanceRequests: {
+            title: string;
+            description: string;
+            priority: import("src/common/database/generated/prisma").$Enums.MaintenancePriority | null;
+            status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        }[];
         user: {
             fullName: string;
             firstName: string;
@@ -51,17 +57,6 @@ export declare class EmployeeManageController {
             primaryEmail: string;
             gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
         };
-        _count: {
-            MaintenanceRequests: number;
-            Payments: number;
-            Announcements: number;
-        };
-        MaintenanceRequests: {
-            title: string;
-            status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
-            description: string;
-            priority: import("src/common/database/generated/prisma").$Enums.MaintenancePriority;
-        }[];
         Announcements: {
             title: string;
             content: string;
@@ -70,13 +65,18 @@ export declare class EmployeeManageController {
             expiryDate: Date | null;
         }[];
         Complaint: {
-            name: string;
-            desciption: string;
+            title: string;
+            description: string;
             status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
             submittedAt: Date;
             resolvedAt: Date | null;
             resolutionDetails: string | null;
         } | null;
+        _count: {
+            MaintenanceRequests: number;
+            Announcements: number;
+            Payments: number;
+        };
     } & {
         createdAt: Date;
         updatedAt: Date;

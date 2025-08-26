@@ -105,8 +105,8 @@ let AppUserManageService = class AppUserManageService {
                             bonus: true,
                             Complaint: {
                                 select: {
-                                    name: true,
-                                    desciption: true,
+                                    title: true,
+                                    description: true,
                                     submittedAt: true,
                                     status: true,
                                 },

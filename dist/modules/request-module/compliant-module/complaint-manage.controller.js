@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ComplaintManageController = void 0;
 const common_1 = require("@nestjs/common");
 const complaint_manage_service_1 = require("./complaint-manage.service");
-const create_complaint_manage_dto_1 = require("../../dtos/requests/create/create-complaint-manage.dto");
-const update_complaint_manage_dto_1 = require("../../dtos/requests/update/update-complaint-manage.dto");
+const create_complaint_manage_dto_1 = require("../../../dtos/requests/create/create-complaint-manage.dto");
+const update_complaint_manage_dto_1 = require("../../../dtos/requests/update/update-complaint-manage.dto");
 let ComplaintManageController = class ComplaintManageController {
     complaintManageService;
     constructor(complaintManageService) {

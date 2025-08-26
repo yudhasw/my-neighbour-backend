@@ -12,7 +12,6 @@ import { MailerManageModule } from './common/helper/mail/mailer-manage.module';
 import { DatabaseModule } from './common/database/database.module';
 import { FinancialModule } from './modules/financial-module/financial.module';
 import { CommunicationModule } from './modules/communication-module/communication.module';
-import { ComplaintManageModule } from './modules/compliant-module/complaint-manage.module';
 import { ContactManageModule } from './modules/contact-module/contact-manage.module';
 import { SecurityManageModule } from './modules/security-module/security-manage.module';
 import { UnitManageModule } from './modules/unit-manage-module/unit-manage.module';
@@ -29,6 +28,9 @@ import { AppUserManageModule } from './modules/user-manage-module/app-users-modu
 import { ReportsManageModule } from './modules/reports-module/reports-manage.module';
 import { OperationalReportModule } from './modules/reports-module/operational-report-module/operational-report.module';
 import { PaymentsReportModule } from './modules/reports-module/payments-report-module/payments-report.module';
+import { RequestManageModule } from './modules/request-module/request-manage.module';
+import { ComplaintManageModule } from './modules/request-module/compliant-module/complaint-manage.module';
+import { MaintananceRequestManageModule } from './modules/request-module/maintanance-request-module/maintanance-request-manage.module';
 @Module({
   imports: [
     DatabaseModule,
@@ -97,8 +99,18 @@ import { PaymentsReportModule } from './modules/reports-module/payments-report-m
             module: ContactManageModule,
           },
           {
-            path: 'resident-compliant',
-            module: ComplaintManageModule,
+            path: 'resident-request',
+            module: RequestManageModule,
+            children: [
+              {
+                path: 'resident-compliant',
+                module: ComplaintManageModule,
+              },
+              {
+                path: 'resident-maintanance-request',
+                module: MaintananceRequestManageModule,
+              },
+            ],
           },
           {
             path: 'communications',

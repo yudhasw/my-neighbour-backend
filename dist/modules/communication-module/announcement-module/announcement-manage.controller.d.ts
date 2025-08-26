@@ -7,24 +7,24 @@ export declare class AnnouncementManageController {
     create(createAnnouncementManageDto: CreateAnnouncementManageDto): Promise<{
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }>;
     findAll(): Promise<{
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }[]>;
     findOne(id: string): Promise<{
         employee: {
@@ -51,34 +51,34 @@ export declare class AnnouncementManageController {
     } & {
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }>;
     update(id: string, updateAnnouncementManageDto: UpdateAnnouncementManageDto): Promise<{
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }>;
     remove(id: string): Promise<{
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }>;
 }

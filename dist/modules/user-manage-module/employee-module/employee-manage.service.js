@@ -98,8 +98,8 @@ let EmployeeManageService = class EmployeeManageService {
                     },
                     Complaint: {
                         select: {
-                            name: true,
-                            desciption: true,
+                            title: true,
+                            description: true,
                             status: true,
                             submittedAt: true,
                             resolvedAt: true,

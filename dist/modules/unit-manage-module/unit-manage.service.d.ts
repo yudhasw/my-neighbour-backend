@@ -8,9 +8,9 @@ export declare class UnitManageService {
     constructor(prisma: DatabaseService, helper: GeneralHelper);
     create(createRequest: CreateUnitManageDto): Promise<{
         id: string;
+        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         createdAt: Date;
         updatedAt: Date;
-        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
         floorNumber: number | null;
@@ -22,16 +22,16 @@ export declare class UnitManageService {
     }>;
     findAll(): Promise<({
         _count: {
-            Complaints: number;
             MaintenanceRequests: number;
+            Complaints: number;
             Payments: number;
             Bills: number;
         };
     } & {
         id: string;
+        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         createdAt: Date;
         updatedAt: Date;
-        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
         floorNumber: number | null;
@@ -47,9 +47,9 @@ export declare class UnitManageService {
         }[];
     } & {
         id: string;
+        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         createdAt: Date;
         updatedAt: Date;
-        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
         floorNumber: number | null;
@@ -61,9 +61,9 @@ export declare class UnitManageService {
     }>;
     update(id: string, updateRequest: UpdateUnitManageDto): Promise<{
         id: string;
+        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         createdAt: Date;
         updatedAt: Date;
-        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
         floorNumber: number | null;
@@ -75,9 +75,9 @@ export declare class UnitManageService {
     }>;
     remove(id: string): Promise<{
         id: string;
+        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         createdAt: Date;
         updatedAt: Date;
-        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
         floorNumber: number | null;

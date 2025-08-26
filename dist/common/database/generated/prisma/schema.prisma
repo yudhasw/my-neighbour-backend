@@ -167,39 +167,42 @@ model Employees {
 }
 
 model MaintenanceRequests {
-  id                   String              @id @default(uuid()) @db.Uuid
-  title                String              @map("nama_permintaan")
-  description          String              @map("deskripsi_pemintaan")
-  requestDate          DateTime            @default(now())
-  priority             MaintenancePriority @map("prioritas_permintaan")
-  status               MaintenanceStatus   @map("status_permintaan")
-  residentId           String              @map("penghuni_id") @db.Uuid
-  resident             Residents           @relation(fields: [residentId], references: [residentId])
-  unitId               String              @map("unit_id") @db.Uuid
-  unit                 Units               @relation(fields: [unitId], references: [id])
-  assignedToEmployeeId String?             @map("pegawai_id") @db.Uuid
-  assignedTo           Employees?          @relation(fields: [assignedToEmployeeId], references: [employeeId])
-  createdAt            DateTime            @default(now()) @map("created_at") @db.Timestamp()
-  updatedAt            DateTime            @updatedAt @map("updated_at") @db.Timestamp()
+  id                   String               @id @default(uuid()) @db.Uuid
+  title                String               @map("nama_permintaan")
+  description          String               @map("deskripsi_pemintaan")
+  requestDate          DateTime             @default(now()) @map("tanggal_permintaan")
+  priority             MaintenancePriority? @map("prioritas_permintaan")
+  status               MaintenanceStatus    @map("status_permintaan")
+  residentId           String               @map("penghuni_id") @db.Uuid
+  resident             Residents            @relation(fields: [residentId], references: [residentId])
+  unitId               String               @map("unit_id") @db.Uuid
+  unit                 Units                @relation(fields: [unitId], references: [id])
+  assignedToEmployeeId String?              @map("pegawai_id") @db.Uuid
+  assignedTo           Employees?           @relation(fields: [assignedToEmployeeId], references: [employeeId])
+  createdAt            DateTime             @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt            DateTime             @updatedAt @map("updated_at") @db.Timestamp()
 
   @@map("tb_permintaan_pemeliharaan")
 }
 
 model Complaints {
-  id                String          @id @default(uuid()) @map("keluhan_id") @db.Uuid
-  name              String          @map("judul_keluhan")
-  desciption        String          @map("deskripsi_keluhan")
-  status            ComplaintStatus @default(NEW) @map("status_keluhan")
-  submittedAt       DateTime        @default(now()) @map("tanggal_pengajuan")
-  resolvedAt        DateTime?       @map("tanggal_penyelesaian")
-  resolutionDetails String?         @map("detail_penyelesaian")
-  residentId        String          @map("penghuni_id") @db.Uuid
-  resident          Residents       @relation(fields: [residentId], references: [residentId], onDelete: Cascade, onUpdate: Cascade)
-  employeeId        String?         @unique @map("employee") @db.Uuid
-  employee          Employees?      @relation(fields: [employeeId], references: [employeeId], onDelete: Cascade, onUpdate: Cascade)
-  unitId            String?         @map("unit_id") @db.Uuid
-  unit              Units?          @relation(fields: [unitId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  images            String[]        @map("url_gambar")
+  id                String              @id @default(uuid()) @map("keluhan_id") @db.Uuid
+  title             String              @map("judul_keluhan")
+  description       String              @map("deskripsi_keluhan")
+  category          MaintenancePriority @map("kategori_kerusakan")
+  status            ComplaintStatus     @default(NEW) @map("status_keluhan")
+  submittedAt       DateTime            @default(now()) @map("tanggal_pengajuan")
+  resolvedAt        DateTime?           @map("tanggal_penyelesaian")
+  resolutionDetails String?             @map("detail_penyelesaian")
+  residentId        String              @map("penghuni_id") @db.Uuid
+  resident          Residents           @relation(fields: [residentId], references: [residentId], onDelete: Cascade, onUpdate: Cascade)
+  employeeId        String?             @unique @map("employee") @db.Uuid
+  employee          Employees?          @relation(fields: [employeeId], references: [employeeId], onDelete: Cascade, onUpdate: Cascade)
+  unitId            String?             @map("unit_id") @db.Uuid
+  unit              Units?              @relation(fields: [unitId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  images            String[]            @map("url_gambar")
+  createdAt         DateTime            @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt         DateTime            @updatedAt @map("updated_at") @db.Timestamp()
 
   @@map("tb_keluhan_penghuni")
 }

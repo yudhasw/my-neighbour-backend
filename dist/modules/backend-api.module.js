@@ -9,13 +9,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BackendApiModule = void 0;
 const common_1 = require("@nestjs/common");
 const communication_module_1 = require("./communication-module/communication.module");
-const complaint_manage_module_1 = require("./compliant-module/complaint-manage.module");
 const contact_manage_module_1 = require("./contact-module/contact-manage.module");
 const financial_module_1 = require("./financial-module/financial.module");
 const reports_manage_module_1 = require("./reports-module/reports-manage.module");
 const security_manage_module_1 = require("./security-module/security-manage.module");
 const unit_manage_module_1 = require("./unit-manage-module/unit-manage.module");
 const users_manage_module_1 = require("./user-manage-module/users-manage.module");
+const request_manage_module_1 = require("./request-module/request-manage.module");
 let BackendApiModule = class BackendApiModule {
 };
 exports.BackendApiModule = BackendApiModule;
@@ -24,12 +24,12 @@ exports.BackendApiModule = BackendApiModule = __decorate([
         imports: [
             financial_module_1.FinancialModule,
             communication_module_1.CommunicationModule,
-            complaint_manage_module_1.ComplaintManageModule,
             contact_manage_module_1.ContactManageModule,
             reports_manage_module_1.ReportsManageModule,
             security_manage_module_1.SecurityManageModule,
             unit_manage_module_1.UnitManageModule,
             users_manage_module_1.UsersManageModule,
+            request_manage_module_1.RequestManageModule,
         ],
     })
 ], BackendApiModule);

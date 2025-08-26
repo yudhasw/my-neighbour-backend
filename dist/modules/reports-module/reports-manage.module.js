@@ -11,11 +11,11 @@ const common_1 = require("@nestjs/common");
 const database_module_1 = require("../../common/database/database.module");
 const payments_manage_module_1 = require("../financial-module/payments-module/payments-manage.module");
 const unit_manage_module_1 = require("../unit-manage-module/unit-manage.module");
-const complaint_manage_module_1 = require("../compliant-module/complaint-manage.module");
 const users_manage_module_1 = require("../user-manage-module/users-manage.module");
 const security_manage_module_1 = require("../security-module/security-manage.module");
 const operational_report_module_1 = require("./operational-report-module/operational-report.module");
 const payments_report_module_1 = require("./payments-report-module/payments-report.module");
+const request_manage_module_1 = require("../request-module/request-manage.module");
 let ReportsManageModule = class ReportsManageModule {
 };
 exports.ReportsManageModule = ReportsManageModule;
@@ -25,7 +25,7 @@ exports.ReportsManageModule = ReportsManageModule = __decorate([
             database_module_1.DatabaseModule,
             payments_manage_module_1.PaymentsManageModule,
             unit_manage_module_1.UnitManageModule,
-            complaint_manage_module_1.ComplaintManageModule,
+            request_manage_module_1.RequestManageModule,
             users_manage_module_1.UsersManageModule,
             security_manage_module_1.SecurityManageModule,
             operational_report_module_1.OperationalReportModule,

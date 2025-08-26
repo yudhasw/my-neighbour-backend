@@ -85,7 +85,7 @@ export class UnitManageService {
 
   async update(id: string, updateRequest: UpdateUnitManageDto) {
     try {
-      const existData = await this.prisma.units.findUnique({
+      const existData = await this.prisma.units.findUniqueOrThrow({
         where: { id: id },
       });
 
@@ -111,6 +111,7 @@ export class UnitManageService {
             this.helper.twoDecimal(updateRequest.rentAmount!) ??
             existData.rentAmount,
           squareFootage: updateRequest.squareFootage ?? existData.squareFootage,
+          updatedAt: new Date(),
         },
       });
     } catch (error) {

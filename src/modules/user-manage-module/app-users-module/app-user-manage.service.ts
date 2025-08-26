@@ -107,8 +107,8 @@ export class AppUserManageService {
               // Relasi balik ke Complaint dan Announcements
               Complaint: {
                 select: {
-                  name: true,
-                  desciption: true, // Perbaiki 'desciption'
+                  title: true,
+                  description: true, // Perbaiki 'desciption'
                   submittedAt: true, // Ubah 'complaintSubmitted'
                   status: true,
                 },

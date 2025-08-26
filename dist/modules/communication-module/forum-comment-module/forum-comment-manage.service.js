@@ -30,7 +30,7 @@ let ForumCommentManageService = class ForumCommentManageService {
         }
         catch (error) {
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Membuat Data Pengumuman');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Membuat Data Comment post ');
         }
     }
     async findAll() {
@@ -54,7 +54,7 @@ let ForumCommentManageService = class ForumCommentManageService {
         }
         catch (error) {
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Membuat Data Pengumuman');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Membuat Data Comment post ');
         }
     }
     async findOne(id) {
@@ -84,16 +84,16 @@ let ForumCommentManageService = class ForumCommentManageService {
         }
         catch (error) {
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Membuat Data Pengumuman');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Membuat Data Comment post ');
         }
     }
     async update(id, updateRequest) {
         try {
-            const existData = await this.prisma.forumComments.findUnique({
+            const existData = await this.prisma.forumComments.findUniqueOrThrow({
                 where: { id: id },
             });
             if (!existData) {
-                throw new common_1.NotFoundException(`Data Pengumuman dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Data Comment post  dengan id: ${id} tidak ditemukan`);
             }
             return await this.prisma.forumComments.update({
                 where: { id: id },
@@ -101,20 +101,21 @@ let ForumCommentManageService = class ForumCommentManageService {
                     content: updateRequest.content,
                     postId: updateRequest.postId,
                     userId: updateRequest.userId,
+                    updatedAt: new Date(),
                 },
             });
         }
         catch (error) {
             if (error.name === 'NotFoundError') {
-                throw new common_1.NotFoundException(`Pengumuman dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Comment post  dengan id: ${id} tidak ditemukan`);
             }
             if (error instanceof library_1.PrismaClientKnownRequestError) {
                 if (error.code === 'P2025') {
-                    throw new common_1.NotFoundException(`Pengumuman dengan id: ${id} tidak ditemukan`);
+                    throw new common_1.NotFoundException(`Comment post  dengan id: ${id} tidak ditemukan`);
                 }
             }
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Pengumuman');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Comment post ');
         }
     }
     async remove(id) {
@@ -123,7 +124,7 @@ let ForumCommentManageService = class ForumCommentManageService {
                 where: { id: id },
             });
             if (!existData) {
-                throw new common_1.NotFoundException(`Data Pengumuman dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Data Comment post  dengan id: ${id} tidak ditemukan`);
             }
             return await this.prisma.forumComments.delete({
                 where: { id: id },
@@ -131,15 +132,15 @@ let ForumCommentManageService = class ForumCommentManageService {
         }
         catch (error) {
             if (error.name === 'NotFoundError') {
-                throw new common_1.NotFoundException(`Pengumuman dengan id: ${id} tidak ditemukan`);
+                throw new common_1.NotFoundException(`Comment post  dengan id: ${id} tidak ditemukan`);
             }
             if (error instanceof library_1.PrismaClientKnownRequestError) {
                 if (error.code === 'P2025') {
-                    throw new common_1.NotFoundException(`Pengumuman dengan id: ${id} tidak ditemukan`);
+                    throw new common_1.NotFoundException(`Comment post  dengan id: ${id} tidak ditemukan`);
                 }
             }
             console.error(error.message);
-            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Pengumuman');
+            throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Comment post ');
         }
     }
 };

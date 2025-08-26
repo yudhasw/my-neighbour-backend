@@ -100,6 +100,7 @@ let AnnouncementManageService = class AnnouncementManageService {
                     },
                     expiryDate: updateRequest.expiryDate ?? existData.expiryDate,
                     publishDate: updateRequest.publishDate ?? existData.publishDate,
+                    updatedAt: new Date(),
                 },
             });
         }

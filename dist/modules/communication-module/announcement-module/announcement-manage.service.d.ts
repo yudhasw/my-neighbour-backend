@@ -1,30 +1,30 @@
 import { CreateAnnouncementManageDto } from '../../../dtos/requests/create/create-announcement-manage.dto';
 import { UpdateAnnouncementManageDto } from '../../../dtos/requests/update/update-announcement-manage.dto';
-import { DatabaseService } from 'src/common/database/database.service';
+import { DatabaseService } from '../../../common/database/database.service';
 export declare class AnnouncementManageService {
     private readonly prisma;
     constructor(prisma: DatabaseService);
     create(createRequest: CreateAnnouncementManageDto): Promise<{
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }>;
     findAll(): Promise<{
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }[]>;
     findOne(id: string): Promise<{
         employee: {
@@ -51,34 +51,34 @@ export declare class AnnouncementManageService {
     } & {
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }>;
     update(id: string, updateRequest: UpdateAnnouncementManageDto): Promise<{
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }>;
     remove(id: string): Promise<{
         id: string;
         title: string;
+        createdAt: Date;
+        updatedAt: Date;
+        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
     }>;
 }

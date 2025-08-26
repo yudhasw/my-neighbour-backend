@@ -104,7 +104,7 @@ let ForumPostManageService = class ForumPostManageService {
     }
     async update(id, updateRequest) {
         try {
-            const existData = await this.prisma.forumPosts.findUnique({
+            const existData = await this.prisma.forumPosts.findUniqueOrThrow({
                 where: { id: id },
             });
             if (!existData) {
@@ -121,6 +121,7 @@ let ForumPostManageService = class ForumPostManageService {
                         ? { connect: { id: updateRequest.userId } }
                         : undefined,
                     tags: { connect: { id: updateRequest.tagId } },
+                    updatedAt: new Date(),
                 },
             });
         }

@@ -180,8 +180,9 @@ exports.Prisma.MaintenanceRequestsScalarFieldEnum = {
 
 exports.Prisma.ComplaintsScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  desciption: 'desciption',
+  title: 'title',
+  description: 'description',
+  category: 'category',
   status: 'status',
   submittedAt: 'submittedAt',
   resolvedAt: 'resolvedAt',
@@ -189,7 +190,9 @@ exports.Prisma.ComplaintsScalarFieldEnum = {
   residentId: 'residentId',
   employeeId: 'employeeId',
   unitId: 'unitId',
-  images: 'images'
+  images: 'images',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.PaymentsScalarFieldEnum = {

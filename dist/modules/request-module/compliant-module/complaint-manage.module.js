@@ -10,11 +10,11 @@ exports.ComplaintManageModule = void 0;
 const common_1 = require("@nestjs/common");
 const complaint_manage_service_1 = require("./complaint-manage.service");
 const complaint_manage_controller_1 = require("./complaint-manage.controller");
-const database_module_1 = require("../../common/database/database.module");
-const database_service_1 = require("../../common/database/database.service");
-const employee_manage_module_1 = require("../user-manage-module/employee-module/employee-manage.module");
-const resident_manage_module_1 = require("../user-manage-module/resident-module/resident-manage.module");
-const generalHelper_1 = require("../../common/helper/generalHelper");
+const database_module_1 = require("../../../common/database/database.module");
+const database_service_1 = require("../../../common/database/database.service");
+const employee_manage_module_1 = require("../../user-manage-module/employee-module/employee-manage.module");
+const resident_manage_module_1 = require("../../user-manage-module/resident-module/resident-manage.module");
+const generalHelper_1 = require("../../../common/helper/generalHelper");
 let ComplaintManageModule = class ComplaintManageModule {
 };
 exports.ComplaintManageModule = ComplaintManageModule;
