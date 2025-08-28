@@ -28,6 +28,12 @@ async function bootstrap(): Promise<NestExpressApplication> {
     },
   );
 
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+
   useContainer(app.select(AppModule, { abortOnError: true }), {
     fallbackOnErrors: true,
   });

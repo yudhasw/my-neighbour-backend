@@ -19,5 +19,15 @@ import { RequestManageModule } from './request-module/request-manage.module';
     UsersManageModule,
     RequestManageModule,
   ],
+  exports: [
+    FinancialModule,
+    CommunicationModule,
+    ContactManageModule,
+    ReportsManageModule,
+    SecurityManageModule,
+    UnitManageModule,
+    UsersManageModule,
+    RequestManageModule,
+  ],
 })
 export class BackendApiModule {}

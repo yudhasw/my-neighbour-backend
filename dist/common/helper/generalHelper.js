@@ -8,13 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var GeneralHelper_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GeneralHelper = void 0;
 const common_1 = require("@nestjs/common");
 const fs = require("fs");
 let GeneralHelper = class GeneralHelper {
-    static { GeneralHelper_1 = this; }
     folderPath;
     constructor(folderPath = 'src/common/uploads/') {
         this.folderPath = folderPath;
@@ -45,16 +43,9 @@ let GeneralHelper = class GeneralHelper {
             fs.mkdirSync(path, { recursive: true });
         }
     }
-    async uploadFile(files) {
-        const mimeType = files.mimetype.toLowerCase();
-        const targetFolder = GeneralHelper_1.GetFolderExtension();
-    }
-    async updateFile() { }
-    async removeFile() { }
-    async findFile() { }
 };
 exports.GeneralHelper = GeneralHelper;
-exports.GeneralHelper = GeneralHelper = GeneralHelper_1 = __decorate([
+exports.GeneralHelper = GeneralHelper = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [Object])
 ], GeneralHelper);

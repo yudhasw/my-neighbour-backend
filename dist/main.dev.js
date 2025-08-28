@@ -13,6 +13,11 @@ async function bootstrap() {
         cors: true,
         bodyParser: true,
     });
+    app.enableCors({
+        origin: '*',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
+    });
     (0, class_validator_1.useContainer)(app.select(app_module_1.AppModule, { abortOnError: true }), {
         fallbackOnErrors: true,
     });

@@ -5,8 +5,4 @@ export declare class GeneralHelper {
     static readonly FileDictionary: Record<string, string>;
     static getFolderExtension(mimetype: string): string;
     static ensureDirectoryExists(path: string): void;
-    uploadFile(files: Express.Multer.File): Promise<void>;
-    updateFile(): Promise<void>;
-    removeFile(): Promise<void>;
-    findFile(): Promise<void>;
 }

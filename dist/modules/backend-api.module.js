@@ -31,6 +31,16 @@ exports.BackendApiModule = BackendApiModule = __decorate([
             users_manage_module_1.UsersManageModule,
             request_manage_module_1.RequestManageModule,
         ],
+        exports: [
+            financial_module_1.FinancialModule,
+            communication_module_1.CommunicationModule,
+            contact_manage_module_1.ContactManageModule,
+            reports_manage_module_1.ReportsManageModule,
+            security_manage_module_1.SecurityManageModule,
+            unit_manage_module_1.UnitManageModule,
+            users_manage_module_1.UsersManageModule,
+            request_manage_module_1.RequestManageModule,
+        ],
     })
 ], BackendApiModule);
 //# sourceMappingURL=backend-api.module.js.map

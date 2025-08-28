@@ -38,14 +38,14 @@ export class GeneralHelper {
     }
   }
 
-  public async uploadFile(files: Express.Multer.File): Promise<void> {
-    const mimeType = files.mimetype.toLowerCase();
-    const targetFolder = GeneralHelper.GetFolderExtension();
-  }
+  // public async uploadFile(files: Express.Multer.File): Promise<void> {
+  //   const mimeType = files.mimetype.toLowerCase();
+  //   const targetFolder = GeneralHelper.GetFolderExtension();
+  // }
 
-  public async updateFile(): Promise<void> {}
+  // public async updateFile(): Promise<void> {}
 
-  public async removeFile(): Promise<void> {}
+  // public async removeFile(): Promise<void> {}
 
-  public async findFile(): Promise<void> {}
+  // public async findFile(): Promise<void> {}
 }
