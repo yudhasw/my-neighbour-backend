@@ -18,14 +18,14 @@ let AnnouncementManageService = class AnnouncementManageService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async create(createRequest) {
+    async create(createRequest, files) {
         try {
             return await this.prisma.announcements.create({
                 data: {
                     title: createRequest.title,
                     content: createRequest.content,
                     attachments: createRequest.attachments,
-                    employee: { connect: { employeeId: createRequest.employeeId } },
+                    employee: { connect: { id: createRequest.employeeId } },
                     expiryDate: createRequest.expiryDate,
                     publishDate: createRequest.publishDate,
                 },
@@ -95,7 +95,7 @@ let AnnouncementManageService = class AnnouncementManageService {
                     attachments: updateRequest.attachments ?? existData.attachments,
                     employee: {
                         connect: {
-                            employeeId: updateRequest.employeeId ?? existData.employeeId,
+                            id: updateRequest.employeeId ?? existData.employeeId,
                         },
                     },
                     expiryDate: updateRequest.expiryDate ?? existData.expiryDate,

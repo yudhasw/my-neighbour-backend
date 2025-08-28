@@ -15,16 +15,18 @@ import { IsUnique } from 'src/common/pipes/validators/is-unique-validators';
 import { Type } from 'class-transformer';
 
 export class CreateEmployeeManageDto {
-  @IsUUID('4', { message: 'ID karyawan harus berupa UUID versi 4 yang valid.' })
-  @IsNotEmpty({ message: 'ID karyawan tidak boleh kosong.' })
+  @IsUUID('4', {
+    message: 'ID pengguna aplikasi harus berupa UUID versi 4 yang valid.',
+  })
+  @IsNotEmpty({ message: 'ID pengguna aplikasi tidak boleh kosong.' })
   @IsUnique(
-    { field: 'employeeId', model: 'employees' },
-    { message: 'pegawai sudah terdaftar' },
+    { field: 'userId', model: 'employees' },
+    { message: 'pengguna sudah terdaftar sudah terdaftar' },
   )
-  readonly employeeId: string;
+  readonly userId: string;
 
-  @IsString({ message: 'Nomor identitas karyawan harus berupa teks.' })
-  @IsNotEmpty({ message: 'Nomor identitas karyawan tidak boleh kosong.' })
+  @IsString({ message: 'Nomor identitas Pegawai harus berupa teks.' })
+  @IsNotEmpty({ message: 'Nomor identitas Pegawai tidak boleh kosong.' })
   @IsUnique(
     { field: 'employeeNumberId', model: 'employees' },
     { message: 'ID dari pegawai sudah terdaftar' },
@@ -38,10 +40,10 @@ export class CreateEmployeeManageDto {
   @Type(() => Date)
   readonly hireDate: Date;
 
-  @IsNotEmpty({ message: 'Posisi karyawan tidak boleh kosong.' })
+  @IsNotEmpty({ message: 'Posisi Pegawai tidak boleh kosong.' })
   @IsEnum(EmployeeRole, {
     message:
-      'Posisi karyawan tidak valid.' + Object.values(EmployeeRole).join(', '),
+      'Posisi Pegawai tidak valid.' + Object.values(EmployeeRole).join(', '),
   })
   readonly employeePosition: EmployeeRole;
 

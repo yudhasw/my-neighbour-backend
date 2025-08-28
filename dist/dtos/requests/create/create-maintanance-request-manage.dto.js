@@ -45,10 +45,10 @@ __decorate([
     __metadata("design:type", Date)
 ], CreateMaintananceRequestManageDto.prototype, "requestDate", void 0);
 __decorate([
-    (0, class_validator_1.IsEnum)(prisma_1.MaintenancePriority, { message: 'Prioritas permintaan tidak valid.' }),
+    (0, class_validator_1.IsEnum)(prisma_1.MaintenanceCategory, { message: 'Prioritas permintaan tidak valid.' }),
     (0, class_validator_1.IsNotEmpty)({
         message: 'Prioritas permintaan (' +
-            Object.values(prisma_1.MaintenancePriority).join('/') +
+            Object.values(prisma_1.MaintenanceCategory).join('/') +
             ') tidak boleh kosong.',
     }),
     __metadata("design:type", String)

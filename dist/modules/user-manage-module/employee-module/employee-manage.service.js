@@ -25,7 +25,7 @@ let EmployeeManageService = class EmployeeManageService {
         try {
             return await this.prisma.employees.create({
                 data: {
-                    employeeId: createRequest.employeeId,
+                    user: { connect: { id: createRequest.userId } },
                     employeeNumberId: createRequest.employeeNumberId,
                     hireDate: createRequest.hireDate,
                     salary: this.helper.twoDecimal(createRequest.salary),
@@ -47,8 +47,10 @@ let EmployeeManageService = class EmployeeManageService {
                     _count: {
                         select: {
                             Announcements: true,
-                            MaintenanceRequests: true,
+                            Bills: true,
                             Payments: true,
+                            Complaints: true,
+                            SecurityReports: true,
                         },
                     },
                     user: {
@@ -76,13 +78,15 @@ let EmployeeManageService = class EmployeeManageService {
     async findOne(id) {
         try {
             return await this.prisma.employees.findUniqueOrThrow({
-                where: { employeeId: id },
+                where: { id: id },
                 include: {
                     _count: {
                         select: {
                             Announcements: true,
-                            MaintenanceRequests: true,
+                            Bills: true,
                             Payments: true,
+                            Complaints: true,
+                            SecurityReports: true,
                         },
                     },
                     user: {
@@ -96,7 +100,7 @@ let EmployeeManageService = class EmployeeManageService {
                             primaryEmail: true,
                         },
                     },
-                    Complaint: {
+                    Complaints: {
                         select: {
                             title: true,
                             description: true,
@@ -104,14 +108,6 @@ let EmployeeManageService = class EmployeeManageService {
                             submittedAt: true,
                             resolvedAt: true,
                             resolutionDetails: true,
-                        },
-                    },
-                    MaintenanceRequests: {
-                        select: {
-                            title: true,
-                            priority: true,
-                            description: true,
-                            status: true,
                         },
                     },
                     Announcements: {
@@ -134,13 +130,13 @@ let EmployeeManageService = class EmployeeManageService {
     async update(id, updateRequest) {
         try {
             const existData = await this.prisma.employees.findUnique({
-                where: { employeeId: id },
+                where: { id: id },
             });
             if (!existData) {
                 throw new common_1.NotFoundException(`Pegawai dengan id: ${id} tidak ditemukan`);
             }
             const updatedData = this.prisma.employees.update({
-                where: { employeeId: id },
+                where: { id: id },
                 data: {
                     employeeNumberId: updateRequest.employeeNumberId ?? existData?.employeeNumberId,
                     hireDate: updateRequest.hireDate,
@@ -169,13 +165,13 @@ let EmployeeManageService = class EmployeeManageService {
     async remove(id) {
         try {
             const existData = await this.prisma.employees.findUnique({
-                where: { employeeId: id },
+                where: { id: id },
             });
             if (!existData) {
                 throw new common_1.NotFoundException(`Pegawai dengan id: ${id} tidak ditemukan`);
             }
             return await this.prisma.employees.delete({
-                where: { employeeId: id },
+                where: { id: id },
             });
         }
         catch (error) {

@@ -8,7 +8,7 @@ import {
   IsOptional,
 } from 'class-validator';
 import {
-  MaintenancePriority,
+  MaintenanceCategory,
   MaintenanceStatus,
 } from '../../../common/database/generated/prisma';
 
@@ -31,14 +31,14 @@ export class CreateMaintananceRequestManageDto {
   @Type(() => Date)
   readonly requestDate: Date;
 
-  @IsEnum(MaintenancePriority, { message: 'Prioritas permintaan tidak valid.' })
+  @IsEnum(MaintenanceCategory, { message: 'Prioritas permintaan tidak valid.' })
   @IsNotEmpty({
     message:
       'Prioritas permintaan (' +
-      Object.values(MaintenancePriority).join('/') +
+      Object.values(MaintenanceCategory).join('/') +
       ') tidak boleh kosong.',
   })
-  readonly priority: MaintenancePriority;
+  readonly priority: MaintenanceCategory;
 
   @IsEnum(MaintenanceStatus, {
     message: 'Status Permintaan Perbaikan tidak valid.',

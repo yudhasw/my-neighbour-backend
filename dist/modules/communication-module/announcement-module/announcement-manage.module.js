@@ -6,19 +6,46 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AnnouncementManageModule = void 0;
+exports.AnnouncementManageModule = exports.multerOptions = void 0;
 const common_1 = require("@nestjs/common");
 const announcement_manage_service_1 = require("./announcement-manage.service");
 const announcement_manage_controller_1 = require("./announcement-manage.controller");
 const database_service_1 = require("../../../common/database/database.service");
 const generalHelper_1 = require("../../../common/helper/generalHelper");
 const employee_manage_module_1 = require("../../../modules/user-manage-module/employee-module/employee-manage.module");
+const fs_1 = require("fs");
+const multer_1 = require("multer");
+const path_1 = require("path");
+const platform_express_1 = require("@nestjs/platform-express");
+exports.multerOptions = {
+    limits: {
+        fileSize: 10 * 1024 * 1024,
+    },
+    storage: (0, multer_1.diskStorage)({
+        destination: (req, file, cb) => {
+            const folderPath = generalHelper_1.GeneralHelper.getFolderExtension(file.mimetype);
+            const fullPath = `src/common/uploads/${folderPath}`;
+            generalHelper_1.GeneralHelper.ensureDirectoryExists(fullPath);
+            cb(null, fullPath);
+        },
+        filename: (req, file, cb) => {
+            const originalName = file.originalname;
+            const fileExtension = (0, path_1.extname)(originalName);
+            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+            const newFileName = `${originalName.replace(fileExtension, '')}-${uniqueSuffix}${fileExtension}`;
+            if ((0, fs_1.existsSync)(`src/common/uploads/${generalHelper_1.GeneralHelper.getFolderExtension(file.mimetype)}/${originalName}`)) {
+                return new common_1.BadRequestException(`File "${originalName}" sudah ada.`);
+            }
+            cb(null, newFileName);
+        },
+    }),
+};
 let AnnouncementManageModule = class AnnouncementManageModule {
 };
 exports.AnnouncementManageModule = AnnouncementManageModule;
 exports.AnnouncementManageModule = AnnouncementManageModule = __decorate([
     (0, common_1.Module)({
-        imports: [employee_manage_module_1.EmployeeManageModule],
+        imports: [employee_manage_module_1.EmployeeManageModule, platform_express_1.MulterModule.register(exports.multerOptions)],
         controllers: [announcement_manage_controller_1.AnnouncementManageController],
         providers: [announcement_manage_service_1.AnnouncementManageService, database_service_1.DatabaseService, generalHelper_1.GeneralHelper],
         exports: [announcement_manage_service_1.AnnouncementManageService],

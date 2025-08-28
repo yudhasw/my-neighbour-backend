@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UnitManageController } from './unit-manage.controller';
-import { UnitManageService } from './unit-manage.service';
+import { UnitManageController } from '../../../src/modules/unit-manage-module/unit-manage.controller';
+import { UnitManageService } from '../../../src/modules/unit-manage-module/unit-manage.service';
 
 describe('UnitManageController', () => {
   let controller: UnitManageController;

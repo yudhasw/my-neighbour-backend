@@ -1,8 +1,8 @@
-import { ComplaintStatus, MaintenancePriority } from '../../../common/database/generated/prisma';
+import { ComplaintStatus, MaintenanceCategory } from '../../../common/database/generated/prisma';
 export declare class CreateComplaintManageDto {
     readonly title: string;
     readonly description: string;
-    readonly category: MaintenancePriority;
+    readonly category: MaintenanceCategory;
     readonly status: ComplaintStatus;
     readonly submittedAt: Date;
     readonly resolvedAt?: Date;

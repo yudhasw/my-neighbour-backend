@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ForumPostManageService } from './forum-post-manage.service';
+import { ForumPostManageService } from 's../../../src/modules/communication-module/forum-post-module/forum-post-manage.service';
 
 describe('ForumPostManageService', () => {
   let service: ForumPostManageService;

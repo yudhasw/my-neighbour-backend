@@ -39,7 +39,6 @@ const operational_report_module_1 = require("./modules/reports-module/operationa
 const payments_report_module_1 = require("./modules/reports-module/payments-report-module/payments-report.module");
 const request_manage_module_1 = require("./modules/request-module/request-manage.module");
 const complaint_manage_module_1 = require("./modules/request-module/compliant-module/complaint-manage.module");
-const maintanance_request_manage_module_1 = require("./modules/request-module/maintanance-request-module/maintanance-request-manage.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -118,10 +117,6 @@ exports.AppModule = AppModule = __decorate([
                                 {
                                     path: 'resident-compliant',
                                     module: complaint_manage_module_1.ComplaintManageModule,
-                                },
-                                {
-                                    path: 'resident-maintanance-request',
-                                    module: maintanance_request_manage_module_1.MaintananceRequestManageModule,
                                 },
                             ],
                         },

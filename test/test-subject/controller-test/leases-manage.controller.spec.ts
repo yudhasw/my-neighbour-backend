@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { LeasesManageController } from './leases-manage.controller';
-import { LeasesManageService } from './leases-manage.service';
+import { LeasesManageController } from '../../../src/modules/financial-module/lease-module/leases-manage.controller';
+import { LeasesManageService } from '../../../src/modules/financial-module/lease-module/leases-manage.service';
 
 describe('LeasesManageController', () => {
   let controller: LeasesManageController;

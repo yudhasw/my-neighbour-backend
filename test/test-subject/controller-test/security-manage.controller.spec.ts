@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { SecurityManageController } from './security-manage.controller';
-import { SecurityManageService } from './security-manage.service';
+import { SecurityManageController } from 'src/modules/security-module/security-manage.controller';
+import { SecurityManageService } from 'src/modules/security-module/security-manage.service';
 
 describe('SecurityManageController', () => {
   let controller: SecurityManageController;

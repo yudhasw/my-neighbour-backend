@@ -6,10 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseInterceptors,
+  UploadedFiles,
 } from '@nestjs/common';
 import { AnnouncementManageService } from './announcement-manage.service';
 import { CreateAnnouncementManageDto } from '../../../dtos/requests/create/create-announcement-manage.dto';
 import { UpdateAnnouncementManageDto } from '../../../dtos/requests/update/update-announcement-manage.dto';
+import { FilesInterceptor } from '@nestjs/platform-express';
+import { Express } from 'express';
 
 @Controller()
 export class AnnouncementManageController {
@@ -18,8 +22,21 @@ export class AnnouncementManageController {
   ) {}
 
   @Post()
-  create(@Body() createAnnouncementManageDto: CreateAnnouncementManageDto) {
-    return this.announcementManageService.create(createAnnouncementManageDto);
+  @UseInterceptors(FilesInterceptor('files'))
+  create(
+    @Body() createAnnouncementManageDto: CreateAnnouncementManageDto,
+    @UploadedFiles() files: Express.Multer.File,
+  ) {
+    return this.announcementManageService.create(
+      createAnnouncementManageDto,
+      files,
+    );
+  }
+
+  @Post('files')
+  @UseInterceptors(FilesInterceptor('file'))
+  files(@UploadedFiles() file: Express.Multer.File) {
+    return file;
   }
 
   @Get()

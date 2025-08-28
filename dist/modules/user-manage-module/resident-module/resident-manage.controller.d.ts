@@ -5,15 +5,19 @@ export declare class ResidentManageController {
     private readonly residentManageService;
     constructor(residentManageService: ResidentManageService);
     create(createResidentManageDto: CreateResidentManageDto): Promise<{
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        residentId: string;
-        unitId: string | null;
+        userId: string;
         emergencyContactName: string | null;
         emergencyContactNumber: string | null;
         movedInDate: Date;
         movedOutDate: Date | null;
         residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
+        unitId: string | null;
+        kprPaymentAmount: number | null;
+        kprDueDate: Date | null;
+        isKprPaid: boolean | null;
     }>;
     findAll(): Promise<({
         user: {
@@ -27,18 +31,22 @@ export declare class ResidentManageController {
         };
         _count: {
             Complaints: number;
-            payments: number;
+            Payments: number;
         };
     } & {
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        residentId: string;
-        unitId: string | null;
+        userId: string;
         emergencyContactName: string | null;
         emergencyContactNumber: string | null;
         movedInDate: Date;
         movedOutDate: Date | null;
         residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
+        unitId: string | null;
+        kprPaymentAmount: number | null;
+        kprDueDate: Date | null;
+        isKprPaid: boolean | null;
     })[]>;
     findOne(id: string): Promise<{
         user: {
@@ -50,48 +58,59 @@ export declare class ResidentManageController {
             primaryEmail: string;
             gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
         };
-        _count: {
-            Complaints: number;
-            payments: number;
-        };
-        payments: {
-            description: string | null;
+        Payments: {
+            status: import("src/common/database/generated/prisma").$Enums.PaymentStatus;
             amount: number;
             paymentDate: Date;
             paymentMethod: import("src/common/database/generated/prisma").$Enums.PaymentMethod;
-            paymentFor: string;
         }[];
+        _count: {
+            Complaints: number;
+            Payments: number;
+        };
     } & {
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        residentId: string;
-        unitId: string | null;
+        userId: string;
         emergencyContactName: string | null;
         emergencyContactNumber: string | null;
         movedInDate: Date;
         movedOutDate: Date | null;
         residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
+        unitId: string | null;
+        kprPaymentAmount: number | null;
+        kprDueDate: Date | null;
+        isKprPaid: boolean | null;
     }>;
     update(id: string, updateResidentManageDto: UpdateResidentManageDto): Promise<{
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        residentId: string;
-        unitId: string | null;
+        userId: string;
         emergencyContactName: string | null;
         emergencyContactNumber: string | null;
         movedInDate: Date;
         movedOutDate: Date | null;
         residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
+        unitId: string | null;
+        kprPaymentAmount: number | null;
+        kprDueDate: Date | null;
+        isKprPaid: boolean | null;
     }>;
     remove(id: string): Promise<{
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        residentId: string;
-        unitId: string | null;
+        userId: string;
         emergencyContactName: string | null;
         emergencyContactNumber: string | null;
         movedInDate: Date;
         movedOutDate: Date | null;
         residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
+        unitId: string | null;
+        kprPaymentAmount: number | null;
+        kprDueDate: Date | null;
+        isKprPaid: boolean | null;
     }>;
 }

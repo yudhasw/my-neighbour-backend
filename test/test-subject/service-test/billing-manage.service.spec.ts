@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { BillingManageService } from './billing-manage.service';
+import { BillingManageService } from '../../../src/modules/financial-module/billing-module/billing-manage.service';
 
 describe('BillingManageService', () => {
   let service: BillingManageService;

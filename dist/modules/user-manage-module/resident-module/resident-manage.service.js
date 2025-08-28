@@ -22,13 +22,13 @@ let ResidentManageService = class ResidentManageService {
         try {
             return await this.prisma.residents.create({
                 data: {
-                    residentId: createRequest.residentId,
+                    user: { connect: { id: createRequest.userId } },
                     emergencyContactName: createRequest.emergencyContactName,
                     emergencyContactNumber: createRequest.emergencyContactNumber,
                     movedInDate: createRequest.movedInDate,
                     movedOutDate: createRequest.movedOutDate,
                     residentStatus: createRequest.residentStatus,
-                    unitId: createRequest.unitId ?? null,
+                    unit: { connect: { id: createRequest.unitId } },
                 },
             });
         }
@@ -41,7 +41,7 @@ let ResidentManageService = class ResidentManageService {
         try {
             return await this.prisma.residents.findMany({
                 include: {
-                    _count: { select: { Complaints: true, payments: true } },
+                    _count: { select: { Complaints: true, Payments: true } },
                     user: {
                         select: {
                             fullName: true,
@@ -65,9 +65,9 @@ let ResidentManageService = class ResidentManageService {
     async findOne(id) {
         try {
             return await this.prisma.residents.findUniqueOrThrow({
-                where: { residentId: id },
+                where: { id: id },
                 include: {
-                    _count: { select: { Complaints: true, payments: true } },
+                    _count: { select: { Complaints: true, Payments: true } },
                     user: {
                         select: {
                             fullName: true,
@@ -79,13 +79,12 @@ let ResidentManageService = class ResidentManageService {
                             primaryEmail: true,
                         },
                     },
-                    payments: {
+                    Payments: {
                         select: {
                             amount: true,
-                            paymentFor: true,
                             paymentMethod: true,
                             paymentDate: true,
-                            description: true,
+                            status: true,
                         },
                         orderBy: {
                             paymentDate: 'asc',
@@ -102,13 +101,13 @@ let ResidentManageService = class ResidentManageService {
     async update(id, updateRequest) {
         try {
             const existData = await this.prisma.residents.findUnique({
-                where: { residentId: id },
+                where: { id: id },
             });
             if (!existData) {
                 throw new common_1.NotFoundException(`Penghuni dengan id: ${id} tidak ditemukan`);
             }
             const updatedData = await this.prisma.residents.update({
-                where: { residentId: id },
+                where: { id: id },
                 data: {
                     emergencyContactName: updateRequest.emergencyContactName ??
                         existData.emergencyContactName,
@@ -139,10 +138,10 @@ let ResidentManageService = class ResidentManageService {
     async remove(id) {
         try {
             await this.prisma.residents.findUnique({
-                where: { residentId: id },
+                where: { id: id },
             });
             return await this.prisma.residents.delete({
-                where: { residentId: id },
+                where: { id: id },
             });
         }
         catch (error) {

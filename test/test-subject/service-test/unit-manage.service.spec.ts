@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UnitManageService } from './unit-manage.service';
-
+import { UnitManageService } from '../../../src/modules/unit-manage-module/unit-manage.service';
 describe('UnitManageService', () => {
   let service: UnitManageService;
 

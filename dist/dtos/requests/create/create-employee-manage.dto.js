@@ -15,7 +15,7 @@ const prisma_1 = require("../../../common/database/generated/prisma");
 const is_unique_validators_1 = require("../../../common/pipes/validators/is-unique-validators");
 const class_transformer_1 = require("class-transformer");
 class CreateEmployeeManageDto {
-    employeeId;
+    userId;
     employeeNumberId;
     hireDate;
     employeePosition;
@@ -25,14 +25,16 @@ class CreateEmployeeManageDto {
 }
 exports.CreateEmployeeManageDto = CreateEmployeeManageDto;
 __decorate([
-    (0, class_validator_1.IsUUID)('4', { message: 'ID karyawan harus berupa UUID versi 4 yang valid.' }),
-    (0, class_validator_1.IsNotEmpty)({ message: 'ID karyawan tidak boleh kosong.' }),
-    (0, is_unique_validators_1.IsUnique)({ field: 'employeeId', model: 'employees' }, { message: 'pegawai sudah terdaftar' }),
+    (0, class_validator_1.IsUUID)('4', {
+        message: 'ID pengguna aplikasi harus berupa UUID versi 4 yang valid.',
+    }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'ID pengguna aplikasi tidak boleh kosong.' }),
+    (0, is_unique_validators_1.IsUnique)({ field: 'userId', model: 'employees' }, { message: 'pengguna sudah terdaftar sudah terdaftar' }),
     __metadata("design:type", String)
-], CreateEmployeeManageDto.prototype, "employeeId", void 0);
+], CreateEmployeeManageDto.prototype, "userId", void 0);
 __decorate([
-    (0, class_validator_1.IsString)({ message: 'Nomor identitas karyawan harus berupa teks.' }),
-    (0, class_validator_1.IsNotEmpty)({ message: 'Nomor identitas karyawan tidak boleh kosong.' }),
+    (0, class_validator_1.IsString)({ message: 'Nomor identitas Pegawai harus berupa teks.' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'Nomor identitas Pegawai tidak boleh kosong.' }),
     (0, is_unique_validators_1.IsUnique)({ field: 'employeeNumberId', model: 'employees' }, { message: 'ID dari pegawai sudah terdaftar' }),
     __metadata("design:type", String)
 ], CreateEmployeeManageDto.prototype, "employeeNumberId", void 0);
@@ -45,9 +47,9 @@ __decorate([
     __metadata("design:type", Date)
 ], CreateEmployeeManageDto.prototype, "hireDate", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)({ message: 'Posisi karyawan tidak boleh kosong.' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'Posisi Pegawai tidak boleh kosong.' }),
     (0, class_validator_1.IsEnum)(prisma_1.EmployeeRole, {
-        message: 'Posisi karyawan tidak valid.' + Object.values(prisma_1.EmployeeRole).join(', '),
+        message: 'Posisi Pegawai tidak valid.' + Object.values(prisma_1.EmployeeRole).join(', '),
     }),
     __metadata("design:type", String)
 ], CreateEmployeeManageDto.prototype, "employeePosition", void 0);

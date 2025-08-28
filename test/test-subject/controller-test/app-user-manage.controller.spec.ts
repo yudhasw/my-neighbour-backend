@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppUserManageController } from './app-user-manage.controller';
-import { AppUserManageService } from './app-user-manage.service';
+import { AppUserManageController } from '../../../src/modules/user-manage-module/app-users-module/app-user-manage.controller';
+import { AppUserManageService } from '../../../src/modules/user-manage-module/app-users-module/app-user-manage.service';
 
 describe('AppUserManageController', () => {
   let controller: AppUserManageController;

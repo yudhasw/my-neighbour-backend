@@ -9,7 +9,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RequestManageModule = void 0;
 const common_1 = require("@nestjs/common");
 const complaint_manage_module_1 = require("./compliant-module/complaint-manage.module");
-const maintanance_request_manage_module_1 = require("./maintanance-request-module/maintanance-request-manage.module");
 const database_module_1 = require("../../common/database/database.module");
 const users_manage_module_1 = require("../user-manage-module/users-manage.module");
 let RequestManageModule = class RequestManageModule {
@@ -17,13 +16,8 @@ let RequestManageModule = class RequestManageModule {
 exports.RequestManageModule = RequestManageModule;
 exports.RequestManageModule = RequestManageModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            database_module_1.DatabaseModule,
-            complaint_manage_module_1.ComplaintManageModule,
-            maintanance_request_manage_module_1.MaintananceRequestManageModule,
-            users_manage_module_1.UsersManageModule,
-        ],
-        exports: [complaint_manage_module_1.ComplaintManageModule, maintanance_request_manage_module_1.MaintananceRequestManageModule],
+        imports: [database_module_1.DatabaseModule, complaint_manage_module_1.ComplaintManageModule, users_manage_module_1.UsersManageModule],
+        exports: [complaint_manage_module_1.ComplaintManageModule],
     })
 ], RequestManageModule);
 //# sourceMappingURL=request-manage.module.js.map

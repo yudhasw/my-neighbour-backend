@@ -130,7 +130,7 @@ exports.Prisma.UsersScalarFieldEnum = {
   contactNumber: 'contactNumber',
   primaryEmail: 'primaryEmail',
   secondaryEmail: 'secondaryEmail',
-  password: 'password',
+  passwordHash: 'passwordHash',
   sessionToken: 'sessionToken',
   emailVerificationToken: 'emailVerificationToken',
   passwordResetToken: 'passwordResetToken',
@@ -141,19 +141,24 @@ exports.Prisma.UsersScalarFieldEnum = {
 };
 
 exports.Prisma.ResidentsScalarFieldEnum = {
-  residentId: 'residentId',
+  id: 'id',
+  userId: 'userId',
   emergencyContactName: 'emergencyContactName',
   emergencyContactNumber: 'emergencyContactNumber',
   movedInDate: 'movedInDate',
   movedOutDate: 'movedOutDate',
   residentStatus: 'residentStatus',
   unitId: 'unitId',
+  kprPaymentAmount: 'kprPaymentAmount',
+  kprDueDate: 'kprDueDate',
+  isKprPaid: 'isKprPaid',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
 exports.Prisma.EmployeesScalarFieldEnum = {
-  employeeId: 'employeeId',
+  id: 'id',
+  userId: 'userId',
   employeeNumberId: 'employeeNumberId',
   hireDate: 'hireDate',
   employeePosition: 'employeePosition',
@@ -164,50 +169,19 @@ exports.Prisma.EmployeesScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.MaintenanceRequestsScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description',
-  requestDate: 'requestDate',
-  priority: 'priority',
-  status: 'status',
-  residentId: 'residentId',
-  unitId: 'unitId',
-  assignedToEmployeeId: 'assignedToEmployeeId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.ComplaintsScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
   category: 'category',
   status: 'status',
+  images: 'images',
   submittedAt: 'submittedAt',
   resolvedAt: 'resolvedAt',
   resolutionDetails: 'resolutionDetails',
   residentId: 'residentId',
   employeeId: 'employeeId',
   unitId: 'unitId',
-  images: 'images',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.PaymentsScalarFieldEnum = {
-  id: 'id',
-  amount: 'amount',
-  paymentDate: 'paymentDate',
-  paymentMethod: 'paymentMethod',
-  status: 'status',
-  paymentFor: 'paymentFor',
-  description: 'description',
-  residentId: 'residentId',
-  unitId: 'unitId',
-  leaseId: 'leaseId',
-  processedByUserId: 'processedByUserId',
-  billId: 'billId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -258,24 +232,10 @@ exports.Prisma.UnitsScalarFieldEnum = {
   buildingName: 'buildingName',
   floorNumber: 'floorNumber',
   numberOfRooms: 'numberOfRooms',
+  priceSale: 'priceSale',
   squareFootage: 'squareFootage',
-  rentAmount: 'rentAmount',
   location: 'location',
   status: 'status',
-  priceSale: 'priceSale',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.LeasesScalarFieldEnum = {
-  id: 'id',
-  startDate: 'startDate',
-  endDate: 'endDate',
-  monthlyRent: 'monthlyRent',
-  depositAmount: 'depositAmount',
-  termsAndConditions: 'termsAndConditions',
-  residentId: 'residentId',
-  unitId: 'unitId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -292,12 +252,39 @@ exports.Prisma.BillsScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.PaymentsScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  paymentDate: 'paymentDate',
+  paymentMethod: 'paymentMethod',
+  status: 'status',
+  residentId: 'residentId',
+  unitId: 'unitId',
+  processedByEmployeeId: 'processedByEmployeeId',
+  billId: 'billId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.ContactsScalarFieldEnum = {
   id: 'id',
   name: 'name',
   role: 'role',
   phoneNumber: 'phoneNumber',
   email: 'email',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SecurityReportsScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  location: 'location',
+  incidentDate: 'incidentDate',
+  status: 'status',
+  isPublished: 'isPublished',
+  employeeId: 'employeeId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -340,18 +327,11 @@ exports.EmployeeRole = exports.$Enums.EmployeeRole = {
   NONE: 'NONE'
 };
 
-exports.MaintenancePriority = exports.$Enums.MaintenancePriority = {
+exports.MaintenanceCategory = exports.$Enums.MaintenanceCategory = {
   LOW: 'LOW',
   MEDIUM: 'MEDIUM',
   HIGH: 'HIGH',
   URGENT: 'URGENT'
-};
-
-exports.MaintenanceStatus = exports.$Enums.MaintenanceStatus = {
-  NEW: 'NEW',
-  IN_PROGRESS: 'IN_PROGRESS',
-  COMPLETED: 'COMPLETED',
-  CANCELLED: 'CANCELLED'
 };
 
 exports.ComplaintStatus = exports.$Enums.ComplaintStatus = {
@@ -360,6 +340,17 @@ exports.ComplaintStatus = exports.$Enums.ComplaintStatus = {
   IN_PROGRESS: 'IN_PROGRESS',
   COMPLETED: 'COMPLETED',
   CANCELLED: 'CANCELLED'
+};
+
+exports.UnitStatus = exports.$Enums.UnitStatus = {
+  OCCUPIED: 'OCCUPIED',
+  VACANT: 'VACANT',
+  MAINTENANCE: 'MAINTENANCE'
+};
+
+exports.PaymentType = exports.$Enums.PaymentType = {
+  CICILAN_KPR: 'CICILAN_KPR',
+  IURAN_BULANAN: 'IURAN_BULANAN'
 };
 
 exports.PaymentMethod = exports.$Enums.PaymentMethod = {
@@ -376,37 +367,32 @@ exports.PaymentStatus = exports.$Enums.PaymentStatus = {
   CANCELLED: 'CANCELLED'
 };
 
-exports.UnitStatus = exports.$Enums.UnitStatus = {
-  OCCUPIED: 'OCCUPIED',
-  VACANT: 'VACANT',
-  MAINTENANCE: 'MAINTENANCE'
-};
-
-exports.PaymentType = exports.$Enums.PaymentType = {
-  CICILAN_KPR: 'CICILAN_KPR',
-  IURAN_BULANAN: 'IURAN_BULANAN'
-};
-
 exports.ContactRole = exports.$Enums.ContactRole = {
   EMPLOYEE: 'EMPLOYEE',
   EMERGENCY_SERVICES: 'EMERGENCY_SERVICES'
+};
+
+exports.MaintenanceStatus = exports.$Enums.MaintenanceStatus = {
+  NEW: 'NEW',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
 };
 
 exports.Prisma.ModelName = {
   Users: 'Users',
   Residents: 'Residents',
   Employees: 'Employees',
-  MaintenanceRequests: 'MaintenanceRequests',
   Complaints: 'Complaints',
-  Payments: 'Payments',
   Announcements: 'Announcements',
   ForumPosts: 'ForumPosts',
   PostTags: 'PostTags',
   ForumComments: 'ForumComments',
   Units: 'Units',
-  Leases: 'Leases',
   Bills: 'Bills',
-  Contacts: 'Contacts'
+  Payments: 'Payments',
+  Contacts: 'Contacts',
+  SecurityReports: 'SecurityReports'
 };
 
 /**

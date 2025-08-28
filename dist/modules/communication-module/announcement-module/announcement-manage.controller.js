@@ -17,13 +17,17 @@ const common_1 = require("@nestjs/common");
 const announcement_manage_service_1 = require("./announcement-manage.service");
 const create_announcement_manage_dto_1 = require("../../../dtos/requests/create/create-announcement-manage.dto");
 const update_announcement_manage_dto_1 = require("../../../dtos/requests/update/update-announcement-manage.dto");
+const platform_express_1 = require("@nestjs/platform-express");
 let AnnouncementManageController = class AnnouncementManageController {
     announcementManageService;
     constructor(announcementManageService) {
         this.announcementManageService = announcementManageService;
     }
-    create(createAnnouncementManageDto) {
-        return this.announcementManageService.create(createAnnouncementManageDto);
+    create(createAnnouncementManageDto, files) {
+        return this.announcementManageService.create(createAnnouncementManageDto, files);
+    }
+    files(file) {
+        return file;
     }
     findAll() {
         return this.announcementManageService.findAll();
@@ -41,11 +45,21 @@ let AnnouncementManageController = class AnnouncementManageController {
 exports.AnnouncementManageController = AnnouncementManageController;
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FilesInterceptor)('files')),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.UploadedFiles)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_announcement_manage_dto_1.CreateAnnouncementManageDto]),
+    __metadata("design:paramtypes", [create_announcement_manage_dto_1.CreateAnnouncementManageDto, Object]),
     __metadata("design:returntype", void 0)
 ], AnnouncementManageController.prototype, "create", null);
+__decorate([
+    (0, common_1.Post)('files'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FilesInterceptor)('file')),
+    __param(0, (0, common_1.UploadedFiles)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], AnnouncementManageController.prototype, "files", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),

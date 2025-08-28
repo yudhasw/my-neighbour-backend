@@ -23,12 +23,12 @@ export class AppUserManageService {
           lastName: createRequest.lastName,
           username: createRequest.username,
           primaryEmail: createRequest.primaryEmail,
-          password: hashedPassword,
+          passwordHash: hashedPassword,
           role: createRequest.role,
           gender: createRequest.gender,
         },
         omit: {
-          password: true,
+          passwordHash: true,
         },
       });
     } catch (error) {
@@ -104,8 +104,7 @@ export class AppUserManageService {
               workingHours: true,
               salary: true,
               bonus: true,
-              // Relasi balik ke Complaint dan Announcements
-              Complaint: {
+              Complaints: {
                 select: {
                   title: true,
                   description: true, // Perbaiki 'desciption'
@@ -187,7 +186,7 @@ export class AppUserManageService {
           updatedAt: new Date(),
         },
         omit: {
-          password: true,
+          passwordHash: true,
         },
       });
 

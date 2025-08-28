@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ComplaintManageController } from './complaint-manage.controller';
-import { ComplaintManageService } from './complaint-manage.service';
+import { ComplaintManageController } from '../../../src/modules/request-module/compliant-module/complaint-manage.controller';
+import { ComplaintManageService } from '../../../src/modules/request-module/compliant-module/complaint-manage.service';
 
 describe('ComplaintManageController', () => {
   let controller: ComplaintManageController;
@@ -11,7 +11,9 @@ describe('ComplaintManageController', () => {
       providers: [ComplaintManageService],
     }).compile();
 
-    controller = module.get<ComplaintManageController>(ComplaintManageController);
+    controller = module.get<ComplaintManageController>(
+      ComplaintManageController,
+    );
   });
 
   it('should be defined', () => {

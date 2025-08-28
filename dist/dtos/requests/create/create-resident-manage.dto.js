@@ -15,7 +15,7 @@ const prisma_1 = require("../../../common/database/generated/prisma");
 const class_transformer_1 = require("class-transformer");
 const is_unique_validators_1 = require("../../../common/pipes/validators/is-unique-validators");
 class CreateResidentManageDto {
-    residentId;
+    userId;
     emergencyContactName;
     emergencyContactNumber;
     movedInDate;
@@ -25,12 +25,13 @@ class CreateResidentManageDto {
 }
 exports.CreateResidentManageDto = CreateResidentManageDto;
 __decorate([
-    (0, class_validator_1.IsUUID)('4', { message: 'ID penghuni harus berupa UUID versi 4 yang valid.' }),
-    (0, class_validator_1.IsNotEmpty)({ message: 'ID penghuni tidak boleh kosong.' }),
-    (0, class_validator_1.IsString)({ message: 'Nama kontak darurat harus berupa teks.' }),
-    (0, is_unique_validators_1.IsUnique)({ field: 'residentId', model: 'residents' }, { message: 'Resident Sudah terdaftar' }),
+    (0, class_validator_1.IsUUID)('4', {
+        message: 'ID pengguna aplikasi harus berupa UUID versi 4 yang valid.',
+    }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'ID pengguna aplikasi tidak boleh kosong.' }),
+    (0, is_unique_validators_1.IsUnique)({ field: 'userId', model: 'employees' }, { message: 'pengguna sudah terdaftar sudah terdaftar' }),
     __metadata("design:type", String)
-], CreateResidentManageDto.prototype, "residentId", void 0);
+], CreateResidentManageDto.prototype, "userId", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: 'Nama kontak darurat harus berupa teks.' }),
     (0, class_validator_1.IsOptional)(),

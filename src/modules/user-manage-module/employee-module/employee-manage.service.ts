@@ -19,7 +19,7 @@ export class EmployeeManageService {
     try {
       return await this.prisma.employees.create({
         data: {
-          employeeId: createRequest.employeeId,
+          user: { connect: { id: createRequest.userId } },
           employeeNumberId: createRequest.employeeNumberId,
           hireDate: createRequest.hireDate,
           salary: this.helper.twoDecimal(createRequest.salary),
@@ -43,8 +43,10 @@ export class EmployeeManageService {
           _count: {
             select: {
               Announcements: true,
-              MaintenanceRequests: true,
+              Bills: true,
               Payments: true,
+              Complaints: true,
+              SecurityReports: true,
             },
           },
           user: {
@@ -74,13 +76,15 @@ export class EmployeeManageService {
   async findOne(id: string) {
     try {
       return await this.prisma.employees.findUniqueOrThrow({
-        where: { employeeId: id },
+        where: { id: id },
         include: {
           _count: {
             select: {
               Announcements: true,
-              MaintenanceRequests: true,
+              Bills: true,
               Payments: true,
+              Complaints: true,
+              SecurityReports: true,
             },
           },
           user: {
@@ -94,7 +98,7 @@ export class EmployeeManageService {
               primaryEmail: true,
             },
           },
-          Complaint: {
+          Complaints: {
             select: {
               title: true,
               description: true,
@@ -102,14 +106,6 @@ export class EmployeeManageService {
               submittedAt: true,
               resolvedAt: true,
               resolutionDetails: true,
-            },
-          },
-          MaintenanceRequests: {
-            select: {
-              title: true,
-              priority: true,
-              description: true,
-              status: true,
             },
           },
           Announcements: {
@@ -134,7 +130,7 @@ export class EmployeeManageService {
   async update(id: string, updateRequest: UpdateEmployeeManageDto) {
     try {
       const existData = await this.prisma.employees.findUnique({
-        where: { employeeId: id },
+        where: { id: id },
       });
 
       if (!existData) {
@@ -142,7 +138,7 @@ export class EmployeeManageService {
       }
 
       const updatedData = this.prisma.employees.update({
-        where: { employeeId: id },
+        where: { id: id },
         data: {
           employeeNumberId:
             updateRequest.employeeNumberId ?? existData?.employeeNumberId,
@@ -181,7 +177,7 @@ export class EmployeeManageService {
   async remove(id: string) {
     try {
       const existData = await this.prisma.employees.findUnique({
-        where: { employeeId: id },
+        where: { id: id },
       });
 
       if (!existData) {
@@ -189,7 +185,7 @@ export class EmployeeManageService {
       }
 
       return await this.prisma.employees.delete({
-        where: { employeeId: id },
+        where: { id: id },
       });
     } catch (error) {
       if (error instanceof NotFoundException) {

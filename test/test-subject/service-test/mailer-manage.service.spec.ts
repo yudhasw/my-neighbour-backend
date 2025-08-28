@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MailerManageService } from './mailer-manage.service';
+import { MailerManageService } from '../../../src/common/helper/mail/mailer-manage.service';
 
 describe('MailerManageService', () => {
   let service: MailerManageService;

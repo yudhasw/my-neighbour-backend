@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ResidentManageController } from './resident-manage.controller';
-import { ResidentManageService } from './resident-manage.service';
+import { ResidentManageController } from '../../../src/modules/user-manage-module/resident-module/resident-manage.controller';
+import { ResidentManageService } from '../../../src/modules/user-manage-module/resident-module/resident-manage.service';
 
 describe('ResidentManageController', () => {
   let controller: ResidentManageController;

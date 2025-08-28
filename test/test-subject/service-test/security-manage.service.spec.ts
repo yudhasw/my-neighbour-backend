@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { SecurityManageService } from './security-manage.service';
+import { SecurityManageService } from '../../../src/modules/security-module/security-manage.service';
 
 describe('SecurityManageService', () => {
   let service: SecurityManageService;

@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ContactManageService } from './contact-manage.service';
+import { ContactManageService } from '../../../src/modules/contact-module/contact-manage.service';
 
 describe('ContactManageService', () => {
   let service: ContactManageService;

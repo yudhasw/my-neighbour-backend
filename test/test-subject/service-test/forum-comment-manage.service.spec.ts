@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ForumCommentManageService } from './forum-comment-manage.service';
+import { ForumCommentManageService } from '../../../src/modules/communication-module/forum-comment-module/forum-comment-manage.service';
 
 describe('ForumCommentManageService', () => {
   let service: ForumCommentManageService;

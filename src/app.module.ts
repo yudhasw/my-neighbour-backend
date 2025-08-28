@@ -30,7 +30,7 @@ import { OperationalReportModule } from './modules/reports-module/operational-re
 import { PaymentsReportModule } from './modules/reports-module/payments-report-module/payments-report.module';
 import { RequestManageModule } from './modules/request-module/request-manage.module';
 import { ComplaintManageModule } from './modules/request-module/compliant-module/complaint-manage.module';
-import { MaintananceRequestManageModule } from './modules/request-module/maintanance-request-module/maintanance-request-manage.module';
+
 @Module({
   imports: [
     DatabaseModule,
@@ -105,10 +105,6 @@ import { MaintananceRequestManageModule } from './modules/request-module/maintan
               {
                 path: 'resident-compliant',
                 module: ComplaintManageModule,
-              },
-              {
-                path: 'resident-maintanance-request',
-                module: MaintananceRequestManageModule,
               },
             ],
           },

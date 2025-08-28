@@ -4,27 +4,27 @@ import { DatabaseService } from '../../../common/database/database.service';
 export declare class AnnouncementManageService {
     private readonly prisma;
     constructor(prisma: DatabaseService);
-    create(createRequest: CreateAnnouncementManageDto): Promise<{
-        id: string;
+    create(createRequest: CreateAnnouncementManageDto, files: Express.Multer.File): Promise<{
         title: string;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
+        employeeId: string;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     findAll(): Promise<{
-        id: string;
         title: string;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
+        employeeId: string;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }[]>;
     findOne(id: string): Promise<{
         employee: {
@@ -38,9 +38,10 @@ export declare class AnnouncementManageService {
                 contactNumber: string | null;
             };
         } & {
+            id: string;
             createdAt: Date;
             updatedAt: Date;
-            employeeId: string;
+            userId: string;
             employeeNumberId: string;
             hireDate: Date;
             employeePosition: import("src/common/database/generated/prisma").$Enums.EmployeeRole;
@@ -49,36 +50,36 @@ export declare class AnnouncementManageService {
             bonus: number | null;
         };
     } & {
-        id: string;
         title: string;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
+        employeeId: string;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     update(id: string, updateRequest: UpdateAnnouncementManageDto): Promise<{
-        id: string;
         title: string;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
+        employeeId: string;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     remove(id: string): Promise<{
-        id: string;
         title: string;
-        createdAt: Date;
-        updatedAt: Date;
-        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
         expiryDate: Date | null;
+        employeeId: string;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
 }

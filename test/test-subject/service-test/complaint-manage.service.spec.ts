@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ComplaintManageService } from './complaint-manage.service';
+import { ComplaintManageService } from '../../../src/modules/request-module/compliant-module/complaint-manage.service';
 
 describe('ComplaintManageService', () => {
   let service: ComplaintManageService;

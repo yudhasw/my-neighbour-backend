@@ -26,7 +26,6 @@ export class UnitManageService {
           status: createRequest.status,
           floorNumber: createRequest.floorNumber ?? null,
           numberOfRooms: createRequest.numberOfRooms ?? null,
-          rentAmount: this.helper.twoDecimal(createRequest.rentAmount!) ?? null,
           squareFootage: createRequest.squareFootage ?? null,
         },
       });
@@ -45,7 +44,7 @@ export class UnitManageService {
           _count: {
             select: {
               Complaints: true,
-              MaintenanceRequests: true,
+              Residents: true,
               Bills: true,
               Payments: true,
             },
@@ -107,9 +106,6 @@ export class UnitManageService {
           status: updateRequest.status ?? existData.status,
           floorNumber: updateRequest.floorNumber ?? existData.floorNumber,
           numberOfRooms: updateRequest.numberOfRooms ?? existData.numberOfRooms,
-          rentAmount:
-            this.helper.twoDecimal(updateRequest.rentAmount!) ??
-            existData.rentAmount,
           squareFootage: updateRequest.squareFootage ?? existData.squareFootage,
           updatedAt: new Date(),
         },

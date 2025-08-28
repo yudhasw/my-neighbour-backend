@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AnnouncementManageController } from './announcement-manage.controller';
-import { AnnouncementManageService } from './announcement-manage.service';
+import { AnnouncementManageController } from '../../../src/modules/communication-module/announcement-module/announcement-manage.controller';
+import { AnnouncementManageService } from '../../../src/modules/communication-module/announcement-module/announcement-manage.service';
 
 describe('AnnouncementManageController', () => {
   let controller: AnnouncementManageController;
@@ -11,7 +11,9 @@ describe('AnnouncementManageController', () => {
       providers: [AnnouncementManageService],
     }).compile();
 
-    controller = module.get<AnnouncementManageController>(AnnouncementManageController);
+    controller = module.get<AnnouncementManageController>(
+      AnnouncementManageController,
+    );
   });
 
   it('should be defined', () => {

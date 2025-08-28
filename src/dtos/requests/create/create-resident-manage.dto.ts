@@ -14,14 +14,15 @@ import { Type } from 'class-transformer';
 import { IsUnique } from 'src/common/pipes/validators/is-unique-validators';
 
 export class CreateResidentManageDto {
-  @IsUUID('4', { message: 'ID penghuni harus berupa UUID versi 4 yang valid.' })
-  @IsNotEmpty({ message: 'ID penghuni tidak boleh kosong.' })
-  @IsString({ message: 'Nama kontak darurat harus berupa teks.' })
+  @IsUUID('4', {
+    message: 'ID pengguna aplikasi harus berupa UUID versi 4 yang valid.',
+  })
+  @IsNotEmpty({ message: 'ID pengguna aplikasi tidak boleh kosong.' })
   @IsUnique(
-    { field: 'residentId', model: 'residents' },
-    { message: 'Resident Sudah terdaftar' },
+    { field: 'userId', model: 'employees' },
+    { message: 'pengguna sudah terdaftar sudah terdaftar' },
   )
-  readonly residentId: string;
+  readonly userId: string;
 
   @IsString({ message: 'Nama kontak darurat harus berupa teks.' })
   @IsOptional()

@@ -5,15 +5,15 @@ export declare class ForumPostManageService {
     private readonly prisma;
     constructor(prisma: DatabaseService);
     create(createRequest: CreateForumPostManageDto): Promise<{
-        id: string;
         title: string;
-        createdAt: Date;
-        updatedAt: Date;
         content: string;
         attachments: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
         publishedAt: Date;
-        userId: string;
     }>;
     findAll(): Promise<({
         user: {
@@ -28,15 +28,15 @@ export declare class ForumPostManageService {
             comments: number;
         };
     } & {
-        id: string;
         title: string;
-        createdAt: Date;
-        updatedAt: Date;
         content: string;
         attachments: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
         publishedAt: Date;
-        userId: string;
     })[]>;
     findOne(id: string): Promise<{
         user: {
@@ -53,44 +53,44 @@ export declare class ForumPostManageService {
             tagName: string;
         }[];
         comments: {
+            content: string;
             id: string;
             createdAt: Date;
             updatedAt: Date;
-            content: string;
             userId: string;
             postId: string;
         }[];
     } & {
-        id: string;
         title: string;
-        createdAt: Date;
-        updatedAt: Date;
         content: string;
         attachments: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
         publishedAt: Date;
-        userId: string;
     }>;
     update(id: string, updateRequest: UpdateForumPostManageDto): Promise<{
-        id: string;
         title: string;
-        createdAt: Date;
-        updatedAt: Date;
         content: string;
         attachments: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
         publishedAt: Date;
-        userId: string;
     }>;
     remove(id: string): Promise<{
-        id: string;
         title: string;
-        createdAt: Date;
-        updatedAt: Date;
         content: string;
         attachments: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
         publishedAt: Date;
-        userId: string;
     }>;
 }

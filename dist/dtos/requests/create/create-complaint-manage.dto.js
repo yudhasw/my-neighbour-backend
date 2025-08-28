@@ -38,7 +38,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateComplaintManageDto.prototype, "description", void 0);
 __decorate([
-    (0, class_validator_1.IsEnum)(prisma_1.MaintenancePriority, { message: 'Kategori kerusakan tidak valid.' }),
+    (0, class_validator_1.IsEnum)(prisma_1.MaintenanceCategory, { message: 'Kategori kerusakan tidak valid.' }),
     (0, class_validator_1.IsNotEmpty)({
         message: 'Kategori kerusakan (ringan/sedang/berat) tidak boleh kosong.',
     }),

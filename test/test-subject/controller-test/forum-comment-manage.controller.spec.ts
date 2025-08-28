@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ForumCommentManageController } from './forum-comment-manage.controller';
-import { ForumCommentManageService } from './forum-comment-manage.service';
+import { ForumCommentManageController } from '../../../src/modules/communication-module/forum-comment-module/forum-comment-manage.controller';
+import { ForumCommentManageService } from '../../../src/modules/communication-module/forum-comment-module/forum-comment-manage.service';
 
 describe('ForumCommentManageController', () => {
   let controller: ForumCommentManageController;
@@ -11,7 +11,9 @@ describe('ForumCommentManageController', () => {
       providers: [ForumCommentManageService],
     }).compile();
 
-    controller = module.get<ForumCommentManageController>(ForumCommentManageController);
+    controller = module.get<ForumCommentManageController>(
+      ForumCommentManageController,
+    );
   });
 
   it('should be defined', () => {

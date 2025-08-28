@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { OperationalReportController } from './operational-report.controller';
-import { OperationalReportService } from './operational-report.service';
+import { OperationalReportController } from '../../../src/modules/reports-module/operational-report-module/operational-report.controller';
+import { OperationalReportService } from '../../../src/modules/reports-module/operational-report-module/operational-report.service';
 
 describe('OperationalReportController', () => {
   let controller: OperationalReportController;
@@ -11,7 +11,9 @@ describe('OperationalReportController', () => {
       providers: [OperationalReportService],
     }).compile();
 
-    controller = module.get<OperationalReportController>(OperationalReportController);
+    controller = module.get<OperationalReportController>(
+      OperationalReportController,
+    );
   });
 
   it('should be defined', () => {

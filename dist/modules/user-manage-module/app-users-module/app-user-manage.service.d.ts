@@ -43,7 +43,7 @@ export declare class AppUserManageService {
             emergencyContactNumber: string | null;
             movedInDate: Date;
             movedOutDate: Date | null;
-        }[];
+        } | null;
         Employee: {
             employeeNumberId: string;
             hireDate: Date;
@@ -51,21 +51,21 @@ export declare class AppUserManageService {
             workingHours: number;
             salary: number;
             bonus: number | null;
-        }[];
+        } | null;
     }[]>;
     findOne(id: string): Promise<{
         Resident: {
+            emergencyContactName: string | null;
+            emergencyContactNumber: string | null;
+            movedInDate: Date;
+            movedOutDate: Date | null;
             unit: {
                 unitNumber: string;
                 buildingName: string | null;
                 floorNumber: number | null;
                 location: string;
             } | null;
-            emergencyContactName: string | null;
-            emergencyContactNumber: string | null;
-            movedInDate: Date;
-            movedOutDate: Date | null;
-        }[];
+        } | null;
         Employee: {
             employeeNumberId: string;
             hireDate: Date;
@@ -79,13 +79,13 @@ export declare class AppUserManageService {
                 publishDate: Date;
                 expiryDate: Date | null;
             }[];
-            Complaint: {
+            Complaints: {
                 title: string;
                 description: string;
                 status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
                 submittedAt: Date;
-            } | null;
-        }[];
+            }[];
+        } | null;
     } & {
         id: string;
         createdAt: Date;
@@ -98,7 +98,7 @@ export declare class AppUserManageService {
         contactNumber: string | null;
         primaryEmail: string;
         secondaryEmail: string | null;
-        password: string;
+        passwordHash: string;
         sessionToken: string | null;
         emailVerificationToken: string | null;
         passwordResetToken: string | null;
@@ -135,7 +135,7 @@ export declare class AppUserManageService {
         contactNumber: string | null;
         primaryEmail: string;
         secondaryEmail: string | null;
-        password: string;
+        passwordHash: string;
         sessionToken: string | null;
         emailVerificationToken: string | null;
         passwordResetToken: string | null;

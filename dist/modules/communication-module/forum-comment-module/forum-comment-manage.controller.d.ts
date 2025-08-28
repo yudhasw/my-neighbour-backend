@@ -5,10 +5,10 @@ export declare class ForumCommentManageController {
     private readonly forumCommentManageService;
     constructor(forumCommentManageService: ForumCommentManageService);
     create(createForumCommentManageDto: CreateForumCommentManageDto): Promise<{
+        content: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        content: string;
         userId: string;
         postId: string;
     }>;
@@ -21,10 +21,10 @@ export declare class ForumCommentManageController {
             role: import("src/common/database/generated/prisma").$Enums.UserRole;
         };
     } & {
+        content: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        content: string;
         userId: string;
         postId: string;
     })[]>;
@@ -48,26 +48,26 @@ export declare class ForumCommentManageController {
             }[];
         };
     } & {
+        content: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        content: string;
         userId: string;
         postId: string;
     }>;
     update(id: string, updateForumCommentManageDto: UpdateForumCommentManageDto): Promise<{
+        content: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        content: string;
         userId: string;
         postId: string;
     }>;
     remove(id: string): Promise<{
+        content: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        content: string;
         userId: string;
         postId: string;
     }>;

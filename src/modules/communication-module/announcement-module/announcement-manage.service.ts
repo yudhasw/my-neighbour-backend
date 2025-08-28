@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Injectable,
   InternalServerErrorException,
@@ -10,14 +11,17 @@ import { PrismaClientKnownRequestError } from '../../../common/database/generate
 @Injectable()
 export class AnnouncementManageService {
   constructor(private readonly prisma: DatabaseService) {}
-  async create(createRequest: CreateAnnouncementManageDto) {
+  async create(
+    createRequest: CreateAnnouncementManageDto,
+    files: Express.Multer.File,
+  ) {
     try {
       return await this.prisma.announcements.create({
         data: {
           title: createRequest.title,
           content: createRequest.content,
           attachments: createRequest.attachments,
-          employee: { connect: { employeeId: createRequest.employeeId } },
+          employee: { connect: { id: createRequest.employeeId } },
           expiryDate: createRequest.expiryDate,
           publishDate: createRequest.publishDate,
         },
@@ -97,7 +101,7 @@ export class AnnouncementManageService {
           attachments: updateRequest.attachments ?? existData.attachments,
           employee: {
             connect: {
-              employeeId: updateRequest.employeeId ?? existData.employeeId,
+              id: updateRequest.employeeId ?? existData.employeeId,
             },
           },
           expiryDate: updateRequest.expiryDate ?? existData.expiryDate,
