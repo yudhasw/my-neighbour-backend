@@ -8,6 +8,7 @@
   "scripts": {
     "prisma:migrate": "npx prisma migrate dev --schema ./src/common/database/prisma/schema.prisma",
     "prisma:generate": "npx prisma generate --schema ./src/common/database/prisma/schema.prisma",
+    "prisma:studio": "npx prisma studio --schema ./src/common/database/prisma/schema.prisma",
     "build": "nest build",
     "build:dev": "nest build --webpack --webpackPath webpack-hmr.config.js",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -86,9 +87,9 @@
       "json",
       "ts"
     ],
-    "rootDir": [
-      "src",
-      "test"
+    "roots": [
+      "<rootDir>/src",
+      "<rootDir>/test"
     ],
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {

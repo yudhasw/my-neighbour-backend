@@ -14,8 +14,8 @@ const common_1 = require("@nestjs/common");
 const fs = require("fs");
 let GeneralHelper = class GeneralHelper {
     folderPath;
-    constructor(folderPath = 'src/common/uploads/') {
-        this.folderPath = folderPath;
+    constructor() {
+        this.folderPath = 'src/common/uploads/';
     }
     twoDecimal(input) {
         return parseFloat((input * 100).toFixed(2));
@@ -43,10 +43,13 @@ let GeneralHelper = class GeneralHelper {
             fs.mkdirSync(path, { recursive: true });
         }
     }
+    getFolderPath() {
+        return this.folderPath;
+    }
 };
 exports.GeneralHelper = GeneralHelper;
 exports.GeneralHelper = GeneralHelper = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [Object])
+    __metadata("design:paramtypes", [])
 ], GeneralHelper);
 //# sourceMappingURL=generalHelper.js.map

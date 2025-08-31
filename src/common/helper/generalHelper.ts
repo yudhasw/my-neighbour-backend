@@ -3,7 +3,11 @@ import * as fs from 'fs';
 
 @Injectable()
 export class GeneralHelper {
-  constructor(private readonly folderPath = 'src/common/uploads/') {}
+  private readonly folderPath: string;
+
+  constructor() {
+    this.folderPath = 'src/common/uploads/';
+  }
 
   public twoDecimal(input: number) {
     return parseFloat((input * 100).toFixed(2));
@@ -24,11 +28,9 @@ export class GeneralHelper {
 
   public static getFolderExtension(mimetype: string): string {
     const mime = mimetype.toLowerCase();
-
     if (mime in this.FileDictionary) {
       return this.FileDictionary[mime];
     }
-
     return 'others';
   }
 
@@ -38,14 +40,8 @@ export class GeneralHelper {
     }
   }
 
-  // public async uploadFile(files: Express.Multer.File): Promise<void> {
-  //   const mimeType = files.mimetype.toLowerCase();
-  //   const targetFolder = GeneralHelper.GetFolderExtension();
-  // }
-
-  // public async updateFile(): Promise<void> {}
-
-  // public async removeFile(): Promise<void> {}
-
-  // public async findFile(): Promise<void> {}
+  // Getter untuk akses folderPath
+  public getFolderPath(): string {
+    return this.folderPath;
+  }
 }
