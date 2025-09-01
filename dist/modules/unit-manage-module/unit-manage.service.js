@@ -74,6 +74,42 @@ let UnitManageService = class UnitManageService {
                             amount: true,
                         },
                     },
+                    Complaints: {
+                        select: {
+                            title: true,
+                            category: true,
+                            description: true,
+                            resolutionDetails: true,
+                            submittedAt: true,
+                            resolvedAt: true,
+                            status: true,
+                            images: true,
+                        },
+                        orderBy: { title: 'asc' },
+                    },
+                    Residents: {
+                        select: {
+                            isKprPaid: true,
+                            kprDueDate: true,
+                            kprPaymentAmount: true,
+                            residentStatus: true,
+                            movedInDate: true,
+                        },
+                        include: {
+                            user: {
+                                select: {
+                                    fullName: true,
+                                    firstName: true,
+                                    lastName: true,
+                                    contactNumber: true,
+                                    dateOfBirth: true,
+                                    gender: true,
+                                    username: true,
+                                    primaryEmail: true,
+                                },
+                            },
+                        },
+                    },
                 },
             });
         }

@@ -2451,7 +2451,7 @@ export namespace Prisma {
     contactNumber: string | null
     primaryEmail: string | null
     secondaryEmail: string | null
-    passwordHash: string | null
+    password: string | null
     sessionToken: string | null
     emailVerificationToken: string | null
     passwordResetToken: string | null
@@ -2471,7 +2471,7 @@ export namespace Prisma {
     contactNumber: string | null
     primaryEmail: string | null
     secondaryEmail: string | null
-    passwordHash: string | null
+    password: string | null
     sessionToken: string | null
     emailVerificationToken: string | null
     passwordResetToken: string | null
@@ -2491,7 +2491,7 @@ export namespace Prisma {
     contactNumber: number
     primaryEmail: number
     secondaryEmail: number
-    passwordHash: number
+    password: number
     sessionToken: number
     emailVerificationToken: number
     passwordResetToken: number
@@ -2513,7 +2513,7 @@ export namespace Prisma {
     contactNumber?: true
     primaryEmail?: true
     secondaryEmail?: true
-    passwordHash?: true
+    password?: true
     sessionToken?: true
     emailVerificationToken?: true
     passwordResetToken?: true
@@ -2533,7 +2533,7 @@ export namespace Prisma {
     contactNumber?: true
     primaryEmail?: true
     secondaryEmail?: true
-    passwordHash?: true
+    password?: true
     sessionToken?: true
     emailVerificationToken?: true
     passwordResetToken?: true
@@ -2553,7 +2553,7 @@ export namespace Prisma {
     contactNumber?: true
     primaryEmail?: true
     secondaryEmail?: true
-    passwordHash?: true
+    password?: true
     sessionToken?: true
     emailVerificationToken?: true
     passwordResetToken?: true
@@ -2646,7 +2646,7 @@ export namespace Prisma {
     contactNumber: string | null
     primaryEmail: string
     secondaryEmail: string | null
-    passwordHash: string
+    password: string
     sessionToken: string | null
     emailVerificationToken: string | null
     passwordResetToken: string | null
@@ -2683,7 +2683,7 @@ export namespace Prisma {
     contactNumber?: boolean
     primaryEmail?: boolean
     secondaryEmail?: boolean
-    passwordHash?: boolean
+    password?: boolean
     sessionToken?: boolean
     emailVerificationToken?: boolean
     passwordResetToken?: boolean
@@ -2708,7 +2708,7 @@ export namespace Prisma {
     contactNumber?: boolean
     primaryEmail?: boolean
     secondaryEmail?: boolean
-    passwordHash?: boolean
+    password?: boolean
     sessionToken?: boolean
     emailVerificationToken?: boolean
     passwordResetToken?: boolean
@@ -2728,7 +2728,7 @@ export namespace Prisma {
     contactNumber?: boolean
     primaryEmail?: boolean
     secondaryEmail?: boolean
-    passwordHash?: boolean
+    password?: boolean
     sessionToken?: boolean
     emailVerificationToken?: boolean
     passwordResetToken?: boolean
@@ -2748,7 +2748,7 @@ export namespace Prisma {
     contactNumber?: boolean
     primaryEmail?: boolean
     secondaryEmail?: boolean
-    passwordHash?: boolean
+    password?: boolean
     sessionToken?: boolean
     emailVerificationToken?: boolean
     passwordResetToken?: boolean
@@ -2758,7 +2758,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "firstName" | "lastName" | "username" | "dateOfBirth" | "contactNumber" | "primaryEmail" | "secondaryEmail" | "passwordHash" | "sessionToken" | "emailVerificationToken" | "passwordResetToken" | "role" | "gender" | "createdAt" | "updatedAt", ExtArgs["result"]["users"]>
+  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "firstName" | "lastName" | "username" | "dateOfBirth" | "contactNumber" | "primaryEmail" | "secondaryEmail" | "password" | "sessionToken" | "emailVerificationToken" | "passwordResetToken" | "role" | "gender" | "createdAt" | "updatedAt", ExtArgs["result"]["users"]>
   export type UsersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Resident?: boolean | Users$ResidentArgs<ExtArgs>
     Employee?: boolean | Users$EmployeeArgs<ExtArgs>
@@ -2787,7 +2787,7 @@ export namespace Prisma {
       contactNumber: string | null
       primaryEmail: string
       secondaryEmail: string | null
-      passwordHash: string
+      password: string
       sessionToken: string | null
       emailVerificationToken: string | null
       passwordResetToken: string | null
@@ -3231,7 +3231,7 @@ export namespace Prisma {
     readonly contactNumber: FieldRef<"Users", 'String'>
     readonly primaryEmail: FieldRef<"Users", 'String'>
     readonly secondaryEmail: FieldRef<"Users", 'String'>
-    readonly passwordHash: FieldRef<"Users", 'String'>
+    readonly password: FieldRef<"Users", 'String'>
     readonly sessionToken: FieldRef<"Users", 'String'>
     readonly emailVerificationToken: FieldRef<"Users", 'String'>
     readonly passwordResetToken: FieldRef<"Users", 'String'>
@@ -17829,7 +17829,7 @@ export namespace Prisma {
     contactNumber: 'contactNumber',
     primaryEmail: 'primaryEmail',
     secondaryEmail: 'secondaryEmail',
-    passwordHash: 'passwordHash',
+    password: 'password',
     sessionToken: 'sessionToken',
     emailVerificationToken: 'emailVerificationToken',
     passwordResetToken: 'passwordResetToken',
@@ -18303,7 +18303,7 @@ export namespace Prisma {
     contactNumber?: StringNullableFilter<"Users"> | string | null
     primaryEmail?: StringFilter<"Users"> | string
     secondaryEmail?: StringNullableFilter<"Users"> | string | null
-    passwordHash?: StringFilter<"Users"> | string
+    password?: StringFilter<"Users"> | string
     sessionToken?: StringNullableFilter<"Users"> | string | null
     emailVerificationToken?: StringNullableFilter<"Users"> | string | null
     passwordResetToken?: StringNullableFilter<"Users"> | string | null
@@ -18327,7 +18327,7 @@ export namespace Prisma {
     contactNumber?: SortOrderInput | SortOrder
     primaryEmail?: SortOrder
     secondaryEmail?: SortOrderInput | SortOrder
-    passwordHash?: SortOrder
+    password?: SortOrder
     sessionToken?: SortOrderInput | SortOrder
     emailVerificationToken?: SortOrderInput | SortOrder
     passwordResetToken?: SortOrderInput | SortOrder
@@ -18357,7 +18357,7 @@ export namespace Prisma {
     lastName?: StringFilter<"Users"> | string
     dateOfBirth?: DateTimeNullableFilter<"Users"> | Date | string | null
     contactNumber?: StringNullableFilter<"Users"> | string | null
-    passwordHash?: StringFilter<"Users"> | string
+    password?: StringFilter<"Users"> | string
     role?: EnumUserRoleFilter<"Users"> | $Enums.UserRole
     gender?: EnumGenderNullableFilter<"Users"> | $Enums.Gender | null
     createdAt?: DateTimeFilter<"Users"> | Date | string
@@ -18378,7 +18378,7 @@ export namespace Prisma {
     contactNumber?: SortOrderInput | SortOrder
     primaryEmail?: SortOrder
     secondaryEmail?: SortOrderInput | SortOrder
-    passwordHash?: SortOrder
+    password?: SortOrder
     sessionToken?: SortOrderInput | SortOrder
     emailVerificationToken?: SortOrderInput | SortOrder
     passwordResetToken?: SortOrderInput | SortOrder
@@ -18404,7 +18404,7 @@ export namespace Prisma {
     contactNumber?: StringNullableWithAggregatesFilter<"Users"> | string | null
     primaryEmail?: StringWithAggregatesFilter<"Users"> | string
     secondaryEmail?: StringNullableWithAggregatesFilter<"Users"> | string | null
-    passwordHash?: StringWithAggregatesFilter<"Users"> | string
+    password?: StringWithAggregatesFilter<"Users"> | string
     sessionToken?: StringNullableWithAggregatesFilter<"Users"> | string | null
     emailVerificationToken?: StringNullableWithAggregatesFilter<"Users"> | string | null
     passwordResetToken?: StringNullableWithAggregatesFilter<"Users"> | string | null
@@ -19419,7 +19419,7 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
@@ -19443,7 +19443,7 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
@@ -19467,7 +19467,7 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19491,7 +19491,7 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19515,7 +19515,7 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
@@ -19535,7 +19535,7 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19555,7 +19555,7 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20774,7 +20774,7 @@ export namespace Prisma {
     contactNumber?: SortOrder
     primaryEmail?: SortOrder
     secondaryEmail?: SortOrder
-    passwordHash?: SortOrder
+    password?: SortOrder
     sessionToken?: SortOrder
     emailVerificationToken?: SortOrder
     passwordResetToken?: SortOrder
@@ -20794,7 +20794,7 @@ export namespace Prisma {
     contactNumber?: SortOrder
     primaryEmail?: SortOrder
     secondaryEmail?: SortOrder
-    passwordHash?: SortOrder
+    password?: SortOrder
     sessionToken?: SortOrder
     emailVerificationToken?: SortOrder
     passwordResetToken?: SortOrder
@@ -20814,7 +20814,7 @@ export namespace Prisma {
     contactNumber?: SortOrder
     primaryEmail?: SortOrder
     secondaryEmail?: SortOrder
-    passwordHash?: SortOrder
+    password?: SortOrder
     sessionToken?: SortOrder
     emailVerificationToken?: SortOrder
     passwordResetToken?: SortOrder
@@ -23808,7 +23808,7 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
@@ -23831,7 +23831,7 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
@@ -23987,7 +23987,7 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24010,7 +24010,7 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24147,7 +24147,7 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
@@ -24170,7 +24170,7 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
@@ -24387,7 +24387,7 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24410,7 +24410,7 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24895,7 +24895,7 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
@@ -24918,7 +24918,7 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
@@ -25002,7 +25002,7 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25025,7 +25025,7 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25137,7 +25137,7 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
@@ -25160,7 +25160,7 @@ export namespace Prisma {
     contactNumber?: string | null
     primaryEmail: string
     secondaryEmail?: string | null
-    passwordHash: string
+    password: string
     sessionToken?: string | null
     emailVerificationToken?: string | null
     passwordResetToken?: string | null
@@ -25230,7 +25230,7 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25253,7 +25253,7 @@ export namespace Prisma {
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     primaryEmail?: StringFieldUpdateOperationsInput | string
     secondaryEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     sessionToken?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerificationToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null

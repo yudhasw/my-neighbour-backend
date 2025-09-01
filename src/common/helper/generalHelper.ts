@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class GeneralHelper {
@@ -14,16 +15,18 @@ export class GeneralHelper {
   }
 
   public static readonly FileDictionary: Record<string, string> = {
-    'image/jpg': 'image',
-    'image/png': 'image',
-    'image/jpeg': 'image',
-    'application/pdf': 'document/pdf',
+    'image/jpg': 'images',
+    'image/png': 'images',
+    'image/jpeg': 'images',
+    'application/pdf': 'documents/pdf',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-      'document/docx',
-    'application/msword': 'document/docx',
-    'text/plain': 'document/txt',
-    'text/csv': 'document/xlsx_csv',
-    'application/vnd.ms-excel.sheet.macroenabled.12': 'document/xlsx_csv',
+      'documents/docx',
+    'application/msword': 'documents/doc',
+    'text/plain': 'documents/txt',
+    'text/csv': 'documents/csv',
+    'application/vnd.ms-excel.sheet.macroenabled.12': 'documents/xlsx',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+      'documents/xlsx',
   };
 
   public static getFolderExtension(mimetype: string): string {
@@ -34,14 +37,59 @@ export class GeneralHelper {
     return 'others';
   }
 
-  public static ensureDirectoryExists(path: string) {
-    if (!fs.existsSync(path)) {
-      fs.mkdirSync(path, { recursive: true });
+  public static ensureDirectoryExists(dirPath: string): void {
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
     }
   }
 
-  // Getter untuk akses folderPath
   public getFolderPath(): string {
     return this.folderPath;
+  }
+
+  public static getFullFilePath(relativePath: string): string {
+    return path.join(process.cwd(), 'src/common/uploads', relativePath);
+  }
+
+  public static fileExists(relativePath: string): boolean {
+    const fullPath = this.getFullFilePath(relativePath);
+    return fs.existsSync(fullPath);
+  }
+
+  public static getFileSize(relativePath: string): number {
+    const fullPath = this.getFullFilePath(relativePath);
+    if (fs.existsSync(fullPath)) {
+      const stats = fs.statSync(fullPath);
+      return stats.size;
+    }
+    return 0;
+  }
+
+  public static deleteFile(relativePath: string): boolean {
+    try {
+      const fullPath = this.getFullFilePath(relativePath);
+      if (fs.existsSync(fullPath)) {
+        fs.unlinkSync(fullPath);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Error deleting file:', error);
+      return false;
+    }
+  }
+
+  public static async deleteFileAsync(relativePath: string): Promise<boolean> {
+    try {
+      const fullPath = this.getFullFilePath(relativePath);
+      if (fs.existsSync(fullPath)) {
+        await fs.promises.unlink(fullPath);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Error deleting file:', error);
+      return false;
+    }
   }
 }

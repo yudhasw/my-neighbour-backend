@@ -23,6 +23,12 @@ let EmployeeManageService = class EmployeeManageService {
     }
     async create(createRequest) {
         try {
+            const exist = await this.prisma.users.findUnique({
+                where: { id: createRequest.userId },
+            });
+            if (!exist) {
+                throw new common_1.NotFoundException(`Data Pengguna aplikasi dengan id: ${createRequest.userId} tidak ditemukan`);
+            }
             return await this.prisma.employees.create({
                 data: {
                     user: { connect: { id: createRequest.userId } },

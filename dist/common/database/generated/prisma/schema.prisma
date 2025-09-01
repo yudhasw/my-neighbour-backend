@@ -5,8 +5,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL_LOCAL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL_SUPABASE")
+  directUrl = env("DIRECT_URL")
 }
 
 // Enum Types
@@ -104,7 +105,7 @@ model Users {
   contactNumber          String?   @map("nomor_kontak")
   primaryEmail           String    @unique @map("email_utama")
   secondaryEmail         String?   @unique @map("email_kedua")
-  passwordHash           String    @map("password_terenkripsi")
+  password               String    @map("password_terenkripsi")
   sessionToken           String?   @unique
   emailVerificationToken String?   @unique
   passwordResetToken     String?   @unique

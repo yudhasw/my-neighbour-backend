@@ -29,12 +29,12 @@ let AppUserManageService = class AppUserManageService {
                     lastName: createRequest.lastName,
                     username: createRequest.username,
                     primaryEmail: createRequest.primaryEmail,
-                    passwordHash: hashedPassword,
+                    password: hashedPassword,
                     role: createRequest.role,
                     gender: createRequest.gender,
                 },
                 omit: {
-                    passwordHash: true,
+                    password: true,
                 },
             });
         }
@@ -173,7 +173,7 @@ let AppUserManageService = class AppUserManageService {
                     updatedAt: new Date(),
                 },
                 omit: {
-                    passwordHash: true,
+                    password: true,
                 },
             });
             return updatedData;

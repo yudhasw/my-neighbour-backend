@@ -23,12 +23,12 @@ export class AppUserManageService {
           lastName: createRequest.lastName,
           username: createRequest.username,
           primaryEmail: createRequest.primaryEmail,
-          passwordHash: hashedPassword,
+          password: hashedPassword,
           role: createRequest.role,
           gender: createRequest.gender,
         },
         omit: {
-          passwordHash: true,
+          password: true,
         },
       });
     } catch (error) {
@@ -186,7 +186,7 @@ export class AppUserManageService {
           updatedAt: new Date(),
         },
         omit: {
-          passwordHash: true,
+          password: true,
         },
       });
 

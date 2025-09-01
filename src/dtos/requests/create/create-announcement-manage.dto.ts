@@ -6,6 +6,7 @@ import {
   IsString,
   IsUUID,
   MinLength,
+  IsArray,
 } from 'class-validator';
 
 export class CreateAnnouncementManageDto {
@@ -20,7 +21,8 @@ export class CreateAnnouncementManageDto {
   @IsNotEmpty({ message: 'Isi pengumuman tidak boleh kosong.' })
   readonly content: string;
 
-  @IsString({ message: 'Lampiran harus berupa array teks (URL).' })
+  @IsArray({ message: 'Lampiran harus berupa array.' })
+  @IsString({ message: 'Setiap lampiran harus berupa URL (teks).', each: true })
   @IsOptional({ message: 'Lampiran pengumuman bersifat opsional.' })
   readonly attachments?: string[];
 

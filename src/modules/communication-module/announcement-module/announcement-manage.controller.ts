@@ -22,21 +22,15 @@ export class AnnouncementManageController {
   ) {}
 
   @Post()
-  @UseInterceptors(FilesInterceptor('files'))
+  @UseInterceptors(FilesInterceptor('files', 5))
   create(
     @Body() createAnnouncementManageDto: CreateAnnouncementManageDto,
-    @UploadedFiles() files: Express.Multer.File,
+    @UploadedFiles() files?: Express.Multer.File[],
   ) {
     return this.announcementManageService.create(
       createAnnouncementManageDto,
       files,
     );
-  }
-
-  @Post('files')
-  @UseInterceptors(FilesInterceptor('file'))
-  files(@UploadedFiles() file: Express.Multer.File) {
-    return file;
   }
 
   @Get()
@@ -50,13 +44,16 @@ export class AnnouncementManageController {
   }
 
   @Patch(':id')
+  @UseInterceptors(FilesInterceptor('files', 5))
   update(
     @Param('id') id: string,
     @Body() updateAnnouncementManageDto: UpdateAnnouncementManageDto,
+    @UploadedFiles() files?: Express.Multer.File[],
   ) {
     return this.announcementManageService.update(
       id,
       updateAnnouncementManageDto,
+      files,
     );
   }
 

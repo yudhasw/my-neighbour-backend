@@ -51,7 +51,6 @@ export class CreateComplaintManageDto {
   @IsNotEmpty({ message: 'ID penghuni tidak boleh kosong.' })
   readonly residentId: string;
 
-  // Diisi saat Admin menugaskan/mengupdate status
   @IsUUID('4', { message: 'ID karyawan harus berupa UUID versi 4 yang valid.' })
   @IsOptional({ message: 'ID karyawan bersifat opsional.' })
   readonly employeeId?: string;
@@ -62,7 +61,6 @@ export class CreateComplaintManageDto {
   @IsOptional({ message: 'ID unit hunian bersifat opsional.' })
   readonly unitId?: string;
 
-  // Lampiran foto/video yang diupload [cite: 327]
   @IsArray({ message: 'Images harus berupa array.' })
   @IsString({
     message: 'Setiap item gambar harus berupa URL (string).',

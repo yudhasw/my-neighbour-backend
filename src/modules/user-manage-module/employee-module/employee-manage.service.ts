@@ -17,6 +17,16 @@ export class EmployeeManageService {
   ) {}
   async create(createRequest: CreateEmployeeManageDto) {
     try {
+      const exist = await this.prisma.users.findUnique({
+        where: { id: createRequest.userId },
+      });
+
+      if (!exist) {
+        throw new NotFoundException(
+          `Data Pengguna aplikasi dengan id: ${createRequest.userId} tidak ditemukan`,
+        );
+      }
+
       return await this.prisma.employees.create({
         data: {
           user: { connect: { id: createRequest.userId } },
@@ -169,7 +179,7 @@ export class EmployeeManageService {
       }
       console.error((error as Error).message, (error as Error).cause);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Data Pegawai', // Perbaiki pesan error
+        'Terjadi Kesalahan Saat Mendapatkan Data Pegawai',
       );
     }
   }
@@ -201,7 +211,7 @@ export class EmployeeManageService {
       }
       console.error((error as Error).message, (error as Error).cause);
       throw new InternalServerErrorException(
-        'Terjadi Kesalahan Saat Mendapatkan Data Pegawai', // Perbaiki pesan error
+        'Terjadi Kesalahan Saat Mendapatkan Data Pegawai',
       );
     }
   }

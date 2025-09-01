@@ -3,11 +3,11 @@ import { SecurityManageService } from './security-manage.service';
 import { SecurityManageController } from './security-manage.controller';
 import { DatabaseModule } from '../../common/database/database.module';
 import { DatabaseService } from '../../common/database/database.service';
-import { EmployeeManageModule } from '../user-manage-module/employee-module/employee-manage.module';
 import { GeneralHelper } from '../../common/helper/generalHelper';
+import { UsersManageModule } from '../user-manage-module/users-manage.module';
 
 @Module({
-  imports: [DatabaseModule, EmployeeManageModule],
+  imports: [DatabaseModule, UsersManageModule],
   controllers: [SecurityManageController],
   providers: [SecurityManageService, DatabaseService, GeneralHelper],
   exports: [SecurityManageService],

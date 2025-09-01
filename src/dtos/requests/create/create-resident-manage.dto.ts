@@ -56,7 +56,6 @@ export class CreateResidentManageDto {
     message: 'ID Unit Hunian harus berupa UUID versi 4 yang valid.',
   })
   @IsString({ message: 'Nama kontak darurat harus berupa teks.' })
-  // @IsNotEmpty({ message: 'ID Unit Hunian tidak boleh kosong.' })
   @IsOptional()
   readonly unitId: string;
 }

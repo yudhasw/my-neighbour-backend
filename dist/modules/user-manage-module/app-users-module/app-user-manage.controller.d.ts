@@ -98,7 +98,7 @@ export declare class AppUserManageController {
         contactNumber: string | null;
         primaryEmail: string;
         secondaryEmail: string | null;
-        passwordHash: string;
+        password: string;
         sessionToken: string | null;
         emailVerificationToken: string | null;
         passwordResetToken: string | null;
@@ -135,7 +135,7 @@ export declare class AppUserManageController {
         contactNumber: string | null;
         primaryEmail: string;
         secondaryEmail: string | null;
-        passwordHash: string;
+        password: string;
         sessionToken: string | null;
         emailVerificationToken: string | null;
         passwordResetToken: string | null;

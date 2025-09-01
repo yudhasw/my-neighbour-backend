@@ -13,6 +13,16 @@ export class ResidentManageService {
   constructor(private readonly prisma: DatabaseService) {}
   async create(createRequest: CreateResidentManageDto) {
     try {
+      const exist = await this.prisma.users.findUnique({
+        where: { id: createRequest.userId },
+      });
+
+      if (!exist) {
+        throw new NotFoundException(
+          `Data Pengguna aplikasi dengan id: ${createRequest.userId} tidak ditemukan`,
+        );
+      }
+
       return await this.prisma.residents.create({
         data: {
           user: { connect: { id: createRequest.userId } },
@@ -21,7 +31,9 @@ export class ResidentManageService {
           movedInDate: createRequest.movedInDate,
           movedOutDate: createRequest.movedOutDate,
           residentStatus: createRequest.residentStatus,
-          unit: { connect: { id: createRequest.unitId } },
+          ...(createRequest.unitId && {
+            unit: { connect: { id: createRequest.unitId } },
+          }),
         },
       });
     } catch (error) {

@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GeneralHelper = void 0;
 const common_1 = require("@nestjs/common");
 const fs = require("fs");
+const path = require("path");
 let GeneralHelper = class GeneralHelper {
     folderPath;
     constructor() {
@@ -21,15 +22,16 @@ let GeneralHelper = class GeneralHelper {
         return parseFloat((input * 100).toFixed(2));
     }
     static FileDictionary = {
-        'image/jpg': 'image',
-        'image/png': 'image',
-        'image/jpeg': 'image',
-        'application/pdf': 'document/pdf',
-        'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'document/docx',
-        'application/msword': 'document/docx',
-        'text/plain': 'document/txt',
-        'text/csv': 'document/xlsx_csv',
-        'application/vnd.ms-excel.sheet.macroenabled.12': 'document/xlsx_csv',
+        'image/jpg': 'images',
+        'image/png': 'images',
+        'image/jpeg': 'images',
+        'application/pdf': 'documents/pdf',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'documents/docx',
+        'application/msword': 'documents/doc',
+        'text/plain': 'documents/txt',
+        'text/csv': 'documents/csv',
+        'application/vnd.ms-excel.sheet.macroenabled.12': 'documents/xlsx',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'documents/xlsx',
     };
     static getFolderExtension(mimetype) {
         const mime = mimetype.toLowerCase();
@@ -38,13 +40,56 @@ let GeneralHelper = class GeneralHelper {
         }
         return 'others';
     }
-    static ensureDirectoryExists(path) {
-        if (!fs.existsSync(path)) {
-            fs.mkdirSync(path, { recursive: true });
+    static ensureDirectoryExists(dirPath) {
+        if (!fs.existsSync(dirPath)) {
+            fs.mkdirSync(dirPath, { recursive: true });
         }
     }
     getFolderPath() {
         return this.folderPath;
+    }
+    static getFullFilePath(relativePath) {
+        return path.join(process.cwd(), 'src/common/uploads', relativePath);
+    }
+    static fileExists(relativePath) {
+        const fullPath = this.getFullFilePath(relativePath);
+        return fs.existsSync(fullPath);
+    }
+    static getFileSize(relativePath) {
+        const fullPath = this.getFullFilePath(relativePath);
+        if (fs.existsSync(fullPath)) {
+            const stats = fs.statSync(fullPath);
+            return stats.size;
+        }
+        return 0;
+    }
+    static deleteFile(relativePath) {
+        try {
+            const fullPath = this.getFullFilePath(relativePath);
+            if (fs.existsSync(fullPath)) {
+                fs.unlinkSync(fullPath);
+                return true;
+            }
+            return false;
+        }
+        catch (error) {
+            console.error('Error deleting file:', error);
+            return false;
+        }
+    }
+    static async deleteFileAsync(relativePath) {
+        try {
+            const fullPath = this.getFullFilePath(relativePath);
+            if (fs.existsSync(fullPath)) {
+                await fs.promises.unlink(fullPath);
+                return true;
+            }
+            return false;
+        }
+        catch (error) {
+            console.error('Error deleting file:', error);
+            return false;
+        }
     }
 };
 exports.GeneralHelper = GeneralHelper;

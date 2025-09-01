@@ -1,26 +1,163 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateSecurityManageDto } from '../../dtos/requests/create/create-security-manage.dto';
 import { UpdateSecurityManageDto } from '../../dtos/requests/update/update-security-manage.dto';
+import { DatabaseService } from '../../common/database/database.service';
+import { PrismaClientKnownRequestError } from 'src/common/database/generated/prisma/runtime/library';
 
 @Injectable()
 export class SecurityManageService {
-  create(createRequest: CreateSecurityManageDto) {
-    return 'This action adds a new securityManage';
+  constructor(private readonly prisma: DatabaseService) {}
+  async create(createRequest: CreateSecurityManageDto) {
+    try {
+      return await this.prisma.securityReports.create({
+        data: {
+          title: createRequest.title,
+          description: createRequest.description,
+          incidentDate: createRequest.incidentDate,
+          location: createRequest.location,
+          status: createRequest.status,
+          employee: { connect: { id: createRequest.employeeId } },
+        },
+      });
+    } catch (error) {
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Membuat Data Laporan Keamanan',
+      );
+    }
   }
 
-  findAll() {
-    return `This action returns all securityManage`;
+  async findAll() {
+    try {
+      return await this.prisma.securityReports.findMany({
+        include: {
+          employee: {
+            include: {
+              user: {
+                select: {
+                  fullName: true,
+                  firstName: true,
+                  lastName: true,
+                  contactNumber: true,
+                  username: true,
+                },
+              },
+            },
+          },
+        },
+        orderBy: {
+          title: 'asc',
+        },
+      });
+    } catch (error) {
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Mendapatkan Data Laporan Keamanan',
+      );
+    }
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} securityManage`;
+  async findOne(id: string) {
+    try {
+      return await this.prisma.securityReports.findUniqueOrThrow({
+        where: { id: id },
+        include: {
+          employee: {
+            include: {
+              user: {
+                select: {
+                  fullName: true,
+                  firstName: true,
+                  lastName: true,
+                  contactNumber: true,
+                  username: true,
+                },
+              },
+            },
+          },
+        },
+      });
+    } catch (error) {
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Mendapatkan Data Laporan Keamanan',
+      );
+    }
   }
 
-  update(id: string, updateRequest: UpdateSecurityManageDto) {
-    return `This action updates a #${id} securityManage`;
+  async update(id: string, updateRequest: UpdateSecurityManageDto) {
+    try {
+      const existData = await this.prisma.securityReports.findUniqueOrThrow({
+        where: { id: id },
+      });
+
+      if (!existData) {
+        throw new NotFoundException(
+          `Data Laporan Keamanan dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
+      return await this.prisma.securityReports.update({
+        where: { id: id },
+        data: {
+          title: updateRequest.title,
+          description: updateRequest.description,
+          incidentDate: updateRequest.incidentDate,
+          location: updateRequest.location,
+          status: updateRequest.status,
+          employee: { connect: { id: updateRequest.employeeId } },
+        },
+      });
+    } catch (error) {
+      if ((error as Error).name === 'NotFoundError') {
+        throw new NotFoundException(
+          `Laporan Keamanan dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
+      if (error instanceof PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException(
+            `Laporan Keamanan dengan id: ${id} tidak ditemukan`,
+          );
+        }
+      }
+
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Mendapatkan Laporan Keamanan',
+      );
+    }
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} securityManage`;
+  async remove(id: string) {
+    try {
+      return await this.prisma.securityReports.delete({
+        where: { id: id },
+      });
+    } catch (error) {
+      if ((error as Error).name === 'NotFoundError') {
+        throw new NotFoundException(
+          `Laporan Keamanan dengan id: ${id} tidak ditemukan`,
+        );
+      }
+
+      if (error instanceof PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException(
+            `Laporan Keamanan dengan id: ${id} tidak ditemukan`,
+          );
+        }
+      }
+
+      console.error((error as Error).message);
+      throw new InternalServerErrorException(
+        'Terjadi Kesalahan Saat Mendapatkan Laporan Keamanan',
+      );
+    }
   }
 }

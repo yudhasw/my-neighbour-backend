@@ -35,7 +35,8 @@ __decorate([
     __metadata("design:type", String)
 ], CreateAnnouncementManageDto.prototype, "content", void 0);
 __decorate([
-    (0, class_validator_1.IsString)({ message: 'Lampiran harus berupa array teks (URL).' }),
+    (0, class_validator_1.IsArray)({ message: 'Lampiran harus berupa array.' }),
+    (0, class_validator_1.IsString)({ message: 'Setiap lampiran harus berupa URL (teks).', each: true }),
     (0, class_validator_1.IsOptional)({ message: 'Lampiran pengumuman bersifat opsional.' }),
     __metadata("design:type", Array)
 ], CreateAnnouncementManageDto.prototype, "attachments", void 0);

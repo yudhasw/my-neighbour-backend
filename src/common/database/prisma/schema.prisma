@@ -5,8 +5,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL_SUPABASE")
+  directUrl = env("DIRECT_URL")
 }
 
 // Enum Types
@@ -104,7 +105,7 @@ model Users {
   contactNumber          String?   @map("nomor_kontak")
   primaryEmail           String    @unique @map("email_utama")
   secondaryEmail         String?   @unique @map("email_kedua")
-  passwordHash           String    @map("password_terenkripsi")
+  password               String    @map("password_terenkripsi")
   sessionToken           String?   @unique
   emailVerificationToken String?   @unique
   passwordResetToken     String?   @unique
@@ -161,7 +162,7 @@ model Employees {
 
   // Relasi balik
   Announcements   Announcements[]
-  Complaints       Complaints[]
+  Complaints      Complaints[]
   Bills           Bills[]
   Payments        Payments[]
   SecurityReports SecurityReports[]
@@ -195,7 +196,7 @@ model Announcements {
   id          String    @id @default(uuid()) @map("pengumuman_id") @db.Uuid
   title       String    @map("judul")
   content     String    @map("isi_pengumuman")
-  attachments String[]  @map("lampiran_pengumuman")
+  attachments String[]  @default([]) @map("lampiran_pengumuman")
   publishDate DateTime  @default(now()) @map("tanggal_publikasi")
   expiryDate  DateTime? @map("tanggal_selesai")
   employeeId  String    @map("pegawai_id") @db.Uuid
