@@ -196,7 +196,7 @@ model Announcements {
   id          String    @id @default(uuid()) @map("pengumuman_id") @db.Uuid
   title       String    @map("judul")
   content     String    @map("isi_pengumuman")
-  attachments String[]  @map("lampiran_pengumuman")
+  attachments String[]  @default([]) @map("lampiran_pengumuman")
   publishDate DateTime  @default(now()) @map("tanggal_publikasi")
   expiryDate  DateTime? @map("tanggal_selesai")
   employeeId  String    @map("pegawai_id") @db.Uuid

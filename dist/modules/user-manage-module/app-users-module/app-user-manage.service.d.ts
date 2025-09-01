@@ -26,10 +26,6 @@ export declare class AppUserManageService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        _count: {
-            ForumPosts: number;
-            ForumComments: number;
-        };
         fullName: string;
         firstName: string;
         lastName: string;
@@ -52,6 +48,10 @@ export declare class AppUserManageService {
             salary: number;
             bonus: number | null;
         } | null;
+        _count: {
+            ForumPosts: number;
+            ForumComments: number;
+        };
     }[]>;
     findOne(id: string): Promise<{
         Resident: {

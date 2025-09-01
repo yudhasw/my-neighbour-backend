@@ -5,16 +5,16 @@ export declare class SecurityManageService {
     private readonly prisma;
     constructor(prisma: DatabaseService);
     create(createRequest: CreateSecurityManageDto): Promise<{
-        id: string;
         title: string;
-        description: string;
-        location: string;
-        incidentDate: Date;
-        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
-        isPublished: boolean;
+        employeeId: string;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        employeeId: string;
+        description: string;
+        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        location: string;
+        incidentDate: Date;
+        isPublished: boolean;
     }>;
     findAll(): Promise<({
         employee: {
@@ -38,16 +38,16 @@ export declare class SecurityManageService {
             bonus: number | null;
         };
     } & {
-        id: string;
         title: string;
-        description: string;
-        location: string;
-        incidentDate: Date;
-        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
-        isPublished: boolean;
+        employeeId: string;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        employeeId: string;
+        description: string;
+        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        location: string;
+        incidentDate: Date;
+        isPublished: boolean;
     })[]>;
     findOne(id: string): Promise<{
         employee: {
@@ -71,39 +71,39 @@ export declare class SecurityManageService {
             bonus: number | null;
         };
     } & {
-        id: string;
         title: string;
-        description: string;
-        location: string;
-        incidentDate: Date;
-        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
-        isPublished: boolean;
+        employeeId: string;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        employeeId: string;
+        description: string;
+        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        location: string;
+        incidentDate: Date;
+        isPublished: boolean;
     }>;
     update(id: string, updateRequest: UpdateSecurityManageDto): Promise<{
-        id: string;
         title: string;
-        description: string;
-        location: string;
-        incidentDate: Date;
-        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
-        isPublished: boolean;
+        employeeId: string;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        employeeId: string;
+        description: string;
+        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        location: string;
+        incidentDate: Date;
+        isPublished: boolean;
     }>;
     remove(id: string): Promise<{
-        id: string;
         title: string;
-        description: string;
-        location: string;
-        incidentDate: Date;
-        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
-        isPublished: boolean;
+        employeeId: string;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        employeeId: string;
+        description: string;
+        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        location: string;
+        incidentDate: Date;
+        isPublished: boolean;
     }>;
 }

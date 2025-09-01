@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Injectable,
@@ -11,6 +9,7 @@ import { UpdateAnnouncementManageDto } from '../../../dtos/requests/update/updat
 import { DatabaseService } from '../../../common/database/database.service';
 import { PrismaClientKnownRequestError } from '../../../common/database/generated/prisma/runtime/library';
 import { GeneralHelper } from '../../../common/helper/generalHelper';
+import { UploadsService } from 'src/common/helper/uploads/uploads.service';
 
 interface FileAttachment {
   path: string;
@@ -26,41 +25,9 @@ interface AnnouncementWithAttachments {
 }
 
 @Injectable()
-export class AnnouncementManageService {
-  constructor(private readonly prisma: DatabaseService) {}
-
-  private processFiles(files?: Express.Multer.File[]): string[] {
-    if (!files || files.length === 0) return [];
-
-    return files.map((file) => {
-      const folderPath = GeneralHelper.getFolderExtension(file.mimetype);
-      return `${folderPath}/${file.filename}`;
-    });
-  }
-
-  private safeParseAttachments(attachments: unknown): string[] {
-    if (!attachments) return [];
-
-    if (Array.isArray(attachments)) {
-      return attachments
-        .map((item) => (typeof item === 'string' ? item : item.path || ''))
-        .filter(Boolean);
-    }
-
-    if (typeof attachments === 'string') {
-      try {
-        const parsed: unknown = JSON.parse(attachments);
-        if (Array.isArray(parsed)) {
-          return parsed
-            .map((item) => (typeof item === 'string' ? item : item.path || ''))
-            .filter(Boolean);
-        }
-      } catch (error) {
-        console.error('Error parsing attachments JSON:', error);
-      }
-    }
-
-    return [];
+export class AnnouncementManageService extends UploadsService {
+  constructor(private readonly prisma: DatabaseService) {
+    super();
   }
 
   async create(

@@ -22,7 +22,7 @@ export class AnnouncementManageController {
   ) {}
 
   @Post()
-  @UseInterceptors(FilesInterceptor('files', 5))
+  @UseInterceptors(FilesInterceptor('attachments', 5))
   create(
     @Body() createAnnouncementManageDto: CreateAnnouncementManageDto,
     @UploadedFiles() files?: Express.Multer.File[],

@@ -8,6 +8,9 @@ export declare class UnitManageService {
     constructor(prisma: DatabaseService, helper: GeneralHelper);
     create(createRequest: CreateUnitManageDto): Promise<{
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
         floorNumber: number | null;
@@ -15,19 +18,19 @@ export declare class UnitManageService {
         priceSale: number;
         squareFootage: number | null;
         location: string;
-        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     findAll(): Promise<({
         _count: {
-            Residents: number;
-            Payments: number;
-            Bills: number;
             Complaints: number;
+            Bills: number;
+            Payments: number;
+            Residents: number;
         };
     } & {
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
         floorNumber: number | null;
@@ -35,17 +38,22 @@ export declare class UnitManageService {
         priceSale: number;
         squareFootage: number | null;
         location: string;
-        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
-        createdAt: Date;
-        updatedAt: Date;
     })[]>;
     findOne(id: string): Promise<{
+        Complaints: {
+            title: string;
+            images: string[];
+            description: string;
+            category: import("src/common/database/generated/prisma").$Enums.MaintenanceCategory;
+            status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
+            submittedAt: Date;
+            resolvedAt: Date | null;
+            resolutionDetails: string | null;
+        }[];
+        Bills: {
+            amount: number;
+        }[];
         Residents: ({
-            movedInDate: Date;
-            residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
-            kprPaymentAmount: number | null;
-            kprDueDate: Date | null;
-            isKprPaid: boolean | null;
             user: {
                 fullName: string;
                 firstName: string;
@@ -56,36 +64,31 @@ export declare class UnitManageService {
                 primaryEmail: string;
                 gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
             };
+            movedInDate: Date;
+            residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
+            kprPaymentAmount: number | null;
+            kprDueDate: Date | null;
+            isKprPaid: boolean | null;
         } & {
             id: string;
             createdAt: Date;
             updatedAt: Date;
-            unitId: string | null;
             userId: string;
             emergencyContactName: string | null;
             emergencyContactNumber: string | null;
             movedInDate: Date;
             movedOutDate: Date | null;
             residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
+            unitId: string | null;
             kprPaymentAmount: number | null;
             kprDueDate: Date | null;
             isKprPaid: boolean | null;
         })[];
-        Bills: {
-            amount: number;
-        }[];
-        Complaints: {
-            status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
-            title: string;
-            description: string;
-            category: import("src/common/database/generated/prisma").$Enums.MaintenanceCategory;
-            images: string[];
-            submittedAt: Date;
-            resolvedAt: Date | null;
-            resolutionDetails: string | null;
-        }[];
     } & {
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
         floorNumber: number | null;
@@ -93,12 +96,12 @@ export declare class UnitManageService {
         priceSale: number;
         squareFootage: number | null;
         location: string;
-        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     update(id: string, updateRequest: UpdateUnitManageDto): Promise<{
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
         floorNumber: number | null;
@@ -106,12 +109,12 @@ export declare class UnitManageService {
         priceSale: number;
         squareFootage: number | null;
         location: string;
-        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     remove(id: string): Promise<{
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
         floorNumber: number | null;
@@ -119,8 +122,5 @@ export declare class UnitManageService {
         priceSale: number;
         squareFootage: number | null;
         location: string;
-        status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
 }

@@ -7,6 +7,7 @@ export declare class ComplaintManageService {
     create(createRequest: CreateComplaintManageDto): Promise<{
         title: string;
         employeeId: string | null;
+        images: string[];
         id: string;
         createdAt: Date;
         updatedAt: Date;
@@ -14,7 +15,6 @@ export declare class ComplaintManageService {
         description: string;
         category: import("src/common/database/generated/prisma").$Enums.MaintenanceCategory;
         status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
-        images: string[];
         submittedAt: Date;
         resolvedAt: Date | null;
         resolutionDetails: string | null;
@@ -23,6 +23,7 @@ export declare class ComplaintManageService {
     findAll(): Promise<{
         title: string;
         employeeId: string | null;
+        images: string[];
         id: string;
         createdAt: Date;
         updatedAt: Date;
@@ -30,7 +31,6 @@ export declare class ComplaintManageService {
         description: string;
         category: import("src/common/database/generated/prisma").$Enums.MaintenanceCategory;
         status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
-        images: string[];
         submittedAt: Date;
         resolvedAt: Date | null;
         resolutionDetails: string | null;
@@ -91,6 +91,7 @@ export declare class ComplaintManageService {
     } & {
         title: string;
         employeeId: string | null;
+        images: string[];
         id: string;
         createdAt: Date;
         updatedAt: Date;
@@ -98,7 +99,6 @@ export declare class ComplaintManageService {
         description: string;
         category: import("src/common/database/generated/prisma").$Enums.MaintenanceCategory;
         status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
-        images: string[];
         submittedAt: Date;
         resolvedAt: Date | null;
         resolutionDetails: string | null;
@@ -107,6 +107,7 @@ export declare class ComplaintManageService {
     update(id: string, updateRequest: UpdateComplaintManageDto): Promise<{
         title: string;
         employeeId: string | null;
+        images: string[];
         id: string;
         createdAt: Date;
         updatedAt: Date;
@@ -114,7 +115,6 @@ export declare class ComplaintManageService {
         description: string;
         category: import("src/common/database/generated/prisma").$Enums.MaintenanceCategory;
         status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
-        images: string[];
         submittedAt: Date;
         resolvedAt: Date | null;
         resolutionDetails: string | null;
@@ -123,6 +123,7 @@ export declare class ComplaintManageService {
     remove(id: string): Promise<{
         title: string;
         employeeId: string | null;
+        images: string[];
         id: string;
         createdAt: Date;
         updatedAt: Date;
@@ -130,7 +131,6 @@ export declare class ComplaintManageService {
         description: string;
         category: import("src/common/database/generated/prisma").$Enums.MaintenanceCategory;
         status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
-        images: string[];
         submittedAt: Date;
         resolvedAt: Date | null;
         resolutionDetails: string | null;

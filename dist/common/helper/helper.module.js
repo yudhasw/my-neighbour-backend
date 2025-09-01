@@ -11,12 +11,13 @@ const common_1 = require("@nestjs/common");
 const exports_manage_module_1 = require("./exports/exports-manage.module");
 const mailer_manage_module_1 = require("./mail/mailer-manage.module");
 const generalHelper_1 = require("./generalHelper");
+const midtrans_module_1 = require("./midtrans/midtrans.module");
 let HelperModule = class HelperModule {
 };
 exports.HelperModule = HelperModule;
 exports.HelperModule = HelperModule = __decorate([
     (0, common_1.Module)({
-        imports: [exports_manage_module_1.ExportsManageModule, mailer_manage_module_1.MailerManageModule],
+        imports: [exports_manage_module_1.ExportsManageModule, mailer_manage_module_1.MailerManageModule, midtrans_module_1.MidtransModule],
         providers: [generalHelper_1.GeneralHelper],
         exports: [exports_manage_module_1.ExportsManageModule, mailer_manage_module_1.MailerManageModule],
     })

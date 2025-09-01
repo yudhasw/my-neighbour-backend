@@ -14,41 +14,12 @@ const common_1 = require("@nestjs/common");
 const database_service_1 = require("../../../common/database/database.service");
 const library_1 = require("../../../common/database/generated/prisma/runtime/library");
 const generalHelper_1 = require("../../../common/helper/generalHelper");
-let AnnouncementManageService = class AnnouncementManageService {
+const uploads_service_1 = require("../../../common/helper/uploads/uploads.service");
+let AnnouncementManageService = class AnnouncementManageService extends uploads_service_1.UploadsService {
     prisma;
     constructor(prisma) {
+        super();
         this.prisma = prisma;
-    }
-    processFiles(files) {
-        if (!files || files.length === 0)
-            return [];
-        return files.map((file) => {
-            const folderPath = generalHelper_1.GeneralHelper.getFolderExtension(file.mimetype);
-            return `${folderPath}/${file.filename}`;
-        });
-    }
-    safeParseAttachments(attachments) {
-        if (!attachments)
-            return [];
-        if (Array.isArray(attachments)) {
-            return attachments
-                .map((item) => (typeof item === 'string' ? item : item.path || ''))
-                .filter(Boolean);
-        }
-        if (typeof attachments === 'string') {
-            try {
-                const parsed = JSON.parse(attachments);
-                if (Array.isArray(parsed)) {
-                    return parsed
-                        .map((item) => (typeof item === 'string' ? item : item.path || ''))
-                        .filter(Boolean);
-                }
-            }
-            catch (error) {
-                console.error('Error parsing attachments JSON:', error);
-            }
-        }
-        return [];
     }
     async create(createRequest, files) {
         try {

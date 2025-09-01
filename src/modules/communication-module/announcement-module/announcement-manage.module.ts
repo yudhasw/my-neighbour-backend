@@ -10,6 +10,7 @@ import { AnnouncementManageController } from './announcement-manage.controller';
 import { DatabaseService } from 'src/common/database/database.service';
 import { GeneralHelper } from '../../../common/helper/generalHelper';
 import { EmployeeManageModule } from '../../../modules/user-manage-module/employee-module/employee-manage.module';
+import { UploadsConfiguration } from 'src/common/helper/uploads/uploads-configuration';
 
 export const multerOptions = {
   limits: {
@@ -70,7 +71,10 @@ export const multerOptions = {
 };
 
 @Module({
-  imports: [EmployeeManageModule, MulterModule.register(multerOptions)],
+  imports: [
+    EmployeeManageModule,
+    MulterModule.register(UploadsConfiguration.announcementConfig),
+  ],
   controllers: [AnnouncementManageController],
   providers: [AnnouncementManageService, DatabaseService, GeneralHelper],
   exports: [AnnouncementManageService],

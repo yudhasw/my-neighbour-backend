@@ -17,6 +17,7 @@ const announcement_manage_controller_1 = require("./announcement-manage.controll
 const database_service_1 = require("../../../common/database/database.service");
 const generalHelper_1 = require("../../../common/helper/generalHelper");
 const employee_manage_module_1 = require("../../../modules/user-manage-module/employee-module/employee-manage.module");
+const uploads_configuration_1 = require("../../../common/helper/uploads/uploads-configuration");
 exports.multerOptions = {
     limits: {
         fileSize: 10 * 1024 * 1024,
@@ -74,7 +75,10 @@ let AnnouncementManageModule = class AnnouncementManageModule {
 exports.AnnouncementManageModule = AnnouncementManageModule;
 exports.AnnouncementManageModule = AnnouncementManageModule = __decorate([
     (0, common_1.Module)({
-        imports: [employee_manage_module_1.EmployeeManageModule, platform_express_1.MulterModule.register(exports.multerOptions)],
+        imports: [
+            employee_manage_module_1.EmployeeManageModule,
+            platform_express_1.MulterModule.register(uploads_configuration_1.UploadsConfiguration.announcementConfig),
+        ],
         controllers: [announcement_manage_controller_1.AnnouncementManageController],
         providers: [announcement_manage_service_1.AnnouncementManageService, database_service_1.DatabaseService, generalHelper_1.GeneralHelper],
         exports: [announcement_manage_service_1.AnnouncementManageService],
