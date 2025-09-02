@@ -17,13 +17,14 @@ const common_1 = require("@nestjs/common");
 const forum_post_manage_service_1 = require("./forum-post-manage.service");
 const create_forum_post_manage_dto_1 = require("../../../dtos/requests/create/create-forum-post-manage.dto");
 const update_forum_post_manage_dto_1 = require("../../../dtos/requests/update/update-forum-post-manage.dto");
+const platform_express_1 = require("@nestjs/platform-express");
 let ForumPostManageController = class ForumPostManageController {
     forumPostManageService;
     constructor(forumPostManageService) {
         this.forumPostManageService = forumPostManageService;
     }
-    create(createForumPostManageDto) {
-        return this.forumPostManageService.create(createForumPostManageDto);
+    create(createForumPostManageDto, files) {
+        return this.forumPostManageService.create(createForumPostManageDto, files);
     }
     findAll() {
         return this.forumPostManageService.findAll();
@@ -31,8 +32,8 @@ let ForumPostManageController = class ForumPostManageController {
     findOne(id) {
         return this.forumPostManageService.findOne(id);
     }
-    update(id, updateForumPostManageDto) {
-        return this.forumPostManageService.update(id, updateForumPostManageDto);
+    update(id, updateForumPostManageDto, files) {
+        return this.forumPostManageService.update(id, updateForumPostManageDto, files);
     }
     remove(id) {
         return this.forumPostManageService.remove(id);
@@ -41,9 +42,11 @@ let ForumPostManageController = class ForumPostManageController {
 exports.ForumPostManageController = ForumPostManageController;
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FilesInterceptor)('attachments', 5)),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.UploadedFiles)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_forum_post_manage_dto_1.CreateForumPostManageDto]),
+    __metadata("design:paramtypes", [create_forum_post_manage_dto_1.CreateForumPostManageDto, Array]),
     __metadata("design:returntype", void 0)
 ], ForumPostManageController.prototype, "create", null);
 __decorate([
@@ -61,10 +64,12 @@ __decorate([
 ], ForumPostManageController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FilesInterceptor)('attachments', 5)),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.UploadedFiles)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_forum_post_manage_dto_1.UpdateForumPostManageDto]),
+    __metadata("design:paramtypes", [String, update_forum_post_manage_dto_1.UpdateForumPostManageDto, Array]),
     __metadata("design:returntype", void 0)
 ], ForumPostManageController.prototype, "update", null);
 __decorate([

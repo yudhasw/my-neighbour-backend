@@ -6,10 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  UploadedFiles,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ForumPostManageService } from './forum-post-manage.service';
 import { CreateForumPostManageDto } from '../../../dtos/requests/create/create-forum-post-manage.dto';
 import { UpdateForumPostManageDto } from '../../../dtos/requests/update/update-forum-post-manage.dto';
+import { FilesInterceptor } from '@nestjs/platform-express';
 
 @Controller()
 export class ForumPostManageController {
@@ -18,8 +21,12 @@ export class ForumPostManageController {
   ) {}
 
   @Post()
-  create(@Body() createForumPostManageDto: CreateForumPostManageDto) {
-    return this.forumPostManageService.create(createForumPostManageDto);
+  @UseInterceptors(FilesInterceptor('attachments', 5))
+  create(
+    @Body() createForumPostManageDto: CreateForumPostManageDto,
+    @UploadedFiles() files?: Express.Multer.File[],
+  ) {
+    return this.forumPostManageService.create(createForumPostManageDto, files);
   }
 
   @Get()
@@ -33,11 +40,17 @@ export class ForumPostManageController {
   }
 
   @Patch(':id')
+  @UseInterceptors(FilesInterceptor('attachments', 5))
   update(
     @Param('id') id: string,
     @Body() updateForumPostManageDto: UpdateForumPostManageDto,
+    @UploadedFiles() files?: Express.Multer.File[],
   ) {
-    return this.forumPostManageService.update(id, updateForumPostManageDto);
+    return this.forumPostManageService.update(
+      id,
+      updateForumPostManageDto,
+      files,
+    );
   }
 
   @Delete(':id')

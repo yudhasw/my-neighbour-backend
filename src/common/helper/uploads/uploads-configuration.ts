@@ -75,7 +75,6 @@ export class UploadsConfiguration {
     };
   }
 
-  // Definisi dimana upload file akan digunakan
   static get announcementConfig(): MulterOptions {
     return this.createConfig({
       maxFileSize: 10 * 1024 * 1024,
@@ -84,7 +83,15 @@ export class UploadsConfiguration {
     });
   }
 
-  static get employeeConfig(): MulterOptions {
+  static get forumPostConfig(): MulterOptions {
+    return this.createConfig({
+      maxFileSize: 15 * 1024 * 1024,
+      maxFiles: 12,
+      subFolder: 'forum-post',
+    });
+  }
+
+  static get dataConfig(): MulterOptions {
     return this.createConfig({
       maxFileSize: 5 * 1024 * 1024,
       maxFiles: 3,
@@ -95,7 +102,7 @@ export class UploadsConfiguration {
 
   static get documentConfig(): MulterOptions {
     return this.createConfig({
-      maxFileSize: 50 * 1024 * 1024, // 50MB for documents
+      maxFileSize: 50 * 1024 * 1024,
       maxFiles: 10,
       allowedMimetypes: [
         'application/pdf',
@@ -109,7 +116,7 @@ export class UploadsConfiguration {
 
   static get imageConfig(): MulterOptions {
     return this.createConfig({
-      maxFileSize: 5 * 1024 * 1024, // 5MB for images
+      maxFileSize: 5 * 1024 * 1024,
       maxFiles: 10,
       allowedMimetypes: ['image/jpg', 'image/png', 'image/jpeg'],
       subFolder: 'images',

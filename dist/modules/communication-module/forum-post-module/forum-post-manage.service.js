@@ -13,19 +13,26 @@ exports.ForumPostManageService = void 0;
 const common_1 = require("@nestjs/common");
 const database_service_1 = require("../../../common/database/database.service");
 const library_1 = require("../../../common/database/generated/prisma/runtime/library");
-let ForumPostManageService = class ForumPostManageService {
+const uploads_service_1 = require("../../../common/helper/uploads/uploads.service");
+const generalHelper_1 = require("../../../common/helper/generalHelper");
+let ForumPostManageService = class ForumPostManageService extends uploads_service_1.UploadsService {
     prisma;
     constructor(prisma) {
+        super();
         this.prisma = prisma;
     }
-    async create(createRequest) {
+    async create(createRequest, files) {
         try {
+            const filesPath = this.processFiles(files);
+            const user = await this.prisma.users.findUnique({
+                where: { id: createRequest.userId },
+            });
             return await this.prisma.forumPosts.create({
                 data: {
                     title: createRequest.title,
                     content: createRequest.content,
-                    authorRole: createRequest.authorRole,
-                    attachments: createRequest.attachments,
+                    authorRole: user?.role || createRequest.authorRole,
+                    attachments: filesPath,
                     user: { connect: { id: createRequest.userId } },
                     tags: {
                         connectOrCreate: {
@@ -33,10 +40,14 @@ let ForumPostManageService = class ForumPostManageService {
                                 tagName: createRequest.tagName,
                             },
                             where: {
-                                id: createRequest.tagId,
+                                id: createRequest.tagId || undefined,
+                                tagName: createRequest.tagName,
                             },
                         },
                     },
+                },
+                include: {
+                    tags: true,
                 },
             });
         }
@@ -55,7 +66,7 @@ let ForumPostManageService = class ForumPostManageService {
     }
     async findAll() {
         try {
-            return await this.prisma.forumPosts.findMany({
+            const forumPostData = await this.prisma.forumPosts.findMany({
                 include: {
                     _count: { select: { comments: true, tags: true } },
                     user: {
@@ -72,6 +83,10 @@ let ForumPostManageService = class ForumPostManageService {
                     title: 'asc',
                 },
             });
+            return forumPostData.map((data) => ({
+                ...data,
+                attachments: this.safeParseAttachments(data.attachments),
+            }));
         }
         catch (error) {
             console.error(error.message);
@@ -80,7 +95,7 @@ let ForumPostManageService = class ForumPostManageService {
     }
     async findOne(id) {
         try {
-            return await this.prisma.forumPosts.findUniqueOrThrow({
+            const forumPostData = await this.prisma.forumPosts.findUniqueOrThrow({
                 where: { id: id },
                 include: {
                     comments: true,
@@ -96,27 +111,39 @@ let ForumPostManageService = class ForumPostManageService {
                     },
                 },
             });
+            return {
+                ...forumPostData,
+                attachments: this.safeParseAttachments(forumPostData.attachments),
+            };
         }
         catch (error) {
             console.error(error.message);
             throw new common_1.InternalServerErrorException('Terjadi Kesalahan Saat Mendapatkan Data Postingan forum');
         }
     }
-    async update(id, updateRequest) {
+    async update(id, updateRequest, files) {
         try {
             const existData = await this.prisma.forumPosts.findUniqueOrThrow({
                 where: { id: id },
             });
-            if (!existData) {
-                throw new common_1.NotFoundException(`Pengguna Aplikasi dengan id: ${id} tidak ditemukan`);
+            let filesPath = [];
+            if (files && files.length > 0) {
+                filesPath = this.processFiles(files);
+                const oldAttachments = this.safeParseAttachments(existData.attachments);
+                for (const oldPath of oldAttachments) {
+                    generalHelper_1.GeneralHelper.deleteFile(oldPath);
+                }
+            }
+            else {
+                filesPath = this.safeParseAttachments(existData.attachments);
             }
             return await this.prisma.forumPosts.update({
                 where: { id: id },
                 data: {
-                    title: updateRequest.title,
-                    content: updateRequest.content,
-                    authorRole: updateRequest.authorRole,
-                    attachments: updateRequest.attachments,
+                    title: updateRequest.title ?? existData.title,
+                    content: updateRequest.content ?? existData.content,
+                    authorRole: updateRequest.authorRole ?? existData.authorRole,
+                    attachments: filesPath ?? existData.attachments,
                     user: existData.userId
                         ? { connect: { id: updateRequest.userId } }
                         : undefined,
@@ -140,6 +167,13 @@ let ForumPostManageService = class ForumPostManageService {
     }
     async remove(id) {
         try {
+            const existData = await this.prisma.forumPosts.findUniqueOrThrow({
+                where: { id: id },
+            });
+            const attachmentPaths = this.safeParseAttachments(existData.attachments);
+            for (const filePath of attachmentPaths) {
+                generalHelper_1.GeneralHelper.deleteFile(filePath);
+            }
             return await this.prisma.forumPosts.delete({
                 where: { id: id },
             });

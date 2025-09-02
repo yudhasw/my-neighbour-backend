@@ -15,12 +15,19 @@ const generalHelper_1 = require("../../../common/helper/generalHelper");
 const app_user_manage_module_1 = require("../../../modules/user-manage-module/app-users-module/app-user-manage.module");
 const employee_manage_module_1 = require("../../../modules/user-manage-module/employee-module/employee-manage.module");
 const resident_manage_module_1 = require("../../../modules/user-manage-module/resident-module/resident-manage.module");
+const platform_express_1 = require("@nestjs/platform-express");
+const uploads_configuration_1 = require("../../../common/helper/uploads/uploads-configuration");
 let ForumPostManageModule = class ForumPostManageModule {
 };
 exports.ForumPostManageModule = ForumPostManageModule;
 exports.ForumPostManageModule = ForumPostManageModule = __decorate([
     (0, common_1.Module)({
-        imports: [app_user_manage_module_1.AppUserManageModule, employee_manage_module_1.EmployeeManageModule, resident_manage_module_1.ResidentManageModule],
+        imports: [
+            app_user_manage_module_1.AppUserManageModule,
+            employee_manage_module_1.EmployeeManageModule,
+            resident_manage_module_1.ResidentManageModule,
+            platform_express_1.MulterModule.register(uploads_configuration_1.UploadsConfiguration.forumPostConfig),
+        ],
         controllers: [forum_post_manage_controller_1.ForumPostManageController],
         providers: [forum_post_manage_service_1.ForumPostManageService, database_service_1.DatabaseService, generalHelper_1.GeneralHelper],
         exports: [forum_post_manage_service_1.ForumPostManageService],

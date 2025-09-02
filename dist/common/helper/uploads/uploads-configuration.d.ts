@@ -8,7 +8,8 @@ export interface UploadConfig {
 export declare class UploadsConfiguration {
     static createConfig(config?: UploadConfig): MulterOptions;
     static get announcementConfig(): MulterOptions;
-    static get employeeConfig(): MulterOptions;
+    static get forumPostConfig(): MulterOptions;
+    static get dataConfig(): MulterOptions;
     static get documentConfig(): MulterOptions;
     static get imageConfig(): MulterOptions;
 }

@@ -211,7 +211,7 @@ model ForumPosts {
   id          String   @id @default(uuid()) @map("forum_post_id") @db.Uuid
   title       String   @map("judul")
   content     String   @map("konten")
-  attachments String[] @map("lampiran_pengumuman")
+  attachments String[] @default([]) @map("lampiran_pengumuman")
   authorRole  UserRole
   userId      String   @map("pengguna_id") @db.Uuid
   user        Users    @relation(fields: [userId], references: [id], onDelete: Cascade)

@@ -13,8 +13,6 @@ import { AnnouncementManageService } from './announcement-manage.service';
 import { CreateAnnouncementManageDto } from '../../../dtos/requests/create/create-announcement-manage.dto';
 import { UpdateAnnouncementManageDto } from '../../../dtos/requests/update/update-announcement-manage.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
-import { Express } from 'express';
-
 @Controller()
 export class AnnouncementManageController {
   constructor(
@@ -44,7 +42,7 @@ export class AnnouncementManageController {
   }
 
   @Patch(':id')
-  @UseInterceptors(FilesInterceptor('files', 5))
+  @UseInterceptors(FilesInterceptor('attachments', 5))
   update(
     @Param('id') id: string,
     @Body() updateAnnouncementManageDto: UpdateAnnouncementManageDto,

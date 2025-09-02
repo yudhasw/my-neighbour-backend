@@ -39,14 +39,30 @@ __decorate([
     __metadata("design:type", String)
 ], CreateForumPostManageDto.prototype, "content", void 0);
 __decorate([
-    (0, class_validator_1.IsString)({ message: 'Lampiran harus berupa array teks (URL).' }),
+    (0, class_validator_1.IsArray)({ message: 'Lampiran harus berupa array.' }),
+    (0, class_validator_1.IsString)({
+        each: true,
+        message: 'Setiap lampiran harus berupa teks (URL/path).',
+    }),
     (0, class_validator_1.IsOptional)({ message: 'Lampiran pengumuman bersifat opsional.' }),
+    (0, class_transformer_1.Transform)(({ value }) => {
+        if (typeof value === 'string') {
+            try {
+                return JSON.parse(value);
+            }
+            catch {
+                return value.split(',').map((item) => item.trim());
+            }
+        }
+        return value;
+    }),
     __metadata("design:type", Array)
 ], CreateForumPostManageDto.prototype, "attachments", void 0);
 __decorate([
     (0, class_validator_1.IsEnum)(prisma_1.UserRole, {
         message: 'Peran Penulis tidak valid : ' + Object.values(prisma_1.UserRole).join(','),
     }),
+    (0, class_validator_1.IsOptional)({ message: 'Peran Penulis bersifat Optional' }),
     __metadata("design:type", String)
 ], CreateForumPostManageDto.prototype, "authorRole", void 0);
 __decorate([

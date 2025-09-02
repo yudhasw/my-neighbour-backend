@@ -1,4 +1,5 @@
-import { Type } from 'class-transformer';
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+import { Transform, Type } from 'class-transformer';
 import {
   IsString,
   IsNotEmpty,
@@ -7,6 +8,7 @@ import {
   IsDate,
   IsUUID,
   IsEnum,
+  IsArray,
 } from 'class-validator';
 import { UserRole } from '../../../common/database/generated/prisma';
 import { IsUnique } from 'src/common/pipes/validators/is-unique-validators';
@@ -23,13 +25,29 @@ export class CreateForumPostManageDto {
   @IsNotEmpty({ message: 'Isi pengumuman tidak boleh kosong.' })
   readonly content: string;
 
-  @IsString({ message: 'Lampiran harus berupa array teks (URL).' })
+  @IsArray({ message: 'Lampiran harus berupa array.' })
+  @IsString({
+    each: true,
+    message: 'Setiap lampiran harus berupa teks (URL/path).',
+  })
   @IsOptional({ message: 'Lampiran pengumuman bersifat opsional.' })
+  @Transform(({ value }) => {
+    // Handle form-data yang mungkin dikirim sebagai string
+    if (typeof value === 'string') {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value.split(',').map((item: string) => item.trim());
+      }
+    }
+    return value;
+  })
   readonly attachments?: string[];
 
   @IsEnum(UserRole, {
     message: 'Peran Penulis tidak valid : ' + Object.values(UserRole).join(','),
   })
+  @IsOptional({ message: 'Peran Penulis bersifat Optional' })
   readonly authorRole: UserRole;
 
   @IsDate({

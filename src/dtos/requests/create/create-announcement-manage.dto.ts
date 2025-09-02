@@ -1,4 +1,5 @@
-import { Type } from 'class-transformer';
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+import { Transform, Type } from 'class-transformer';
 import {
   IsDate,
   IsNotEmpty,
@@ -22,8 +23,21 @@ export class CreateAnnouncementManageDto {
   readonly content: string;
 
   @IsArray({ message: 'Lampiran harus berupa array.' })
-  @IsString({ message: 'Setiap lampiran harus berupa URL (teks).', each: true })
+  @IsString({
+    each: true,
+    message: 'Setiap lampiran harus berupa teks (URL/path).',
+  })
   @IsOptional({ message: 'Lampiran pengumuman bersifat opsional.' })
+  @Transform(({ value }) => {
+    if (typeof value === 'string') {
+      try {
+        return JSON.parse(value);
+      } catch {
+        return value.split(',').map((item: string) => item.trim());
+      }
+    }
+    return value;
+  })
   readonly attachments?: string[];
 
   @IsDate({

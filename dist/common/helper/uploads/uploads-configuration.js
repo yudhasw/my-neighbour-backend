@@ -61,7 +61,14 @@ class UploadsConfiguration {
             subFolder: 'announcements',
         });
     }
-    static get employeeConfig() {
+    static get forumPostConfig() {
+        return this.createConfig({
+            maxFileSize: 15 * 1024 * 1024,
+            maxFiles: 12,
+            subFolder: 'forum-post',
+        });
+    }
+    static get dataConfig() {
         return this.createConfig({
             maxFileSize: 5 * 1024 * 1024,
             maxFiles: 3,

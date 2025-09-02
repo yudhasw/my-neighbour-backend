@@ -4,46 +4,53 @@ import { UpdateForumPostManageDto } from '../../../dtos/requests/update/update-f
 export declare class ForumPostManageController {
     private readonly forumPostManageService;
     constructor(forumPostManageService: ForumPostManageService);
-    create(createForumPostManageDto: CreateForumPostManageDto): Promise<{
+    create(createForumPostManageDto: CreateForumPostManageDto, files?: Express.Multer.File[]): Promise<{
+        tags: {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            tagName: string;
+        }[];
+    } & {
+        id: string;
         title: string;
         content: string;
         attachments: string[];
-        id: string;
+        authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
+        publishedAt: Date;
         createdAt: Date;
         updatedAt: Date;
         userId: string;
-        authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
-        publishedAt: Date;
     }>;
-    findAll(): Promise<({
+    findAll(): Promise<{
+        attachments: string[];
         user: {
+            username: string;
             fullName: string;
             firstName: string;
             lastName: string;
-            username: string;
             role: import("src/common/database/generated/prisma").$Enums.UserRole;
         };
         _count: {
             tags: number;
             comments: number;
         };
-    } & {
+        id: string;
         title: string;
         content: string;
-        attachments: string[];
-        id: string;
+        authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
+        publishedAt: Date;
         createdAt: Date;
         updatedAt: Date;
         userId: string;
-        authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
-        publishedAt: Date;
-    })[]>;
+    }[]>;
     findOne(id: string): Promise<{
+        attachments: string[];
         user: {
+            username: string;
             fullName: string;
             firstName: string;
             lastName: string;
-            username: string;
             role: import("src/common/database/generated/prisma").$Enums.UserRole;
         };
         tags: {
@@ -53,44 +60,42 @@ export declare class ForumPostManageController {
             tagName: string;
         }[];
         comments: {
-            content: string;
             id: string;
+            content: string;
             createdAt: Date;
             updatedAt: Date;
             userId: string;
             postId: string;
         }[];
-    } & {
+        id: string;
         title: string;
         content: string;
-        attachments: string[];
-        id: string;
+        authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
+        publishedAt: Date;
         createdAt: Date;
         updatedAt: Date;
         userId: string;
-        authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
-        publishedAt: Date;
     }>;
-    update(id: string, updateForumPostManageDto: UpdateForumPostManageDto): Promise<{
+    update(id: string, updateForumPostManageDto: UpdateForumPostManageDto, files?: Express.Multer.File[]): Promise<{
+        id: string;
         title: string;
         content: string;
         attachments: string[];
-        id: string;
+        authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
+        publishedAt: Date;
         createdAt: Date;
         updatedAt: Date;
         userId: string;
-        authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
-        publishedAt: Date;
     }>;
     remove(id: string): Promise<{
+        id: string;
         title: string;
         content: string;
         attachments: string[];
-        id: string;
+        authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
+        publishedAt: Date;
         createdAt: Date;
         updatedAt: Date;
         userId: string;
-        authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
-        publishedAt: Date;
     }>;
 }

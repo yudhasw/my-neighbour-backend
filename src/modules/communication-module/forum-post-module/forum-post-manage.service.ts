@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Injectable,
   InternalServerErrorException,
@@ -7,18 +8,43 @@ import { CreateForumPostManageDto } from '../../../dtos/requests/create/create-f
 import { UpdateForumPostManageDto } from '../../../dtos/requests/update/update-forum-post-manage.dto';
 import { DatabaseService } from '../../../common/database/database.service';
 import { PrismaClientKnownRequestError } from '../../../common/database/generated/prisma/runtime/library';
+import { UploadsService } from 'src/common/helper/uploads/uploads.service';
+import { GeneralHelper } from 'src/common/helper/generalHelper';
 
+interface FileAttachment {
+  path: string;
+  originalName?: string;
+  size?: number;
+  mimetype?: string;
+  uploadedAt?: Date;
+}
+
+interface ForumPostWithAttachments {
+  attachments: string[] | FileAttachment[] | null;
+  [key: string]: any;
+}
 @Injectable()
-export class ForumPostManageService {
-  constructor(private readonly prisma: DatabaseService) {}
-  async create(createRequest: CreateForumPostManageDto) {
+export class ForumPostManageService extends UploadsService {
+  constructor(private readonly prisma: DatabaseService) {
+    super();
+  }
+  async create(
+    createRequest: CreateForumPostManageDto,
+    files?: Express.Multer.File[],
+  ) {
     try {
+      const filesPath = this.processFiles(files);
+
+      const user = await this.prisma.users.findUnique({
+        where: { id: createRequest.userId },
+      });
+
       return await this.prisma.forumPosts.create({
         data: {
           title: createRequest.title,
           content: createRequest.content,
-          authorRole: createRequest.authorRole,
-          attachments: createRequest.attachments,
+          authorRole: user?.role || createRequest.authorRole,
+          attachments: filesPath,
           user: { connect: { id: createRequest.userId } },
           tags: {
             connectOrCreate: {
@@ -26,10 +52,14 @@ export class ForumPostManageService {
                 tagName: createRequest.tagName,
               },
               where: {
-                id: createRequest.tagId,
+                id: createRequest.tagId || undefined,
+                tagName: createRequest.tagName,
               },
             },
           },
+        },
+        include: {
+          tags: true,
         },
       });
     } catch (error) {
@@ -55,7 +85,7 @@ export class ForumPostManageService {
 
   async findAll() {
     try {
-      return await this.prisma.forumPosts.findMany({
+      const forumPostData = await this.prisma.forumPosts.findMany({
         include: {
           _count: { select: { comments: true, tags: true } },
           user: {
@@ -72,6 +102,11 @@ export class ForumPostManageService {
           title: 'asc',
         },
       });
+
+      return forumPostData.map((data) => ({
+        ...data,
+        attachments: this.safeParseAttachments(data.attachments),
+      }));
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
@@ -82,7 +117,7 @@ export class ForumPostManageService {
 
   async findOne(id: string) {
     try {
-      return await this.prisma.forumPosts.findUniqueOrThrow({
+      const forumPostData = await this.prisma.forumPosts.findUniqueOrThrow({
         where: { id: id },
         include: {
           comments: true,
@@ -98,6 +133,11 @@ export class ForumPostManageService {
           },
         },
       });
+
+      return {
+        ...forumPostData,
+        attachments: this.safeParseAttachments(forumPostData.attachments),
+      };
     } catch (error) {
       console.error((error as Error).message);
       throw new InternalServerErrorException(
@@ -106,25 +146,36 @@ export class ForumPostManageService {
     }
   }
 
-  async update(id: string, updateRequest: UpdateForumPostManageDto) {
+  async update(
+    id: string,
+    updateRequest: UpdateForumPostManageDto,
+    files?: Express.Multer.File[],
+  ) {
     try {
       const existData = await this.prisma.forumPosts.findUniqueOrThrow({
         where: { id: id },
       });
 
-      if (!existData) {
-        throw new NotFoundException(
-          `Pengguna Aplikasi dengan id: ${id} tidak ditemukan`,
-        );
+      let filesPath: string[] = [];
+
+      if (files && files.length > 0) {
+        filesPath = this.processFiles(files);
+
+        const oldAttachments = this.safeParseAttachments(existData.attachments);
+        for (const oldPath of oldAttachments) {
+          GeneralHelper.deleteFile(oldPath);
+        }
+      } else {
+        filesPath = this.safeParseAttachments(existData.attachments);
       }
 
       return await this.prisma.forumPosts.update({
         where: { id: id },
         data: {
-          title: updateRequest.title,
-          content: updateRequest.content,
-          authorRole: updateRequest.authorRole,
-          attachments: updateRequest.attachments,
+          title: updateRequest.title ?? existData.title,
+          content: updateRequest.content ?? existData.content,
+          authorRole: updateRequest.authorRole ?? existData.authorRole,
+          attachments: filesPath ?? existData.attachments,
           user: existData.userId
             ? { connect: { id: updateRequest.userId } }
             : undefined,
@@ -156,6 +207,15 @@ export class ForumPostManageService {
 
   async remove(id: string) {
     try {
+      const existData = await this.prisma.forumPosts.findUniqueOrThrow({
+        where: { id: id },
+      });
+
+      const attachmentPaths = this.safeParseAttachments(existData.attachments);
+      for (const filePath of attachmentPaths) {
+        GeneralHelper.deleteFile(filePath);
+      }
+
       return await this.prisma.forumPosts.delete({
         where: { id: id },
       });
