@@ -75,7 +75,7 @@ export class UploadsConfiguration {
     };
   }
 
-  static get announcementConfig(): MulterOptions {
+  static get defaultConfig(): MulterOptions {
     return this.createConfig({
       maxFileSize: 10 * 1024 * 1024,
       maxFiles: 5,

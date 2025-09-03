@@ -22,7 +22,7 @@ exports.AnnouncementManageModule = AnnouncementManageModule = __decorate([
     (0, common_1.Module)({
         imports: [
             employee_manage_module_1.EmployeeManageModule,
-            platform_express_1.MulterModule.register(uploads_configuration_1.UploadsConfiguration.announcementConfig),
+            platform_express_1.MulterModule.register(uploads_configuration_1.UploadsConfiguration.defaultConfig),
         ],
         controllers: [announcement_manage_controller_1.AnnouncementManageController],
         providers: [announcement_manage_service_1.AnnouncementManageService, database_service_1.DatabaseService, generalHelper_1.GeneralHelper],

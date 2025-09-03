@@ -9,10 +9,10 @@ export declare class AnnouncementManageController {
         title: string;
         content: string;
         attachments: string[];
-        publishDate: Date;
-        expiryDate: Date | null;
         createdAt: Date;
         updatedAt: Date;
+        publishDate: Date;
+        expiryDate: Date | null;
         employeeId: string;
     }>;
     findAll(): Promise<{
@@ -38,10 +38,10 @@ export declare class AnnouncementManageController {
         id: string;
         title: string;
         content: string;
-        publishDate: Date;
-        expiryDate: Date | null;
         createdAt: Date;
         updatedAt: Date;
+        publishDate: Date;
+        expiryDate: Date | null;
         employeeId: string;
     }[]>;
     findOne(id: string): Promise<{
@@ -67,10 +67,10 @@ export declare class AnnouncementManageController {
         id: string;
         title: string;
         content: string;
-        publishDate: Date;
-        expiryDate: Date | null;
         createdAt: Date;
         updatedAt: Date;
+        publishDate: Date;
+        expiryDate: Date | null;
         employeeId: string;
     }>;
     update(id: string, updateAnnouncementManageDto: UpdateAnnouncementManageDto, files?: Express.Multer.File[]): Promise<{
@@ -78,10 +78,10 @@ export declare class AnnouncementManageController {
         title: string;
         content: string;
         attachments: string[];
-        publishDate: Date;
-        expiryDate: Date | null;
         createdAt: Date;
         updatedAt: Date;
+        publishDate: Date;
+        expiryDate: Date | null;
         employeeId: string;
     }>;
     remove(id: string): Promise<{
@@ -89,10 +89,10 @@ export declare class AnnouncementManageController {
         title: string;
         content: string;
         attachments: string[];
-        publishDate: Date;
-        expiryDate: Date | null;
         createdAt: Date;
         updatedAt: Date;
+        publishDate: Date;
+        expiryDate: Date | null;
         employeeId: string;
     }>;
 }

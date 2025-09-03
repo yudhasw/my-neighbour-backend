@@ -561,8 +561,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.14.0
-   * Query Engine version: 717184b7b35ea05dfa71a3236b7af656013e1e49
+   * Prisma Client JS version: 6.15.0
+   * Query Engine version: 85179d7826409ee107a6ba334b5e305ae3fba9fb
    */
   export type PrismaVersion = {
     client: string
@@ -3758,6 +3758,7 @@ export namespace Prisma {
     emergencyContactNumber: string | null
     movedInDate: Date | null
     movedOutDate: Date | null
+    familyCode: string | null
     residentStatus: $Enums.ResidentStatus | null
     unitId: string | null
     kprPaymentAmount: number | null
@@ -3774,6 +3775,7 @@ export namespace Prisma {
     emergencyContactNumber: string | null
     movedInDate: Date | null
     movedOutDate: Date | null
+    familyCode: string | null
     residentStatus: $Enums.ResidentStatus | null
     unitId: string | null
     kprPaymentAmount: number | null
@@ -3790,6 +3792,7 @@ export namespace Prisma {
     emergencyContactNumber: number
     movedInDate: number
     movedOutDate: number
+    familyCode: number
     residentStatus: number
     unitId: number
     kprPaymentAmount: number
@@ -3816,6 +3819,7 @@ export namespace Prisma {
     emergencyContactNumber?: true
     movedInDate?: true
     movedOutDate?: true
+    familyCode?: true
     residentStatus?: true
     unitId?: true
     kprPaymentAmount?: true
@@ -3832,6 +3836,7 @@ export namespace Prisma {
     emergencyContactNumber?: true
     movedInDate?: true
     movedOutDate?: true
+    familyCode?: true
     residentStatus?: true
     unitId?: true
     kprPaymentAmount?: true
@@ -3848,6 +3853,7 @@ export namespace Prisma {
     emergencyContactNumber?: true
     movedInDate?: true
     movedOutDate?: true
+    familyCode?: true
     residentStatus?: true
     unitId?: true
     kprPaymentAmount?: true
@@ -3951,6 +3957,7 @@ export namespace Prisma {
     emergencyContactNumber: string | null
     movedInDate: Date
     movedOutDate: Date | null
+    familyCode: string | null
     residentStatus: $Enums.ResidentStatus | null
     unitId: string | null
     kprPaymentAmount: number | null
@@ -3986,6 +3993,7 @@ export namespace Prisma {
     emergencyContactNumber?: boolean
     movedInDate?: boolean
     movedOutDate?: boolean
+    familyCode?: boolean
     residentStatus?: boolean
     unitId?: boolean
     kprPaymentAmount?: boolean
@@ -4007,6 +4015,7 @@ export namespace Prisma {
     emergencyContactNumber?: boolean
     movedInDate?: boolean
     movedOutDate?: boolean
+    familyCode?: boolean
     residentStatus?: boolean
     unitId?: boolean
     kprPaymentAmount?: boolean
@@ -4025,6 +4034,7 @@ export namespace Prisma {
     emergencyContactNumber?: boolean
     movedInDate?: boolean
     movedOutDate?: boolean
+    familyCode?: boolean
     residentStatus?: boolean
     unitId?: boolean
     kprPaymentAmount?: boolean
@@ -4043,6 +4053,7 @@ export namespace Prisma {
     emergencyContactNumber?: boolean
     movedInDate?: boolean
     movedOutDate?: boolean
+    familyCode?: boolean
     residentStatus?: boolean
     unitId?: boolean
     kprPaymentAmount?: boolean
@@ -4052,7 +4063,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ResidentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "emergencyContactName" | "emergencyContactNumber" | "movedInDate" | "movedOutDate" | "residentStatus" | "unitId" | "kprPaymentAmount" | "kprDueDate" | "isKprPaid" | "createdAt" | "updatedAt", ExtArgs["result"]["residents"]>
+  export type ResidentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "emergencyContactName" | "emergencyContactNumber" | "movedInDate" | "movedOutDate" | "familyCode" | "residentStatus" | "unitId" | "kprPaymentAmount" | "kprDueDate" | "isKprPaid" | "createdAt" | "updatedAt", ExtArgs["result"]["residents"]>
   export type ResidentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
     unit?: boolean | Residents$unitArgs<ExtArgs>
@@ -4084,6 +4095,7 @@ export namespace Prisma {
       emergencyContactNumber: string | null
       movedInDate: Date
       movedOutDate: Date | null
+      familyCode: string | null
       residentStatus: $Enums.ResidentStatus | null
       unitId: string | null
       kprPaymentAmount: number | null
@@ -4524,6 +4536,7 @@ export namespace Prisma {
     readonly emergencyContactNumber: FieldRef<"Residents", 'String'>
     readonly movedInDate: FieldRef<"Residents", 'DateTime'>
     readonly movedOutDate: FieldRef<"Residents", 'DateTime'>
+    readonly familyCode: FieldRef<"Residents", 'String'>
     readonly residentStatus: FieldRef<"Residents", 'ResidentStatus'>
     readonly unitId: FieldRef<"Residents", 'String'>
     readonly kprPaymentAmount: FieldRef<"Residents", 'Float'>
@@ -12008,6 +12021,7 @@ export namespace Prisma {
     id: number
     unitNumber: number
     buildingName: number
+    unitOwnership: number
     floorNumber: number
     numberOfRooms: number
     priceSale: number
@@ -12066,6 +12080,7 @@ export namespace Prisma {
     id?: true
     unitNumber?: true
     buildingName?: true
+    unitOwnership?: true
     floorNumber?: true
     numberOfRooms?: true
     priceSale?: true
@@ -12167,6 +12182,7 @@ export namespace Prisma {
     id: string
     unitNumber: string
     buildingName: string | null
+    unitOwnership: string[]
     floorNumber: number | null
     numberOfRooms: number | null
     priceSale: number
@@ -12200,6 +12216,7 @@ export namespace Prisma {
     id?: boolean
     unitNumber?: boolean
     buildingName?: boolean
+    unitOwnership?: boolean
     floorNumber?: boolean
     numberOfRooms?: boolean
     priceSale?: boolean
@@ -12219,6 +12236,7 @@ export namespace Prisma {
     id?: boolean
     unitNumber?: boolean
     buildingName?: boolean
+    unitOwnership?: boolean
     floorNumber?: boolean
     numberOfRooms?: boolean
     priceSale?: boolean
@@ -12233,6 +12251,7 @@ export namespace Prisma {
     id?: boolean
     unitNumber?: boolean
     buildingName?: boolean
+    unitOwnership?: boolean
     floorNumber?: boolean
     numberOfRooms?: boolean
     priceSale?: boolean
@@ -12247,6 +12266,7 @@ export namespace Prisma {
     id?: boolean
     unitNumber?: boolean
     buildingName?: boolean
+    unitOwnership?: boolean
     floorNumber?: boolean
     numberOfRooms?: boolean
     priceSale?: boolean
@@ -12257,7 +12277,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UnitsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "unitNumber" | "buildingName" | "floorNumber" | "numberOfRooms" | "priceSale" | "squareFootage" | "location" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["units"]>
+  export type UnitsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "unitNumber" | "buildingName" | "unitOwnership" | "floorNumber" | "numberOfRooms" | "priceSale" | "squareFootage" | "location" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["units"]>
   export type UnitsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Residents?: boolean | Units$ResidentsArgs<ExtArgs>
     Payments?: boolean | Units$PaymentsArgs<ExtArgs>
@@ -12280,6 +12300,7 @@ export namespace Prisma {
       id: string
       unitNumber: string
       buildingName: string | null
+      unitOwnership: string[]
       floorNumber: number | null
       numberOfRooms: number | null
       priceSale: number
@@ -12718,6 +12739,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Units", 'String'>
     readonly unitNumber: FieldRef<"Units", 'String'>
     readonly buildingName: FieldRef<"Units", 'String'>
+    readonly unitOwnership: FieldRef<"Units", 'String[]'>
     readonly floorNumber: FieldRef<"Units", 'Int'>
     readonly numberOfRooms: FieldRef<"Units", 'Int'>
     readonly priceSale: FieldRef<"Units", 'Float'>
@@ -17849,6 +17871,7 @@ export namespace Prisma {
     emergencyContactNumber: 'emergencyContactNumber',
     movedInDate: 'movedInDate',
     movedOutDate: 'movedOutDate',
+    familyCode: 'familyCode',
     residentStatus: 'residentStatus',
     unitId: 'unitId',
     kprPaymentAmount: 'kprPaymentAmount',
@@ -17953,6 +17976,7 @@ export namespace Prisma {
     id: 'id',
     unitNumber: 'unitNumber',
     buildingName: 'buildingName',
+    unitOwnership: 'unitOwnership',
     floorNumber: 'floorNumber',
     numberOfRooms: 'numberOfRooms',
     priceSale: 'priceSale',
@@ -18424,6 +18448,7 @@ export namespace Prisma {
     emergencyContactNumber?: StringNullableFilter<"Residents"> | string | null
     movedInDate?: DateTimeFilter<"Residents"> | Date | string
     movedOutDate?: DateTimeNullableFilter<"Residents"> | Date | string | null
+    familyCode?: StringNullableFilter<"Residents"> | string | null
     residentStatus?: EnumResidentStatusNullableFilter<"Residents"> | $Enums.ResidentStatus | null
     unitId?: UuidNullableFilter<"Residents"> | string | null
     kprPaymentAmount?: FloatNullableFilter<"Residents"> | number | null
@@ -18444,6 +18469,7 @@ export namespace Prisma {
     emergencyContactNumber?: SortOrderInput | SortOrder
     movedInDate?: SortOrder
     movedOutDate?: SortOrderInput | SortOrder
+    familyCode?: SortOrderInput | SortOrder
     residentStatus?: SortOrderInput | SortOrder
     unitId?: SortOrderInput | SortOrder
     kprPaymentAmount?: SortOrderInput | SortOrder
@@ -18467,6 +18493,7 @@ export namespace Prisma {
     emergencyContactNumber?: StringNullableFilter<"Residents"> | string | null
     movedInDate?: DateTimeFilter<"Residents"> | Date | string
     movedOutDate?: DateTimeNullableFilter<"Residents"> | Date | string | null
+    familyCode?: StringNullableFilter<"Residents"> | string | null
     residentStatus?: EnumResidentStatusNullableFilter<"Residents"> | $Enums.ResidentStatus | null
     unitId?: UuidNullableFilter<"Residents"> | string | null
     kprPaymentAmount?: FloatNullableFilter<"Residents"> | number | null
@@ -18487,6 +18514,7 @@ export namespace Prisma {
     emergencyContactNumber?: SortOrderInput | SortOrder
     movedInDate?: SortOrder
     movedOutDate?: SortOrderInput | SortOrder
+    familyCode?: SortOrderInput | SortOrder
     residentStatus?: SortOrderInput | SortOrder
     unitId?: SortOrderInput | SortOrder
     kprPaymentAmount?: SortOrderInput | SortOrder
@@ -18511,6 +18539,7 @@ export namespace Prisma {
     emergencyContactNumber?: StringNullableWithAggregatesFilter<"Residents"> | string | null
     movedInDate?: DateTimeWithAggregatesFilter<"Residents"> | Date | string
     movedOutDate?: DateTimeNullableWithAggregatesFilter<"Residents"> | Date | string | null
+    familyCode?: StringNullableWithAggregatesFilter<"Residents"> | string | null
     residentStatus?: EnumResidentStatusNullableWithAggregatesFilter<"Residents"> | $Enums.ResidentStatus | null
     unitId?: UuidNullableWithAggregatesFilter<"Residents"> | string | null
     kprPaymentAmount?: FloatNullableWithAggregatesFilter<"Residents"> | number | null
@@ -18999,6 +19028,7 @@ export namespace Prisma {
     id?: UuidFilter<"Units"> | string
     unitNumber?: StringFilter<"Units"> | string
     buildingName?: StringNullableFilter<"Units"> | string | null
+    unitOwnership?: StringNullableListFilter<"Units">
     floorNumber?: IntNullableFilter<"Units"> | number | null
     numberOfRooms?: IntNullableFilter<"Units"> | number | null
     priceSale?: FloatFilter<"Units"> | number
@@ -19017,6 +19047,7 @@ export namespace Prisma {
     id?: SortOrder
     unitNumber?: SortOrder
     buildingName?: SortOrderInput | SortOrder
+    unitOwnership?: SortOrder
     floorNumber?: SortOrderInput | SortOrder
     numberOfRooms?: SortOrderInput | SortOrder
     priceSale?: SortOrder
@@ -19038,6 +19069,7 @@ export namespace Prisma {
     OR?: UnitsWhereInput[]
     NOT?: UnitsWhereInput | UnitsWhereInput[]
     buildingName?: StringNullableFilter<"Units"> | string | null
+    unitOwnership?: StringNullableListFilter<"Units">
     floorNumber?: IntNullableFilter<"Units"> | number | null
     numberOfRooms?: IntNullableFilter<"Units"> | number | null
     priceSale?: FloatFilter<"Units"> | number
@@ -19056,6 +19088,7 @@ export namespace Prisma {
     id?: SortOrder
     unitNumber?: SortOrder
     buildingName?: SortOrderInput | SortOrder
+    unitOwnership?: SortOrder
     floorNumber?: SortOrderInput | SortOrder
     numberOfRooms?: SortOrderInput | SortOrder
     priceSale?: SortOrder
@@ -19078,6 +19111,7 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"Units"> | string
     unitNumber?: StringWithAggregatesFilter<"Units"> | string
     buildingName?: StringNullableWithAggregatesFilter<"Units"> | string | null
+    unitOwnership?: StringNullableListFilter<"Units">
     floorNumber?: IntNullableWithAggregatesFilter<"Units"> | number | null
     numberOfRooms?: IntNullableWithAggregatesFilter<"Units"> | number | null
     priceSale?: FloatWithAggregatesFilter<"Units"> | number
@@ -19571,6 +19605,7 @@ export namespace Prisma {
     emergencyContactNumber?: string | null
     movedInDate: Date | string
     movedOutDate?: Date | string | null
+    familyCode?: string | null
     residentStatus?: $Enums.ResidentStatus | null
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
@@ -19590,6 +19625,7 @@ export namespace Prisma {
     emergencyContactNumber?: string | null
     movedInDate: Date | string
     movedOutDate?: Date | string | null
+    familyCode?: string | null
     residentStatus?: $Enums.ResidentStatus | null
     unitId?: string | null
     kprPaymentAmount?: number | null
@@ -19607,6 +19643,7 @@ export namespace Prisma {
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
     movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
     residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -19626,6 +19663,7 @@ export namespace Prisma {
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
     movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
     residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
     unitId?: NullableStringFieldUpdateOperationsInput | string | null
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -19644,6 +19682,7 @@ export namespace Prisma {
     emergencyContactNumber?: string | null
     movedInDate: Date | string
     movedOutDate?: Date | string | null
+    familyCode?: string | null
     residentStatus?: $Enums.ResidentStatus | null
     unitId?: string | null
     kprPaymentAmount?: number | null
@@ -19659,6 +19698,7 @@ export namespace Prisma {
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
     movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
     residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -19674,6 +19714,7 @@ export namespace Prisma {
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
     movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
     residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
     unitId?: NullableStringFieldUpdateOperationsInput | string | null
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -20201,6 +20242,7 @@ export namespace Prisma {
     id?: string
     unitNumber: string
     buildingName?: string | null
+    unitOwnership?: UnitsCreateunitOwnershipInput | string[]
     floorNumber?: number | null
     numberOfRooms?: number | null
     priceSale: number
@@ -20219,6 +20261,7 @@ export namespace Prisma {
     id?: string
     unitNumber: string
     buildingName?: string | null
+    unitOwnership?: UnitsCreateunitOwnershipInput | string[]
     floorNumber?: number | null
     numberOfRooms?: number | null
     priceSale: number
@@ -20237,6 +20280,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
     floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
     numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
     priceSale?: FloatFieldUpdateOperationsInput | number
@@ -20255,6 +20299,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
     floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
     numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
     priceSale?: FloatFieldUpdateOperationsInput | number
@@ -20273,6 +20318,7 @@ export namespace Prisma {
     id?: string
     unitNumber: string
     buildingName?: string | null
+    unitOwnership?: UnitsCreateunitOwnershipInput | string[]
     floorNumber?: number | null
     numberOfRooms?: number | null
     priceSale: number
@@ -20287,6 +20333,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
     floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
     numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
     priceSale?: FloatFieldUpdateOperationsInput | number
@@ -20301,6 +20348,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
     floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
     numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
     priceSale?: FloatFieldUpdateOperationsInput | number
@@ -20995,6 +21043,7 @@ export namespace Prisma {
     emergencyContactNumber?: SortOrder
     movedInDate?: SortOrder
     movedOutDate?: SortOrder
+    familyCode?: SortOrder
     residentStatus?: SortOrder
     unitId?: SortOrder
     kprPaymentAmount?: SortOrder
@@ -21015,6 +21064,7 @@ export namespace Prisma {
     emergencyContactNumber?: SortOrder
     movedInDate?: SortOrder
     movedOutDate?: SortOrder
+    familyCode?: SortOrder
     residentStatus?: SortOrder
     unitId?: SortOrder
     kprPaymentAmount?: SortOrder
@@ -21031,6 +21081,7 @@ export namespace Prisma {
     emergencyContactNumber?: SortOrder
     movedInDate?: SortOrder
     movedOutDate?: SortOrder
+    familyCode?: SortOrder
     residentStatus?: SortOrder
     unitId?: SortOrder
     kprPaymentAmount?: SortOrder
@@ -21509,6 +21560,7 @@ export namespace Prisma {
     id?: SortOrder
     unitNumber?: SortOrder
     buildingName?: SortOrder
+    unitOwnership?: SortOrder
     floorNumber?: SortOrder
     numberOfRooms?: SortOrder
     priceSale?: SortOrder
@@ -22659,6 +22711,10 @@ export namespace Prisma {
     update?: XOR<XOR<ForumPostsUpdateToOneWithWhereWithoutCommentsInput, ForumPostsUpdateWithoutCommentsInput>, ForumPostsUncheckedUpdateWithoutCommentsInput>
   }
 
+  export type UnitsCreateunitOwnershipInput = {
+    set: string[]
+  }
+
   export type ResidentsCreateNestedManyWithoutUnitInput = {
     create?: XOR<ResidentsCreateWithoutUnitInput, ResidentsUncheckedCreateWithoutUnitInput> | ResidentsCreateWithoutUnitInput[] | ResidentsUncheckedCreateWithoutUnitInput[]
     connectOrCreate?: ResidentsCreateOrConnectWithoutUnitInput | ResidentsCreateOrConnectWithoutUnitInput[]
@@ -22713,6 +22769,11 @@ export namespace Prisma {
     connectOrCreate?: ComplaintsCreateOrConnectWithoutUnitInput | ComplaintsCreateOrConnectWithoutUnitInput[]
     createMany?: ComplaintsCreateManyUnitInputEnvelope
     connect?: ComplaintsWhereUniqueInput | ComplaintsWhereUniqueInput[]
+  }
+
+  export type UnitsUpdateunitOwnershipInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -23515,6 +23576,7 @@ export namespace Prisma {
     emergencyContactNumber?: string | null
     movedInDate: Date | string
     movedOutDate?: Date | string | null
+    familyCode?: string | null
     residentStatus?: $Enums.ResidentStatus | null
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
@@ -23532,6 +23594,7 @@ export namespace Prisma {
     emergencyContactNumber?: string | null
     movedInDate: Date | string
     movedOutDate?: Date | string | null
+    familyCode?: string | null
     residentStatus?: $Enums.ResidentStatus | null
     unitId?: string | null
     kprPaymentAmount?: number | null
@@ -23666,6 +23729,7 @@ export namespace Prisma {
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
     movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
     residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -23683,6 +23747,7 @@ export namespace Prisma {
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
     movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
     residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
     unitId?: NullableStringFieldUpdateOperationsInput | string | null
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -23853,6 +23918,7 @@ export namespace Prisma {
     id?: string
     unitNumber: string
     buildingName?: string | null
+    unitOwnership?: UnitsCreateunitOwnershipInput | string[]
     floorNumber?: number | null
     numberOfRooms?: number | null
     priceSale: number
@@ -23870,6 +23936,7 @@ export namespace Prisma {
     id?: string
     unitNumber: string
     buildingName?: string | null
+    unitOwnership?: UnitsCreateunitOwnershipInput | string[]
     floorNumber?: number | null
     numberOfRooms?: number | null
     priceSale: number
@@ -24038,6 +24105,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
     floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
     numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
     priceSale?: FloatFieldUpdateOperationsInput | number
@@ -24055,6 +24123,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
     floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
     numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
     priceSale?: FloatFieldUpdateOperationsInput | number
@@ -24555,6 +24624,7 @@ export namespace Prisma {
     emergencyContactNumber?: string | null
     movedInDate: Date | string
     movedOutDate?: Date | string | null
+    familyCode?: string | null
     residentStatus?: $Enums.ResidentStatus | null
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
@@ -24573,6 +24643,7 @@ export namespace Prisma {
     emergencyContactNumber?: string | null
     movedInDate: Date | string
     movedOutDate?: Date | string | null
+    familyCode?: string | null
     residentStatus?: $Enums.ResidentStatus | null
     unitId?: string | null
     kprPaymentAmount?: number | null
@@ -24631,6 +24702,7 @@ export namespace Prisma {
     id?: string
     unitNumber: string
     buildingName?: string | null
+    unitOwnership?: UnitsCreateunitOwnershipInput | string[]
     floorNumber?: number | null
     numberOfRooms?: number | null
     priceSale: number
@@ -24648,6 +24720,7 @@ export namespace Prisma {
     id?: string
     unitNumber: string
     buildingName?: string | null
+    unitOwnership?: UnitsCreateunitOwnershipInput | string[]
     floorNumber?: number | null
     numberOfRooms?: number | null
     priceSale: number
@@ -24683,6 +24756,7 @@ export namespace Prisma {
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
     movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
     residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -24701,6 +24775,7 @@ export namespace Prisma {
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
     movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
     residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
     unitId?: NullableStringFieldUpdateOperationsInput | string | null
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -24771,6 +24846,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
     floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
     numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
     priceSale?: FloatFieldUpdateOperationsInput | number
@@ -24788,6 +24864,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
     floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
     numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
     priceSale?: FloatFieldUpdateOperationsInput | number
@@ -25309,6 +25386,7 @@ export namespace Prisma {
     emergencyContactNumber?: string | null
     movedInDate: Date | string
     movedOutDate?: Date | string | null
+    familyCode?: string | null
     residentStatus?: $Enums.ResidentStatus | null
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
@@ -25327,6 +25405,7 @@ export namespace Prisma {
     emergencyContactNumber?: string | null
     movedInDate: Date | string
     movedOutDate?: Date | string | null
+    familyCode?: string | null
     residentStatus?: $Enums.ResidentStatus | null
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
@@ -25485,6 +25564,7 @@ export namespace Prisma {
     emergencyContactNumber?: StringNullableFilter<"Residents"> | string | null
     movedInDate?: DateTimeFilter<"Residents"> | Date | string
     movedOutDate?: DateTimeNullableFilter<"Residents"> | Date | string | null
+    familyCode?: StringNullableFilter<"Residents"> | string | null
     residentStatus?: EnumResidentStatusNullableFilter<"Residents"> | $Enums.ResidentStatus | null
     unitId?: UuidNullableFilter<"Residents"> | string | null
     kprPaymentAmount?: FloatNullableFilter<"Residents"> | number | null
@@ -25546,6 +25626,7 @@ export namespace Prisma {
     id?: string
     unitNumber: string
     buildingName?: string | null
+    unitOwnership?: UnitsCreateunitOwnershipInput | string[]
     floorNumber?: number | null
     numberOfRooms?: number | null
     priceSale: number
@@ -25563,6 +25644,7 @@ export namespace Prisma {
     id?: string
     unitNumber: string
     buildingName?: string | null
+    unitOwnership?: UnitsCreateunitOwnershipInput | string[]
     floorNumber?: number | null
     numberOfRooms?: number | null
     priceSale: number
@@ -25671,6 +25753,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
     floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
     numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
     priceSale?: FloatFieldUpdateOperationsInput | number
@@ -25688,6 +25771,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
     floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
     numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
     priceSale?: FloatFieldUpdateOperationsInput | number
@@ -25768,6 +25852,7 @@ export namespace Prisma {
     emergencyContactNumber?: string | null
     movedInDate: Date | string
     movedOutDate?: Date | string | null
+    familyCode?: string | null
     residentStatus?: $Enums.ResidentStatus | null
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
@@ -25786,6 +25871,7 @@ export namespace Prisma {
     emergencyContactNumber?: string | null
     movedInDate: Date | string
     movedOutDate?: Date | string | null
+    familyCode?: string | null
     residentStatus?: $Enums.ResidentStatus | null
     unitId?: string | null
     kprPaymentAmount?: number | null
@@ -25805,6 +25891,7 @@ export namespace Prisma {
     id?: string
     unitNumber: string
     buildingName?: string | null
+    unitOwnership?: UnitsCreateunitOwnershipInput | string[]
     floorNumber?: number | null
     numberOfRooms?: number | null
     priceSale: number
@@ -25822,6 +25909,7 @@ export namespace Prisma {
     id?: string
     unitNumber: string
     buildingName?: string | null
+    unitOwnership?: UnitsCreateunitOwnershipInput | string[]
     floorNumber?: number | null
     numberOfRooms?: number | null
     priceSale: number
@@ -25925,6 +26013,7 @@ export namespace Prisma {
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
     movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
     residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -25943,6 +26032,7 @@ export namespace Prisma {
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
     movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
     residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
     unitId?: NullableStringFieldUpdateOperationsInput | string | null
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -25968,6 +26058,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
     floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
     numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
     priceSale?: FloatFieldUpdateOperationsInput | number
@@ -25985,6 +26076,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     unitNumber?: StringFieldUpdateOperationsInput | string
     buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
     floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
     numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
     priceSale?: FloatFieldUpdateOperationsInput | number
@@ -26710,6 +26802,7 @@ export namespace Prisma {
     emergencyContactNumber?: string | null
     movedInDate: Date | string
     movedOutDate?: Date | string | null
+    familyCode?: string | null
     residentStatus?: $Enums.ResidentStatus | null
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
@@ -26764,6 +26857,7 @@ export namespace Prisma {
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
     movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
     residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -26782,6 +26876,7 @@ export namespace Prisma {
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
     movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
     residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -26799,6 +26894,7 @@ export namespace Prisma {
     emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
     movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
     residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

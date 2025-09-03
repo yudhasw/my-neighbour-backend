@@ -131,6 +131,7 @@ model Residents {
   emergencyContactNumber String?         @map("nomor_kontak_darurat")
   movedInDate            DateTime        @map("tanggal_masuk") @db.Timestamp()
   movedOutDate           DateTime?       @map("tanggal_keluar") @db.Timestamp()
+  familyCode             String?         @map("kode_unik_keluarga")
   residentStatus         ResidentStatus? @default(FAMILY_MEMBERS)
   unitId                 String?         @map("unit_id") @db.Uuid
   unit                   Units?          @relation(fields: [unitId], references: [id], onDelete: SetNull)
@@ -211,7 +212,7 @@ model ForumPosts {
   id          String   @id @default(uuid()) @map("forum_post_id") @db.Uuid
   title       String   @map("judul")
   content     String   @map("konten")
-  attachments String[] @map("lampiran_pengumuman")
+  attachments String[] @default([]) @map("lampiran_pengumuman")
   authorRole  UserRole
   userId      String   @map("pengguna_id") @db.Uuid
   user        Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -254,6 +255,7 @@ model Units {
   id            String     @id @default(uuid()) @map("unit_id") @db.Uuid
   unitNumber    String     @unique @map("nomor_unit")
   buildingName  String?    @map("nama_unit")
+  unitOwnership String[]   @default([]) @map("bukti_kepemilikan_unit")
   floorNumber   Int?       @map("jumlah_lantai")
   numberOfRooms Int?       @map("jumlah_ruangan")
   priceSale     Float      @map("harga_jual")

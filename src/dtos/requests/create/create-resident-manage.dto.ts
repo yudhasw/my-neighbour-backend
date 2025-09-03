@@ -52,10 +52,11 @@ export class CreateResidentManageDto {
   })
   readonly residentStatus: ResidentStatus;
 
+  @ValidateIf((o) => o.residentType === ResidentStatus.HEAD_HOUSE_HOLD)
   @IsUUID('4', {
     message: 'ID Unit Hunian harus berupa UUID versi 4 yang valid.',
   })
   @IsString({ message: 'Nama kontak darurat harus berupa teks.' })
-  @IsOptional()
+  @IsNotEmpty({ message: 'ID Unit hunian tidak boleh kosong' })
   readonly unitId: string;
 }

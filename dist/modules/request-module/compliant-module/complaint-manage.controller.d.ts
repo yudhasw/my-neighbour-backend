@@ -82,6 +82,7 @@ export declare class ComplaintManageController {
             emergencyContactNumber: string | null;
             movedInDate: Date;
             movedOutDate: Date | null;
+            familyCode: string | null;
             residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
             unitId: string | null;
             kprPaymentAmount: number | null;

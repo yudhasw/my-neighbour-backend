@@ -11,6 +11,8 @@ export interface FileAttachment {
 
 @Injectable()
 export class UploadsService {
+  //uploading multiple files
+
   protected processFiles(files?: Express.Multer.File[]): string[] {
     if (!files || files.length === 0) return [];
 
@@ -35,6 +37,30 @@ export class UploadsService {
         uploadedAt: new Date(),
       };
     });
+  }
+
+  // uploading single file
+
+  protected processSingleFiles(file?: Express.Multer.File): string {
+    const folderPath = GeneralHelper.getFolderExtension(
+      file?.mimetype as string,
+    );
+    return `${folderPath}/${file?.filename}`;
+  }
+
+  protected processSingleFileWithMetadata(
+    file?: Express.Multer.File,
+  ): FileAttachment | null {
+    if (!file) return null;
+
+    const folderPath = GeneralHelper.getFolderExtension(file.mimetype);
+    return {
+      path: `${folderPath}/${file.filename}`,
+      originalName: file.originalname,
+      size: file.size,
+      mimetype: file.mimetype,
+      uploadedAt: new Date(),
+    };
   }
 
   protected safeParseAttachments(attachments: unknown): string[] {

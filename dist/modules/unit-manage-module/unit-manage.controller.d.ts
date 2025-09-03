@@ -11,6 +11,7 @@ export declare class UnitManageController {
         status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
+        unitOwnership: string[];
         floorNumber: number | null;
         numberOfRooms: number | null;
         priceSale: number;
@@ -31,6 +32,7 @@ export declare class UnitManageController {
         status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
+        unitOwnership: string[];
         floorNumber: number | null;
         numberOfRooms: number | null;
         priceSale: number;
@@ -76,6 +78,7 @@ export declare class UnitManageController {
             emergencyContactNumber: string | null;
             movedInDate: Date;
             movedOutDate: Date | null;
+            familyCode: string | null;
             residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
             unitId: string | null;
             kprPaymentAmount: number | null;
@@ -89,6 +92,7 @@ export declare class UnitManageController {
         status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
+        unitOwnership: string[];
         floorNumber: number | null;
         numberOfRooms: number | null;
         priceSale: number;
@@ -102,6 +106,7 @@ export declare class UnitManageController {
         status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
+        unitOwnership: string[];
         floorNumber: number | null;
         numberOfRooms: number | null;
         priceSale: number;
@@ -115,6 +120,7 @@ export declare class UnitManageController {
         status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
         unitNumber: string;
         buildingName: string | null;
+        unitOwnership: string[];
         floorNumber: number | null;
         numberOfRooms: number | null;
         priceSale: number;

@@ -8,6 +8,8 @@ export interface FileAttachment {
 export declare class UploadsService {
     protected processFiles(files?: Express.Multer.File[]): string[];
     protected processFilesWithMetadata(files?: Express.Multer.File[]): FileAttachment[];
+    protected processSingleFiles(file?: Express.Multer.File): string;
+    protected processSingleFileWithMetadata(file?: Express.Multer.File): FileAttachment | null;
     protected safeParseAttachments(attachments: unknown): string[];
     protected deletePhysicalFiles(attachments: unknown): Promise<void>;
     protected getFileInfo(attachments: unknown): Array<{

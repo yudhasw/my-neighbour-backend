@@ -54,7 +54,7 @@ class UploadsConfiguration {
             }),
         };
     }
-    static get announcementConfig() {
+    static get defaultConfig() {
         return this.createConfig({
             maxFileSize: 10 * 1024 * 1024,
             maxFiles: 5,

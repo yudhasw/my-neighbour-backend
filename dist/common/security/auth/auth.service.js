@@ -9,6 +9,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 let AuthService = class AuthService {
+    async registration(registRequest, files) {
+        return await {
+            registRequest,
+            files,
+        };
+    }
+    async signIn(signInRequest) {
+        return await signInRequest;
+    }
+    async jwtGenerate() { }
+    async jwtCompare() { }
+    async approvalSystem() { }
 };
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([

@@ -32,6 +32,22 @@ let UploadsService = class UploadsService {
             };
         });
     }
+    processSingleFiles(file) {
+        const folderPath = generalHelper_1.GeneralHelper.getFolderExtension(file?.mimetype);
+        return `${folderPath}/${file?.filename}`;
+    }
+    processSingleFileWithMetadata(file) {
+        if (!file)
+            return null;
+        const folderPath = generalHelper_1.GeneralHelper.getFolderExtension(file.mimetype);
+        return {
+            path: `${folderPath}/${file.filename}`,
+            originalName: file.originalname,
+            size: file.size,
+            mimetype: file.mimetype,
+            uploadedAt: new Date(),
+        };
+    }
     safeParseAttachments(attachments) {
         if (!attachments)
             return [];

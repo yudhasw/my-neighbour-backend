@@ -10,7 +10,7 @@ import { UploadsConfiguration } from 'src/common/helper/uploads/uploads-configur
 @Module({
   imports: [
     EmployeeManageModule,
-    MulterModule.register(UploadsConfiguration.announcementConfig),
+    MulterModule.register(UploadsConfiguration.defaultConfig),
   ],
   controllers: [AnnouncementManageController],
   providers: [AnnouncementManageService, DatabaseService, GeneralHelper],

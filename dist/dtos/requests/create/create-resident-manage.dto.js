@@ -65,11 +65,12 @@ __decorate([
     __metadata("design:type", String)
 ], CreateResidentManageDto.prototype, "residentStatus", void 0);
 __decorate([
+    (0, class_validator_1.ValidateIf)((o) => o.residentType === prisma_1.ResidentStatus.HEAD_HOUSE_HOLD),
     (0, class_validator_1.IsUUID)('4', {
         message: 'ID Unit Hunian harus berupa UUID versi 4 yang valid.',
     }),
     (0, class_validator_1.IsString)({ message: 'Nama kontak darurat harus berupa teks.' }),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'ID Unit hunian tidak boleh kosong' }),
     __metadata("design:type", String)
 ], CreateResidentManageDto.prototype, "unitId", void 0);
 //# sourceMappingURL=create-resident-manage.dto.js.map
