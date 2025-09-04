@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MailerManageModule = void 0;
 const common_1 = require("@nestjs/common");
-const path_1 = require("path");
+const path = require("path");
 const mailer_manage_service_1 = require("./mailer-manage.service");
 const mailer_manage_controller_1 = require("./mailer-manage.controller");
 const database_module_1 = require("../../database/database.module");
@@ -45,7 +45,7 @@ exports.MailerManageModule = MailerManageModule = __decorate([
                         from: configService.get('MAIL_FROM_NAME', 'noreply@example.com'),
                     },
                     template: {
-                        dir: path_1.default.join(__dirname, '../templates'),
+                        dir: path.join(__dirname, '../templates'),
                         adapter: new pug_adapter_1.PugAdapter(),
                         options: {
                             strict: true,

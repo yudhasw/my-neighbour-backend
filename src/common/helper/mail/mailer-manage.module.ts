@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import path from 'path';
+import * as path from 'path';
 import { MailerManageService } from './mailer-manage.service';
 import { MailerManageController } from './mailer-manage.controller';
 import { DatabaseModule } from 'src/common/database/database.module';
