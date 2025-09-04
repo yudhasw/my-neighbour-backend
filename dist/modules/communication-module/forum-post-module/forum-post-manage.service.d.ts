@@ -7,96 +7,96 @@ export declare class ForumPostManageService extends UploadsService {
     constructor(prisma: DatabaseService);
     create(createRequest: CreateForumPostManageDto, files?: Express.Multer.File[]): Promise<{
         tags: {
+            tagName: string;
             id: string;
             createdAt: Date;
             updatedAt: Date;
-            tagName: string;
         }[];
     } & {
-        id: string;
         title: string;
+        userId: string;
         content: string;
         attachments: string[];
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
-        publishedAt: Date;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
+        publishedAt: Date;
     }>;
     findAll(): Promise<{
         attachments: string[];
         user: {
-            username: string;
             fullName: string;
             firstName: string;
             lastName: string;
+            username: string;
             role: import("src/common/database/generated/prisma").$Enums.UserRole;
         };
         _count: {
             tags: number;
             comments: number;
         };
-        id: string;
         title: string;
+        userId: string;
         content: string;
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
-        publishedAt: Date;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
+        publishedAt: Date;
     }[]>;
     findOne(id: string): Promise<{
         attachments: string[];
         user: {
-            username: string;
             fullName: string;
             firstName: string;
             lastName: string;
+            username: string;
             role: import("src/common/database/generated/prisma").$Enums.UserRole;
         };
         tags: {
+            tagName: string;
             id: string;
             createdAt: Date;
             updatedAt: Date;
-            tagName: string;
         }[];
         comments: {
-            id: string;
+            userId: string;
             content: string;
+            id: string;
             createdAt: Date;
             updatedAt: Date;
-            userId: string;
             postId: string;
         }[];
-        id: string;
         title: string;
+        userId: string;
         content: string;
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
-        publishedAt: Date;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
+        publishedAt: Date;
     }>;
     update(id: string, updateRequest: UpdateForumPostManageDto, files?: Express.Multer.File[]): Promise<{
-        id: string;
         title: string;
+        userId: string;
         content: string;
         attachments: string[];
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
-        publishedAt: Date;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
+        publishedAt: Date;
     }>;
     remove(id: string): Promise<{
-        id: string;
         title: string;
+        userId: string;
         content: string;
         attachments: string[];
         authorRole: import("src/common/database/generated/prisma").$Enums.UserRole;
-        publishedAt: Date;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
+        publishedAt: Date;
     }>;
 }

@@ -163,25 +163,24 @@ model Residents {
   unit                      Units?             @relation(fields: [unitId], references: [id], onDelete: SetNull)
   kprPaymentAmount          Float?             @map("jumlah_cicilan_kpr")
   kprDueDate                DateTime?          @map("tanggal_jatuh_tempo_kpr") @db.Timestamp()
+  isKprPaid                 Boolean?           @default(false) @map("kpr_lunas")
   registrationStatus        RegistrationStatus @default(PENDING) @map("status_registrasi")
-  registrationMethod        RegistrationMethod @map("metode_registrasi") // ADMIN_DRIVEN | USER_DRIVEN
+  registrationMethod        RegistrationMethod @default(USER_DRIVEN) @map("metode_registrasi")
   approvedBy                String?            @map("disetujui_oleh") @db.Uuid
   approvalDate              DateTime?          @map("tanggal_persetujuan") @db.Timestamp()
   rejectionReason           String?            @map("alasan_penolakan")
   pendingApproval           Boolean            @default(false) @map("menunggu_persetujuan")
   approvedByHeadOfHousehold String?            @map("disetujui_kepala_keluarga") @db.Uuid
-
-  isKprPaid Boolean? @default(false) @map("kpr_lunas")
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp()
-  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp()
+  createdAt                 DateTime           @default(now()) @map("created_at") @db.Timestamp()
+  updatedAt                 DateTime           @updatedAt @map("updated_at") @db.Timestamp()
 
   // Relasi balik
-  Complaints        Complaints[]
-  Payments          Payments[]
-  ResidentDocuments ResidentDocuments[]
-  FamilyCodes       FamilyCodes[]
-  FamilyMemberApprovals   FamilyApprovals[]   @relation("FamilyMemberApproval")
-  FamilyApprovals   FamilyApprovals[]   @relation("HeadOfHouseholdApproval")
+  Complaints            Complaints[]
+  Payments              Payments[]
+  ResidentDocuments     ResidentDocuments[]
+  FamilyCodes           FamilyCodes[]
+  FamilyMemberApprovals FamilyApprovals[]   @relation("FamilyMemberApproval")
+  FamilyApprovals       FamilyApprovals[]   @relation("HeadOfHouseholdApproval")
 
   @@map("tb_penghuni")
 }

@@ -1,4 +1,4 @@
-import { PropertyManagerGuard } from './property-manager.guard';
+import { PropertyManagerGuard } from '../../../src/common/security/auth/guards/property-manager.guard';
 
 describe('PropertyManagerGuard', () => {
   it('should be defined', () => {

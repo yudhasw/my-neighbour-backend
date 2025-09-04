@@ -1,11 +1,8 @@
-import * as path from 'path';
 import { RouterModule } from '@nestjs/core';
 import { Module } from '@nestjs/common';
-import { MailerModule } from '@nestjs-modules/mailer';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
+import { ConfigModule } from '@nestjs/config';
 import { BackendApiModule } from './modules/backend-api.module';
 import { AuthModule } from './common/security/auth/auth.module';
 import { MailerManageModule } from './common/helper/mail/mailer-manage.module';
@@ -151,36 +148,6 @@ import { HelperModule } from './common/helper/helper.module';
         ],
       },
     ]),
-    MailerModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        transport: {
-          host: configService.get<string>('MAIL_HOST', 'smtp.gmail.com'),
-          port: configService.get<number>('MAIL_PORT', 587),
-          secure: configService.get<number>('MAIL_PORT', 587) === 465,
-          auth: {
-            user: configService.get<string>('MAIL_USER'),
-            pass: configService.get<string>('MAIL_PASSWORD'),
-          },
-          tls: {
-            rejectUnauthorized: false,
-          },
-        },
-        defaults: {
-          from: configService.get<string>(
-            'MAIL_FROM_NAME',
-            'noreply@example.com',
-          ),
-        },
-        template: {
-          dir: path.join(__dirname, '../templates'),
-          adapter: new PugAdapter(),
-          options: {
-            strict: true,
-          },
-        },
-      }),
-    }),
   ],
   controllers: [AppController],
   providers: [AppService],

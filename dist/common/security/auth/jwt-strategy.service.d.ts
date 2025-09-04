@@ -13,39 +13,43 @@ export declare class JwtStrategyService extends JwtStrategyService_base {
         role: import("src/common/database/generated/prisma").$Enums.UserRole;
         resident: ({
             unit: {
+                status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
+                location: string;
+                unitNumber: string;
+                buildingName: string | null;
+                floorNumber: number | null;
+                numberOfRooms: number | null;
+                squareFootage: number | null;
+                priceSale: number;
                 id: string;
                 createdAt: Date;
                 updatedAt: Date;
-                unitNumber: string;
-                buildingName: string | null;
                 unitOwnership: string[];
-                floorNumber: number | null;
-                numberOfRooms: number | null;
-                priceSale: number;
-                squareFootage: number | null;
-                location: string;
-                status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
             } | null;
         } & {
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
-            userId: string;
+            registrationMethod: import("src/common/database/generated/prisma").$Enums.RegistrationMethod;
             emergencyContactName: string | null;
             emergencyContactNumber: string | null;
             movedInDate: Date;
-            movedOutDate: Date | null;
-            familyCode: string | null;
-            residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
             unitId: string | null;
             kprPaymentAmount: number | null;
             kprDueDate: Date | null;
             isKprPaid: boolean | null;
-        }) | null;
-        employee: {
+            familyCode: string | null;
+            userId: string;
+            movedOutDate: Date | null;
+            residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            registrationStatus: import("src/common/database/generated/prisma").$Enums.RegistrationStatus;
+            approvedBy: string | null;
+            approvalDate: Date | null;
+            rejectionReason: string | null;
+            pendingApproval: boolean;
+            approvedByHeadOfHousehold: string | null;
+        }) | null;
+        employee: {
             userId: string;
             employeeNumberId: string;
             hireDate: Date;
@@ -53,6 +57,9 @@ export declare class JwtStrategyService extends JwtStrategyService_base {
             workingHours: number;
             salary: number;
             bonus: number | null;
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
         } | null;
     }>;
 }

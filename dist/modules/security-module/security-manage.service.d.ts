@@ -6,15 +6,15 @@ export declare class SecurityManageService {
     constructor(prisma: DatabaseService);
     create(createRequest: CreateSecurityManageDto): Promise<{
         title: string;
-        employeeId: string;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
         description: string;
         status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        employeeId: string;
         location: string;
         incidentDate: Date;
         isPublished: boolean;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     findAll(): Promise<({
         employee: {
@@ -26,9 +26,6 @@ export declare class SecurityManageService {
                 contactNumber: string | null;
             };
         } & {
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
             userId: string;
             employeeNumberId: string;
             hireDate: Date;
@@ -36,18 +33,21 @@ export declare class SecurityManageService {
             workingHours: number;
             salary: number;
             bonus: number | null;
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
         };
     } & {
         title: string;
-        employeeId: string;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
         description: string;
         status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        employeeId: string;
         location: string;
         incidentDate: Date;
         isPublished: boolean;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     })[]>;
     findOne(id: string): Promise<{
         employee: {
@@ -59,9 +59,6 @@ export declare class SecurityManageService {
                 contactNumber: string | null;
             };
         } & {
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
             userId: string;
             employeeNumberId: string;
             hireDate: Date;
@@ -69,41 +66,44 @@ export declare class SecurityManageService {
             workingHours: number;
             salary: number;
             bonus: number | null;
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
         };
     } & {
         title: string;
-        employeeId: string;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
         description: string;
         status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        employeeId: string;
         location: string;
         incidentDate: Date;
         isPublished: boolean;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     update(id: string, updateRequest: UpdateSecurityManageDto): Promise<{
         title: string;
-        employeeId: string;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
         description: string;
         status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        employeeId: string;
         location: string;
         incidentDate: Date;
         isPublished: boolean;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     remove(id: string): Promise<{
         title: string;
-        employeeId: string;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
         description: string;
         status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        employeeId: string;
         location: string;
         incidentDate: Date;
         isPublished: boolean;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
 }

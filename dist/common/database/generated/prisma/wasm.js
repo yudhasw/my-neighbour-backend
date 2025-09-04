@@ -153,8 +153,48 @@ exports.Prisma.ResidentsScalarFieldEnum = {
   kprPaymentAmount: 'kprPaymentAmount',
   kprDueDate: 'kprDueDate',
   isKprPaid: 'isKprPaid',
+  registrationStatus: 'registrationStatus',
+  registrationMethod: 'registrationMethod',
+  approvedBy: 'approvedBy',
+  approvalDate: 'approvalDate',
+  rejectionReason: 'rejectionReason',
+  pendingApproval: 'pendingApproval',
+  approvedByHeadOfHousehold: 'approvedByHeadOfHousehold',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FamilyCodesScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  headOfHousehold: 'headOfHousehold',
+  unitId: 'unitId',
+  isActive: 'isActive',
+  maxMembers: 'maxMembers',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FamilyApprovalsScalarFieldEnum = {
+  id: 'id',
+  familyMemberId: 'familyMemberId',
+  headOfHouseholdId: 'headOfHouseholdId',
+  status: 'status',
+  requestedAt: 'requestedAt',
+  respondedAt: 'respondedAt',
+  notes: 'notes'
+};
+
+exports.Prisma.ResidentDocumentsScalarFieldEnum = {
+  id: 'id',
+  residentId: 'residentId',
+  documentType: 'documentType',
+  fileName: 'fileName',
+  fileUrl: 'fileUrl',
+  fileSize: 'fileSize',
+  uploadedAt: 'uploadedAt',
+  verifiedBy: 'verifiedBy',
+  verifiedAt: 'verifiedAt',
+  isVerified: 'isVerified'
 };
 
 exports.Prisma.EmployeesScalarFieldEnum = {
@@ -321,6 +361,32 @@ exports.ResidentStatus = exports.$Enums.ResidentStatus = {
   FAMILY_MEMBERS: 'FAMILY_MEMBERS'
 };
 
+exports.RegistrationStatus = exports.$Enums.RegistrationStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  AWAITING_FAMILY_APPROVAL: 'AWAITING_FAMILY_APPROVAL'
+};
+
+exports.RegistrationMethod = exports.$Enums.RegistrationMethod = {
+  ADMIN_DRIVEN: 'ADMIN_DRIVEN',
+  USER_DRIVEN: 'USER_DRIVEN'
+};
+
+exports.ApprovalStatus = exports.$Enums.ApprovalStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
+exports.DocumentType = exports.$Enums.DocumentType = {
+  AJB: 'AJB',
+  SHM: 'SHM',
+  KPR_PROOF: 'KPR_PROOF',
+  ID_CARD: 'ID_CARD',
+  FAMILY_CARD: 'FAMILY_CARD'
+};
+
 exports.EmployeeRole = exports.$Enums.EmployeeRole = {
   ADMIN: 'ADMIN',
   PROPERTY_MANAGER: 'PROPERTY_MANAGER',
@@ -384,6 +450,9 @@ exports.MaintenanceStatus = exports.$Enums.MaintenanceStatus = {
 exports.Prisma.ModelName = {
   Users: 'Users',
   Residents: 'Residents',
+  FamilyCodes: 'FamilyCodes',
+  FamilyApprovals: 'FamilyApprovals',
+  ResidentDocuments: 'ResidentDocuments',
   Employees: 'Employees',
   Complaints: 'Complaints',
   Announcements: 'Announcements',

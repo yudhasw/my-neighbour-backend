@@ -24,6 +24,21 @@ export type Users = $Result.DefaultSelection<Prisma.$UsersPayload>
  */
 export type Residents = $Result.DefaultSelection<Prisma.$ResidentsPayload>
 /**
+ * Model FamilyCodes
+ * 
+ */
+export type FamilyCodes = $Result.DefaultSelection<Prisma.$FamilyCodesPayload>
+/**
+ * Model FamilyApprovals
+ * 
+ */
+export type FamilyApprovals = $Result.DefaultSelection<Prisma.$FamilyApprovalsPayload>
+/**
+ * Model ResidentDocuments
+ * 
+ */
+export type ResidentDocuments = $Result.DefaultSelection<Prisma.$ResidentDocumentsPayload>
+/**
  * Model Employees
  * 
  */
@@ -202,6 +217,44 @@ export const ComplaintStatus: {
 
 export type ComplaintStatus = (typeof ComplaintStatus)[keyof typeof ComplaintStatus]
 
+
+export const RegistrationStatus: {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  AWAITING_FAMILY_APPROVAL: 'AWAITING_FAMILY_APPROVAL'
+};
+
+export type RegistrationStatus = (typeof RegistrationStatus)[keyof typeof RegistrationStatus]
+
+
+export const RegistrationMethod: {
+  ADMIN_DRIVEN: 'ADMIN_DRIVEN',
+  USER_DRIVEN: 'USER_DRIVEN'
+};
+
+export type RegistrationMethod = (typeof RegistrationMethod)[keyof typeof RegistrationMethod]
+
+
+export const DocumentType: {
+  AJB: 'AJB',
+  SHM: 'SHM',
+  KPR_PROOF: 'KPR_PROOF',
+  ID_CARD: 'ID_CARD',
+  FAMILY_CARD: 'FAMILY_CARD'
+};
+
+export type DocumentType = (typeof DocumentType)[keyof typeof DocumentType]
+
+
+export const ApprovalStatus: {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
+export type ApprovalStatus = (typeof ApprovalStatus)[keyof typeof ApprovalStatus]
+
 }
 
 export type UserRole = $Enums.UserRole
@@ -255,6 +308,22 @@ export const ContactRole: typeof $Enums.ContactRole
 export type ComplaintStatus = $Enums.ComplaintStatus
 
 export const ComplaintStatus: typeof $Enums.ComplaintStatus
+
+export type RegistrationStatus = $Enums.RegistrationStatus
+
+export const RegistrationStatus: typeof $Enums.RegistrationStatus
+
+export type RegistrationMethod = $Enums.RegistrationMethod
+
+export const RegistrationMethod: typeof $Enums.RegistrationMethod
+
+export type DocumentType = $Enums.DocumentType
+
+export const DocumentType: typeof $Enums.DocumentType
+
+export type ApprovalStatus = $Enums.ApprovalStatus
+
+export const ApprovalStatus: typeof $Enums.ApprovalStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -393,6 +462,36 @@ export class PrismaClient<
     * ```
     */
   get residents(): Prisma.ResidentsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.familyCodes`: Exposes CRUD operations for the **FamilyCodes** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FamilyCodes
+    * const familyCodes = await prisma.familyCodes.findMany()
+    * ```
+    */
+  get familyCodes(): Prisma.FamilyCodesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.familyApprovals`: Exposes CRUD operations for the **FamilyApprovals** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FamilyApprovals
+    * const familyApprovals = await prisma.familyApprovals.findMany()
+    * ```
+    */
+  get familyApprovals(): Prisma.FamilyApprovalsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.residentDocuments`: Exposes CRUD operations for the **ResidentDocuments** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ResidentDocuments
+    * const residentDocuments = await prisma.residentDocuments.findMany()
+    * ```
+    */
+  get residentDocuments(): Prisma.ResidentDocumentsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.employees`: Exposes CRUD operations for the **Employees** model.
@@ -945,6 +1044,9 @@ export namespace Prisma {
   export const ModelName: {
     Users: 'Users',
     Residents: 'Residents',
+    FamilyCodes: 'FamilyCodes',
+    FamilyApprovals: 'FamilyApprovals',
+    ResidentDocuments: 'ResidentDocuments',
     Employees: 'Employees',
     Complaints: 'Complaints',
     Announcements: 'Announcements',
@@ -974,7 +1076,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "users" | "residents" | "employees" | "complaints" | "announcements" | "forumPosts" | "postTags" | "forumComments" | "units" | "bills" | "payments" | "contacts" | "securityReports"
+      modelProps: "users" | "residents" | "familyCodes" | "familyApprovals" | "residentDocuments" | "employees" | "complaints" | "announcements" | "forumPosts" | "postTags" | "forumComments" | "units" | "bills" | "payments" | "contacts" | "securityReports"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1123,6 +1225,228 @@ export namespace Prisma {
           count: {
             args: Prisma.ResidentsCountArgs<ExtArgs>
             result: $Utils.Optional<ResidentsCountAggregateOutputType> | number
+          }
+        }
+      }
+      FamilyCodes: {
+        payload: Prisma.$FamilyCodesPayload<ExtArgs>
+        fields: Prisma.FamilyCodesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FamilyCodesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyCodesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FamilyCodesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyCodesPayload>
+          }
+          findFirst: {
+            args: Prisma.FamilyCodesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyCodesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FamilyCodesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyCodesPayload>
+          }
+          findMany: {
+            args: Prisma.FamilyCodesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyCodesPayload>[]
+          }
+          create: {
+            args: Prisma.FamilyCodesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyCodesPayload>
+          }
+          createMany: {
+            args: Prisma.FamilyCodesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FamilyCodesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyCodesPayload>[]
+          }
+          delete: {
+            args: Prisma.FamilyCodesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyCodesPayload>
+          }
+          update: {
+            args: Prisma.FamilyCodesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyCodesPayload>
+          }
+          deleteMany: {
+            args: Prisma.FamilyCodesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FamilyCodesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FamilyCodesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyCodesPayload>[]
+          }
+          upsert: {
+            args: Prisma.FamilyCodesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyCodesPayload>
+          }
+          aggregate: {
+            args: Prisma.FamilyCodesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFamilyCodes>
+          }
+          groupBy: {
+            args: Prisma.FamilyCodesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FamilyCodesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FamilyCodesCountArgs<ExtArgs>
+            result: $Utils.Optional<FamilyCodesCountAggregateOutputType> | number
+          }
+        }
+      }
+      FamilyApprovals: {
+        payload: Prisma.$FamilyApprovalsPayload<ExtArgs>
+        fields: Prisma.FamilyApprovalsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FamilyApprovalsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyApprovalsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FamilyApprovalsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyApprovalsPayload>
+          }
+          findFirst: {
+            args: Prisma.FamilyApprovalsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyApprovalsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FamilyApprovalsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyApprovalsPayload>
+          }
+          findMany: {
+            args: Prisma.FamilyApprovalsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyApprovalsPayload>[]
+          }
+          create: {
+            args: Prisma.FamilyApprovalsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyApprovalsPayload>
+          }
+          createMany: {
+            args: Prisma.FamilyApprovalsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FamilyApprovalsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyApprovalsPayload>[]
+          }
+          delete: {
+            args: Prisma.FamilyApprovalsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyApprovalsPayload>
+          }
+          update: {
+            args: Prisma.FamilyApprovalsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyApprovalsPayload>
+          }
+          deleteMany: {
+            args: Prisma.FamilyApprovalsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FamilyApprovalsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FamilyApprovalsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyApprovalsPayload>[]
+          }
+          upsert: {
+            args: Prisma.FamilyApprovalsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FamilyApprovalsPayload>
+          }
+          aggregate: {
+            args: Prisma.FamilyApprovalsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFamilyApprovals>
+          }
+          groupBy: {
+            args: Prisma.FamilyApprovalsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FamilyApprovalsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FamilyApprovalsCountArgs<ExtArgs>
+            result: $Utils.Optional<FamilyApprovalsCountAggregateOutputType> | number
+          }
+        }
+      }
+      ResidentDocuments: {
+        payload: Prisma.$ResidentDocumentsPayload<ExtArgs>
+        fields: Prisma.ResidentDocumentsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ResidentDocumentsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidentDocumentsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ResidentDocumentsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidentDocumentsPayload>
+          }
+          findFirst: {
+            args: Prisma.ResidentDocumentsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidentDocumentsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ResidentDocumentsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidentDocumentsPayload>
+          }
+          findMany: {
+            args: Prisma.ResidentDocumentsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidentDocumentsPayload>[]
+          }
+          create: {
+            args: Prisma.ResidentDocumentsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidentDocumentsPayload>
+          }
+          createMany: {
+            args: Prisma.ResidentDocumentsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ResidentDocumentsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidentDocumentsPayload>[]
+          }
+          delete: {
+            args: Prisma.ResidentDocumentsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidentDocumentsPayload>
+          }
+          update: {
+            args: Prisma.ResidentDocumentsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidentDocumentsPayload>
+          }
+          deleteMany: {
+            args: Prisma.ResidentDocumentsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ResidentDocumentsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ResidentDocumentsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidentDocumentsPayload>[]
+          }
+          upsert: {
+            args: Prisma.ResidentDocumentsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidentDocumentsPayload>
+          }
+          aggregate: {
+            args: Prisma.ResidentDocumentsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateResidentDocuments>
+          }
+          groupBy: {
+            args: Prisma.ResidentDocumentsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ResidentDocumentsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ResidentDocumentsCountArgs<ExtArgs>
+            result: $Utils.Optional<ResidentDocumentsCountAggregateOutputType> | number
           }
         }
       }
@@ -2034,6 +2358,9 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     users?: UsersOmit
     residents?: ResidentsOmit
+    familyCodes?: FamilyCodesOmit
+    familyApprovals?: FamilyApprovalsOmit
+    residentDocuments?: ResidentDocumentsOmit
     employees?: EmployeesOmit
     complaints?: ComplaintsOmit
     announcements?: AnnouncementsOmit
@@ -2167,11 +2494,19 @@ export namespace Prisma {
   export type ResidentsCountOutputType = {
     Complaints: number
     Payments: number
+    ResidentDocuments: number
+    FamilyCodes: number
+    FamilyMemberApprovals: number
+    FamilyApprovals: number
   }
 
   export type ResidentsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Complaints?: boolean | ResidentsCountOutputTypeCountComplaintsArgs
     Payments?: boolean | ResidentsCountOutputTypeCountPaymentsArgs
+    ResidentDocuments?: boolean | ResidentsCountOutputTypeCountResidentDocumentsArgs
+    FamilyCodes?: boolean | ResidentsCountOutputTypeCountFamilyCodesArgs
+    FamilyMemberApprovals?: boolean | ResidentsCountOutputTypeCountFamilyMemberApprovalsArgs
+    FamilyApprovals?: boolean | ResidentsCountOutputTypeCountFamilyApprovalsArgs
   }
 
   // Custom InputTypes
@@ -2197,6 +2532,34 @@ export namespace Prisma {
    */
   export type ResidentsCountOutputTypeCountPaymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PaymentsWhereInput
+  }
+
+  /**
+   * ResidentsCountOutputType without action
+   */
+  export type ResidentsCountOutputTypeCountResidentDocumentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResidentDocumentsWhereInput
+  }
+
+  /**
+   * ResidentsCountOutputType without action
+   */
+  export type ResidentsCountOutputTypeCountFamilyCodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FamilyCodesWhereInput
+  }
+
+  /**
+   * ResidentsCountOutputType without action
+   */
+  export type ResidentsCountOutputTypeCountFamilyMemberApprovalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FamilyApprovalsWhereInput
+  }
+
+  /**
+   * ResidentsCountOutputType without action
+   */
+  export type ResidentsCountOutputTypeCountFamilyApprovalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FamilyApprovalsWhereInput
   }
 
 
@@ -2347,6 +2710,7 @@ export namespace Prisma {
     Payments: number
     Bills: number
     Complaints: number
+    FamilyCodes: number
   }
 
   export type UnitsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2354,6 +2718,7 @@ export namespace Prisma {
     Payments?: boolean | UnitsCountOutputTypeCountPaymentsArgs
     Bills?: boolean | UnitsCountOutputTypeCountBillsArgs
     Complaints?: boolean | UnitsCountOutputTypeCountComplaintsArgs
+    FamilyCodes?: boolean | UnitsCountOutputTypeCountFamilyCodesArgs
   }
 
   // Custom InputTypes
@@ -2393,6 +2758,13 @@ export namespace Prisma {
    */
   export type UnitsCountOutputTypeCountComplaintsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ComplaintsWhereInput
+  }
+
+  /**
+   * UnitsCountOutputType without action
+   */
+  export type UnitsCountOutputTypeCountFamilyCodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FamilyCodesWhereInput
   }
 
 
@@ -3764,6 +4136,13 @@ export namespace Prisma {
     kprPaymentAmount: number | null
     kprDueDate: Date | null
     isKprPaid: boolean | null
+    registrationStatus: $Enums.RegistrationStatus | null
+    registrationMethod: $Enums.RegistrationMethod | null
+    approvedBy: string | null
+    approvalDate: Date | null
+    rejectionReason: string | null
+    pendingApproval: boolean | null
+    approvedByHeadOfHousehold: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3781,6 +4160,13 @@ export namespace Prisma {
     kprPaymentAmount: number | null
     kprDueDate: Date | null
     isKprPaid: boolean | null
+    registrationStatus: $Enums.RegistrationStatus | null
+    registrationMethod: $Enums.RegistrationMethod | null
+    approvedBy: string | null
+    approvalDate: Date | null
+    rejectionReason: string | null
+    pendingApproval: boolean | null
+    approvedByHeadOfHousehold: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3798,6 +4184,13 @@ export namespace Prisma {
     kprPaymentAmount: number
     kprDueDate: number
     isKprPaid: number
+    registrationStatus: number
+    registrationMethod: number
+    approvedBy: number
+    approvalDate: number
+    rejectionReason: number
+    pendingApproval: number
+    approvedByHeadOfHousehold: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -3825,6 +4218,13 @@ export namespace Prisma {
     kprPaymentAmount?: true
     kprDueDate?: true
     isKprPaid?: true
+    registrationStatus?: true
+    registrationMethod?: true
+    approvedBy?: true
+    approvalDate?: true
+    rejectionReason?: true
+    pendingApproval?: true
+    approvedByHeadOfHousehold?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3842,6 +4242,13 @@ export namespace Prisma {
     kprPaymentAmount?: true
     kprDueDate?: true
     isKprPaid?: true
+    registrationStatus?: true
+    registrationMethod?: true
+    approvedBy?: true
+    approvalDate?: true
+    rejectionReason?: true
+    pendingApproval?: true
+    approvedByHeadOfHousehold?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3859,6 +4266,13 @@ export namespace Prisma {
     kprPaymentAmount?: true
     kprDueDate?: true
     isKprPaid?: true
+    registrationStatus?: true
+    registrationMethod?: true
+    approvedBy?: true
+    approvalDate?: true
+    rejectionReason?: true
+    pendingApproval?: true
+    approvedByHeadOfHousehold?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3963,6 +4377,13 @@ export namespace Prisma {
     kprPaymentAmount: number | null
     kprDueDate: Date | null
     isKprPaid: boolean | null
+    registrationStatus: $Enums.RegistrationStatus
+    registrationMethod: $Enums.RegistrationMethod
+    approvedBy: string | null
+    approvalDate: Date | null
+    rejectionReason: string | null
+    pendingApproval: boolean
+    approvedByHeadOfHousehold: string | null
     createdAt: Date
     updatedAt: Date
     _count: ResidentsCountAggregateOutputType | null
@@ -3999,12 +4420,23 @@ export namespace Prisma {
     kprPaymentAmount?: boolean
     kprDueDate?: boolean
     isKprPaid?: boolean
+    registrationStatus?: boolean
+    registrationMethod?: boolean
+    approvedBy?: boolean
+    approvalDate?: boolean
+    rejectionReason?: boolean
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
     unit?: boolean | Residents$unitArgs<ExtArgs>
     Complaints?: boolean | Residents$ComplaintsArgs<ExtArgs>
     Payments?: boolean | Residents$PaymentsArgs<ExtArgs>
+    ResidentDocuments?: boolean | Residents$ResidentDocumentsArgs<ExtArgs>
+    FamilyCodes?: boolean | Residents$FamilyCodesArgs<ExtArgs>
+    FamilyMemberApprovals?: boolean | Residents$FamilyMemberApprovalsArgs<ExtArgs>
+    FamilyApprovals?: boolean | Residents$FamilyApprovalsArgs<ExtArgs>
     _count?: boolean | ResidentsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["residents"]>
 
@@ -4021,6 +4453,13 @@ export namespace Prisma {
     kprPaymentAmount?: boolean
     kprDueDate?: boolean
     isKprPaid?: boolean
+    registrationStatus?: boolean
+    registrationMethod?: boolean
+    approvedBy?: boolean
+    approvalDate?: boolean
+    rejectionReason?: boolean
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
@@ -4040,6 +4479,13 @@ export namespace Prisma {
     kprPaymentAmount?: boolean
     kprDueDate?: boolean
     isKprPaid?: boolean
+    registrationStatus?: boolean
+    registrationMethod?: boolean
+    approvedBy?: boolean
+    approvalDate?: boolean
+    rejectionReason?: boolean
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
@@ -4059,16 +4505,27 @@ export namespace Prisma {
     kprPaymentAmount?: boolean
     kprDueDate?: boolean
     isKprPaid?: boolean
+    registrationStatus?: boolean
+    registrationMethod?: boolean
+    approvedBy?: boolean
+    approvalDate?: boolean
+    rejectionReason?: boolean
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ResidentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "emergencyContactName" | "emergencyContactNumber" | "movedInDate" | "movedOutDate" | "familyCode" | "residentStatus" | "unitId" | "kprPaymentAmount" | "kprDueDate" | "isKprPaid" | "createdAt" | "updatedAt", ExtArgs["result"]["residents"]>
+  export type ResidentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "emergencyContactName" | "emergencyContactNumber" | "movedInDate" | "movedOutDate" | "familyCode" | "residentStatus" | "unitId" | "kprPaymentAmount" | "kprDueDate" | "isKprPaid" | "registrationStatus" | "registrationMethod" | "approvedBy" | "approvalDate" | "rejectionReason" | "pendingApproval" | "approvedByHeadOfHousehold" | "createdAt" | "updatedAt", ExtArgs["result"]["residents"]>
   export type ResidentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
     unit?: boolean | Residents$unitArgs<ExtArgs>
     Complaints?: boolean | Residents$ComplaintsArgs<ExtArgs>
     Payments?: boolean | Residents$PaymentsArgs<ExtArgs>
+    ResidentDocuments?: boolean | Residents$ResidentDocumentsArgs<ExtArgs>
+    FamilyCodes?: boolean | Residents$FamilyCodesArgs<ExtArgs>
+    FamilyMemberApprovals?: boolean | Residents$FamilyMemberApprovalsArgs<ExtArgs>
+    FamilyApprovals?: boolean | Residents$FamilyApprovalsArgs<ExtArgs>
     _count?: boolean | ResidentsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ResidentsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4087,6 +4544,10 @@ export namespace Prisma {
       unit: Prisma.$UnitsPayload<ExtArgs> | null
       Complaints: Prisma.$ComplaintsPayload<ExtArgs>[]
       Payments: Prisma.$PaymentsPayload<ExtArgs>[]
+      ResidentDocuments: Prisma.$ResidentDocumentsPayload<ExtArgs>[]
+      FamilyCodes: Prisma.$FamilyCodesPayload<ExtArgs>[]
+      FamilyMemberApprovals: Prisma.$FamilyApprovalsPayload<ExtArgs>[]
+      FamilyApprovals: Prisma.$FamilyApprovalsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4101,6 +4562,13 @@ export namespace Prisma {
       kprPaymentAmount: number | null
       kprDueDate: Date | null
       isKprPaid: boolean | null
+      registrationStatus: $Enums.RegistrationStatus
+      registrationMethod: $Enums.RegistrationMethod
+      approvedBy: string | null
+      approvalDate: Date | null
+      rejectionReason: string | null
+      pendingApproval: boolean
+      approvedByHeadOfHousehold: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["residents"]>
@@ -4501,6 +4969,10 @@ export namespace Prisma {
     unit<T extends Residents$unitArgs<ExtArgs> = {}>(args?: Subset<T, Residents$unitArgs<ExtArgs>>): Prisma__UnitsClient<$Result.GetResult<Prisma.$UnitsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Complaints<T extends Residents$ComplaintsArgs<ExtArgs> = {}>(args?: Subset<T, Residents$ComplaintsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComplaintsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Payments<T extends Residents$PaymentsArgs<ExtArgs> = {}>(args?: Subset<T, Residents$PaymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ResidentDocuments<T extends Residents$ResidentDocumentsArgs<ExtArgs> = {}>(args?: Subset<T, Residents$ResidentDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidentDocumentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FamilyCodes<T extends Residents$FamilyCodesArgs<ExtArgs> = {}>(args?: Subset<T, Residents$FamilyCodesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyCodesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FamilyMemberApprovals<T extends Residents$FamilyMemberApprovalsArgs<ExtArgs> = {}>(args?: Subset<T, Residents$FamilyMemberApprovalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyApprovalsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FamilyApprovals<T extends Residents$FamilyApprovalsArgs<ExtArgs> = {}>(args?: Subset<T, Residents$FamilyApprovalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyApprovalsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4542,6 +5014,13 @@ export namespace Prisma {
     readonly kprPaymentAmount: FieldRef<"Residents", 'Float'>
     readonly kprDueDate: FieldRef<"Residents", 'DateTime'>
     readonly isKprPaid: FieldRef<"Residents", 'Boolean'>
+    readonly registrationStatus: FieldRef<"Residents", 'RegistrationStatus'>
+    readonly registrationMethod: FieldRef<"Residents", 'RegistrationMethod'>
+    readonly approvedBy: FieldRef<"Residents", 'String'>
+    readonly approvalDate: FieldRef<"Residents", 'DateTime'>
+    readonly rejectionReason: FieldRef<"Residents", 'String'>
+    readonly pendingApproval: FieldRef<"Residents", 'Boolean'>
+    readonly approvedByHeadOfHousehold: FieldRef<"Residents", 'String'>
     readonly createdAt: FieldRef<"Residents", 'DateTime'>
     readonly updatedAt: FieldRef<"Residents", 'DateTime'>
   }
@@ -5007,6 +5486,102 @@ export namespace Prisma {
   }
 
   /**
+   * Residents.ResidentDocuments
+   */
+  export type Residents$ResidentDocumentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidentDocuments
+     */
+    select?: ResidentDocumentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidentDocuments
+     */
+    omit?: ResidentDocumentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidentDocumentsInclude<ExtArgs> | null
+    where?: ResidentDocumentsWhereInput
+    orderBy?: ResidentDocumentsOrderByWithRelationInput | ResidentDocumentsOrderByWithRelationInput[]
+    cursor?: ResidentDocumentsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ResidentDocumentsScalarFieldEnum | ResidentDocumentsScalarFieldEnum[]
+  }
+
+  /**
+   * Residents.FamilyCodes
+   */
+  export type Residents$FamilyCodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesInclude<ExtArgs> | null
+    where?: FamilyCodesWhereInput
+    orderBy?: FamilyCodesOrderByWithRelationInput | FamilyCodesOrderByWithRelationInput[]
+    cursor?: FamilyCodesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FamilyCodesScalarFieldEnum | FamilyCodesScalarFieldEnum[]
+  }
+
+  /**
+   * Residents.FamilyMemberApprovals
+   */
+  export type Residents$FamilyMemberApprovalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsInclude<ExtArgs> | null
+    where?: FamilyApprovalsWhereInput
+    orderBy?: FamilyApprovalsOrderByWithRelationInput | FamilyApprovalsOrderByWithRelationInput[]
+    cursor?: FamilyApprovalsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FamilyApprovalsScalarFieldEnum | FamilyApprovalsScalarFieldEnum[]
+  }
+
+  /**
+   * Residents.FamilyApprovals
+   */
+  export type Residents$FamilyApprovalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsInclude<ExtArgs> | null
+    where?: FamilyApprovalsWhereInput
+    orderBy?: FamilyApprovalsOrderByWithRelationInput | FamilyApprovalsOrderByWithRelationInput[]
+    cursor?: FamilyApprovalsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FamilyApprovalsScalarFieldEnum | FamilyApprovalsScalarFieldEnum[]
+  }
+
+  /**
    * Residents without action
    */
   export type ResidentsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5022,6 +5597,3400 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ResidentsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FamilyCodes
+   */
+
+  export type AggregateFamilyCodes = {
+    _count: FamilyCodesCountAggregateOutputType | null
+    _avg: FamilyCodesAvgAggregateOutputType | null
+    _sum: FamilyCodesSumAggregateOutputType | null
+    _min: FamilyCodesMinAggregateOutputType | null
+    _max: FamilyCodesMaxAggregateOutputType | null
+  }
+
+  export type FamilyCodesAvgAggregateOutputType = {
+    maxMembers: number | null
+  }
+
+  export type FamilyCodesSumAggregateOutputType = {
+    maxMembers: number | null
+  }
+
+  export type FamilyCodesMinAggregateOutputType = {
+    id: string | null
+    code: string | null
+    headOfHousehold: string | null
+    unitId: string | null
+    isActive: boolean | null
+    maxMembers: number | null
+    createdAt: Date | null
+  }
+
+  export type FamilyCodesMaxAggregateOutputType = {
+    id: string | null
+    code: string | null
+    headOfHousehold: string | null
+    unitId: string | null
+    isActive: boolean | null
+    maxMembers: number | null
+    createdAt: Date | null
+  }
+
+  export type FamilyCodesCountAggregateOutputType = {
+    id: number
+    code: number
+    headOfHousehold: number
+    unitId: number
+    isActive: number
+    maxMembers: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FamilyCodesAvgAggregateInputType = {
+    maxMembers?: true
+  }
+
+  export type FamilyCodesSumAggregateInputType = {
+    maxMembers?: true
+  }
+
+  export type FamilyCodesMinAggregateInputType = {
+    id?: true
+    code?: true
+    headOfHousehold?: true
+    unitId?: true
+    isActive?: true
+    maxMembers?: true
+    createdAt?: true
+  }
+
+  export type FamilyCodesMaxAggregateInputType = {
+    id?: true
+    code?: true
+    headOfHousehold?: true
+    unitId?: true
+    isActive?: true
+    maxMembers?: true
+    createdAt?: true
+  }
+
+  export type FamilyCodesCountAggregateInputType = {
+    id?: true
+    code?: true
+    headOfHousehold?: true
+    unitId?: true
+    isActive?: true
+    maxMembers?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FamilyCodesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FamilyCodes to aggregate.
+     */
+    where?: FamilyCodesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FamilyCodes to fetch.
+     */
+    orderBy?: FamilyCodesOrderByWithRelationInput | FamilyCodesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FamilyCodesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FamilyCodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FamilyCodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FamilyCodes
+    **/
+    _count?: true | FamilyCodesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FamilyCodesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FamilyCodesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FamilyCodesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FamilyCodesMaxAggregateInputType
+  }
+
+  export type GetFamilyCodesAggregateType<T extends FamilyCodesAggregateArgs> = {
+        [P in keyof T & keyof AggregateFamilyCodes]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFamilyCodes[P]>
+      : GetScalarType<T[P], AggregateFamilyCodes[P]>
+  }
+
+
+
+
+  export type FamilyCodesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FamilyCodesWhereInput
+    orderBy?: FamilyCodesOrderByWithAggregationInput | FamilyCodesOrderByWithAggregationInput[]
+    by: FamilyCodesScalarFieldEnum[] | FamilyCodesScalarFieldEnum
+    having?: FamilyCodesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FamilyCodesCountAggregateInputType | true
+    _avg?: FamilyCodesAvgAggregateInputType
+    _sum?: FamilyCodesSumAggregateInputType
+    _min?: FamilyCodesMinAggregateInputType
+    _max?: FamilyCodesMaxAggregateInputType
+  }
+
+  export type FamilyCodesGroupByOutputType = {
+    id: string
+    code: string
+    headOfHousehold: string
+    unitId: string | null
+    isActive: boolean
+    maxMembers: number
+    createdAt: Date
+    _count: FamilyCodesCountAggregateOutputType | null
+    _avg: FamilyCodesAvgAggregateOutputType | null
+    _sum: FamilyCodesSumAggregateOutputType | null
+    _min: FamilyCodesMinAggregateOutputType | null
+    _max: FamilyCodesMaxAggregateOutputType | null
+  }
+
+  type GetFamilyCodesGroupByPayload<T extends FamilyCodesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FamilyCodesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FamilyCodesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FamilyCodesGroupByOutputType[P]>
+            : GetScalarType<T[P], FamilyCodesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FamilyCodesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    headOfHousehold?: boolean
+    unitId?: boolean
+    isActive?: boolean
+    maxMembers?: boolean
+    createdAt?: boolean
+    headResident?: boolean | ResidentsDefaultArgs<ExtArgs>
+    unit?: boolean | FamilyCodes$unitArgs<ExtArgs>
+  }, ExtArgs["result"]["familyCodes"]>
+
+  export type FamilyCodesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    headOfHousehold?: boolean
+    unitId?: boolean
+    isActive?: boolean
+    maxMembers?: boolean
+    createdAt?: boolean
+    headResident?: boolean | ResidentsDefaultArgs<ExtArgs>
+    unit?: boolean | FamilyCodes$unitArgs<ExtArgs>
+  }, ExtArgs["result"]["familyCodes"]>
+
+  export type FamilyCodesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    headOfHousehold?: boolean
+    unitId?: boolean
+    isActive?: boolean
+    maxMembers?: boolean
+    createdAt?: boolean
+    headResident?: boolean | ResidentsDefaultArgs<ExtArgs>
+    unit?: boolean | FamilyCodes$unitArgs<ExtArgs>
+  }, ExtArgs["result"]["familyCodes"]>
+
+  export type FamilyCodesSelectScalar = {
+    id?: boolean
+    code?: boolean
+    headOfHousehold?: boolean
+    unitId?: boolean
+    isActive?: boolean
+    maxMembers?: boolean
+    createdAt?: boolean
+  }
+
+  export type FamilyCodesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "headOfHousehold" | "unitId" | "isActive" | "maxMembers" | "createdAt", ExtArgs["result"]["familyCodes"]>
+  export type FamilyCodesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    headResident?: boolean | ResidentsDefaultArgs<ExtArgs>
+    unit?: boolean | FamilyCodes$unitArgs<ExtArgs>
+  }
+  export type FamilyCodesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    headResident?: boolean | ResidentsDefaultArgs<ExtArgs>
+    unit?: boolean | FamilyCodes$unitArgs<ExtArgs>
+  }
+  export type FamilyCodesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    headResident?: boolean | ResidentsDefaultArgs<ExtArgs>
+    unit?: boolean | FamilyCodes$unitArgs<ExtArgs>
+  }
+
+  export type $FamilyCodesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FamilyCodes"
+    objects: {
+      headResident: Prisma.$ResidentsPayload<ExtArgs>
+      unit: Prisma.$UnitsPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      code: string
+      headOfHousehold: string
+      unitId: string | null
+      isActive: boolean
+      maxMembers: number
+      createdAt: Date
+    }, ExtArgs["result"]["familyCodes"]>
+    composites: {}
+  }
+
+  type FamilyCodesGetPayload<S extends boolean | null | undefined | FamilyCodesDefaultArgs> = $Result.GetResult<Prisma.$FamilyCodesPayload, S>
+
+  type FamilyCodesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FamilyCodesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FamilyCodesCountAggregateInputType | true
+    }
+
+  export interface FamilyCodesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FamilyCodes'], meta: { name: 'FamilyCodes' } }
+    /**
+     * Find zero or one FamilyCodes that matches the filter.
+     * @param {FamilyCodesFindUniqueArgs} args - Arguments to find a FamilyCodes
+     * @example
+     * // Get one FamilyCodes
+     * const familyCodes = await prisma.familyCodes.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FamilyCodesFindUniqueArgs>(args: SelectSubset<T, FamilyCodesFindUniqueArgs<ExtArgs>>): Prisma__FamilyCodesClient<$Result.GetResult<Prisma.$FamilyCodesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FamilyCodes that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FamilyCodesFindUniqueOrThrowArgs} args - Arguments to find a FamilyCodes
+     * @example
+     * // Get one FamilyCodes
+     * const familyCodes = await prisma.familyCodes.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FamilyCodesFindUniqueOrThrowArgs>(args: SelectSubset<T, FamilyCodesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FamilyCodesClient<$Result.GetResult<Prisma.$FamilyCodesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FamilyCodes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyCodesFindFirstArgs} args - Arguments to find a FamilyCodes
+     * @example
+     * // Get one FamilyCodes
+     * const familyCodes = await prisma.familyCodes.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FamilyCodesFindFirstArgs>(args?: SelectSubset<T, FamilyCodesFindFirstArgs<ExtArgs>>): Prisma__FamilyCodesClient<$Result.GetResult<Prisma.$FamilyCodesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FamilyCodes that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyCodesFindFirstOrThrowArgs} args - Arguments to find a FamilyCodes
+     * @example
+     * // Get one FamilyCodes
+     * const familyCodes = await prisma.familyCodes.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FamilyCodesFindFirstOrThrowArgs>(args?: SelectSubset<T, FamilyCodesFindFirstOrThrowArgs<ExtArgs>>): Prisma__FamilyCodesClient<$Result.GetResult<Prisma.$FamilyCodesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FamilyCodes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyCodesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FamilyCodes
+     * const familyCodes = await prisma.familyCodes.findMany()
+     * 
+     * // Get first 10 FamilyCodes
+     * const familyCodes = await prisma.familyCodes.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const familyCodesWithIdOnly = await prisma.familyCodes.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FamilyCodesFindManyArgs>(args?: SelectSubset<T, FamilyCodesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyCodesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FamilyCodes.
+     * @param {FamilyCodesCreateArgs} args - Arguments to create a FamilyCodes.
+     * @example
+     * // Create one FamilyCodes
+     * const FamilyCodes = await prisma.familyCodes.create({
+     *   data: {
+     *     // ... data to create a FamilyCodes
+     *   }
+     * })
+     * 
+     */
+    create<T extends FamilyCodesCreateArgs>(args: SelectSubset<T, FamilyCodesCreateArgs<ExtArgs>>): Prisma__FamilyCodesClient<$Result.GetResult<Prisma.$FamilyCodesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FamilyCodes.
+     * @param {FamilyCodesCreateManyArgs} args - Arguments to create many FamilyCodes.
+     * @example
+     * // Create many FamilyCodes
+     * const familyCodes = await prisma.familyCodes.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FamilyCodesCreateManyArgs>(args?: SelectSubset<T, FamilyCodesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FamilyCodes and returns the data saved in the database.
+     * @param {FamilyCodesCreateManyAndReturnArgs} args - Arguments to create many FamilyCodes.
+     * @example
+     * // Create many FamilyCodes
+     * const familyCodes = await prisma.familyCodes.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FamilyCodes and only return the `id`
+     * const familyCodesWithIdOnly = await prisma.familyCodes.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FamilyCodesCreateManyAndReturnArgs>(args?: SelectSubset<T, FamilyCodesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyCodesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FamilyCodes.
+     * @param {FamilyCodesDeleteArgs} args - Arguments to delete one FamilyCodes.
+     * @example
+     * // Delete one FamilyCodes
+     * const FamilyCodes = await prisma.familyCodes.delete({
+     *   where: {
+     *     // ... filter to delete one FamilyCodes
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FamilyCodesDeleteArgs>(args: SelectSubset<T, FamilyCodesDeleteArgs<ExtArgs>>): Prisma__FamilyCodesClient<$Result.GetResult<Prisma.$FamilyCodesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FamilyCodes.
+     * @param {FamilyCodesUpdateArgs} args - Arguments to update one FamilyCodes.
+     * @example
+     * // Update one FamilyCodes
+     * const familyCodes = await prisma.familyCodes.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FamilyCodesUpdateArgs>(args: SelectSubset<T, FamilyCodesUpdateArgs<ExtArgs>>): Prisma__FamilyCodesClient<$Result.GetResult<Prisma.$FamilyCodesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FamilyCodes.
+     * @param {FamilyCodesDeleteManyArgs} args - Arguments to filter FamilyCodes to delete.
+     * @example
+     * // Delete a few FamilyCodes
+     * const { count } = await prisma.familyCodes.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FamilyCodesDeleteManyArgs>(args?: SelectSubset<T, FamilyCodesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FamilyCodes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyCodesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FamilyCodes
+     * const familyCodes = await prisma.familyCodes.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FamilyCodesUpdateManyArgs>(args: SelectSubset<T, FamilyCodesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FamilyCodes and returns the data updated in the database.
+     * @param {FamilyCodesUpdateManyAndReturnArgs} args - Arguments to update many FamilyCodes.
+     * @example
+     * // Update many FamilyCodes
+     * const familyCodes = await prisma.familyCodes.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FamilyCodes and only return the `id`
+     * const familyCodesWithIdOnly = await prisma.familyCodes.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FamilyCodesUpdateManyAndReturnArgs>(args: SelectSubset<T, FamilyCodesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyCodesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FamilyCodes.
+     * @param {FamilyCodesUpsertArgs} args - Arguments to update or create a FamilyCodes.
+     * @example
+     * // Update or create a FamilyCodes
+     * const familyCodes = await prisma.familyCodes.upsert({
+     *   create: {
+     *     // ... data to create a FamilyCodes
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FamilyCodes we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FamilyCodesUpsertArgs>(args: SelectSubset<T, FamilyCodesUpsertArgs<ExtArgs>>): Prisma__FamilyCodesClient<$Result.GetResult<Prisma.$FamilyCodesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FamilyCodes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyCodesCountArgs} args - Arguments to filter FamilyCodes to count.
+     * @example
+     * // Count the number of FamilyCodes
+     * const count = await prisma.familyCodes.count({
+     *   where: {
+     *     // ... the filter for the FamilyCodes we want to count
+     *   }
+     * })
+    **/
+    count<T extends FamilyCodesCountArgs>(
+      args?: Subset<T, FamilyCodesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FamilyCodesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FamilyCodes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyCodesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FamilyCodesAggregateArgs>(args: Subset<T, FamilyCodesAggregateArgs>): Prisma.PrismaPromise<GetFamilyCodesAggregateType<T>>
+
+    /**
+     * Group by FamilyCodes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyCodesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FamilyCodesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FamilyCodesGroupByArgs['orderBy'] }
+        : { orderBy?: FamilyCodesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FamilyCodesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFamilyCodesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FamilyCodes model
+   */
+  readonly fields: FamilyCodesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FamilyCodes.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FamilyCodesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    headResident<T extends ResidentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResidentsDefaultArgs<ExtArgs>>): Prisma__ResidentsClient<$Result.GetResult<Prisma.$ResidentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    unit<T extends FamilyCodes$unitArgs<ExtArgs> = {}>(args?: Subset<T, FamilyCodes$unitArgs<ExtArgs>>): Prisma__UnitsClient<$Result.GetResult<Prisma.$UnitsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FamilyCodes model
+   */
+  interface FamilyCodesFieldRefs {
+    readonly id: FieldRef<"FamilyCodes", 'String'>
+    readonly code: FieldRef<"FamilyCodes", 'String'>
+    readonly headOfHousehold: FieldRef<"FamilyCodes", 'String'>
+    readonly unitId: FieldRef<"FamilyCodes", 'String'>
+    readonly isActive: FieldRef<"FamilyCodes", 'Boolean'>
+    readonly maxMembers: FieldRef<"FamilyCodes", 'Int'>
+    readonly createdAt: FieldRef<"FamilyCodes", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FamilyCodes findUnique
+   */
+  export type FamilyCodesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesInclude<ExtArgs> | null
+    /**
+     * Filter, which FamilyCodes to fetch.
+     */
+    where: FamilyCodesWhereUniqueInput
+  }
+
+  /**
+   * FamilyCodes findUniqueOrThrow
+   */
+  export type FamilyCodesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesInclude<ExtArgs> | null
+    /**
+     * Filter, which FamilyCodes to fetch.
+     */
+    where: FamilyCodesWhereUniqueInput
+  }
+
+  /**
+   * FamilyCodes findFirst
+   */
+  export type FamilyCodesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesInclude<ExtArgs> | null
+    /**
+     * Filter, which FamilyCodes to fetch.
+     */
+    where?: FamilyCodesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FamilyCodes to fetch.
+     */
+    orderBy?: FamilyCodesOrderByWithRelationInput | FamilyCodesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FamilyCodes.
+     */
+    cursor?: FamilyCodesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FamilyCodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FamilyCodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FamilyCodes.
+     */
+    distinct?: FamilyCodesScalarFieldEnum | FamilyCodesScalarFieldEnum[]
+  }
+
+  /**
+   * FamilyCodes findFirstOrThrow
+   */
+  export type FamilyCodesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesInclude<ExtArgs> | null
+    /**
+     * Filter, which FamilyCodes to fetch.
+     */
+    where?: FamilyCodesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FamilyCodes to fetch.
+     */
+    orderBy?: FamilyCodesOrderByWithRelationInput | FamilyCodesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FamilyCodes.
+     */
+    cursor?: FamilyCodesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FamilyCodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FamilyCodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FamilyCodes.
+     */
+    distinct?: FamilyCodesScalarFieldEnum | FamilyCodesScalarFieldEnum[]
+  }
+
+  /**
+   * FamilyCodes findMany
+   */
+  export type FamilyCodesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesInclude<ExtArgs> | null
+    /**
+     * Filter, which FamilyCodes to fetch.
+     */
+    where?: FamilyCodesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FamilyCodes to fetch.
+     */
+    orderBy?: FamilyCodesOrderByWithRelationInput | FamilyCodesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FamilyCodes.
+     */
+    cursor?: FamilyCodesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FamilyCodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FamilyCodes.
+     */
+    skip?: number
+    distinct?: FamilyCodesScalarFieldEnum | FamilyCodesScalarFieldEnum[]
+  }
+
+  /**
+   * FamilyCodes create
+   */
+  export type FamilyCodesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FamilyCodes.
+     */
+    data: XOR<FamilyCodesCreateInput, FamilyCodesUncheckedCreateInput>
+  }
+
+  /**
+   * FamilyCodes createMany
+   */
+  export type FamilyCodesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FamilyCodes.
+     */
+    data: FamilyCodesCreateManyInput | FamilyCodesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FamilyCodes createManyAndReturn
+   */
+  export type FamilyCodesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * The data used to create many FamilyCodes.
+     */
+    data: FamilyCodesCreateManyInput | FamilyCodesCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FamilyCodes update
+   */
+  export type FamilyCodesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FamilyCodes.
+     */
+    data: XOR<FamilyCodesUpdateInput, FamilyCodesUncheckedUpdateInput>
+    /**
+     * Choose, which FamilyCodes to update.
+     */
+    where: FamilyCodesWhereUniqueInput
+  }
+
+  /**
+   * FamilyCodes updateMany
+   */
+  export type FamilyCodesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FamilyCodes.
+     */
+    data: XOR<FamilyCodesUpdateManyMutationInput, FamilyCodesUncheckedUpdateManyInput>
+    /**
+     * Filter which FamilyCodes to update
+     */
+    where?: FamilyCodesWhereInput
+    /**
+     * Limit how many FamilyCodes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FamilyCodes updateManyAndReturn
+   */
+  export type FamilyCodesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * The data used to update FamilyCodes.
+     */
+    data: XOR<FamilyCodesUpdateManyMutationInput, FamilyCodesUncheckedUpdateManyInput>
+    /**
+     * Filter which FamilyCodes to update
+     */
+    where?: FamilyCodesWhereInput
+    /**
+     * Limit how many FamilyCodes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FamilyCodes upsert
+   */
+  export type FamilyCodesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FamilyCodes to update in case it exists.
+     */
+    where: FamilyCodesWhereUniqueInput
+    /**
+     * In case the FamilyCodes found by the `where` argument doesn't exist, create a new FamilyCodes with this data.
+     */
+    create: XOR<FamilyCodesCreateInput, FamilyCodesUncheckedCreateInput>
+    /**
+     * In case the FamilyCodes was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FamilyCodesUpdateInput, FamilyCodesUncheckedUpdateInput>
+  }
+
+  /**
+   * FamilyCodes delete
+   */
+  export type FamilyCodesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesInclude<ExtArgs> | null
+    /**
+     * Filter which FamilyCodes to delete.
+     */
+    where: FamilyCodesWhereUniqueInput
+  }
+
+  /**
+   * FamilyCodes deleteMany
+   */
+  export type FamilyCodesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FamilyCodes to delete
+     */
+    where?: FamilyCodesWhereInput
+    /**
+     * Limit how many FamilyCodes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FamilyCodes.unit
+   */
+  export type FamilyCodes$unitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Units
+     */
+    select?: UnitsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Units
+     */
+    omit?: UnitsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnitsInclude<ExtArgs> | null
+    where?: UnitsWhereInput
+  }
+
+  /**
+   * FamilyCodes without action
+   */
+  export type FamilyCodesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FamilyApprovals
+   */
+
+  export type AggregateFamilyApprovals = {
+    _count: FamilyApprovalsCountAggregateOutputType | null
+    _min: FamilyApprovalsMinAggregateOutputType | null
+    _max: FamilyApprovalsMaxAggregateOutputType | null
+  }
+
+  export type FamilyApprovalsMinAggregateOutputType = {
+    id: string | null
+    familyMemberId: string | null
+    headOfHouseholdId: string | null
+    status: $Enums.ApprovalStatus | null
+    requestedAt: Date | null
+    respondedAt: Date | null
+    notes: string | null
+  }
+
+  export type FamilyApprovalsMaxAggregateOutputType = {
+    id: string | null
+    familyMemberId: string | null
+    headOfHouseholdId: string | null
+    status: $Enums.ApprovalStatus | null
+    requestedAt: Date | null
+    respondedAt: Date | null
+    notes: string | null
+  }
+
+  export type FamilyApprovalsCountAggregateOutputType = {
+    id: number
+    familyMemberId: number
+    headOfHouseholdId: number
+    status: number
+    requestedAt: number
+    respondedAt: number
+    notes: number
+    _all: number
+  }
+
+
+  export type FamilyApprovalsMinAggregateInputType = {
+    id?: true
+    familyMemberId?: true
+    headOfHouseholdId?: true
+    status?: true
+    requestedAt?: true
+    respondedAt?: true
+    notes?: true
+  }
+
+  export type FamilyApprovalsMaxAggregateInputType = {
+    id?: true
+    familyMemberId?: true
+    headOfHouseholdId?: true
+    status?: true
+    requestedAt?: true
+    respondedAt?: true
+    notes?: true
+  }
+
+  export type FamilyApprovalsCountAggregateInputType = {
+    id?: true
+    familyMemberId?: true
+    headOfHouseholdId?: true
+    status?: true
+    requestedAt?: true
+    respondedAt?: true
+    notes?: true
+    _all?: true
+  }
+
+  export type FamilyApprovalsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FamilyApprovals to aggregate.
+     */
+    where?: FamilyApprovalsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FamilyApprovals to fetch.
+     */
+    orderBy?: FamilyApprovalsOrderByWithRelationInput | FamilyApprovalsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FamilyApprovalsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FamilyApprovals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FamilyApprovals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FamilyApprovals
+    **/
+    _count?: true | FamilyApprovalsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FamilyApprovalsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FamilyApprovalsMaxAggregateInputType
+  }
+
+  export type GetFamilyApprovalsAggregateType<T extends FamilyApprovalsAggregateArgs> = {
+        [P in keyof T & keyof AggregateFamilyApprovals]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFamilyApprovals[P]>
+      : GetScalarType<T[P], AggregateFamilyApprovals[P]>
+  }
+
+
+
+
+  export type FamilyApprovalsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FamilyApprovalsWhereInput
+    orderBy?: FamilyApprovalsOrderByWithAggregationInput | FamilyApprovalsOrderByWithAggregationInput[]
+    by: FamilyApprovalsScalarFieldEnum[] | FamilyApprovalsScalarFieldEnum
+    having?: FamilyApprovalsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FamilyApprovalsCountAggregateInputType | true
+    _min?: FamilyApprovalsMinAggregateInputType
+    _max?: FamilyApprovalsMaxAggregateInputType
+  }
+
+  export type FamilyApprovalsGroupByOutputType = {
+    id: string
+    familyMemberId: string
+    headOfHouseholdId: string
+    status: $Enums.ApprovalStatus
+    requestedAt: Date
+    respondedAt: Date | null
+    notes: string | null
+    _count: FamilyApprovalsCountAggregateOutputType | null
+    _min: FamilyApprovalsMinAggregateOutputType | null
+    _max: FamilyApprovalsMaxAggregateOutputType | null
+  }
+
+  type GetFamilyApprovalsGroupByPayload<T extends FamilyApprovalsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FamilyApprovalsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FamilyApprovalsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FamilyApprovalsGroupByOutputType[P]>
+            : GetScalarType<T[P], FamilyApprovalsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FamilyApprovalsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    familyMemberId?: boolean
+    headOfHouseholdId?: boolean
+    status?: boolean
+    requestedAt?: boolean
+    respondedAt?: boolean
+    notes?: boolean
+    familyMember?: boolean | ResidentsDefaultArgs<ExtArgs>
+    headOfHousehold?: boolean | ResidentsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["familyApprovals"]>
+
+  export type FamilyApprovalsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    familyMemberId?: boolean
+    headOfHouseholdId?: boolean
+    status?: boolean
+    requestedAt?: boolean
+    respondedAt?: boolean
+    notes?: boolean
+    familyMember?: boolean | ResidentsDefaultArgs<ExtArgs>
+    headOfHousehold?: boolean | ResidentsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["familyApprovals"]>
+
+  export type FamilyApprovalsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    familyMemberId?: boolean
+    headOfHouseholdId?: boolean
+    status?: boolean
+    requestedAt?: boolean
+    respondedAt?: boolean
+    notes?: boolean
+    familyMember?: boolean | ResidentsDefaultArgs<ExtArgs>
+    headOfHousehold?: boolean | ResidentsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["familyApprovals"]>
+
+  export type FamilyApprovalsSelectScalar = {
+    id?: boolean
+    familyMemberId?: boolean
+    headOfHouseholdId?: boolean
+    status?: boolean
+    requestedAt?: boolean
+    respondedAt?: boolean
+    notes?: boolean
+  }
+
+  export type FamilyApprovalsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "familyMemberId" | "headOfHouseholdId" | "status" | "requestedAt" | "respondedAt" | "notes", ExtArgs["result"]["familyApprovals"]>
+  export type FamilyApprovalsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    familyMember?: boolean | ResidentsDefaultArgs<ExtArgs>
+    headOfHousehold?: boolean | ResidentsDefaultArgs<ExtArgs>
+  }
+  export type FamilyApprovalsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    familyMember?: boolean | ResidentsDefaultArgs<ExtArgs>
+    headOfHousehold?: boolean | ResidentsDefaultArgs<ExtArgs>
+  }
+  export type FamilyApprovalsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    familyMember?: boolean | ResidentsDefaultArgs<ExtArgs>
+    headOfHousehold?: boolean | ResidentsDefaultArgs<ExtArgs>
+  }
+
+  export type $FamilyApprovalsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FamilyApprovals"
+    objects: {
+      familyMember: Prisma.$ResidentsPayload<ExtArgs>
+      headOfHousehold: Prisma.$ResidentsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      familyMemberId: string
+      headOfHouseholdId: string
+      status: $Enums.ApprovalStatus
+      requestedAt: Date
+      respondedAt: Date | null
+      notes: string | null
+    }, ExtArgs["result"]["familyApprovals"]>
+    composites: {}
+  }
+
+  type FamilyApprovalsGetPayload<S extends boolean | null | undefined | FamilyApprovalsDefaultArgs> = $Result.GetResult<Prisma.$FamilyApprovalsPayload, S>
+
+  type FamilyApprovalsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FamilyApprovalsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FamilyApprovalsCountAggregateInputType | true
+    }
+
+  export interface FamilyApprovalsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FamilyApprovals'], meta: { name: 'FamilyApprovals' } }
+    /**
+     * Find zero or one FamilyApprovals that matches the filter.
+     * @param {FamilyApprovalsFindUniqueArgs} args - Arguments to find a FamilyApprovals
+     * @example
+     * // Get one FamilyApprovals
+     * const familyApprovals = await prisma.familyApprovals.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FamilyApprovalsFindUniqueArgs>(args: SelectSubset<T, FamilyApprovalsFindUniqueArgs<ExtArgs>>): Prisma__FamilyApprovalsClient<$Result.GetResult<Prisma.$FamilyApprovalsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FamilyApprovals that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FamilyApprovalsFindUniqueOrThrowArgs} args - Arguments to find a FamilyApprovals
+     * @example
+     * // Get one FamilyApprovals
+     * const familyApprovals = await prisma.familyApprovals.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FamilyApprovalsFindUniqueOrThrowArgs>(args: SelectSubset<T, FamilyApprovalsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FamilyApprovalsClient<$Result.GetResult<Prisma.$FamilyApprovalsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FamilyApprovals that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyApprovalsFindFirstArgs} args - Arguments to find a FamilyApprovals
+     * @example
+     * // Get one FamilyApprovals
+     * const familyApprovals = await prisma.familyApprovals.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FamilyApprovalsFindFirstArgs>(args?: SelectSubset<T, FamilyApprovalsFindFirstArgs<ExtArgs>>): Prisma__FamilyApprovalsClient<$Result.GetResult<Prisma.$FamilyApprovalsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FamilyApprovals that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyApprovalsFindFirstOrThrowArgs} args - Arguments to find a FamilyApprovals
+     * @example
+     * // Get one FamilyApprovals
+     * const familyApprovals = await prisma.familyApprovals.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FamilyApprovalsFindFirstOrThrowArgs>(args?: SelectSubset<T, FamilyApprovalsFindFirstOrThrowArgs<ExtArgs>>): Prisma__FamilyApprovalsClient<$Result.GetResult<Prisma.$FamilyApprovalsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FamilyApprovals that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyApprovalsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FamilyApprovals
+     * const familyApprovals = await prisma.familyApprovals.findMany()
+     * 
+     * // Get first 10 FamilyApprovals
+     * const familyApprovals = await prisma.familyApprovals.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const familyApprovalsWithIdOnly = await prisma.familyApprovals.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FamilyApprovalsFindManyArgs>(args?: SelectSubset<T, FamilyApprovalsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyApprovalsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FamilyApprovals.
+     * @param {FamilyApprovalsCreateArgs} args - Arguments to create a FamilyApprovals.
+     * @example
+     * // Create one FamilyApprovals
+     * const FamilyApprovals = await prisma.familyApprovals.create({
+     *   data: {
+     *     // ... data to create a FamilyApprovals
+     *   }
+     * })
+     * 
+     */
+    create<T extends FamilyApprovalsCreateArgs>(args: SelectSubset<T, FamilyApprovalsCreateArgs<ExtArgs>>): Prisma__FamilyApprovalsClient<$Result.GetResult<Prisma.$FamilyApprovalsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FamilyApprovals.
+     * @param {FamilyApprovalsCreateManyArgs} args - Arguments to create many FamilyApprovals.
+     * @example
+     * // Create many FamilyApprovals
+     * const familyApprovals = await prisma.familyApprovals.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FamilyApprovalsCreateManyArgs>(args?: SelectSubset<T, FamilyApprovalsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FamilyApprovals and returns the data saved in the database.
+     * @param {FamilyApprovalsCreateManyAndReturnArgs} args - Arguments to create many FamilyApprovals.
+     * @example
+     * // Create many FamilyApprovals
+     * const familyApprovals = await prisma.familyApprovals.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FamilyApprovals and only return the `id`
+     * const familyApprovalsWithIdOnly = await prisma.familyApprovals.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FamilyApprovalsCreateManyAndReturnArgs>(args?: SelectSubset<T, FamilyApprovalsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyApprovalsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FamilyApprovals.
+     * @param {FamilyApprovalsDeleteArgs} args - Arguments to delete one FamilyApprovals.
+     * @example
+     * // Delete one FamilyApprovals
+     * const FamilyApprovals = await prisma.familyApprovals.delete({
+     *   where: {
+     *     // ... filter to delete one FamilyApprovals
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FamilyApprovalsDeleteArgs>(args: SelectSubset<T, FamilyApprovalsDeleteArgs<ExtArgs>>): Prisma__FamilyApprovalsClient<$Result.GetResult<Prisma.$FamilyApprovalsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FamilyApprovals.
+     * @param {FamilyApprovalsUpdateArgs} args - Arguments to update one FamilyApprovals.
+     * @example
+     * // Update one FamilyApprovals
+     * const familyApprovals = await prisma.familyApprovals.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FamilyApprovalsUpdateArgs>(args: SelectSubset<T, FamilyApprovalsUpdateArgs<ExtArgs>>): Prisma__FamilyApprovalsClient<$Result.GetResult<Prisma.$FamilyApprovalsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FamilyApprovals.
+     * @param {FamilyApprovalsDeleteManyArgs} args - Arguments to filter FamilyApprovals to delete.
+     * @example
+     * // Delete a few FamilyApprovals
+     * const { count } = await prisma.familyApprovals.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FamilyApprovalsDeleteManyArgs>(args?: SelectSubset<T, FamilyApprovalsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FamilyApprovals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyApprovalsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FamilyApprovals
+     * const familyApprovals = await prisma.familyApprovals.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FamilyApprovalsUpdateManyArgs>(args: SelectSubset<T, FamilyApprovalsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FamilyApprovals and returns the data updated in the database.
+     * @param {FamilyApprovalsUpdateManyAndReturnArgs} args - Arguments to update many FamilyApprovals.
+     * @example
+     * // Update many FamilyApprovals
+     * const familyApprovals = await prisma.familyApprovals.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FamilyApprovals and only return the `id`
+     * const familyApprovalsWithIdOnly = await prisma.familyApprovals.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FamilyApprovalsUpdateManyAndReturnArgs>(args: SelectSubset<T, FamilyApprovalsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyApprovalsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FamilyApprovals.
+     * @param {FamilyApprovalsUpsertArgs} args - Arguments to update or create a FamilyApprovals.
+     * @example
+     * // Update or create a FamilyApprovals
+     * const familyApprovals = await prisma.familyApprovals.upsert({
+     *   create: {
+     *     // ... data to create a FamilyApprovals
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FamilyApprovals we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FamilyApprovalsUpsertArgs>(args: SelectSubset<T, FamilyApprovalsUpsertArgs<ExtArgs>>): Prisma__FamilyApprovalsClient<$Result.GetResult<Prisma.$FamilyApprovalsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FamilyApprovals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyApprovalsCountArgs} args - Arguments to filter FamilyApprovals to count.
+     * @example
+     * // Count the number of FamilyApprovals
+     * const count = await prisma.familyApprovals.count({
+     *   where: {
+     *     // ... the filter for the FamilyApprovals we want to count
+     *   }
+     * })
+    **/
+    count<T extends FamilyApprovalsCountArgs>(
+      args?: Subset<T, FamilyApprovalsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FamilyApprovalsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FamilyApprovals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyApprovalsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FamilyApprovalsAggregateArgs>(args: Subset<T, FamilyApprovalsAggregateArgs>): Prisma.PrismaPromise<GetFamilyApprovalsAggregateType<T>>
+
+    /**
+     * Group by FamilyApprovals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FamilyApprovalsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FamilyApprovalsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FamilyApprovalsGroupByArgs['orderBy'] }
+        : { orderBy?: FamilyApprovalsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FamilyApprovalsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFamilyApprovalsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FamilyApprovals model
+   */
+  readonly fields: FamilyApprovalsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FamilyApprovals.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FamilyApprovalsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    familyMember<T extends ResidentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResidentsDefaultArgs<ExtArgs>>): Prisma__ResidentsClient<$Result.GetResult<Prisma.$ResidentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    headOfHousehold<T extends ResidentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResidentsDefaultArgs<ExtArgs>>): Prisma__ResidentsClient<$Result.GetResult<Prisma.$ResidentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FamilyApprovals model
+   */
+  interface FamilyApprovalsFieldRefs {
+    readonly id: FieldRef<"FamilyApprovals", 'String'>
+    readonly familyMemberId: FieldRef<"FamilyApprovals", 'String'>
+    readonly headOfHouseholdId: FieldRef<"FamilyApprovals", 'String'>
+    readonly status: FieldRef<"FamilyApprovals", 'ApprovalStatus'>
+    readonly requestedAt: FieldRef<"FamilyApprovals", 'DateTime'>
+    readonly respondedAt: FieldRef<"FamilyApprovals", 'DateTime'>
+    readonly notes: FieldRef<"FamilyApprovals", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FamilyApprovals findUnique
+   */
+  export type FamilyApprovalsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsInclude<ExtArgs> | null
+    /**
+     * Filter, which FamilyApprovals to fetch.
+     */
+    where: FamilyApprovalsWhereUniqueInput
+  }
+
+  /**
+   * FamilyApprovals findUniqueOrThrow
+   */
+  export type FamilyApprovalsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsInclude<ExtArgs> | null
+    /**
+     * Filter, which FamilyApprovals to fetch.
+     */
+    where: FamilyApprovalsWhereUniqueInput
+  }
+
+  /**
+   * FamilyApprovals findFirst
+   */
+  export type FamilyApprovalsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsInclude<ExtArgs> | null
+    /**
+     * Filter, which FamilyApprovals to fetch.
+     */
+    where?: FamilyApprovalsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FamilyApprovals to fetch.
+     */
+    orderBy?: FamilyApprovalsOrderByWithRelationInput | FamilyApprovalsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FamilyApprovals.
+     */
+    cursor?: FamilyApprovalsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FamilyApprovals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FamilyApprovals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FamilyApprovals.
+     */
+    distinct?: FamilyApprovalsScalarFieldEnum | FamilyApprovalsScalarFieldEnum[]
+  }
+
+  /**
+   * FamilyApprovals findFirstOrThrow
+   */
+  export type FamilyApprovalsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsInclude<ExtArgs> | null
+    /**
+     * Filter, which FamilyApprovals to fetch.
+     */
+    where?: FamilyApprovalsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FamilyApprovals to fetch.
+     */
+    orderBy?: FamilyApprovalsOrderByWithRelationInput | FamilyApprovalsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FamilyApprovals.
+     */
+    cursor?: FamilyApprovalsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FamilyApprovals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FamilyApprovals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FamilyApprovals.
+     */
+    distinct?: FamilyApprovalsScalarFieldEnum | FamilyApprovalsScalarFieldEnum[]
+  }
+
+  /**
+   * FamilyApprovals findMany
+   */
+  export type FamilyApprovalsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsInclude<ExtArgs> | null
+    /**
+     * Filter, which FamilyApprovals to fetch.
+     */
+    where?: FamilyApprovalsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FamilyApprovals to fetch.
+     */
+    orderBy?: FamilyApprovalsOrderByWithRelationInput | FamilyApprovalsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FamilyApprovals.
+     */
+    cursor?: FamilyApprovalsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FamilyApprovals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FamilyApprovals.
+     */
+    skip?: number
+    distinct?: FamilyApprovalsScalarFieldEnum | FamilyApprovalsScalarFieldEnum[]
+  }
+
+  /**
+   * FamilyApprovals create
+   */
+  export type FamilyApprovalsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FamilyApprovals.
+     */
+    data: XOR<FamilyApprovalsCreateInput, FamilyApprovalsUncheckedCreateInput>
+  }
+
+  /**
+   * FamilyApprovals createMany
+   */
+  export type FamilyApprovalsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FamilyApprovals.
+     */
+    data: FamilyApprovalsCreateManyInput | FamilyApprovalsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FamilyApprovals createManyAndReturn
+   */
+  export type FamilyApprovalsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * The data used to create many FamilyApprovals.
+     */
+    data: FamilyApprovalsCreateManyInput | FamilyApprovalsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FamilyApprovals update
+   */
+  export type FamilyApprovalsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FamilyApprovals.
+     */
+    data: XOR<FamilyApprovalsUpdateInput, FamilyApprovalsUncheckedUpdateInput>
+    /**
+     * Choose, which FamilyApprovals to update.
+     */
+    where: FamilyApprovalsWhereUniqueInput
+  }
+
+  /**
+   * FamilyApprovals updateMany
+   */
+  export type FamilyApprovalsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FamilyApprovals.
+     */
+    data: XOR<FamilyApprovalsUpdateManyMutationInput, FamilyApprovalsUncheckedUpdateManyInput>
+    /**
+     * Filter which FamilyApprovals to update
+     */
+    where?: FamilyApprovalsWhereInput
+    /**
+     * Limit how many FamilyApprovals to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FamilyApprovals updateManyAndReturn
+   */
+  export type FamilyApprovalsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * The data used to update FamilyApprovals.
+     */
+    data: XOR<FamilyApprovalsUpdateManyMutationInput, FamilyApprovalsUncheckedUpdateManyInput>
+    /**
+     * Filter which FamilyApprovals to update
+     */
+    where?: FamilyApprovalsWhereInput
+    /**
+     * Limit how many FamilyApprovals to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FamilyApprovals upsert
+   */
+  export type FamilyApprovalsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FamilyApprovals to update in case it exists.
+     */
+    where: FamilyApprovalsWhereUniqueInput
+    /**
+     * In case the FamilyApprovals found by the `where` argument doesn't exist, create a new FamilyApprovals with this data.
+     */
+    create: XOR<FamilyApprovalsCreateInput, FamilyApprovalsUncheckedCreateInput>
+    /**
+     * In case the FamilyApprovals was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FamilyApprovalsUpdateInput, FamilyApprovalsUncheckedUpdateInput>
+  }
+
+  /**
+   * FamilyApprovals delete
+   */
+  export type FamilyApprovalsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsInclude<ExtArgs> | null
+    /**
+     * Filter which FamilyApprovals to delete.
+     */
+    where: FamilyApprovalsWhereUniqueInput
+  }
+
+  /**
+   * FamilyApprovals deleteMany
+   */
+  export type FamilyApprovalsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FamilyApprovals to delete
+     */
+    where?: FamilyApprovalsWhereInput
+    /**
+     * Limit how many FamilyApprovals to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FamilyApprovals without action
+   */
+  export type FamilyApprovalsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyApprovals
+     */
+    select?: FamilyApprovalsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyApprovals
+     */
+    omit?: FamilyApprovalsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyApprovalsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ResidentDocuments
+   */
+
+  export type AggregateResidentDocuments = {
+    _count: ResidentDocumentsCountAggregateOutputType | null
+    _avg: ResidentDocumentsAvgAggregateOutputType | null
+    _sum: ResidentDocumentsSumAggregateOutputType | null
+    _min: ResidentDocumentsMinAggregateOutputType | null
+    _max: ResidentDocumentsMaxAggregateOutputType | null
+  }
+
+  export type ResidentDocumentsAvgAggregateOutputType = {
+    fileSize: number | null
+  }
+
+  export type ResidentDocumentsSumAggregateOutputType = {
+    fileSize: number | null
+  }
+
+  export type ResidentDocumentsMinAggregateOutputType = {
+    id: string | null
+    residentId: string | null
+    documentType: $Enums.DocumentType | null
+    fileName: string | null
+    fileUrl: string | null
+    fileSize: number | null
+    uploadedAt: Date | null
+    verifiedBy: string | null
+    verifiedAt: Date | null
+    isVerified: boolean | null
+  }
+
+  export type ResidentDocumentsMaxAggregateOutputType = {
+    id: string | null
+    residentId: string | null
+    documentType: $Enums.DocumentType | null
+    fileName: string | null
+    fileUrl: string | null
+    fileSize: number | null
+    uploadedAt: Date | null
+    verifiedBy: string | null
+    verifiedAt: Date | null
+    isVerified: boolean | null
+  }
+
+  export type ResidentDocumentsCountAggregateOutputType = {
+    id: number
+    residentId: number
+    documentType: number
+    fileName: number
+    fileUrl: number
+    fileSize: number
+    uploadedAt: number
+    verifiedBy: number
+    verifiedAt: number
+    isVerified: number
+    _all: number
+  }
+
+
+  export type ResidentDocumentsAvgAggregateInputType = {
+    fileSize?: true
+  }
+
+  export type ResidentDocumentsSumAggregateInputType = {
+    fileSize?: true
+  }
+
+  export type ResidentDocumentsMinAggregateInputType = {
+    id?: true
+    residentId?: true
+    documentType?: true
+    fileName?: true
+    fileUrl?: true
+    fileSize?: true
+    uploadedAt?: true
+    verifiedBy?: true
+    verifiedAt?: true
+    isVerified?: true
+  }
+
+  export type ResidentDocumentsMaxAggregateInputType = {
+    id?: true
+    residentId?: true
+    documentType?: true
+    fileName?: true
+    fileUrl?: true
+    fileSize?: true
+    uploadedAt?: true
+    verifiedBy?: true
+    verifiedAt?: true
+    isVerified?: true
+  }
+
+  export type ResidentDocumentsCountAggregateInputType = {
+    id?: true
+    residentId?: true
+    documentType?: true
+    fileName?: true
+    fileUrl?: true
+    fileSize?: true
+    uploadedAt?: true
+    verifiedBy?: true
+    verifiedAt?: true
+    isVerified?: true
+    _all?: true
+  }
+
+  export type ResidentDocumentsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResidentDocuments to aggregate.
+     */
+    where?: ResidentDocumentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResidentDocuments to fetch.
+     */
+    orderBy?: ResidentDocumentsOrderByWithRelationInput | ResidentDocumentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ResidentDocumentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResidentDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResidentDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ResidentDocuments
+    **/
+    _count?: true | ResidentDocumentsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ResidentDocumentsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ResidentDocumentsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ResidentDocumentsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ResidentDocumentsMaxAggregateInputType
+  }
+
+  export type GetResidentDocumentsAggregateType<T extends ResidentDocumentsAggregateArgs> = {
+        [P in keyof T & keyof AggregateResidentDocuments]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateResidentDocuments[P]>
+      : GetScalarType<T[P], AggregateResidentDocuments[P]>
+  }
+
+
+
+
+  export type ResidentDocumentsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResidentDocumentsWhereInput
+    orderBy?: ResidentDocumentsOrderByWithAggregationInput | ResidentDocumentsOrderByWithAggregationInput[]
+    by: ResidentDocumentsScalarFieldEnum[] | ResidentDocumentsScalarFieldEnum
+    having?: ResidentDocumentsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ResidentDocumentsCountAggregateInputType | true
+    _avg?: ResidentDocumentsAvgAggregateInputType
+    _sum?: ResidentDocumentsSumAggregateInputType
+    _min?: ResidentDocumentsMinAggregateInputType
+    _max?: ResidentDocumentsMaxAggregateInputType
+  }
+
+  export type ResidentDocumentsGroupByOutputType = {
+    id: string
+    residentId: string
+    documentType: $Enums.DocumentType
+    fileName: string
+    fileUrl: string
+    fileSize: number
+    uploadedAt: Date
+    verifiedBy: string | null
+    verifiedAt: Date | null
+    isVerified: boolean
+    _count: ResidentDocumentsCountAggregateOutputType | null
+    _avg: ResidentDocumentsAvgAggregateOutputType | null
+    _sum: ResidentDocumentsSumAggregateOutputType | null
+    _min: ResidentDocumentsMinAggregateOutputType | null
+    _max: ResidentDocumentsMaxAggregateOutputType | null
+  }
+
+  type GetResidentDocumentsGroupByPayload<T extends ResidentDocumentsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ResidentDocumentsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ResidentDocumentsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ResidentDocumentsGroupByOutputType[P]>
+            : GetScalarType<T[P], ResidentDocumentsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ResidentDocumentsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    residentId?: boolean
+    documentType?: boolean
+    fileName?: boolean
+    fileUrl?: boolean
+    fileSize?: boolean
+    uploadedAt?: boolean
+    verifiedBy?: boolean
+    verifiedAt?: boolean
+    isVerified?: boolean
+    resident?: boolean | ResidentsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["residentDocuments"]>
+
+  export type ResidentDocumentsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    residentId?: boolean
+    documentType?: boolean
+    fileName?: boolean
+    fileUrl?: boolean
+    fileSize?: boolean
+    uploadedAt?: boolean
+    verifiedBy?: boolean
+    verifiedAt?: boolean
+    isVerified?: boolean
+    resident?: boolean | ResidentsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["residentDocuments"]>
+
+  export type ResidentDocumentsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    residentId?: boolean
+    documentType?: boolean
+    fileName?: boolean
+    fileUrl?: boolean
+    fileSize?: boolean
+    uploadedAt?: boolean
+    verifiedBy?: boolean
+    verifiedAt?: boolean
+    isVerified?: boolean
+    resident?: boolean | ResidentsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["residentDocuments"]>
+
+  export type ResidentDocumentsSelectScalar = {
+    id?: boolean
+    residentId?: boolean
+    documentType?: boolean
+    fileName?: boolean
+    fileUrl?: boolean
+    fileSize?: boolean
+    uploadedAt?: boolean
+    verifiedBy?: boolean
+    verifiedAt?: boolean
+    isVerified?: boolean
+  }
+
+  export type ResidentDocumentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "residentId" | "documentType" | "fileName" | "fileUrl" | "fileSize" | "uploadedAt" | "verifiedBy" | "verifiedAt" | "isVerified", ExtArgs["result"]["residentDocuments"]>
+  export type ResidentDocumentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    resident?: boolean | ResidentsDefaultArgs<ExtArgs>
+  }
+  export type ResidentDocumentsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    resident?: boolean | ResidentsDefaultArgs<ExtArgs>
+  }
+  export type ResidentDocumentsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    resident?: boolean | ResidentsDefaultArgs<ExtArgs>
+  }
+
+  export type $ResidentDocumentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ResidentDocuments"
+    objects: {
+      resident: Prisma.$ResidentsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      residentId: string
+      documentType: $Enums.DocumentType
+      fileName: string
+      fileUrl: string
+      fileSize: number
+      uploadedAt: Date
+      verifiedBy: string | null
+      verifiedAt: Date | null
+      isVerified: boolean
+    }, ExtArgs["result"]["residentDocuments"]>
+    composites: {}
+  }
+
+  type ResidentDocumentsGetPayload<S extends boolean | null | undefined | ResidentDocumentsDefaultArgs> = $Result.GetResult<Prisma.$ResidentDocumentsPayload, S>
+
+  type ResidentDocumentsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ResidentDocumentsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ResidentDocumentsCountAggregateInputType | true
+    }
+
+  export interface ResidentDocumentsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ResidentDocuments'], meta: { name: 'ResidentDocuments' } }
+    /**
+     * Find zero or one ResidentDocuments that matches the filter.
+     * @param {ResidentDocumentsFindUniqueArgs} args - Arguments to find a ResidentDocuments
+     * @example
+     * // Get one ResidentDocuments
+     * const residentDocuments = await prisma.residentDocuments.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ResidentDocumentsFindUniqueArgs>(args: SelectSubset<T, ResidentDocumentsFindUniqueArgs<ExtArgs>>): Prisma__ResidentDocumentsClient<$Result.GetResult<Prisma.$ResidentDocumentsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ResidentDocuments that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ResidentDocumentsFindUniqueOrThrowArgs} args - Arguments to find a ResidentDocuments
+     * @example
+     * // Get one ResidentDocuments
+     * const residentDocuments = await prisma.residentDocuments.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ResidentDocumentsFindUniqueOrThrowArgs>(args: SelectSubset<T, ResidentDocumentsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ResidentDocumentsClient<$Result.GetResult<Prisma.$ResidentDocumentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ResidentDocuments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidentDocumentsFindFirstArgs} args - Arguments to find a ResidentDocuments
+     * @example
+     * // Get one ResidentDocuments
+     * const residentDocuments = await prisma.residentDocuments.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ResidentDocumentsFindFirstArgs>(args?: SelectSubset<T, ResidentDocumentsFindFirstArgs<ExtArgs>>): Prisma__ResidentDocumentsClient<$Result.GetResult<Prisma.$ResidentDocumentsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ResidentDocuments that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidentDocumentsFindFirstOrThrowArgs} args - Arguments to find a ResidentDocuments
+     * @example
+     * // Get one ResidentDocuments
+     * const residentDocuments = await prisma.residentDocuments.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ResidentDocumentsFindFirstOrThrowArgs>(args?: SelectSubset<T, ResidentDocumentsFindFirstOrThrowArgs<ExtArgs>>): Prisma__ResidentDocumentsClient<$Result.GetResult<Prisma.$ResidentDocumentsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ResidentDocuments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidentDocumentsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ResidentDocuments
+     * const residentDocuments = await prisma.residentDocuments.findMany()
+     * 
+     * // Get first 10 ResidentDocuments
+     * const residentDocuments = await prisma.residentDocuments.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const residentDocumentsWithIdOnly = await prisma.residentDocuments.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ResidentDocumentsFindManyArgs>(args?: SelectSubset<T, ResidentDocumentsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidentDocumentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ResidentDocuments.
+     * @param {ResidentDocumentsCreateArgs} args - Arguments to create a ResidentDocuments.
+     * @example
+     * // Create one ResidentDocuments
+     * const ResidentDocuments = await prisma.residentDocuments.create({
+     *   data: {
+     *     // ... data to create a ResidentDocuments
+     *   }
+     * })
+     * 
+     */
+    create<T extends ResidentDocumentsCreateArgs>(args: SelectSubset<T, ResidentDocumentsCreateArgs<ExtArgs>>): Prisma__ResidentDocumentsClient<$Result.GetResult<Prisma.$ResidentDocumentsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ResidentDocuments.
+     * @param {ResidentDocumentsCreateManyArgs} args - Arguments to create many ResidentDocuments.
+     * @example
+     * // Create many ResidentDocuments
+     * const residentDocuments = await prisma.residentDocuments.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ResidentDocumentsCreateManyArgs>(args?: SelectSubset<T, ResidentDocumentsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ResidentDocuments and returns the data saved in the database.
+     * @param {ResidentDocumentsCreateManyAndReturnArgs} args - Arguments to create many ResidentDocuments.
+     * @example
+     * // Create many ResidentDocuments
+     * const residentDocuments = await prisma.residentDocuments.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ResidentDocuments and only return the `id`
+     * const residentDocumentsWithIdOnly = await prisma.residentDocuments.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ResidentDocumentsCreateManyAndReturnArgs>(args?: SelectSubset<T, ResidentDocumentsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidentDocumentsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ResidentDocuments.
+     * @param {ResidentDocumentsDeleteArgs} args - Arguments to delete one ResidentDocuments.
+     * @example
+     * // Delete one ResidentDocuments
+     * const ResidentDocuments = await prisma.residentDocuments.delete({
+     *   where: {
+     *     // ... filter to delete one ResidentDocuments
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ResidentDocumentsDeleteArgs>(args: SelectSubset<T, ResidentDocumentsDeleteArgs<ExtArgs>>): Prisma__ResidentDocumentsClient<$Result.GetResult<Prisma.$ResidentDocumentsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ResidentDocuments.
+     * @param {ResidentDocumentsUpdateArgs} args - Arguments to update one ResidentDocuments.
+     * @example
+     * // Update one ResidentDocuments
+     * const residentDocuments = await prisma.residentDocuments.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ResidentDocumentsUpdateArgs>(args: SelectSubset<T, ResidentDocumentsUpdateArgs<ExtArgs>>): Prisma__ResidentDocumentsClient<$Result.GetResult<Prisma.$ResidentDocumentsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ResidentDocuments.
+     * @param {ResidentDocumentsDeleteManyArgs} args - Arguments to filter ResidentDocuments to delete.
+     * @example
+     * // Delete a few ResidentDocuments
+     * const { count } = await prisma.residentDocuments.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ResidentDocumentsDeleteManyArgs>(args?: SelectSubset<T, ResidentDocumentsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ResidentDocuments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidentDocumentsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ResidentDocuments
+     * const residentDocuments = await prisma.residentDocuments.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ResidentDocumentsUpdateManyArgs>(args: SelectSubset<T, ResidentDocumentsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ResidentDocuments and returns the data updated in the database.
+     * @param {ResidentDocumentsUpdateManyAndReturnArgs} args - Arguments to update many ResidentDocuments.
+     * @example
+     * // Update many ResidentDocuments
+     * const residentDocuments = await prisma.residentDocuments.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ResidentDocuments and only return the `id`
+     * const residentDocumentsWithIdOnly = await prisma.residentDocuments.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ResidentDocumentsUpdateManyAndReturnArgs>(args: SelectSubset<T, ResidentDocumentsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidentDocumentsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ResidentDocuments.
+     * @param {ResidentDocumentsUpsertArgs} args - Arguments to update or create a ResidentDocuments.
+     * @example
+     * // Update or create a ResidentDocuments
+     * const residentDocuments = await prisma.residentDocuments.upsert({
+     *   create: {
+     *     // ... data to create a ResidentDocuments
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ResidentDocuments we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ResidentDocumentsUpsertArgs>(args: SelectSubset<T, ResidentDocumentsUpsertArgs<ExtArgs>>): Prisma__ResidentDocumentsClient<$Result.GetResult<Prisma.$ResidentDocumentsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ResidentDocuments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidentDocumentsCountArgs} args - Arguments to filter ResidentDocuments to count.
+     * @example
+     * // Count the number of ResidentDocuments
+     * const count = await prisma.residentDocuments.count({
+     *   where: {
+     *     // ... the filter for the ResidentDocuments we want to count
+     *   }
+     * })
+    **/
+    count<T extends ResidentDocumentsCountArgs>(
+      args?: Subset<T, ResidentDocumentsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ResidentDocumentsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ResidentDocuments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidentDocumentsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ResidentDocumentsAggregateArgs>(args: Subset<T, ResidentDocumentsAggregateArgs>): Prisma.PrismaPromise<GetResidentDocumentsAggregateType<T>>
+
+    /**
+     * Group by ResidentDocuments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidentDocumentsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ResidentDocumentsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ResidentDocumentsGroupByArgs['orderBy'] }
+        : { orderBy?: ResidentDocumentsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ResidentDocumentsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetResidentDocumentsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ResidentDocuments model
+   */
+  readonly fields: ResidentDocumentsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ResidentDocuments.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ResidentDocumentsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    resident<T extends ResidentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResidentsDefaultArgs<ExtArgs>>): Prisma__ResidentsClient<$Result.GetResult<Prisma.$ResidentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ResidentDocuments model
+   */
+  interface ResidentDocumentsFieldRefs {
+    readonly id: FieldRef<"ResidentDocuments", 'String'>
+    readonly residentId: FieldRef<"ResidentDocuments", 'String'>
+    readonly documentType: FieldRef<"ResidentDocuments", 'DocumentType'>
+    readonly fileName: FieldRef<"ResidentDocuments", 'String'>
+    readonly fileUrl: FieldRef<"ResidentDocuments", 'String'>
+    readonly fileSize: FieldRef<"ResidentDocuments", 'Int'>
+    readonly uploadedAt: FieldRef<"ResidentDocuments", 'DateTime'>
+    readonly verifiedBy: FieldRef<"ResidentDocuments", 'String'>
+    readonly verifiedAt: FieldRef<"ResidentDocuments", 'DateTime'>
+    readonly isVerified: FieldRef<"ResidentDocuments", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ResidentDocuments findUnique
+   */
+  export type ResidentDocumentsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidentDocuments
+     */
+    select?: ResidentDocumentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidentDocuments
+     */
+    omit?: ResidentDocumentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidentDocumentsInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidentDocuments to fetch.
+     */
+    where: ResidentDocumentsWhereUniqueInput
+  }
+
+  /**
+   * ResidentDocuments findUniqueOrThrow
+   */
+  export type ResidentDocumentsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidentDocuments
+     */
+    select?: ResidentDocumentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidentDocuments
+     */
+    omit?: ResidentDocumentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidentDocumentsInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidentDocuments to fetch.
+     */
+    where: ResidentDocumentsWhereUniqueInput
+  }
+
+  /**
+   * ResidentDocuments findFirst
+   */
+  export type ResidentDocumentsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidentDocuments
+     */
+    select?: ResidentDocumentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidentDocuments
+     */
+    omit?: ResidentDocumentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidentDocumentsInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidentDocuments to fetch.
+     */
+    where?: ResidentDocumentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResidentDocuments to fetch.
+     */
+    orderBy?: ResidentDocumentsOrderByWithRelationInput | ResidentDocumentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResidentDocuments.
+     */
+    cursor?: ResidentDocumentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResidentDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResidentDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResidentDocuments.
+     */
+    distinct?: ResidentDocumentsScalarFieldEnum | ResidentDocumentsScalarFieldEnum[]
+  }
+
+  /**
+   * ResidentDocuments findFirstOrThrow
+   */
+  export type ResidentDocumentsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidentDocuments
+     */
+    select?: ResidentDocumentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidentDocuments
+     */
+    omit?: ResidentDocumentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidentDocumentsInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidentDocuments to fetch.
+     */
+    where?: ResidentDocumentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResidentDocuments to fetch.
+     */
+    orderBy?: ResidentDocumentsOrderByWithRelationInput | ResidentDocumentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResidentDocuments.
+     */
+    cursor?: ResidentDocumentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResidentDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResidentDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResidentDocuments.
+     */
+    distinct?: ResidentDocumentsScalarFieldEnum | ResidentDocumentsScalarFieldEnum[]
+  }
+
+  /**
+   * ResidentDocuments findMany
+   */
+  export type ResidentDocumentsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidentDocuments
+     */
+    select?: ResidentDocumentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidentDocuments
+     */
+    omit?: ResidentDocumentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidentDocumentsInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidentDocuments to fetch.
+     */
+    where?: ResidentDocumentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResidentDocuments to fetch.
+     */
+    orderBy?: ResidentDocumentsOrderByWithRelationInput | ResidentDocumentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ResidentDocuments.
+     */
+    cursor?: ResidentDocumentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResidentDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResidentDocuments.
+     */
+    skip?: number
+    distinct?: ResidentDocumentsScalarFieldEnum | ResidentDocumentsScalarFieldEnum[]
+  }
+
+  /**
+   * ResidentDocuments create
+   */
+  export type ResidentDocumentsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidentDocuments
+     */
+    select?: ResidentDocumentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidentDocuments
+     */
+    omit?: ResidentDocumentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidentDocumentsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ResidentDocuments.
+     */
+    data: XOR<ResidentDocumentsCreateInput, ResidentDocumentsUncheckedCreateInput>
+  }
+
+  /**
+   * ResidentDocuments createMany
+   */
+  export type ResidentDocumentsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ResidentDocuments.
+     */
+    data: ResidentDocumentsCreateManyInput | ResidentDocumentsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ResidentDocuments createManyAndReturn
+   */
+  export type ResidentDocumentsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidentDocuments
+     */
+    select?: ResidentDocumentsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidentDocuments
+     */
+    omit?: ResidentDocumentsOmit<ExtArgs> | null
+    /**
+     * The data used to create many ResidentDocuments.
+     */
+    data: ResidentDocumentsCreateManyInput | ResidentDocumentsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidentDocumentsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ResidentDocuments update
+   */
+  export type ResidentDocumentsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidentDocuments
+     */
+    select?: ResidentDocumentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidentDocuments
+     */
+    omit?: ResidentDocumentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidentDocumentsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ResidentDocuments.
+     */
+    data: XOR<ResidentDocumentsUpdateInput, ResidentDocumentsUncheckedUpdateInput>
+    /**
+     * Choose, which ResidentDocuments to update.
+     */
+    where: ResidentDocumentsWhereUniqueInput
+  }
+
+  /**
+   * ResidentDocuments updateMany
+   */
+  export type ResidentDocumentsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ResidentDocuments.
+     */
+    data: XOR<ResidentDocumentsUpdateManyMutationInput, ResidentDocumentsUncheckedUpdateManyInput>
+    /**
+     * Filter which ResidentDocuments to update
+     */
+    where?: ResidentDocumentsWhereInput
+    /**
+     * Limit how many ResidentDocuments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ResidentDocuments updateManyAndReturn
+   */
+  export type ResidentDocumentsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidentDocuments
+     */
+    select?: ResidentDocumentsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidentDocuments
+     */
+    omit?: ResidentDocumentsOmit<ExtArgs> | null
+    /**
+     * The data used to update ResidentDocuments.
+     */
+    data: XOR<ResidentDocumentsUpdateManyMutationInput, ResidentDocumentsUncheckedUpdateManyInput>
+    /**
+     * Filter which ResidentDocuments to update
+     */
+    where?: ResidentDocumentsWhereInput
+    /**
+     * Limit how many ResidentDocuments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidentDocumentsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ResidentDocuments upsert
+   */
+  export type ResidentDocumentsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidentDocuments
+     */
+    select?: ResidentDocumentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidentDocuments
+     */
+    omit?: ResidentDocumentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidentDocumentsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ResidentDocuments to update in case it exists.
+     */
+    where: ResidentDocumentsWhereUniqueInput
+    /**
+     * In case the ResidentDocuments found by the `where` argument doesn't exist, create a new ResidentDocuments with this data.
+     */
+    create: XOR<ResidentDocumentsCreateInput, ResidentDocumentsUncheckedCreateInput>
+    /**
+     * In case the ResidentDocuments was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ResidentDocumentsUpdateInput, ResidentDocumentsUncheckedUpdateInput>
+  }
+
+  /**
+   * ResidentDocuments delete
+   */
+  export type ResidentDocumentsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidentDocuments
+     */
+    select?: ResidentDocumentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidentDocuments
+     */
+    omit?: ResidentDocumentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidentDocumentsInclude<ExtArgs> | null
+    /**
+     * Filter which ResidentDocuments to delete.
+     */
+    where: ResidentDocumentsWhereUniqueInput
+  }
+
+  /**
+   * ResidentDocuments deleteMany
+   */
+  export type ResidentDocumentsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResidentDocuments to delete
+     */
+    where?: ResidentDocumentsWhereInput
+    /**
+     * Limit how many ResidentDocuments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ResidentDocuments without action
+   */
+  export type ResidentDocumentsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidentDocuments
+     */
+    select?: ResidentDocumentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidentDocuments
+     */
+    omit?: ResidentDocumentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidentDocumentsInclude<ExtArgs> | null
   }
 
 
@@ -12229,6 +16198,7 @@ export namespace Prisma {
     Payments?: boolean | Units$PaymentsArgs<ExtArgs>
     Bills?: boolean | Units$BillsArgs<ExtArgs>
     Complaints?: boolean | Units$ComplaintsArgs<ExtArgs>
+    FamilyCodes?: boolean | Units$FamilyCodesArgs<ExtArgs>
     _count?: boolean | UnitsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["units"]>
 
@@ -12283,6 +16253,7 @@ export namespace Prisma {
     Payments?: boolean | Units$PaymentsArgs<ExtArgs>
     Bills?: boolean | Units$BillsArgs<ExtArgs>
     Complaints?: boolean | Units$ComplaintsArgs<ExtArgs>
+    FamilyCodes?: boolean | Units$FamilyCodesArgs<ExtArgs>
     _count?: boolean | UnitsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UnitsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -12295,6 +16266,7 @@ export namespace Prisma {
       Payments: Prisma.$PaymentsPayload<ExtArgs>[]
       Bills: Prisma.$BillsPayload<ExtArgs>[]
       Complaints: Prisma.$ComplaintsPayload<ExtArgs>[]
+      FamilyCodes: Prisma.$FamilyCodesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12707,6 +16679,7 @@ export namespace Prisma {
     Payments<T extends Units$PaymentsArgs<ExtArgs> = {}>(args?: Subset<T, Units$PaymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Bills<T extends Units$BillsArgs<ExtArgs> = {}>(args?: Subset<T, Units$BillsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Complaints<T extends Units$ComplaintsArgs<ExtArgs> = {}>(args?: Subset<T, Units$ComplaintsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComplaintsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FamilyCodes<T extends Units$FamilyCodesArgs<ExtArgs> = {}>(args?: Subset<T, Units$FamilyCodesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FamilyCodesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13229,6 +17202,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ComplaintsScalarFieldEnum | ComplaintsScalarFieldEnum[]
+  }
+
+  /**
+   * Units.FamilyCodes
+   */
+  export type Units$FamilyCodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FamilyCodes
+     */
+    select?: FamilyCodesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FamilyCodes
+     */
+    omit?: FamilyCodesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FamilyCodesInclude<ExtArgs> | null
+    where?: FamilyCodesWhereInput
+    orderBy?: FamilyCodesOrderByWithRelationInput | FamilyCodesOrderByWithRelationInput[]
+    cursor?: FamilyCodesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FamilyCodesScalarFieldEnum | FamilyCodesScalarFieldEnum[]
   }
 
   /**
@@ -17877,11 +21874,60 @@ export namespace Prisma {
     kprPaymentAmount: 'kprPaymentAmount',
     kprDueDate: 'kprDueDate',
     isKprPaid: 'isKprPaid',
+    registrationStatus: 'registrationStatus',
+    registrationMethod: 'registrationMethod',
+    approvedBy: 'approvedBy',
+    approvalDate: 'approvalDate',
+    rejectionReason: 'rejectionReason',
+    pendingApproval: 'pendingApproval',
+    approvedByHeadOfHousehold: 'approvedByHeadOfHousehold',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type ResidentsScalarFieldEnum = (typeof ResidentsScalarFieldEnum)[keyof typeof ResidentsScalarFieldEnum]
+
+
+  export const FamilyCodesScalarFieldEnum: {
+    id: 'id',
+    code: 'code',
+    headOfHousehold: 'headOfHousehold',
+    unitId: 'unitId',
+    isActive: 'isActive',
+    maxMembers: 'maxMembers',
+    createdAt: 'createdAt'
+  };
+
+  export type FamilyCodesScalarFieldEnum = (typeof FamilyCodesScalarFieldEnum)[keyof typeof FamilyCodesScalarFieldEnum]
+
+
+  export const FamilyApprovalsScalarFieldEnum: {
+    id: 'id',
+    familyMemberId: 'familyMemberId',
+    headOfHouseholdId: 'headOfHouseholdId',
+    status: 'status',
+    requestedAt: 'requestedAt',
+    respondedAt: 'respondedAt',
+    notes: 'notes'
+  };
+
+  export type FamilyApprovalsScalarFieldEnum = (typeof FamilyApprovalsScalarFieldEnum)[keyof typeof FamilyApprovalsScalarFieldEnum]
+
+
+  export const ResidentDocumentsScalarFieldEnum: {
+    id: 'id',
+    residentId: 'residentId',
+    documentType: 'documentType',
+    fileName: 'fileName',
+    fileUrl: 'fileUrl',
+    fileSize: 'fileSize',
+    uploadedAt: 'uploadedAt',
+    verifiedBy: 'verifiedBy',
+    verifiedAt: 'verifiedAt',
+    isVerified: 'isVerified'
+  };
+
+  export type ResidentDocumentsScalarFieldEnum = (typeof ResidentDocumentsScalarFieldEnum)[keyof typeof ResidentDocumentsScalarFieldEnum]
 
 
   export const EmployeesScalarFieldEnum: {
@@ -18172,16 +22218,30 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'EmployeeRole'
+   * Reference to a field of type 'RegistrationStatus'
    */
-  export type EnumEmployeeRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmployeeRole'>
+  export type EnumRegistrationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RegistrationStatus'>
     
 
 
   /**
-   * Reference to a field of type 'EmployeeRole[]'
+   * Reference to a field of type 'RegistrationStatus[]'
    */
-  export type ListEnumEmployeeRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmployeeRole[]'>
+  export type ListEnumRegistrationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RegistrationStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'RegistrationMethod'
+   */
+  export type EnumRegistrationMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RegistrationMethod'>
+    
+
+
+  /**
+   * Reference to a field of type 'RegistrationMethod[]'
+   */
+  export type ListEnumRegistrationMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RegistrationMethod[]'>
     
 
 
@@ -18196,6 +22256,48 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ApprovalStatus'
+   */
+  export type EnumApprovalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ApprovalStatus[]'
+   */
+  export type ListEnumApprovalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DocumentType'
+   */
+  export type EnumDocumentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DocumentType'>
+    
+
+
+  /**
+   * Reference to a field of type 'DocumentType[]'
+   */
+  export type ListEnumDocumentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DocumentType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'EmployeeRole'
+   */
+  export type EnumEmployeeRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmployeeRole'>
+    
+
+
+  /**
+   * Reference to a field of type 'EmployeeRole[]'
+   */
+  export type ListEnumEmployeeRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmployeeRole[]'>
     
 
 
@@ -18454,12 +22556,23 @@ export namespace Prisma {
     kprPaymentAmount?: FloatNullableFilter<"Residents"> | number | null
     kprDueDate?: DateTimeNullableFilter<"Residents"> | Date | string | null
     isKprPaid?: BoolNullableFilter<"Residents"> | boolean | null
+    registrationStatus?: EnumRegistrationStatusFilter<"Residents"> | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFilter<"Residents"> | $Enums.RegistrationMethod
+    approvedBy?: UuidNullableFilter<"Residents"> | string | null
+    approvalDate?: DateTimeNullableFilter<"Residents"> | Date | string | null
+    rejectionReason?: StringNullableFilter<"Residents"> | string | null
+    pendingApproval?: BoolFilter<"Residents"> | boolean
+    approvedByHeadOfHousehold?: UuidNullableFilter<"Residents"> | string | null
     createdAt?: DateTimeFilter<"Residents"> | Date | string
     updatedAt?: DateTimeFilter<"Residents"> | Date | string
     user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
     unit?: XOR<UnitsNullableScalarRelationFilter, UnitsWhereInput> | null
     Complaints?: ComplaintsListRelationFilter
     Payments?: PaymentsListRelationFilter
+    ResidentDocuments?: ResidentDocumentsListRelationFilter
+    FamilyCodes?: FamilyCodesListRelationFilter
+    FamilyMemberApprovals?: FamilyApprovalsListRelationFilter
+    FamilyApprovals?: FamilyApprovalsListRelationFilter
   }
 
   export type ResidentsOrderByWithRelationInput = {
@@ -18475,12 +22588,23 @@ export namespace Prisma {
     kprPaymentAmount?: SortOrderInput | SortOrder
     kprDueDate?: SortOrderInput | SortOrder
     isKprPaid?: SortOrderInput | SortOrder
+    registrationStatus?: SortOrder
+    registrationMethod?: SortOrder
+    approvedBy?: SortOrderInput | SortOrder
+    approvalDate?: SortOrderInput | SortOrder
+    rejectionReason?: SortOrderInput | SortOrder
+    pendingApproval?: SortOrder
+    approvedByHeadOfHousehold?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UsersOrderByWithRelationInput
     unit?: UnitsOrderByWithRelationInput
     Complaints?: ComplaintsOrderByRelationAggregateInput
     Payments?: PaymentsOrderByRelationAggregateInput
+    ResidentDocuments?: ResidentDocumentsOrderByRelationAggregateInput
+    FamilyCodes?: FamilyCodesOrderByRelationAggregateInput
+    FamilyMemberApprovals?: FamilyApprovalsOrderByRelationAggregateInput
+    FamilyApprovals?: FamilyApprovalsOrderByRelationAggregateInput
   }
 
   export type ResidentsWhereUniqueInput = Prisma.AtLeast<{
@@ -18499,12 +22623,23 @@ export namespace Prisma {
     kprPaymentAmount?: FloatNullableFilter<"Residents"> | number | null
     kprDueDate?: DateTimeNullableFilter<"Residents"> | Date | string | null
     isKprPaid?: BoolNullableFilter<"Residents"> | boolean | null
+    registrationStatus?: EnumRegistrationStatusFilter<"Residents"> | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFilter<"Residents"> | $Enums.RegistrationMethod
+    approvedBy?: UuidNullableFilter<"Residents"> | string | null
+    approvalDate?: DateTimeNullableFilter<"Residents"> | Date | string | null
+    rejectionReason?: StringNullableFilter<"Residents"> | string | null
+    pendingApproval?: BoolFilter<"Residents"> | boolean
+    approvedByHeadOfHousehold?: UuidNullableFilter<"Residents"> | string | null
     createdAt?: DateTimeFilter<"Residents"> | Date | string
     updatedAt?: DateTimeFilter<"Residents"> | Date | string
     user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
     unit?: XOR<UnitsNullableScalarRelationFilter, UnitsWhereInput> | null
     Complaints?: ComplaintsListRelationFilter
     Payments?: PaymentsListRelationFilter
+    ResidentDocuments?: ResidentDocumentsListRelationFilter
+    FamilyCodes?: FamilyCodesListRelationFilter
+    FamilyMemberApprovals?: FamilyApprovalsListRelationFilter
+    FamilyApprovals?: FamilyApprovalsListRelationFilter
   }, "id" | "userId">
 
   export type ResidentsOrderByWithAggregationInput = {
@@ -18520,6 +22655,13 @@ export namespace Prisma {
     kprPaymentAmount?: SortOrderInput | SortOrder
     kprDueDate?: SortOrderInput | SortOrder
     isKprPaid?: SortOrderInput | SortOrder
+    registrationStatus?: SortOrder
+    registrationMethod?: SortOrder
+    approvedBy?: SortOrderInput | SortOrder
+    approvalDate?: SortOrderInput | SortOrder
+    rejectionReason?: SortOrderInput | SortOrder
+    pendingApproval?: SortOrder
+    approvedByHeadOfHousehold?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ResidentsCountOrderByAggregateInput
@@ -18545,8 +22687,235 @@ export namespace Prisma {
     kprPaymentAmount?: FloatNullableWithAggregatesFilter<"Residents"> | number | null
     kprDueDate?: DateTimeNullableWithAggregatesFilter<"Residents"> | Date | string | null
     isKprPaid?: BoolNullableWithAggregatesFilter<"Residents"> | boolean | null
+    registrationStatus?: EnumRegistrationStatusWithAggregatesFilter<"Residents"> | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodWithAggregatesFilter<"Residents"> | $Enums.RegistrationMethod
+    approvedBy?: UuidNullableWithAggregatesFilter<"Residents"> | string | null
+    approvalDate?: DateTimeNullableWithAggregatesFilter<"Residents"> | Date | string | null
+    rejectionReason?: StringNullableWithAggregatesFilter<"Residents"> | string | null
+    pendingApproval?: BoolWithAggregatesFilter<"Residents"> | boolean
+    approvedByHeadOfHousehold?: UuidNullableWithAggregatesFilter<"Residents"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Residents"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Residents"> | Date | string
+  }
+
+  export type FamilyCodesWhereInput = {
+    AND?: FamilyCodesWhereInput | FamilyCodesWhereInput[]
+    OR?: FamilyCodesWhereInput[]
+    NOT?: FamilyCodesWhereInput | FamilyCodesWhereInput[]
+    id?: UuidFilter<"FamilyCodes"> | string
+    code?: StringFilter<"FamilyCodes"> | string
+    headOfHousehold?: UuidFilter<"FamilyCodes"> | string
+    unitId?: UuidNullableFilter<"FamilyCodes"> | string | null
+    isActive?: BoolFilter<"FamilyCodes"> | boolean
+    maxMembers?: IntFilter<"FamilyCodes"> | number
+    createdAt?: DateTimeFilter<"FamilyCodes"> | Date | string
+    headResident?: XOR<ResidentsScalarRelationFilter, ResidentsWhereInput>
+    unit?: XOR<UnitsNullableScalarRelationFilter, UnitsWhereInput> | null
+  }
+
+  export type FamilyCodesOrderByWithRelationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    headOfHousehold?: SortOrder
+    unitId?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    maxMembers?: SortOrder
+    createdAt?: SortOrder
+    headResident?: ResidentsOrderByWithRelationInput
+    unit?: UnitsOrderByWithRelationInput
+  }
+
+  export type FamilyCodesWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    code?: string
+    AND?: FamilyCodesWhereInput | FamilyCodesWhereInput[]
+    OR?: FamilyCodesWhereInput[]
+    NOT?: FamilyCodesWhereInput | FamilyCodesWhereInput[]
+    headOfHousehold?: UuidFilter<"FamilyCodes"> | string
+    unitId?: UuidNullableFilter<"FamilyCodes"> | string | null
+    isActive?: BoolFilter<"FamilyCodes"> | boolean
+    maxMembers?: IntFilter<"FamilyCodes"> | number
+    createdAt?: DateTimeFilter<"FamilyCodes"> | Date | string
+    headResident?: XOR<ResidentsScalarRelationFilter, ResidentsWhereInput>
+    unit?: XOR<UnitsNullableScalarRelationFilter, UnitsWhereInput> | null
+  }, "id" | "code">
+
+  export type FamilyCodesOrderByWithAggregationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    headOfHousehold?: SortOrder
+    unitId?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    maxMembers?: SortOrder
+    createdAt?: SortOrder
+    _count?: FamilyCodesCountOrderByAggregateInput
+    _avg?: FamilyCodesAvgOrderByAggregateInput
+    _max?: FamilyCodesMaxOrderByAggregateInput
+    _min?: FamilyCodesMinOrderByAggregateInput
+    _sum?: FamilyCodesSumOrderByAggregateInput
+  }
+
+  export type FamilyCodesScalarWhereWithAggregatesInput = {
+    AND?: FamilyCodesScalarWhereWithAggregatesInput | FamilyCodesScalarWhereWithAggregatesInput[]
+    OR?: FamilyCodesScalarWhereWithAggregatesInput[]
+    NOT?: FamilyCodesScalarWhereWithAggregatesInput | FamilyCodesScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"FamilyCodes"> | string
+    code?: StringWithAggregatesFilter<"FamilyCodes"> | string
+    headOfHousehold?: UuidWithAggregatesFilter<"FamilyCodes"> | string
+    unitId?: UuidNullableWithAggregatesFilter<"FamilyCodes"> | string | null
+    isActive?: BoolWithAggregatesFilter<"FamilyCodes"> | boolean
+    maxMembers?: IntWithAggregatesFilter<"FamilyCodes"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"FamilyCodes"> | Date | string
+  }
+
+  export type FamilyApprovalsWhereInput = {
+    AND?: FamilyApprovalsWhereInput | FamilyApprovalsWhereInput[]
+    OR?: FamilyApprovalsWhereInput[]
+    NOT?: FamilyApprovalsWhereInput | FamilyApprovalsWhereInput[]
+    id?: UuidFilter<"FamilyApprovals"> | string
+    familyMemberId?: UuidFilter<"FamilyApprovals"> | string
+    headOfHouseholdId?: UuidFilter<"FamilyApprovals"> | string
+    status?: EnumApprovalStatusFilter<"FamilyApprovals"> | $Enums.ApprovalStatus
+    requestedAt?: DateTimeFilter<"FamilyApprovals"> | Date | string
+    respondedAt?: DateTimeNullableFilter<"FamilyApprovals"> | Date | string | null
+    notes?: StringNullableFilter<"FamilyApprovals"> | string | null
+    familyMember?: XOR<ResidentsScalarRelationFilter, ResidentsWhereInput>
+    headOfHousehold?: XOR<ResidentsScalarRelationFilter, ResidentsWhereInput>
+  }
+
+  export type FamilyApprovalsOrderByWithRelationInput = {
+    id?: SortOrder
+    familyMemberId?: SortOrder
+    headOfHouseholdId?: SortOrder
+    status?: SortOrder
+    requestedAt?: SortOrder
+    respondedAt?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    familyMember?: ResidentsOrderByWithRelationInput
+    headOfHousehold?: ResidentsOrderByWithRelationInput
+  }
+
+  export type FamilyApprovalsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FamilyApprovalsWhereInput | FamilyApprovalsWhereInput[]
+    OR?: FamilyApprovalsWhereInput[]
+    NOT?: FamilyApprovalsWhereInput | FamilyApprovalsWhereInput[]
+    familyMemberId?: UuidFilter<"FamilyApprovals"> | string
+    headOfHouseholdId?: UuidFilter<"FamilyApprovals"> | string
+    status?: EnumApprovalStatusFilter<"FamilyApprovals"> | $Enums.ApprovalStatus
+    requestedAt?: DateTimeFilter<"FamilyApprovals"> | Date | string
+    respondedAt?: DateTimeNullableFilter<"FamilyApprovals"> | Date | string | null
+    notes?: StringNullableFilter<"FamilyApprovals"> | string | null
+    familyMember?: XOR<ResidentsScalarRelationFilter, ResidentsWhereInput>
+    headOfHousehold?: XOR<ResidentsScalarRelationFilter, ResidentsWhereInput>
+  }, "id">
+
+  export type FamilyApprovalsOrderByWithAggregationInput = {
+    id?: SortOrder
+    familyMemberId?: SortOrder
+    headOfHouseholdId?: SortOrder
+    status?: SortOrder
+    requestedAt?: SortOrder
+    respondedAt?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    _count?: FamilyApprovalsCountOrderByAggregateInput
+    _max?: FamilyApprovalsMaxOrderByAggregateInput
+    _min?: FamilyApprovalsMinOrderByAggregateInput
+  }
+
+  export type FamilyApprovalsScalarWhereWithAggregatesInput = {
+    AND?: FamilyApprovalsScalarWhereWithAggregatesInput | FamilyApprovalsScalarWhereWithAggregatesInput[]
+    OR?: FamilyApprovalsScalarWhereWithAggregatesInput[]
+    NOT?: FamilyApprovalsScalarWhereWithAggregatesInput | FamilyApprovalsScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"FamilyApprovals"> | string
+    familyMemberId?: UuidWithAggregatesFilter<"FamilyApprovals"> | string
+    headOfHouseholdId?: UuidWithAggregatesFilter<"FamilyApprovals"> | string
+    status?: EnumApprovalStatusWithAggregatesFilter<"FamilyApprovals"> | $Enums.ApprovalStatus
+    requestedAt?: DateTimeWithAggregatesFilter<"FamilyApprovals"> | Date | string
+    respondedAt?: DateTimeNullableWithAggregatesFilter<"FamilyApprovals"> | Date | string | null
+    notes?: StringNullableWithAggregatesFilter<"FamilyApprovals"> | string | null
+  }
+
+  export type ResidentDocumentsWhereInput = {
+    AND?: ResidentDocumentsWhereInput | ResidentDocumentsWhereInput[]
+    OR?: ResidentDocumentsWhereInput[]
+    NOT?: ResidentDocumentsWhereInput | ResidentDocumentsWhereInput[]
+    id?: UuidFilter<"ResidentDocuments"> | string
+    residentId?: UuidFilter<"ResidentDocuments"> | string
+    documentType?: EnumDocumentTypeFilter<"ResidentDocuments"> | $Enums.DocumentType
+    fileName?: StringFilter<"ResidentDocuments"> | string
+    fileUrl?: StringFilter<"ResidentDocuments"> | string
+    fileSize?: IntFilter<"ResidentDocuments"> | number
+    uploadedAt?: DateTimeFilter<"ResidentDocuments"> | Date | string
+    verifiedBy?: UuidNullableFilter<"ResidentDocuments"> | string | null
+    verifiedAt?: DateTimeNullableFilter<"ResidentDocuments"> | Date | string | null
+    isVerified?: BoolFilter<"ResidentDocuments"> | boolean
+    resident?: XOR<ResidentsScalarRelationFilter, ResidentsWhereInput>
+  }
+
+  export type ResidentDocumentsOrderByWithRelationInput = {
+    id?: SortOrder
+    residentId?: SortOrder
+    documentType?: SortOrder
+    fileName?: SortOrder
+    fileUrl?: SortOrder
+    fileSize?: SortOrder
+    uploadedAt?: SortOrder
+    verifiedBy?: SortOrderInput | SortOrder
+    verifiedAt?: SortOrderInput | SortOrder
+    isVerified?: SortOrder
+    resident?: ResidentsOrderByWithRelationInput
+  }
+
+  export type ResidentDocumentsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ResidentDocumentsWhereInput | ResidentDocumentsWhereInput[]
+    OR?: ResidentDocumentsWhereInput[]
+    NOT?: ResidentDocumentsWhereInput | ResidentDocumentsWhereInput[]
+    residentId?: UuidFilter<"ResidentDocuments"> | string
+    documentType?: EnumDocumentTypeFilter<"ResidentDocuments"> | $Enums.DocumentType
+    fileName?: StringFilter<"ResidentDocuments"> | string
+    fileUrl?: StringFilter<"ResidentDocuments"> | string
+    fileSize?: IntFilter<"ResidentDocuments"> | number
+    uploadedAt?: DateTimeFilter<"ResidentDocuments"> | Date | string
+    verifiedBy?: UuidNullableFilter<"ResidentDocuments"> | string | null
+    verifiedAt?: DateTimeNullableFilter<"ResidentDocuments"> | Date | string | null
+    isVerified?: BoolFilter<"ResidentDocuments"> | boolean
+    resident?: XOR<ResidentsScalarRelationFilter, ResidentsWhereInput>
+  }, "id">
+
+  export type ResidentDocumentsOrderByWithAggregationInput = {
+    id?: SortOrder
+    residentId?: SortOrder
+    documentType?: SortOrder
+    fileName?: SortOrder
+    fileUrl?: SortOrder
+    fileSize?: SortOrder
+    uploadedAt?: SortOrder
+    verifiedBy?: SortOrderInput | SortOrder
+    verifiedAt?: SortOrderInput | SortOrder
+    isVerified?: SortOrder
+    _count?: ResidentDocumentsCountOrderByAggregateInput
+    _avg?: ResidentDocumentsAvgOrderByAggregateInput
+    _max?: ResidentDocumentsMaxOrderByAggregateInput
+    _min?: ResidentDocumentsMinOrderByAggregateInput
+    _sum?: ResidentDocumentsSumOrderByAggregateInput
+  }
+
+  export type ResidentDocumentsScalarWhereWithAggregatesInput = {
+    AND?: ResidentDocumentsScalarWhereWithAggregatesInput | ResidentDocumentsScalarWhereWithAggregatesInput[]
+    OR?: ResidentDocumentsScalarWhereWithAggregatesInput[]
+    NOT?: ResidentDocumentsScalarWhereWithAggregatesInput | ResidentDocumentsScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"ResidentDocuments"> | string
+    residentId?: UuidWithAggregatesFilter<"ResidentDocuments"> | string
+    documentType?: EnumDocumentTypeWithAggregatesFilter<"ResidentDocuments"> | $Enums.DocumentType
+    fileName?: StringWithAggregatesFilter<"ResidentDocuments"> | string
+    fileUrl?: StringWithAggregatesFilter<"ResidentDocuments"> | string
+    fileSize?: IntWithAggregatesFilter<"ResidentDocuments"> | number
+    uploadedAt?: DateTimeWithAggregatesFilter<"ResidentDocuments"> | Date | string
+    verifiedBy?: UuidNullableWithAggregatesFilter<"ResidentDocuments"> | string | null
+    verifiedAt?: DateTimeNullableWithAggregatesFilter<"ResidentDocuments"> | Date | string | null
+    isVerified?: BoolWithAggregatesFilter<"ResidentDocuments"> | boolean
   }
 
   export type EmployeesWhereInput = {
@@ -19041,6 +23410,7 @@ export namespace Prisma {
     Payments?: PaymentsListRelationFilter
     Bills?: BillsListRelationFilter
     Complaints?: ComplaintsListRelationFilter
+    FamilyCodes?: FamilyCodesListRelationFilter
   }
 
   export type UnitsOrderByWithRelationInput = {
@@ -19060,6 +23430,7 @@ export namespace Prisma {
     Payments?: PaymentsOrderByRelationAggregateInput
     Bills?: BillsOrderByRelationAggregateInput
     Complaints?: ComplaintsOrderByRelationAggregateInput
+    FamilyCodes?: FamilyCodesOrderByRelationAggregateInput
   }
 
   export type UnitsWhereUniqueInput = Prisma.AtLeast<{
@@ -19082,6 +23453,7 @@ export namespace Prisma {
     Payments?: PaymentsListRelationFilter
     Bills?: BillsListRelationFilter
     Complaints?: ComplaintsListRelationFilter
+    FamilyCodes?: FamilyCodesListRelationFilter
   }, "id" | "unitNumber">
 
   export type UnitsOrderByWithAggregationInput = {
@@ -19610,12 +23982,23 @@ export namespace Prisma {
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
     isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UsersCreateNestedOneWithoutResidentInput
     unit?: UnitsCreateNestedOneWithoutResidentsInput
     Complaints?: ComplaintsCreateNestedManyWithoutResidentInput
     Payments?: PaymentsCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsCreateNestedManyWithoutHeadOfHouseholdInput
   }
 
   export type ResidentsUncheckedCreateInput = {
@@ -19631,10 +24014,21 @@ export namespace Prisma {
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
     isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     Complaints?: ComplaintsUncheckedCreateNestedManyWithoutResidentInput
     Payments?: PaymentsUncheckedCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsUncheckedCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesUncheckedCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutHeadOfHouseholdInput
   }
 
   export type ResidentsUpdateInput = {
@@ -19648,12 +24042,23 @@ export namespace Prisma {
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutResidentNestedInput
     unit?: UnitsUpdateOneWithoutResidentsNestedInput
     Complaints?: ComplaintsUpdateManyWithoutResidentNestedInput
     Payments?: PaymentsUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUpdateManyWithoutHeadOfHouseholdNestedInput
   }
 
   export type ResidentsUncheckedUpdateInput = {
@@ -19669,10 +24074,21 @@ export namespace Prisma {
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Complaints?: ComplaintsUncheckedUpdateManyWithoutResidentNestedInput
     Payments?: PaymentsUncheckedUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUncheckedUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUncheckedUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutHeadOfHouseholdNestedInput
   }
 
   export type ResidentsCreateManyInput = {
@@ -19688,6 +24104,13 @@ export namespace Prisma {
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
     isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -19703,6 +24126,13 @@ export namespace Prisma {
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19720,8 +24150,241 @@ export namespace Prisma {
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FamilyCodesCreateInput = {
+    id?: string
+    code: string
+    isActive?: boolean
+    maxMembers?: number
+    createdAt?: Date | string
+    headResident: ResidentsCreateNestedOneWithoutFamilyCodesInput
+    unit?: UnitsCreateNestedOneWithoutFamilyCodesInput
+  }
+
+  export type FamilyCodesUncheckedCreateInput = {
+    id?: string
+    code: string
+    headOfHousehold: string
+    unitId?: string | null
+    isActive?: boolean
+    maxMembers?: number
+    createdAt?: Date | string
+  }
+
+  export type FamilyCodesUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    maxMembers?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    headResident?: ResidentsUpdateOneRequiredWithoutFamilyCodesNestedInput
+    unit?: UnitsUpdateOneWithoutFamilyCodesNestedInput
+  }
+
+  export type FamilyCodesUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    headOfHousehold?: StringFieldUpdateOperationsInput | string
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    maxMembers?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FamilyCodesCreateManyInput = {
+    id?: string
+    code: string
+    headOfHousehold: string
+    unitId?: string | null
+    isActive?: boolean
+    maxMembers?: number
+    createdAt?: Date | string
+  }
+
+  export type FamilyCodesUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    maxMembers?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FamilyCodesUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    headOfHousehold?: StringFieldUpdateOperationsInput | string
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    maxMembers?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FamilyApprovalsCreateInput = {
+    id?: string
+    status?: $Enums.ApprovalStatus
+    requestedAt?: Date | string
+    respondedAt?: Date | string | null
+    notes?: string | null
+    familyMember: ResidentsCreateNestedOneWithoutFamilyMemberApprovalsInput
+    headOfHousehold: ResidentsCreateNestedOneWithoutFamilyApprovalsInput
+  }
+
+  export type FamilyApprovalsUncheckedCreateInput = {
+    id?: string
+    familyMemberId: string
+    headOfHouseholdId: string
+    status?: $Enums.ApprovalStatus
+    requestedAt?: Date | string
+    respondedAt?: Date | string | null
+    notes?: string | null
+  }
+
+  export type FamilyApprovalsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    familyMember?: ResidentsUpdateOneRequiredWithoutFamilyMemberApprovalsNestedInput
+    headOfHousehold?: ResidentsUpdateOneRequiredWithoutFamilyApprovalsNestedInput
+  }
+
+  export type FamilyApprovalsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    familyMemberId?: StringFieldUpdateOperationsInput | string
+    headOfHouseholdId?: StringFieldUpdateOperationsInput | string
+    status?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FamilyApprovalsCreateManyInput = {
+    id?: string
+    familyMemberId: string
+    headOfHouseholdId: string
+    status?: $Enums.ApprovalStatus
+    requestedAt?: Date | string
+    respondedAt?: Date | string | null
+    notes?: string | null
+  }
+
+  export type FamilyApprovalsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FamilyApprovalsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    familyMemberId?: StringFieldUpdateOperationsInput | string
+    headOfHouseholdId?: StringFieldUpdateOperationsInput | string
+    status?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ResidentDocumentsCreateInput = {
+    id?: string
+    documentType: $Enums.DocumentType
+    fileName: string
+    fileUrl: string
+    fileSize: number
+    uploadedAt?: Date | string
+    verifiedBy?: string | null
+    verifiedAt?: Date | string | null
+    isVerified?: boolean
+    resident: ResidentsCreateNestedOneWithoutResidentDocumentsInput
+  }
+
+  export type ResidentDocumentsUncheckedCreateInput = {
+    id?: string
+    residentId: string
+    documentType: $Enums.DocumentType
+    fileName: string
+    fileUrl: string
+    fileSize: number
+    uploadedAt?: Date | string
+    verifiedBy?: string | null
+    verifiedAt?: Date | string | null
+    isVerified?: boolean
+  }
+
+  export type ResidentDocumentsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentType?: EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    fileSize?: IntFieldUpdateOperationsInput | number
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    resident?: ResidentsUpdateOneRequiredWithoutResidentDocumentsNestedInput
+  }
+
+  export type ResidentDocumentsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    residentId?: StringFieldUpdateOperationsInput | string
+    documentType?: EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    fileSize?: IntFieldUpdateOperationsInput | number
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ResidentDocumentsCreateManyInput = {
+    id?: string
+    residentId: string
+    documentType: $Enums.DocumentType
+    fileName: string
+    fileUrl: string
+    fileSize: number
+    uploadedAt?: Date | string
+    verifiedBy?: string | null
+    verifiedAt?: Date | string | null
+    isVerified?: boolean
+  }
+
+  export type ResidentDocumentsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentType?: EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    fileSize?: IntFieldUpdateOperationsInput | number
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ResidentDocumentsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    residentId?: StringFieldUpdateOperationsInput | string
+    documentType?: EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    fileSize?: IntFieldUpdateOperationsInput | number
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type EmployeesCreateInput = {
@@ -20255,6 +24918,7 @@ export namespace Prisma {
     Payments?: PaymentsCreateNestedManyWithoutUnitInput
     Bills?: BillsCreateNestedManyWithoutUnitInput
     Complaints?: ComplaintsCreateNestedManyWithoutUnitInput
+    FamilyCodes?: FamilyCodesCreateNestedManyWithoutUnitInput
   }
 
   export type UnitsUncheckedCreateInput = {
@@ -20274,6 +24938,7 @@ export namespace Prisma {
     Payments?: PaymentsUncheckedCreateNestedManyWithoutUnitInput
     Bills?: BillsUncheckedCreateNestedManyWithoutUnitInput
     Complaints?: ComplaintsUncheckedCreateNestedManyWithoutUnitInput
+    FamilyCodes?: FamilyCodesUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitsUpdateInput = {
@@ -20293,6 +24958,7 @@ export namespace Prisma {
     Payments?: PaymentsUpdateManyWithoutUnitNestedInput
     Bills?: BillsUpdateManyWithoutUnitNestedInput
     Complaints?: ComplaintsUpdateManyWithoutUnitNestedInput
+    FamilyCodes?: FamilyCodesUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitsUncheckedUpdateInput = {
@@ -20312,6 +24978,7 @@ export namespace Prisma {
     Payments?: PaymentsUncheckedUpdateManyWithoutUnitNestedInput
     Bills?: BillsUncheckedUpdateManyWithoutUnitNestedInput
     Complaints?: ComplaintsUncheckedUpdateManyWithoutUnitNestedInput
+    FamilyCodes?: FamilyCodesUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitsCreateManyInput = {
@@ -21006,6 +25673,25 @@ export namespace Prisma {
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
+  export type EnumRegistrationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.RegistrationStatus | EnumRegistrationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RegistrationStatus[] | ListEnumRegistrationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RegistrationStatus[] | ListEnumRegistrationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRegistrationStatusFilter<$PrismaModel> | $Enums.RegistrationStatus
+  }
+
+  export type EnumRegistrationMethodFilter<$PrismaModel = never> = {
+    equals?: $Enums.RegistrationMethod | EnumRegistrationMethodFieldRefInput<$PrismaModel>
+    in?: $Enums.RegistrationMethod[] | ListEnumRegistrationMethodFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RegistrationMethod[] | ListEnumRegistrationMethodFieldRefInput<$PrismaModel>
+    not?: NestedEnumRegistrationMethodFilter<$PrismaModel> | $Enums.RegistrationMethod
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type UsersScalarRelationFilter = {
     is?: UsersWhereInput
     isNot?: UsersWhereInput
@@ -21028,11 +25714,41 @@ export namespace Prisma {
     none?: PaymentsWhereInput
   }
 
+  export type ResidentDocumentsListRelationFilter = {
+    every?: ResidentDocumentsWhereInput
+    some?: ResidentDocumentsWhereInput
+    none?: ResidentDocumentsWhereInput
+  }
+
+  export type FamilyCodesListRelationFilter = {
+    every?: FamilyCodesWhereInput
+    some?: FamilyCodesWhereInput
+    none?: FamilyCodesWhereInput
+  }
+
+  export type FamilyApprovalsListRelationFilter = {
+    every?: FamilyApprovalsWhereInput
+    some?: FamilyApprovalsWhereInput
+    none?: FamilyApprovalsWhereInput
+  }
+
   export type ComplaintsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type PaymentsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ResidentDocumentsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FamilyCodesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FamilyApprovalsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -21049,6 +25765,13 @@ export namespace Prisma {
     kprPaymentAmount?: SortOrder
     kprDueDate?: SortOrder
     isKprPaid?: SortOrder
+    registrationStatus?: SortOrder
+    registrationMethod?: SortOrder
+    approvedBy?: SortOrder
+    approvalDate?: SortOrder
+    rejectionReason?: SortOrder
+    pendingApproval?: SortOrder
+    approvedByHeadOfHousehold?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -21070,6 +25793,13 @@ export namespace Prisma {
     kprPaymentAmount?: SortOrder
     kprDueDate?: SortOrder
     isKprPaid?: SortOrder
+    registrationStatus?: SortOrder
+    registrationMethod?: SortOrder
+    approvedBy?: SortOrder
+    approvalDate?: SortOrder
+    rejectionReason?: SortOrder
+    pendingApproval?: SortOrder
+    approvedByHeadOfHousehold?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -21087,6 +25817,13 @@ export namespace Prisma {
     kprPaymentAmount?: SortOrder
     kprDueDate?: SortOrder
     isKprPaid?: SortOrder
+    registrationStatus?: SortOrder
+    registrationMethod?: SortOrder
+    approvedBy?: SortOrder
+    approvalDate?: SortOrder
+    rejectionReason?: SortOrder
+    pendingApproval?: SortOrder
+    approvedByHeadOfHousehold?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -21144,11 +25881,32 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
-  export type EnumEmployeeRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.EmployeeRole | EnumEmployeeRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.EmployeeRole[] | ListEnumEmployeeRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EmployeeRole[] | ListEnumEmployeeRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumEmployeeRoleFilter<$PrismaModel> | $Enums.EmployeeRole
+  export type EnumRegistrationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RegistrationStatus | EnumRegistrationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RegistrationStatus[] | ListEnumRegistrationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RegistrationStatus[] | ListEnumRegistrationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRegistrationStatusWithAggregatesFilter<$PrismaModel> | $Enums.RegistrationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRegistrationStatusFilter<$PrismaModel>
+    _max?: NestedEnumRegistrationStatusFilter<$PrismaModel>
+  }
+
+  export type EnumRegistrationMethodWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RegistrationMethod | EnumRegistrationMethodFieldRefInput<$PrismaModel>
+    in?: $Enums.RegistrationMethod[] | ListEnumRegistrationMethodFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RegistrationMethod[] | ListEnumRegistrationMethodFieldRefInput<$PrismaModel>
+    not?: NestedEnumRegistrationMethodWithAggregatesFilter<$PrismaModel> | $Enums.RegistrationMethod
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRegistrationMethodFilter<$PrismaModel>
+    _max?: NestedEnumRegistrationMethodFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -21160,6 +25918,183 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type ResidentsScalarRelationFilter = {
+    is?: ResidentsWhereInput
+    isNot?: ResidentsWhereInput
+  }
+
+  export type FamilyCodesCountOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    headOfHousehold?: SortOrder
+    unitId?: SortOrder
+    isActive?: SortOrder
+    maxMembers?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FamilyCodesAvgOrderByAggregateInput = {
+    maxMembers?: SortOrder
+  }
+
+  export type FamilyCodesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    headOfHousehold?: SortOrder
+    unitId?: SortOrder
+    isActive?: SortOrder
+    maxMembers?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FamilyCodesMinOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    headOfHousehold?: SortOrder
+    unitId?: SortOrder
+    isActive?: SortOrder
+    maxMembers?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FamilyCodesSumOrderByAggregateInput = {
+    maxMembers?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type EnumApprovalStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApprovalStatusFilter<$PrismaModel> | $Enums.ApprovalStatus
+  }
+
+  export type FamilyApprovalsCountOrderByAggregateInput = {
+    id?: SortOrder
+    familyMemberId?: SortOrder
+    headOfHouseholdId?: SortOrder
+    status?: SortOrder
+    requestedAt?: SortOrder
+    respondedAt?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type FamilyApprovalsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    familyMemberId?: SortOrder
+    headOfHouseholdId?: SortOrder
+    status?: SortOrder
+    requestedAt?: SortOrder
+    respondedAt?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type FamilyApprovalsMinOrderByAggregateInput = {
+    id?: SortOrder
+    familyMemberId?: SortOrder
+    headOfHouseholdId?: SortOrder
+    status?: SortOrder
+    requestedAt?: SortOrder
+    respondedAt?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type EnumApprovalStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApprovalStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumApprovalStatusFilter<$PrismaModel>
+    _max?: NestedEnumApprovalStatusFilter<$PrismaModel>
+  }
+
+  export type EnumDocumentTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.DocumentType | EnumDocumentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.DocumentType[] | ListEnumDocumentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DocumentType[] | ListEnumDocumentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumDocumentTypeFilter<$PrismaModel> | $Enums.DocumentType
+  }
+
+  export type ResidentDocumentsCountOrderByAggregateInput = {
+    id?: SortOrder
+    residentId?: SortOrder
+    documentType?: SortOrder
+    fileName?: SortOrder
+    fileUrl?: SortOrder
+    fileSize?: SortOrder
+    uploadedAt?: SortOrder
+    verifiedBy?: SortOrder
+    verifiedAt?: SortOrder
+    isVerified?: SortOrder
+  }
+
+  export type ResidentDocumentsAvgOrderByAggregateInput = {
+    fileSize?: SortOrder
+  }
+
+  export type ResidentDocumentsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    residentId?: SortOrder
+    documentType?: SortOrder
+    fileName?: SortOrder
+    fileUrl?: SortOrder
+    fileSize?: SortOrder
+    uploadedAt?: SortOrder
+    verifiedBy?: SortOrder
+    verifiedAt?: SortOrder
+    isVerified?: SortOrder
+  }
+
+  export type ResidentDocumentsMinOrderByAggregateInput = {
+    id?: SortOrder
+    residentId?: SortOrder
+    documentType?: SortOrder
+    fileName?: SortOrder
+    fileUrl?: SortOrder
+    fileSize?: SortOrder
+    uploadedAt?: SortOrder
+    verifiedBy?: SortOrder
+    verifiedAt?: SortOrder
+    isVerified?: SortOrder
+  }
+
+  export type ResidentDocumentsSumOrderByAggregateInput = {
+    fileSize?: SortOrder
+  }
+
+  export type EnumDocumentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DocumentType | EnumDocumentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.DocumentType[] | ListEnumDocumentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DocumentType[] | ListEnumDocumentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumDocumentTypeWithAggregatesFilter<$PrismaModel> | $Enums.DocumentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumDocumentTypeFilter<$PrismaModel>
+    _max?: NestedEnumDocumentTypeFilter<$PrismaModel>
+  }
+
+  export type EnumEmployeeRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.EmployeeRole | EnumEmployeeRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.EmployeeRole[] | ListEnumEmployeeRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EmployeeRole[] | ListEnumEmployeeRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumEmployeeRoleFilter<$PrismaModel> | $Enums.EmployeeRole
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -21264,22 +26199,6 @@ export namespace Prisma {
     _max?: NestedEnumEmployeeRoleFilter<$PrismaModel>
   }
 
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -21316,11 +26235,6 @@ export namespace Prisma {
     hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
     hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
     isEmpty?: boolean
-  }
-
-  export type ResidentsScalarRelationFilter = {
-    is?: ResidentsWhereInput
-    isNot?: ResidentsWhereInput
   }
 
   export type ComplaintsCountOrderByAggregateInput = {
@@ -21646,11 +26560,6 @@ export namespace Prisma {
     not?: NestedEnumPaymentTypeFilter<$PrismaModel> | $Enums.PaymentType
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type UnitsScalarRelationFilter = {
     is?: UnitsWhereInput
     isNot?: UnitsWhereInput
@@ -21708,14 +26617,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPaymentTypeFilter<$PrismaModel>
     _max?: NestedEnumPaymentTypeFilter<$PrismaModel>
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type EnumPaymentMethodFilter<$PrismaModel = never> = {
@@ -22108,6 +27009,34 @@ export namespace Prisma {
     connect?: PaymentsWhereUniqueInput | PaymentsWhereUniqueInput[]
   }
 
+  export type ResidentDocumentsCreateNestedManyWithoutResidentInput = {
+    create?: XOR<ResidentDocumentsCreateWithoutResidentInput, ResidentDocumentsUncheckedCreateWithoutResidentInput> | ResidentDocumentsCreateWithoutResidentInput[] | ResidentDocumentsUncheckedCreateWithoutResidentInput[]
+    connectOrCreate?: ResidentDocumentsCreateOrConnectWithoutResidentInput | ResidentDocumentsCreateOrConnectWithoutResidentInput[]
+    createMany?: ResidentDocumentsCreateManyResidentInputEnvelope
+    connect?: ResidentDocumentsWhereUniqueInput | ResidentDocumentsWhereUniqueInput[]
+  }
+
+  export type FamilyCodesCreateNestedManyWithoutHeadResidentInput = {
+    create?: XOR<FamilyCodesCreateWithoutHeadResidentInput, FamilyCodesUncheckedCreateWithoutHeadResidentInput> | FamilyCodesCreateWithoutHeadResidentInput[] | FamilyCodesUncheckedCreateWithoutHeadResidentInput[]
+    connectOrCreate?: FamilyCodesCreateOrConnectWithoutHeadResidentInput | FamilyCodesCreateOrConnectWithoutHeadResidentInput[]
+    createMany?: FamilyCodesCreateManyHeadResidentInputEnvelope
+    connect?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+  }
+
+  export type FamilyApprovalsCreateNestedManyWithoutFamilyMemberInput = {
+    create?: XOR<FamilyApprovalsCreateWithoutFamilyMemberInput, FamilyApprovalsUncheckedCreateWithoutFamilyMemberInput> | FamilyApprovalsCreateWithoutFamilyMemberInput[] | FamilyApprovalsUncheckedCreateWithoutFamilyMemberInput[]
+    connectOrCreate?: FamilyApprovalsCreateOrConnectWithoutFamilyMemberInput | FamilyApprovalsCreateOrConnectWithoutFamilyMemberInput[]
+    createMany?: FamilyApprovalsCreateManyFamilyMemberInputEnvelope
+    connect?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+  }
+
+  export type FamilyApprovalsCreateNestedManyWithoutHeadOfHouseholdInput = {
+    create?: XOR<FamilyApprovalsCreateWithoutHeadOfHouseholdInput, FamilyApprovalsUncheckedCreateWithoutHeadOfHouseholdInput> | FamilyApprovalsCreateWithoutHeadOfHouseholdInput[] | FamilyApprovalsUncheckedCreateWithoutHeadOfHouseholdInput[]
+    connectOrCreate?: FamilyApprovalsCreateOrConnectWithoutHeadOfHouseholdInput | FamilyApprovalsCreateOrConnectWithoutHeadOfHouseholdInput[]
+    createMany?: FamilyApprovalsCreateManyHeadOfHouseholdInputEnvelope
+    connect?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+  }
+
   export type ComplaintsUncheckedCreateNestedManyWithoutResidentInput = {
     create?: XOR<ComplaintsCreateWithoutResidentInput, ComplaintsUncheckedCreateWithoutResidentInput> | ComplaintsCreateWithoutResidentInput[] | ComplaintsUncheckedCreateWithoutResidentInput[]
     connectOrCreate?: ComplaintsCreateOrConnectWithoutResidentInput | ComplaintsCreateOrConnectWithoutResidentInput[]
@@ -22120,6 +27049,34 @@ export namespace Prisma {
     connectOrCreate?: PaymentsCreateOrConnectWithoutResidentInput | PaymentsCreateOrConnectWithoutResidentInput[]
     createMany?: PaymentsCreateManyResidentInputEnvelope
     connect?: PaymentsWhereUniqueInput | PaymentsWhereUniqueInput[]
+  }
+
+  export type ResidentDocumentsUncheckedCreateNestedManyWithoutResidentInput = {
+    create?: XOR<ResidentDocumentsCreateWithoutResidentInput, ResidentDocumentsUncheckedCreateWithoutResidentInput> | ResidentDocumentsCreateWithoutResidentInput[] | ResidentDocumentsUncheckedCreateWithoutResidentInput[]
+    connectOrCreate?: ResidentDocumentsCreateOrConnectWithoutResidentInput | ResidentDocumentsCreateOrConnectWithoutResidentInput[]
+    createMany?: ResidentDocumentsCreateManyResidentInputEnvelope
+    connect?: ResidentDocumentsWhereUniqueInput | ResidentDocumentsWhereUniqueInput[]
+  }
+
+  export type FamilyCodesUncheckedCreateNestedManyWithoutHeadResidentInput = {
+    create?: XOR<FamilyCodesCreateWithoutHeadResidentInput, FamilyCodesUncheckedCreateWithoutHeadResidentInput> | FamilyCodesCreateWithoutHeadResidentInput[] | FamilyCodesUncheckedCreateWithoutHeadResidentInput[]
+    connectOrCreate?: FamilyCodesCreateOrConnectWithoutHeadResidentInput | FamilyCodesCreateOrConnectWithoutHeadResidentInput[]
+    createMany?: FamilyCodesCreateManyHeadResidentInputEnvelope
+    connect?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+  }
+
+  export type FamilyApprovalsUncheckedCreateNestedManyWithoutFamilyMemberInput = {
+    create?: XOR<FamilyApprovalsCreateWithoutFamilyMemberInput, FamilyApprovalsUncheckedCreateWithoutFamilyMemberInput> | FamilyApprovalsCreateWithoutFamilyMemberInput[] | FamilyApprovalsUncheckedCreateWithoutFamilyMemberInput[]
+    connectOrCreate?: FamilyApprovalsCreateOrConnectWithoutFamilyMemberInput | FamilyApprovalsCreateOrConnectWithoutFamilyMemberInput[]
+    createMany?: FamilyApprovalsCreateManyFamilyMemberInputEnvelope
+    connect?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+  }
+
+  export type FamilyApprovalsUncheckedCreateNestedManyWithoutHeadOfHouseholdInput = {
+    create?: XOR<FamilyApprovalsCreateWithoutHeadOfHouseholdInput, FamilyApprovalsUncheckedCreateWithoutHeadOfHouseholdInput> | FamilyApprovalsCreateWithoutHeadOfHouseholdInput[] | FamilyApprovalsUncheckedCreateWithoutHeadOfHouseholdInput[]
+    connectOrCreate?: FamilyApprovalsCreateOrConnectWithoutHeadOfHouseholdInput | FamilyApprovalsCreateOrConnectWithoutHeadOfHouseholdInput[]
+    createMany?: FamilyApprovalsCreateManyHeadOfHouseholdInputEnvelope
+    connect?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
   }
 
   export type NullableEnumResidentStatusFieldUpdateOperationsInput = {
@@ -22136,6 +27093,18 @@ export namespace Prisma {
 
   export type NullableBoolFieldUpdateOperationsInput = {
     set?: boolean | null
+  }
+
+  export type EnumRegistrationStatusFieldUpdateOperationsInput = {
+    set?: $Enums.RegistrationStatus
+  }
+
+  export type EnumRegistrationMethodFieldUpdateOperationsInput = {
+    set?: $Enums.RegistrationMethod
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type UsersUpdateOneRequiredWithoutResidentNestedInput = {
@@ -22184,6 +27153,62 @@ export namespace Prisma {
     deleteMany?: PaymentsScalarWhereInput | PaymentsScalarWhereInput[]
   }
 
+  export type ResidentDocumentsUpdateManyWithoutResidentNestedInput = {
+    create?: XOR<ResidentDocumentsCreateWithoutResidentInput, ResidentDocumentsUncheckedCreateWithoutResidentInput> | ResidentDocumentsCreateWithoutResidentInput[] | ResidentDocumentsUncheckedCreateWithoutResidentInput[]
+    connectOrCreate?: ResidentDocumentsCreateOrConnectWithoutResidentInput | ResidentDocumentsCreateOrConnectWithoutResidentInput[]
+    upsert?: ResidentDocumentsUpsertWithWhereUniqueWithoutResidentInput | ResidentDocumentsUpsertWithWhereUniqueWithoutResidentInput[]
+    createMany?: ResidentDocumentsCreateManyResidentInputEnvelope
+    set?: ResidentDocumentsWhereUniqueInput | ResidentDocumentsWhereUniqueInput[]
+    disconnect?: ResidentDocumentsWhereUniqueInput | ResidentDocumentsWhereUniqueInput[]
+    delete?: ResidentDocumentsWhereUniqueInput | ResidentDocumentsWhereUniqueInput[]
+    connect?: ResidentDocumentsWhereUniqueInput | ResidentDocumentsWhereUniqueInput[]
+    update?: ResidentDocumentsUpdateWithWhereUniqueWithoutResidentInput | ResidentDocumentsUpdateWithWhereUniqueWithoutResidentInput[]
+    updateMany?: ResidentDocumentsUpdateManyWithWhereWithoutResidentInput | ResidentDocumentsUpdateManyWithWhereWithoutResidentInput[]
+    deleteMany?: ResidentDocumentsScalarWhereInput | ResidentDocumentsScalarWhereInput[]
+  }
+
+  export type FamilyCodesUpdateManyWithoutHeadResidentNestedInput = {
+    create?: XOR<FamilyCodesCreateWithoutHeadResidentInput, FamilyCodesUncheckedCreateWithoutHeadResidentInput> | FamilyCodesCreateWithoutHeadResidentInput[] | FamilyCodesUncheckedCreateWithoutHeadResidentInput[]
+    connectOrCreate?: FamilyCodesCreateOrConnectWithoutHeadResidentInput | FamilyCodesCreateOrConnectWithoutHeadResidentInput[]
+    upsert?: FamilyCodesUpsertWithWhereUniqueWithoutHeadResidentInput | FamilyCodesUpsertWithWhereUniqueWithoutHeadResidentInput[]
+    createMany?: FamilyCodesCreateManyHeadResidentInputEnvelope
+    set?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    disconnect?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    delete?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    connect?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    update?: FamilyCodesUpdateWithWhereUniqueWithoutHeadResidentInput | FamilyCodesUpdateWithWhereUniqueWithoutHeadResidentInput[]
+    updateMany?: FamilyCodesUpdateManyWithWhereWithoutHeadResidentInput | FamilyCodesUpdateManyWithWhereWithoutHeadResidentInput[]
+    deleteMany?: FamilyCodesScalarWhereInput | FamilyCodesScalarWhereInput[]
+  }
+
+  export type FamilyApprovalsUpdateManyWithoutFamilyMemberNestedInput = {
+    create?: XOR<FamilyApprovalsCreateWithoutFamilyMemberInput, FamilyApprovalsUncheckedCreateWithoutFamilyMemberInput> | FamilyApprovalsCreateWithoutFamilyMemberInput[] | FamilyApprovalsUncheckedCreateWithoutFamilyMemberInput[]
+    connectOrCreate?: FamilyApprovalsCreateOrConnectWithoutFamilyMemberInput | FamilyApprovalsCreateOrConnectWithoutFamilyMemberInput[]
+    upsert?: FamilyApprovalsUpsertWithWhereUniqueWithoutFamilyMemberInput | FamilyApprovalsUpsertWithWhereUniqueWithoutFamilyMemberInput[]
+    createMany?: FamilyApprovalsCreateManyFamilyMemberInputEnvelope
+    set?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    disconnect?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    delete?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    connect?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    update?: FamilyApprovalsUpdateWithWhereUniqueWithoutFamilyMemberInput | FamilyApprovalsUpdateWithWhereUniqueWithoutFamilyMemberInput[]
+    updateMany?: FamilyApprovalsUpdateManyWithWhereWithoutFamilyMemberInput | FamilyApprovalsUpdateManyWithWhereWithoutFamilyMemberInput[]
+    deleteMany?: FamilyApprovalsScalarWhereInput | FamilyApprovalsScalarWhereInput[]
+  }
+
+  export type FamilyApprovalsUpdateManyWithoutHeadOfHouseholdNestedInput = {
+    create?: XOR<FamilyApprovalsCreateWithoutHeadOfHouseholdInput, FamilyApprovalsUncheckedCreateWithoutHeadOfHouseholdInput> | FamilyApprovalsCreateWithoutHeadOfHouseholdInput[] | FamilyApprovalsUncheckedCreateWithoutHeadOfHouseholdInput[]
+    connectOrCreate?: FamilyApprovalsCreateOrConnectWithoutHeadOfHouseholdInput | FamilyApprovalsCreateOrConnectWithoutHeadOfHouseholdInput[]
+    upsert?: FamilyApprovalsUpsertWithWhereUniqueWithoutHeadOfHouseholdInput | FamilyApprovalsUpsertWithWhereUniqueWithoutHeadOfHouseholdInput[]
+    createMany?: FamilyApprovalsCreateManyHeadOfHouseholdInputEnvelope
+    set?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    disconnect?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    delete?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    connect?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    update?: FamilyApprovalsUpdateWithWhereUniqueWithoutHeadOfHouseholdInput | FamilyApprovalsUpdateWithWhereUniqueWithoutHeadOfHouseholdInput[]
+    updateMany?: FamilyApprovalsUpdateManyWithWhereWithoutHeadOfHouseholdInput | FamilyApprovalsUpdateManyWithWhereWithoutHeadOfHouseholdInput[]
+    deleteMany?: FamilyApprovalsScalarWhereInput | FamilyApprovalsScalarWhereInput[]
+  }
+
   export type ComplaintsUncheckedUpdateManyWithoutResidentNestedInput = {
     create?: XOR<ComplaintsCreateWithoutResidentInput, ComplaintsUncheckedCreateWithoutResidentInput> | ComplaintsCreateWithoutResidentInput[] | ComplaintsUncheckedCreateWithoutResidentInput[]
     connectOrCreate?: ComplaintsCreateOrConnectWithoutResidentInput | ComplaintsCreateOrConnectWithoutResidentInput[]
@@ -22210,6 +27235,150 @@ export namespace Prisma {
     update?: PaymentsUpdateWithWhereUniqueWithoutResidentInput | PaymentsUpdateWithWhereUniqueWithoutResidentInput[]
     updateMany?: PaymentsUpdateManyWithWhereWithoutResidentInput | PaymentsUpdateManyWithWhereWithoutResidentInput[]
     deleteMany?: PaymentsScalarWhereInput | PaymentsScalarWhereInput[]
+  }
+
+  export type ResidentDocumentsUncheckedUpdateManyWithoutResidentNestedInput = {
+    create?: XOR<ResidentDocumentsCreateWithoutResidentInput, ResidentDocumentsUncheckedCreateWithoutResidentInput> | ResidentDocumentsCreateWithoutResidentInput[] | ResidentDocumentsUncheckedCreateWithoutResidentInput[]
+    connectOrCreate?: ResidentDocumentsCreateOrConnectWithoutResidentInput | ResidentDocumentsCreateOrConnectWithoutResidentInput[]
+    upsert?: ResidentDocumentsUpsertWithWhereUniqueWithoutResidentInput | ResidentDocumentsUpsertWithWhereUniqueWithoutResidentInput[]
+    createMany?: ResidentDocumentsCreateManyResidentInputEnvelope
+    set?: ResidentDocumentsWhereUniqueInput | ResidentDocumentsWhereUniqueInput[]
+    disconnect?: ResidentDocumentsWhereUniqueInput | ResidentDocumentsWhereUniqueInput[]
+    delete?: ResidentDocumentsWhereUniqueInput | ResidentDocumentsWhereUniqueInput[]
+    connect?: ResidentDocumentsWhereUniqueInput | ResidentDocumentsWhereUniqueInput[]
+    update?: ResidentDocumentsUpdateWithWhereUniqueWithoutResidentInput | ResidentDocumentsUpdateWithWhereUniqueWithoutResidentInput[]
+    updateMany?: ResidentDocumentsUpdateManyWithWhereWithoutResidentInput | ResidentDocumentsUpdateManyWithWhereWithoutResidentInput[]
+    deleteMany?: ResidentDocumentsScalarWhereInput | ResidentDocumentsScalarWhereInput[]
+  }
+
+  export type FamilyCodesUncheckedUpdateManyWithoutHeadResidentNestedInput = {
+    create?: XOR<FamilyCodesCreateWithoutHeadResidentInput, FamilyCodesUncheckedCreateWithoutHeadResidentInput> | FamilyCodesCreateWithoutHeadResidentInput[] | FamilyCodesUncheckedCreateWithoutHeadResidentInput[]
+    connectOrCreate?: FamilyCodesCreateOrConnectWithoutHeadResidentInput | FamilyCodesCreateOrConnectWithoutHeadResidentInput[]
+    upsert?: FamilyCodesUpsertWithWhereUniqueWithoutHeadResidentInput | FamilyCodesUpsertWithWhereUniqueWithoutHeadResidentInput[]
+    createMany?: FamilyCodesCreateManyHeadResidentInputEnvelope
+    set?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    disconnect?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    delete?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    connect?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    update?: FamilyCodesUpdateWithWhereUniqueWithoutHeadResidentInput | FamilyCodesUpdateWithWhereUniqueWithoutHeadResidentInput[]
+    updateMany?: FamilyCodesUpdateManyWithWhereWithoutHeadResidentInput | FamilyCodesUpdateManyWithWhereWithoutHeadResidentInput[]
+    deleteMany?: FamilyCodesScalarWhereInput | FamilyCodesScalarWhereInput[]
+  }
+
+  export type FamilyApprovalsUncheckedUpdateManyWithoutFamilyMemberNestedInput = {
+    create?: XOR<FamilyApprovalsCreateWithoutFamilyMemberInput, FamilyApprovalsUncheckedCreateWithoutFamilyMemberInput> | FamilyApprovalsCreateWithoutFamilyMemberInput[] | FamilyApprovalsUncheckedCreateWithoutFamilyMemberInput[]
+    connectOrCreate?: FamilyApprovalsCreateOrConnectWithoutFamilyMemberInput | FamilyApprovalsCreateOrConnectWithoutFamilyMemberInput[]
+    upsert?: FamilyApprovalsUpsertWithWhereUniqueWithoutFamilyMemberInput | FamilyApprovalsUpsertWithWhereUniqueWithoutFamilyMemberInput[]
+    createMany?: FamilyApprovalsCreateManyFamilyMemberInputEnvelope
+    set?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    disconnect?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    delete?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    connect?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    update?: FamilyApprovalsUpdateWithWhereUniqueWithoutFamilyMemberInput | FamilyApprovalsUpdateWithWhereUniqueWithoutFamilyMemberInput[]
+    updateMany?: FamilyApprovalsUpdateManyWithWhereWithoutFamilyMemberInput | FamilyApprovalsUpdateManyWithWhereWithoutFamilyMemberInput[]
+    deleteMany?: FamilyApprovalsScalarWhereInput | FamilyApprovalsScalarWhereInput[]
+  }
+
+  export type FamilyApprovalsUncheckedUpdateManyWithoutHeadOfHouseholdNestedInput = {
+    create?: XOR<FamilyApprovalsCreateWithoutHeadOfHouseholdInput, FamilyApprovalsUncheckedCreateWithoutHeadOfHouseholdInput> | FamilyApprovalsCreateWithoutHeadOfHouseholdInput[] | FamilyApprovalsUncheckedCreateWithoutHeadOfHouseholdInput[]
+    connectOrCreate?: FamilyApprovalsCreateOrConnectWithoutHeadOfHouseholdInput | FamilyApprovalsCreateOrConnectWithoutHeadOfHouseholdInput[]
+    upsert?: FamilyApprovalsUpsertWithWhereUniqueWithoutHeadOfHouseholdInput | FamilyApprovalsUpsertWithWhereUniqueWithoutHeadOfHouseholdInput[]
+    createMany?: FamilyApprovalsCreateManyHeadOfHouseholdInputEnvelope
+    set?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    disconnect?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    delete?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    connect?: FamilyApprovalsWhereUniqueInput | FamilyApprovalsWhereUniqueInput[]
+    update?: FamilyApprovalsUpdateWithWhereUniqueWithoutHeadOfHouseholdInput | FamilyApprovalsUpdateWithWhereUniqueWithoutHeadOfHouseholdInput[]
+    updateMany?: FamilyApprovalsUpdateManyWithWhereWithoutHeadOfHouseholdInput | FamilyApprovalsUpdateManyWithWhereWithoutHeadOfHouseholdInput[]
+    deleteMany?: FamilyApprovalsScalarWhereInput | FamilyApprovalsScalarWhereInput[]
+  }
+
+  export type ResidentsCreateNestedOneWithoutFamilyCodesInput = {
+    create?: XOR<ResidentsCreateWithoutFamilyCodesInput, ResidentsUncheckedCreateWithoutFamilyCodesInput>
+    connectOrCreate?: ResidentsCreateOrConnectWithoutFamilyCodesInput
+    connect?: ResidentsWhereUniqueInput
+  }
+
+  export type UnitsCreateNestedOneWithoutFamilyCodesInput = {
+    create?: XOR<UnitsCreateWithoutFamilyCodesInput, UnitsUncheckedCreateWithoutFamilyCodesInput>
+    connectOrCreate?: UnitsCreateOrConnectWithoutFamilyCodesInput
+    connect?: UnitsWhereUniqueInput
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type ResidentsUpdateOneRequiredWithoutFamilyCodesNestedInput = {
+    create?: XOR<ResidentsCreateWithoutFamilyCodesInput, ResidentsUncheckedCreateWithoutFamilyCodesInput>
+    connectOrCreate?: ResidentsCreateOrConnectWithoutFamilyCodesInput
+    upsert?: ResidentsUpsertWithoutFamilyCodesInput
+    connect?: ResidentsWhereUniqueInput
+    update?: XOR<XOR<ResidentsUpdateToOneWithWhereWithoutFamilyCodesInput, ResidentsUpdateWithoutFamilyCodesInput>, ResidentsUncheckedUpdateWithoutFamilyCodesInput>
+  }
+
+  export type UnitsUpdateOneWithoutFamilyCodesNestedInput = {
+    create?: XOR<UnitsCreateWithoutFamilyCodesInput, UnitsUncheckedCreateWithoutFamilyCodesInput>
+    connectOrCreate?: UnitsCreateOrConnectWithoutFamilyCodesInput
+    upsert?: UnitsUpsertWithoutFamilyCodesInput
+    disconnect?: UnitsWhereInput | boolean
+    delete?: UnitsWhereInput | boolean
+    connect?: UnitsWhereUniqueInput
+    update?: XOR<XOR<UnitsUpdateToOneWithWhereWithoutFamilyCodesInput, UnitsUpdateWithoutFamilyCodesInput>, UnitsUncheckedUpdateWithoutFamilyCodesInput>
+  }
+
+  export type ResidentsCreateNestedOneWithoutFamilyMemberApprovalsInput = {
+    create?: XOR<ResidentsCreateWithoutFamilyMemberApprovalsInput, ResidentsUncheckedCreateWithoutFamilyMemberApprovalsInput>
+    connectOrCreate?: ResidentsCreateOrConnectWithoutFamilyMemberApprovalsInput
+    connect?: ResidentsWhereUniqueInput
+  }
+
+  export type ResidentsCreateNestedOneWithoutFamilyApprovalsInput = {
+    create?: XOR<ResidentsCreateWithoutFamilyApprovalsInput, ResidentsUncheckedCreateWithoutFamilyApprovalsInput>
+    connectOrCreate?: ResidentsCreateOrConnectWithoutFamilyApprovalsInput
+    connect?: ResidentsWhereUniqueInput
+  }
+
+  export type EnumApprovalStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ApprovalStatus
+  }
+
+  export type ResidentsUpdateOneRequiredWithoutFamilyMemberApprovalsNestedInput = {
+    create?: XOR<ResidentsCreateWithoutFamilyMemberApprovalsInput, ResidentsUncheckedCreateWithoutFamilyMemberApprovalsInput>
+    connectOrCreate?: ResidentsCreateOrConnectWithoutFamilyMemberApprovalsInput
+    upsert?: ResidentsUpsertWithoutFamilyMemberApprovalsInput
+    connect?: ResidentsWhereUniqueInput
+    update?: XOR<XOR<ResidentsUpdateToOneWithWhereWithoutFamilyMemberApprovalsInput, ResidentsUpdateWithoutFamilyMemberApprovalsInput>, ResidentsUncheckedUpdateWithoutFamilyMemberApprovalsInput>
+  }
+
+  export type ResidentsUpdateOneRequiredWithoutFamilyApprovalsNestedInput = {
+    create?: XOR<ResidentsCreateWithoutFamilyApprovalsInput, ResidentsUncheckedCreateWithoutFamilyApprovalsInput>
+    connectOrCreate?: ResidentsCreateOrConnectWithoutFamilyApprovalsInput
+    upsert?: ResidentsUpsertWithoutFamilyApprovalsInput
+    connect?: ResidentsWhereUniqueInput
+    update?: XOR<XOR<ResidentsUpdateToOneWithWhereWithoutFamilyApprovalsInput, ResidentsUpdateWithoutFamilyApprovalsInput>, ResidentsUncheckedUpdateWithoutFamilyApprovalsInput>
+  }
+
+  export type ResidentsCreateNestedOneWithoutResidentDocumentsInput = {
+    create?: XOR<ResidentsCreateWithoutResidentDocumentsInput, ResidentsUncheckedCreateWithoutResidentDocumentsInput>
+    connectOrCreate?: ResidentsCreateOrConnectWithoutResidentDocumentsInput
+    connect?: ResidentsWhereUniqueInput
+  }
+
+  export type EnumDocumentTypeFieldUpdateOperationsInput = {
+    set?: $Enums.DocumentType
+  }
+
+  export type ResidentsUpdateOneRequiredWithoutResidentDocumentsNestedInput = {
+    create?: XOR<ResidentsCreateWithoutResidentDocumentsInput, ResidentsUncheckedCreateWithoutResidentDocumentsInput>
+    connectOrCreate?: ResidentsCreateOrConnectWithoutResidentDocumentsInput
+    upsert?: ResidentsUpsertWithoutResidentDocumentsInput
+    connect?: ResidentsWhereUniqueInput
+    update?: XOR<XOR<ResidentsUpdateToOneWithWhereWithoutResidentDocumentsInput, ResidentsUpdateWithoutResidentDocumentsInput>, ResidentsUncheckedUpdateWithoutResidentDocumentsInput>
   }
 
   export type UsersCreateNestedOneWithoutEmployeeInput = {
@@ -22290,14 +27459,6 @@ export namespace Prisma {
 
   export type EnumEmployeeRoleFieldUpdateOperationsInput = {
     set?: $Enums.EmployeeRole
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -22743,6 +27904,13 @@ export namespace Prisma {
     connect?: ComplaintsWhereUniqueInput | ComplaintsWhereUniqueInput[]
   }
 
+  export type FamilyCodesCreateNestedManyWithoutUnitInput = {
+    create?: XOR<FamilyCodesCreateWithoutUnitInput, FamilyCodesUncheckedCreateWithoutUnitInput> | FamilyCodesCreateWithoutUnitInput[] | FamilyCodesUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: FamilyCodesCreateOrConnectWithoutUnitInput | FamilyCodesCreateOrConnectWithoutUnitInput[]
+    createMany?: FamilyCodesCreateManyUnitInputEnvelope
+    connect?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+  }
+
   export type ResidentsUncheckedCreateNestedManyWithoutUnitInput = {
     create?: XOR<ResidentsCreateWithoutUnitInput, ResidentsUncheckedCreateWithoutUnitInput> | ResidentsCreateWithoutUnitInput[] | ResidentsUncheckedCreateWithoutUnitInput[]
     connectOrCreate?: ResidentsCreateOrConnectWithoutUnitInput | ResidentsCreateOrConnectWithoutUnitInput[]
@@ -22769,6 +27937,13 @@ export namespace Prisma {
     connectOrCreate?: ComplaintsCreateOrConnectWithoutUnitInput | ComplaintsCreateOrConnectWithoutUnitInput[]
     createMany?: ComplaintsCreateManyUnitInputEnvelope
     connect?: ComplaintsWhereUniqueInput | ComplaintsWhereUniqueInput[]
+  }
+
+  export type FamilyCodesUncheckedCreateNestedManyWithoutUnitInput = {
+    create?: XOR<FamilyCodesCreateWithoutUnitInput, FamilyCodesUncheckedCreateWithoutUnitInput> | FamilyCodesCreateWithoutUnitInput[] | FamilyCodesUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: FamilyCodesCreateOrConnectWithoutUnitInput | FamilyCodesCreateOrConnectWithoutUnitInput[]
+    createMany?: FamilyCodesCreateManyUnitInputEnvelope
+    connect?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
   }
 
   export type UnitsUpdateunitOwnershipInput = {
@@ -22844,6 +28019,20 @@ export namespace Prisma {
     deleteMany?: ComplaintsScalarWhereInput | ComplaintsScalarWhereInput[]
   }
 
+  export type FamilyCodesUpdateManyWithoutUnitNestedInput = {
+    create?: XOR<FamilyCodesCreateWithoutUnitInput, FamilyCodesUncheckedCreateWithoutUnitInput> | FamilyCodesCreateWithoutUnitInput[] | FamilyCodesUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: FamilyCodesCreateOrConnectWithoutUnitInput | FamilyCodesCreateOrConnectWithoutUnitInput[]
+    upsert?: FamilyCodesUpsertWithWhereUniqueWithoutUnitInput | FamilyCodesUpsertWithWhereUniqueWithoutUnitInput[]
+    createMany?: FamilyCodesCreateManyUnitInputEnvelope
+    set?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    disconnect?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    delete?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    connect?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    update?: FamilyCodesUpdateWithWhereUniqueWithoutUnitInput | FamilyCodesUpdateWithWhereUniqueWithoutUnitInput[]
+    updateMany?: FamilyCodesUpdateManyWithWhereWithoutUnitInput | FamilyCodesUpdateManyWithWhereWithoutUnitInput[]
+    deleteMany?: FamilyCodesScalarWhereInput | FamilyCodesScalarWhereInput[]
+  }
+
   export type ResidentsUncheckedUpdateManyWithoutUnitNestedInput = {
     create?: XOR<ResidentsCreateWithoutUnitInput, ResidentsUncheckedCreateWithoutUnitInput> | ResidentsCreateWithoutUnitInput[] | ResidentsUncheckedCreateWithoutUnitInput[]
     connectOrCreate?: ResidentsCreateOrConnectWithoutUnitInput | ResidentsCreateOrConnectWithoutUnitInput[]
@@ -22900,6 +28089,20 @@ export namespace Prisma {
     deleteMany?: ComplaintsScalarWhereInput | ComplaintsScalarWhereInput[]
   }
 
+  export type FamilyCodesUncheckedUpdateManyWithoutUnitNestedInput = {
+    create?: XOR<FamilyCodesCreateWithoutUnitInput, FamilyCodesUncheckedCreateWithoutUnitInput> | FamilyCodesCreateWithoutUnitInput[] | FamilyCodesUncheckedCreateWithoutUnitInput[]
+    connectOrCreate?: FamilyCodesCreateOrConnectWithoutUnitInput | FamilyCodesCreateOrConnectWithoutUnitInput[]
+    upsert?: FamilyCodesUpsertWithWhereUniqueWithoutUnitInput | FamilyCodesUpsertWithWhereUniqueWithoutUnitInput[]
+    createMany?: FamilyCodesCreateManyUnitInputEnvelope
+    set?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    disconnect?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    delete?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    connect?: FamilyCodesWhereUniqueInput | FamilyCodesWhereUniqueInput[]
+    update?: FamilyCodesUpdateWithWhereUniqueWithoutUnitInput | FamilyCodesUpdateWithWhereUniqueWithoutUnitInput[]
+    updateMany?: FamilyCodesUpdateManyWithWhereWithoutUnitInput | FamilyCodesUpdateManyWithWhereWithoutUnitInput[]
+    deleteMany?: FamilyCodesScalarWhereInput | FamilyCodesScalarWhereInput[]
+  }
+
   export type UnitsCreateNestedOneWithoutBillsInput = {
     create?: XOR<UnitsCreateWithoutBillsInput, UnitsUncheckedCreateWithoutBillsInput>
     connectOrCreate?: UnitsCreateOrConnectWithoutBillsInput
@@ -22928,10 +28131,6 @@ export namespace Prisma {
 
   export type EnumPaymentTypeFieldUpdateOperationsInput = {
     set?: $Enums.PaymentType
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type UnitsUpdateOneRequiredWithoutBillsNestedInput = {
@@ -23297,6 +28496,25 @@ export namespace Prisma {
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
+  export type NestedEnumRegistrationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.RegistrationStatus | EnumRegistrationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RegistrationStatus[] | ListEnumRegistrationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RegistrationStatus[] | ListEnumRegistrationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRegistrationStatusFilter<$PrismaModel> | $Enums.RegistrationStatus
+  }
+
+  export type NestedEnumRegistrationMethodFilter<$PrismaModel = never> = {
+    equals?: $Enums.RegistrationMethod | EnumRegistrationMethodFieldRefInput<$PrismaModel>
+    in?: $Enums.RegistrationMethod[] | ListEnumRegistrationMethodFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RegistrationMethod[] | ListEnumRegistrationMethodFieldRefInput<$PrismaModel>
+    not?: NestedEnumRegistrationMethodFilter<$PrismaModel> | $Enums.RegistrationMethod
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedEnumResidentStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.ResidentStatus | EnumResidentStatusFieldRefInput<$PrismaModel> | null
     in?: $Enums.ResidentStatus[] | ListEnumResidentStatusFieldRefInput<$PrismaModel> | null
@@ -23345,32 +28563,32 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
-  export type NestedEnumEmployeeRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.EmployeeRole | EnumEmployeeRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.EmployeeRole[] | ListEnumEmployeeRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EmployeeRole[] | ListEnumEmployeeRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumEmployeeRoleFilter<$PrismaModel> | $Enums.EmployeeRole
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedEnumEmployeeRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.EmployeeRole | EnumEmployeeRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.EmployeeRole[] | ListEnumEmployeeRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EmployeeRole[] | ListEnumEmployeeRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumEmployeeRoleWithAggregatesFilter<$PrismaModel> | $Enums.EmployeeRole
+  export type NestedEnumRegistrationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RegistrationStatus | EnumRegistrationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RegistrationStatus[] | ListEnumRegistrationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RegistrationStatus[] | ListEnumRegistrationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRegistrationStatusWithAggregatesFilter<$PrismaModel> | $Enums.RegistrationStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumEmployeeRoleFilter<$PrismaModel>
-    _max?: NestedEnumEmployeeRoleFilter<$PrismaModel>
+    _min?: NestedEnumRegistrationStatusFilter<$PrismaModel>
+    _max?: NestedEnumRegistrationStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumRegistrationMethodWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RegistrationMethod | EnumRegistrationMethodFieldRefInput<$PrismaModel>
+    in?: $Enums.RegistrationMethod[] | ListEnumRegistrationMethodFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RegistrationMethod[] | ListEnumRegistrationMethodFieldRefInput<$PrismaModel>
+    not?: NestedEnumRegistrationMethodWithAggregatesFilter<$PrismaModel> | $Enums.RegistrationMethod
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRegistrationMethodFilter<$PrismaModel>
+    _max?: NestedEnumRegistrationMethodFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -23387,6 +28605,68 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumApprovalStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApprovalStatusFilter<$PrismaModel> | $Enums.ApprovalStatus
+  }
+
+  export type NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApprovalStatus | EnumApprovalStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApprovalStatus[] | ListEnumApprovalStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApprovalStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApprovalStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumApprovalStatusFilter<$PrismaModel>
+    _max?: NestedEnumApprovalStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumDocumentTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.DocumentType | EnumDocumentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.DocumentType[] | ListEnumDocumentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DocumentType[] | ListEnumDocumentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumDocumentTypeFilter<$PrismaModel> | $Enums.DocumentType
+  }
+
+  export type NestedEnumDocumentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DocumentType | EnumDocumentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.DocumentType[] | ListEnumDocumentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DocumentType[] | ListEnumDocumentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumDocumentTypeWithAggregatesFilter<$PrismaModel> | $Enums.DocumentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumDocumentTypeFilter<$PrismaModel>
+    _max?: NestedEnumDocumentTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumEmployeeRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.EmployeeRole | EnumEmployeeRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.EmployeeRole[] | ListEnumEmployeeRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EmployeeRole[] | ListEnumEmployeeRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumEmployeeRoleFilter<$PrismaModel> | $Enums.EmployeeRole
+  }
+
+  export type NestedEnumEmployeeRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EmployeeRole | EnumEmployeeRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.EmployeeRole[] | ListEnumEmployeeRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EmployeeRole[] | ListEnumEmployeeRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumEmployeeRoleWithAggregatesFilter<$PrismaModel> | $Enums.EmployeeRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEmployeeRoleFilter<$PrismaModel>
+    _max?: NestedEnumEmployeeRoleFilter<$PrismaModel>
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -23479,11 +28759,6 @@ export namespace Prisma {
     not?: NestedEnumPaymentTypeFilter<$PrismaModel> | $Enums.PaymentType
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type NestedEnumPaymentTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentType | EnumPaymentTypeFieldRefInput<$PrismaModel>
     in?: $Enums.PaymentType[] | ListEnumPaymentTypeFieldRefInput<$PrismaModel>
@@ -23492,14 +28767,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPaymentTypeFilter<$PrismaModel>
     _max?: NestedEnumPaymentTypeFilter<$PrismaModel>
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedEnumPaymentMethodFilter<$PrismaModel = never> = {
@@ -23581,11 +28848,22 @@ export namespace Prisma {
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
     isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     unit?: UnitsCreateNestedOneWithoutResidentsInput
     Complaints?: ComplaintsCreateNestedManyWithoutResidentInput
     Payments?: PaymentsCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsCreateNestedManyWithoutHeadOfHouseholdInput
   }
 
   export type ResidentsUncheckedCreateWithoutUserInput = {
@@ -23600,10 +28878,21 @@ export namespace Prisma {
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
     isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     Complaints?: ComplaintsUncheckedCreateNestedManyWithoutResidentInput
     Payments?: PaymentsUncheckedCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsUncheckedCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesUncheckedCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutHeadOfHouseholdInput
   }
 
   export type ResidentsCreateOrConnectWithoutUserInput = {
@@ -23734,11 +29023,22 @@ export namespace Prisma {
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     unit?: UnitsUpdateOneWithoutResidentsNestedInput
     Complaints?: ComplaintsUpdateManyWithoutResidentNestedInput
     Payments?: PaymentsUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUpdateManyWithoutHeadOfHouseholdNestedInput
   }
 
   export type ResidentsUncheckedUpdateWithoutUserInput = {
@@ -23753,10 +29053,21 @@ export namespace Prisma {
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Complaints?: ComplaintsUncheckedUpdateManyWithoutResidentNestedInput
     Payments?: PaymentsUncheckedUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUncheckedUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUncheckedUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutHeadOfHouseholdNestedInput
   }
 
   export type EmployeesUpsertWithoutUserInput = {
@@ -23930,6 +29241,7 @@ export namespace Prisma {
     Payments?: PaymentsCreateNestedManyWithoutUnitInput
     Bills?: BillsCreateNestedManyWithoutUnitInput
     Complaints?: ComplaintsCreateNestedManyWithoutUnitInput
+    FamilyCodes?: FamilyCodesCreateNestedManyWithoutUnitInput
   }
 
   export type UnitsUncheckedCreateWithoutResidentsInput = {
@@ -23948,6 +29260,7 @@ export namespace Prisma {
     Payments?: PaymentsUncheckedCreateNestedManyWithoutUnitInput
     Bills?: BillsUncheckedCreateNestedManyWithoutUnitInput
     Complaints?: ComplaintsUncheckedCreateNestedManyWithoutUnitInput
+    FamilyCodes?: FamilyCodesUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitsCreateOrConnectWithoutResidentsInput = {
@@ -24030,6 +29343,124 @@ export namespace Prisma {
 
   export type PaymentsCreateManyResidentInputEnvelope = {
     data: PaymentsCreateManyResidentInput | PaymentsCreateManyResidentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ResidentDocumentsCreateWithoutResidentInput = {
+    id?: string
+    documentType: $Enums.DocumentType
+    fileName: string
+    fileUrl: string
+    fileSize: number
+    uploadedAt?: Date | string
+    verifiedBy?: string | null
+    verifiedAt?: Date | string | null
+    isVerified?: boolean
+  }
+
+  export type ResidentDocumentsUncheckedCreateWithoutResidentInput = {
+    id?: string
+    documentType: $Enums.DocumentType
+    fileName: string
+    fileUrl: string
+    fileSize: number
+    uploadedAt?: Date | string
+    verifiedBy?: string | null
+    verifiedAt?: Date | string | null
+    isVerified?: boolean
+  }
+
+  export type ResidentDocumentsCreateOrConnectWithoutResidentInput = {
+    where: ResidentDocumentsWhereUniqueInput
+    create: XOR<ResidentDocumentsCreateWithoutResidentInput, ResidentDocumentsUncheckedCreateWithoutResidentInput>
+  }
+
+  export type ResidentDocumentsCreateManyResidentInputEnvelope = {
+    data: ResidentDocumentsCreateManyResidentInput | ResidentDocumentsCreateManyResidentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FamilyCodesCreateWithoutHeadResidentInput = {
+    id?: string
+    code: string
+    isActive?: boolean
+    maxMembers?: number
+    createdAt?: Date | string
+    unit?: UnitsCreateNestedOneWithoutFamilyCodesInput
+  }
+
+  export type FamilyCodesUncheckedCreateWithoutHeadResidentInput = {
+    id?: string
+    code: string
+    unitId?: string | null
+    isActive?: boolean
+    maxMembers?: number
+    createdAt?: Date | string
+  }
+
+  export type FamilyCodesCreateOrConnectWithoutHeadResidentInput = {
+    where: FamilyCodesWhereUniqueInput
+    create: XOR<FamilyCodesCreateWithoutHeadResidentInput, FamilyCodesUncheckedCreateWithoutHeadResidentInput>
+  }
+
+  export type FamilyCodesCreateManyHeadResidentInputEnvelope = {
+    data: FamilyCodesCreateManyHeadResidentInput | FamilyCodesCreateManyHeadResidentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FamilyApprovalsCreateWithoutFamilyMemberInput = {
+    id?: string
+    status?: $Enums.ApprovalStatus
+    requestedAt?: Date | string
+    respondedAt?: Date | string | null
+    notes?: string | null
+    headOfHousehold: ResidentsCreateNestedOneWithoutFamilyApprovalsInput
+  }
+
+  export type FamilyApprovalsUncheckedCreateWithoutFamilyMemberInput = {
+    id?: string
+    headOfHouseholdId: string
+    status?: $Enums.ApprovalStatus
+    requestedAt?: Date | string
+    respondedAt?: Date | string | null
+    notes?: string | null
+  }
+
+  export type FamilyApprovalsCreateOrConnectWithoutFamilyMemberInput = {
+    where: FamilyApprovalsWhereUniqueInput
+    create: XOR<FamilyApprovalsCreateWithoutFamilyMemberInput, FamilyApprovalsUncheckedCreateWithoutFamilyMemberInput>
+  }
+
+  export type FamilyApprovalsCreateManyFamilyMemberInputEnvelope = {
+    data: FamilyApprovalsCreateManyFamilyMemberInput | FamilyApprovalsCreateManyFamilyMemberInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FamilyApprovalsCreateWithoutHeadOfHouseholdInput = {
+    id?: string
+    status?: $Enums.ApprovalStatus
+    requestedAt?: Date | string
+    respondedAt?: Date | string | null
+    notes?: string | null
+    familyMember: ResidentsCreateNestedOneWithoutFamilyMemberApprovalsInput
+  }
+
+  export type FamilyApprovalsUncheckedCreateWithoutHeadOfHouseholdInput = {
+    id?: string
+    familyMemberId: string
+    status?: $Enums.ApprovalStatus
+    requestedAt?: Date | string
+    respondedAt?: Date | string | null
+    notes?: string | null
+  }
+
+  export type FamilyApprovalsCreateOrConnectWithoutHeadOfHouseholdInput = {
+    where: FamilyApprovalsWhereUniqueInput
+    create: XOR<FamilyApprovalsCreateWithoutHeadOfHouseholdInput, FamilyApprovalsUncheckedCreateWithoutHeadOfHouseholdInput>
+  }
+
+  export type FamilyApprovalsCreateManyHeadOfHouseholdInputEnvelope = {
+    data: FamilyApprovalsCreateManyHeadOfHouseholdInput | FamilyApprovalsCreateManyHeadOfHouseholdInput[]
     skipDuplicates?: boolean
   }
 
@@ -24117,6 +29548,7 @@ export namespace Prisma {
     Payments?: PaymentsUpdateManyWithoutUnitNestedInput
     Bills?: BillsUpdateManyWithoutUnitNestedInput
     Complaints?: ComplaintsUpdateManyWithoutUnitNestedInput
+    FamilyCodes?: FamilyCodesUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitsUncheckedUpdateWithoutResidentsInput = {
@@ -24135,6 +29567,7 @@ export namespace Prisma {
     Payments?: PaymentsUncheckedUpdateManyWithoutUnitNestedInput
     Bills?: BillsUncheckedUpdateManyWithoutUnitNestedInput
     Complaints?: ComplaintsUncheckedUpdateManyWithoutUnitNestedInput
+    FamilyCodes?: FamilyCodesUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type ComplaintsUpsertWithWhereUniqueWithoutResidentInput = {
@@ -24204,6 +29637,732 @@ export namespace Prisma {
     billId?: UuidNullableFilter<"Payments"> | string | null
     createdAt?: DateTimeFilter<"Payments"> | Date | string
     updatedAt?: DateTimeFilter<"Payments"> | Date | string
+  }
+
+  export type ResidentDocumentsUpsertWithWhereUniqueWithoutResidentInput = {
+    where: ResidentDocumentsWhereUniqueInput
+    update: XOR<ResidentDocumentsUpdateWithoutResidentInput, ResidentDocumentsUncheckedUpdateWithoutResidentInput>
+    create: XOR<ResidentDocumentsCreateWithoutResidentInput, ResidentDocumentsUncheckedCreateWithoutResidentInput>
+  }
+
+  export type ResidentDocumentsUpdateWithWhereUniqueWithoutResidentInput = {
+    where: ResidentDocumentsWhereUniqueInput
+    data: XOR<ResidentDocumentsUpdateWithoutResidentInput, ResidentDocumentsUncheckedUpdateWithoutResidentInput>
+  }
+
+  export type ResidentDocumentsUpdateManyWithWhereWithoutResidentInput = {
+    where: ResidentDocumentsScalarWhereInput
+    data: XOR<ResidentDocumentsUpdateManyMutationInput, ResidentDocumentsUncheckedUpdateManyWithoutResidentInput>
+  }
+
+  export type ResidentDocumentsScalarWhereInput = {
+    AND?: ResidentDocumentsScalarWhereInput | ResidentDocumentsScalarWhereInput[]
+    OR?: ResidentDocumentsScalarWhereInput[]
+    NOT?: ResidentDocumentsScalarWhereInput | ResidentDocumentsScalarWhereInput[]
+    id?: UuidFilter<"ResidentDocuments"> | string
+    residentId?: UuidFilter<"ResidentDocuments"> | string
+    documentType?: EnumDocumentTypeFilter<"ResidentDocuments"> | $Enums.DocumentType
+    fileName?: StringFilter<"ResidentDocuments"> | string
+    fileUrl?: StringFilter<"ResidentDocuments"> | string
+    fileSize?: IntFilter<"ResidentDocuments"> | number
+    uploadedAt?: DateTimeFilter<"ResidentDocuments"> | Date | string
+    verifiedBy?: UuidNullableFilter<"ResidentDocuments"> | string | null
+    verifiedAt?: DateTimeNullableFilter<"ResidentDocuments"> | Date | string | null
+    isVerified?: BoolFilter<"ResidentDocuments"> | boolean
+  }
+
+  export type FamilyCodesUpsertWithWhereUniqueWithoutHeadResidentInput = {
+    where: FamilyCodesWhereUniqueInput
+    update: XOR<FamilyCodesUpdateWithoutHeadResidentInput, FamilyCodesUncheckedUpdateWithoutHeadResidentInput>
+    create: XOR<FamilyCodesCreateWithoutHeadResidentInput, FamilyCodesUncheckedCreateWithoutHeadResidentInput>
+  }
+
+  export type FamilyCodesUpdateWithWhereUniqueWithoutHeadResidentInput = {
+    where: FamilyCodesWhereUniqueInput
+    data: XOR<FamilyCodesUpdateWithoutHeadResidentInput, FamilyCodesUncheckedUpdateWithoutHeadResidentInput>
+  }
+
+  export type FamilyCodesUpdateManyWithWhereWithoutHeadResidentInput = {
+    where: FamilyCodesScalarWhereInput
+    data: XOR<FamilyCodesUpdateManyMutationInput, FamilyCodesUncheckedUpdateManyWithoutHeadResidentInput>
+  }
+
+  export type FamilyCodesScalarWhereInput = {
+    AND?: FamilyCodesScalarWhereInput | FamilyCodesScalarWhereInput[]
+    OR?: FamilyCodesScalarWhereInput[]
+    NOT?: FamilyCodesScalarWhereInput | FamilyCodesScalarWhereInput[]
+    id?: UuidFilter<"FamilyCodes"> | string
+    code?: StringFilter<"FamilyCodes"> | string
+    headOfHousehold?: UuidFilter<"FamilyCodes"> | string
+    unitId?: UuidNullableFilter<"FamilyCodes"> | string | null
+    isActive?: BoolFilter<"FamilyCodes"> | boolean
+    maxMembers?: IntFilter<"FamilyCodes"> | number
+    createdAt?: DateTimeFilter<"FamilyCodes"> | Date | string
+  }
+
+  export type FamilyApprovalsUpsertWithWhereUniqueWithoutFamilyMemberInput = {
+    where: FamilyApprovalsWhereUniqueInput
+    update: XOR<FamilyApprovalsUpdateWithoutFamilyMemberInput, FamilyApprovalsUncheckedUpdateWithoutFamilyMemberInput>
+    create: XOR<FamilyApprovalsCreateWithoutFamilyMemberInput, FamilyApprovalsUncheckedCreateWithoutFamilyMemberInput>
+  }
+
+  export type FamilyApprovalsUpdateWithWhereUniqueWithoutFamilyMemberInput = {
+    where: FamilyApprovalsWhereUniqueInput
+    data: XOR<FamilyApprovalsUpdateWithoutFamilyMemberInput, FamilyApprovalsUncheckedUpdateWithoutFamilyMemberInput>
+  }
+
+  export type FamilyApprovalsUpdateManyWithWhereWithoutFamilyMemberInput = {
+    where: FamilyApprovalsScalarWhereInput
+    data: XOR<FamilyApprovalsUpdateManyMutationInput, FamilyApprovalsUncheckedUpdateManyWithoutFamilyMemberInput>
+  }
+
+  export type FamilyApprovalsScalarWhereInput = {
+    AND?: FamilyApprovalsScalarWhereInput | FamilyApprovalsScalarWhereInput[]
+    OR?: FamilyApprovalsScalarWhereInput[]
+    NOT?: FamilyApprovalsScalarWhereInput | FamilyApprovalsScalarWhereInput[]
+    id?: UuidFilter<"FamilyApprovals"> | string
+    familyMemberId?: UuidFilter<"FamilyApprovals"> | string
+    headOfHouseholdId?: UuidFilter<"FamilyApprovals"> | string
+    status?: EnumApprovalStatusFilter<"FamilyApprovals"> | $Enums.ApprovalStatus
+    requestedAt?: DateTimeFilter<"FamilyApprovals"> | Date | string
+    respondedAt?: DateTimeNullableFilter<"FamilyApprovals"> | Date | string | null
+    notes?: StringNullableFilter<"FamilyApprovals"> | string | null
+  }
+
+  export type FamilyApprovalsUpsertWithWhereUniqueWithoutHeadOfHouseholdInput = {
+    where: FamilyApprovalsWhereUniqueInput
+    update: XOR<FamilyApprovalsUpdateWithoutHeadOfHouseholdInput, FamilyApprovalsUncheckedUpdateWithoutHeadOfHouseholdInput>
+    create: XOR<FamilyApprovalsCreateWithoutHeadOfHouseholdInput, FamilyApprovalsUncheckedCreateWithoutHeadOfHouseholdInput>
+  }
+
+  export type FamilyApprovalsUpdateWithWhereUniqueWithoutHeadOfHouseholdInput = {
+    where: FamilyApprovalsWhereUniqueInput
+    data: XOR<FamilyApprovalsUpdateWithoutHeadOfHouseholdInput, FamilyApprovalsUncheckedUpdateWithoutHeadOfHouseholdInput>
+  }
+
+  export type FamilyApprovalsUpdateManyWithWhereWithoutHeadOfHouseholdInput = {
+    where: FamilyApprovalsScalarWhereInput
+    data: XOR<FamilyApprovalsUpdateManyMutationInput, FamilyApprovalsUncheckedUpdateManyWithoutHeadOfHouseholdInput>
+  }
+
+  export type ResidentsCreateWithoutFamilyCodesInput = {
+    id?: string
+    emergencyContactName?: string | null
+    emergencyContactNumber?: string | null
+    movedInDate: Date | string
+    movedOutDate?: Date | string | null
+    familyCode?: string | null
+    residentStatus?: $Enums.ResidentStatus | null
+    kprPaymentAmount?: number | null
+    kprDueDate?: Date | string | null
+    isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UsersCreateNestedOneWithoutResidentInput
+    unit?: UnitsCreateNestedOneWithoutResidentsInput
+    Complaints?: ComplaintsCreateNestedManyWithoutResidentInput
+    Payments?: PaymentsCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsCreateNestedManyWithoutResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsCreateNestedManyWithoutHeadOfHouseholdInput
+  }
+
+  export type ResidentsUncheckedCreateWithoutFamilyCodesInput = {
+    id?: string
+    userId: string
+    emergencyContactName?: string | null
+    emergencyContactNumber?: string | null
+    movedInDate: Date | string
+    movedOutDate?: Date | string | null
+    familyCode?: string | null
+    residentStatus?: $Enums.ResidentStatus | null
+    unitId?: string | null
+    kprPaymentAmount?: number | null
+    kprDueDate?: Date | string | null
+    isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Complaints?: ComplaintsUncheckedCreateNestedManyWithoutResidentInput
+    Payments?: PaymentsUncheckedCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsUncheckedCreateNestedManyWithoutResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutHeadOfHouseholdInput
+  }
+
+  export type ResidentsCreateOrConnectWithoutFamilyCodesInput = {
+    where: ResidentsWhereUniqueInput
+    create: XOR<ResidentsCreateWithoutFamilyCodesInput, ResidentsUncheckedCreateWithoutFamilyCodesInput>
+  }
+
+  export type UnitsCreateWithoutFamilyCodesInput = {
+    id?: string
+    unitNumber: string
+    buildingName?: string | null
+    unitOwnership?: UnitsCreateunitOwnershipInput | string[]
+    floorNumber?: number | null
+    numberOfRooms?: number | null
+    priceSale: number
+    squareFootage?: number | null
+    location: string
+    status: $Enums.UnitStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentsCreateNestedManyWithoutUnitInput
+    Payments?: PaymentsCreateNestedManyWithoutUnitInput
+    Bills?: BillsCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintsCreateNestedManyWithoutUnitInput
+  }
+
+  export type UnitsUncheckedCreateWithoutFamilyCodesInput = {
+    id?: string
+    unitNumber: string
+    buildingName?: string | null
+    unitOwnership?: UnitsCreateunitOwnershipInput | string[]
+    floorNumber?: number | null
+    numberOfRooms?: number | null
+    priceSale: number
+    squareFootage?: number | null
+    location: string
+    status: $Enums.UnitStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Residents?: ResidentsUncheckedCreateNestedManyWithoutUnitInput
+    Payments?: PaymentsUncheckedCreateNestedManyWithoutUnitInput
+    Bills?: BillsUncheckedCreateNestedManyWithoutUnitInput
+    Complaints?: ComplaintsUncheckedCreateNestedManyWithoutUnitInput
+  }
+
+  export type UnitsCreateOrConnectWithoutFamilyCodesInput = {
+    where: UnitsWhereUniqueInput
+    create: XOR<UnitsCreateWithoutFamilyCodesInput, UnitsUncheckedCreateWithoutFamilyCodesInput>
+  }
+
+  export type ResidentsUpsertWithoutFamilyCodesInput = {
+    update: XOR<ResidentsUpdateWithoutFamilyCodesInput, ResidentsUncheckedUpdateWithoutFamilyCodesInput>
+    create: XOR<ResidentsCreateWithoutFamilyCodesInput, ResidentsUncheckedCreateWithoutFamilyCodesInput>
+    where?: ResidentsWhereInput
+  }
+
+  export type ResidentsUpdateToOneWithWhereWithoutFamilyCodesInput = {
+    where?: ResidentsWhereInput
+    data: XOR<ResidentsUpdateWithoutFamilyCodesInput, ResidentsUncheckedUpdateWithoutFamilyCodesInput>
+  }
+
+  export type ResidentsUpdateWithoutFamilyCodesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    emergencyContactName?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
+    residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
+    kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UsersUpdateOneRequiredWithoutResidentNestedInput
+    unit?: UnitsUpdateOneWithoutResidentsNestedInput
+    Complaints?: ComplaintsUpdateManyWithoutResidentNestedInput
+    Payments?: PaymentsUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUpdateManyWithoutResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUpdateManyWithoutHeadOfHouseholdNestedInput
+  }
+
+  export type ResidentsUncheckedUpdateWithoutFamilyCodesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    emergencyContactName?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
+    residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Complaints?: ComplaintsUncheckedUpdateManyWithoutResidentNestedInput
+    Payments?: PaymentsUncheckedUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUncheckedUpdateManyWithoutResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutHeadOfHouseholdNestedInput
+  }
+
+  export type UnitsUpsertWithoutFamilyCodesInput = {
+    update: XOR<UnitsUpdateWithoutFamilyCodesInput, UnitsUncheckedUpdateWithoutFamilyCodesInput>
+    create: XOR<UnitsCreateWithoutFamilyCodesInput, UnitsUncheckedCreateWithoutFamilyCodesInput>
+    where?: UnitsWhereInput
+  }
+
+  export type UnitsUpdateToOneWithWhereWithoutFamilyCodesInput = {
+    where?: UnitsWhereInput
+    data: XOR<UnitsUpdateWithoutFamilyCodesInput, UnitsUncheckedUpdateWithoutFamilyCodesInput>
+  }
+
+  export type UnitsUpdateWithoutFamilyCodesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    unitNumber?: StringFieldUpdateOperationsInput | string
+    buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
+    floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
+    priceSale?: FloatFieldUpdateOperationsInput | number
+    squareFootage?: NullableIntFieldUpdateOperationsInput | number | null
+    location?: StringFieldUpdateOperationsInput | string
+    status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Residents?: ResidentsUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentsUpdateManyWithoutUnitNestedInput
+    Bills?: BillsUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintsUpdateManyWithoutUnitNestedInput
+  }
+
+  export type UnitsUncheckedUpdateWithoutFamilyCodesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    unitNumber?: StringFieldUpdateOperationsInput | string
+    buildingName?: NullableStringFieldUpdateOperationsInput | string | null
+    unitOwnership?: UnitsUpdateunitOwnershipInput | string[]
+    floorNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    numberOfRooms?: NullableIntFieldUpdateOperationsInput | number | null
+    priceSale?: FloatFieldUpdateOperationsInput | number
+    squareFootage?: NullableIntFieldUpdateOperationsInput | number | null
+    location?: StringFieldUpdateOperationsInput | string
+    status?: EnumUnitStatusFieldUpdateOperationsInput | $Enums.UnitStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Residents?: ResidentsUncheckedUpdateManyWithoutUnitNestedInput
+    Payments?: PaymentsUncheckedUpdateManyWithoutUnitNestedInput
+    Bills?: BillsUncheckedUpdateManyWithoutUnitNestedInput
+    Complaints?: ComplaintsUncheckedUpdateManyWithoutUnitNestedInput
+  }
+
+  export type ResidentsCreateWithoutFamilyMemberApprovalsInput = {
+    id?: string
+    emergencyContactName?: string | null
+    emergencyContactNumber?: string | null
+    movedInDate: Date | string
+    movedOutDate?: Date | string | null
+    familyCode?: string | null
+    residentStatus?: $Enums.ResidentStatus | null
+    kprPaymentAmount?: number | null
+    kprDueDate?: Date | string | null
+    isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UsersCreateNestedOneWithoutResidentInput
+    unit?: UnitsCreateNestedOneWithoutResidentsInput
+    Complaints?: ComplaintsCreateNestedManyWithoutResidentInput
+    Payments?: PaymentsCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesCreateNestedManyWithoutHeadResidentInput
+    FamilyApprovals?: FamilyApprovalsCreateNestedManyWithoutHeadOfHouseholdInput
+  }
+
+  export type ResidentsUncheckedCreateWithoutFamilyMemberApprovalsInput = {
+    id?: string
+    userId: string
+    emergencyContactName?: string | null
+    emergencyContactNumber?: string | null
+    movedInDate: Date | string
+    movedOutDate?: Date | string | null
+    familyCode?: string | null
+    residentStatus?: $Enums.ResidentStatus | null
+    unitId?: string | null
+    kprPaymentAmount?: number | null
+    kprDueDate?: Date | string | null
+    isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Complaints?: ComplaintsUncheckedCreateNestedManyWithoutResidentInput
+    Payments?: PaymentsUncheckedCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsUncheckedCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesUncheckedCreateNestedManyWithoutHeadResidentInput
+    FamilyApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutHeadOfHouseholdInput
+  }
+
+  export type ResidentsCreateOrConnectWithoutFamilyMemberApprovalsInput = {
+    where: ResidentsWhereUniqueInput
+    create: XOR<ResidentsCreateWithoutFamilyMemberApprovalsInput, ResidentsUncheckedCreateWithoutFamilyMemberApprovalsInput>
+  }
+
+  export type ResidentsCreateWithoutFamilyApprovalsInput = {
+    id?: string
+    emergencyContactName?: string | null
+    emergencyContactNumber?: string | null
+    movedInDate: Date | string
+    movedOutDate?: Date | string | null
+    familyCode?: string | null
+    residentStatus?: $Enums.ResidentStatus | null
+    kprPaymentAmount?: number | null
+    kprDueDate?: Date | string | null
+    isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UsersCreateNestedOneWithoutResidentInput
+    unit?: UnitsCreateNestedOneWithoutResidentsInput
+    Complaints?: ComplaintsCreateNestedManyWithoutResidentInput
+    Payments?: PaymentsCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsCreateNestedManyWithoutFamilyMemberInput
+  }
+
+  export type ResidentsUncheckedCreateWithoutFamilyApprovalsInput = {
+    id?: string
+    userId: string
+    emergencyContactName?: string | null
+    emergencyContactNumber?: string | null
+    movedInDate: Date | string
+    movedOutDate?: Date | string | null
+    familyCode?: string | null
+    residentStatus?: $Enums.ResidentStatus | null
+    unitId?: string | null
+    kprPaymentAmount?: number | null
+    kprDueDate?: Date | string | null
+    isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Complaints?: ComplaintsUncheckedCreateNestedManyWithoutResidentInput
+    Payments?: PaymentsUncheckedCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsUncheckedCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesUncheckedCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutFamilyMemberInput
+  }
+
+  export type ResidentsCreateOrConnectWithoutFamilyApprovalsInput = {
+    where: ResidentsWhereUniqueInput
+    create: XOR<ResidentsCreateWithoutFamilyApprovalsInput, ResidentsUncheckedCreateWithoutFamilyApprovalsInput>
+  }
+
+  export type ResidentsUpsertWithoutFamilyMemberApprovalsInput = {
+    update: XOR<ResidentsUpdateWithoutFamilyMemberApprovalsInput, ResidentsUncheckedUpdateWithoutFamilyMemberApprovalsInput>
+    create: XOR<ResidentsCreateWithoutFamilyMemberApprovalsInput, ResidentsUncheckedCreateWithoutFamilyMemberApprovalsInput>
+    where?: ResidentsWhereInput
+  }
+
+  export type ResidentsUpdateToOneWithWhereWithoutFamilyMemberApprovalsInput = {
+    where?: ResidentsWhereInput
+    data: XOR<ResidentsUpdateWithoutFamilyMemberApprovalsInput, ResidentsUncheckedUpdateWithoutFamilyMemberApprovalsInput>
+  }
+
+  export type ResidentsUpdateWithoutFamilyMemberApprovalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    emergencyContactName?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
+    residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
+    kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UsersUpdateOneRequiredWithoutResidentNestedInput
+    unit?: UnitsUpdateOneWithoutResidentsNestedInput
+    Complaints?: ComplaintsUpdateManyWithoutResidentNestedInput
+    Payments?: PaymentsUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUpdateManyWithoutHeadResidentNestedInput
+    FamilyApprovals?: FamilyApprovalsUpdateManyWithoutHeadOfHouseholdNestedInput
+  }
+
+  export type ResidentsUncheckedUpdateWithoutFamilyMemberApprovalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    emergencyContactName?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
+    residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Complaints?: ComplaintsUncheckedUpdateManyWithoutResidentNestedInput
+    Payments?: PaymentsUncheckedUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUncheckedUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUncheckedUpdateManyWithoutHeadResidentNestedInput
+    FamilyApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutHeadOfHouseholdNestedInput
+  }
+
+  export type ResidentsUpsertWithoutFamilyApprovalsInput = {
+    update: XOR<ResidentsUpdateWithoutFamilyApprovalsInput, ResidentsUncheckedUpdateWithoutFamilyApprovalsInput>
+    create: XOR<ResidentsCreateWithoutFamilyApprovalsInput, ResidentsUncheckedCreateWithoutFamilyApprovalsInput>
+    where?: ResidentsWhereInput
+  }
+
+  export type ResidentsUpdateToOneWithWhereWithoutFamilyApprovalsInput = {
+    where?: ResidentsWhereInput
+    data: XOR<ResidentsUpdateWithoutFamilyApprovalsInput, ResidentsUncheckedUpdateWithoutFamilyApprovalsInput>
+  }
+
+  export type ResidentsUpdateWithoutFamilyApprovalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    emergencyContactName?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
+    residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
+    kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UsersUpdateOneRequiredWithoutResidentNestedInput
+    unit?: UnitsUpdateOneWithoutResidentsNestedInput
+    Complaints?: ComplaintsUpdateManyWithoutResidentNestedInput
+    Payments?: PaymentsUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUpdateManyWithoutFamilyMemberNestedInput
+  }
+
+  export type ResidentsUncheckedUpdateWithoutFamilyApprovalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    emergencyContactName?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
+    residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Complaints?: ComplaintsUncheckedUpdateManyWithoutResidentNestedInput
+    Payments?: PaymentsUncheckedUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUncheckedUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUncheckedUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutFamilyMemberNestedInput
+  }
+
+  export type ResidentsCreateWithoutResidentDocumentsInput = {
+    id?: string
+    emergencyContactName?: string | null
+    emergencyContactNumber?: string | null
+    movedInDate: Date | string
+    movedOutDate?: Date | string | null
+    familyCode?: string | null
+    residentStatus?: $Enums.ResidentStatus | null
+    kprPaymentAmount?: number | null
+    kprDueDate?: Date | string | null
+    isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UsersCreateNestedOneWithoutResidentInput
+    unit?: UnitsCreateNestedOneWithoutResidentsInput
+    Complaints?: ComplaintsCreateNestedManyWithoutResidentInput
+    Payments?: PaymentsCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsCreateNestedManyWithoutHeadOfHouseholdInput
+  }
+
+  export type ResidentsUncheckedCreateWithoutResidentDocumentsInput = {
+    id?: string
+    userId: string
+    emergencyContactName?: string | null
+    emergencyContactNumber?: string | null
+    movedInDate: Date | string
+    movedOutDate?: Date | string | null
+    familyCode?: string | null
+    residentStatus?: $Enums.ResidentStatus | null
+    unitId?: string | null
+    kprPaymentAmount?: number | null
+    kprDueDate?: Date | string | null
+    isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Complaints?: ComplaintsUncheckedCreateNestedManyWithoutResidentInput
+    Payments?: PaymentsUncheckedCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesUncheckedCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutHeadOfHouseholdInput
+  }
+
+  export type ResidentsCreateOrConnectWithoutResidentDocumentsInput = {
+    where: ResidentsWhereUniqueInput
+    create: XOR<ResidentsCreateWithoutResidentDocumentsInput, ResidentsUncheckedCreateWithoutResidentDocumentsInput>
+  }
+
+  export type ResidentsUpsertWithoutResidentDocumentsInput = {
+    update: XOR<ResidentsUpdateWithoutResidentDocumentsInput, ResidentsUncheckedUpdateWithoutResidentDocumentsInput>
+    create: XOR<ResidentsCreateWithoutResidentDocumentsInput, ResidentsUncheckedCreateWithoutResidentDocumentsInput>
+    where?: ResidentsWhereInput
+  }
+
+  export type ResidentsUpdateToOneWithWhereWithoutResidentDocumentsInput = {
+    where?: ResidentsWhereInput
+    data: XOR<ResidentsUpdateWithoutResidentDocumentsInput, ResidentsUncheckedUpdateWithoutResidentDocumentsInput>
+  }
+
+  export type ResidentsUpdateWithoutResidentDocumentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    emergencyContactName?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
+    residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
+    kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UsersUpdateOneRequiredWithoutResidentNestedInput
+    unit?: UnitsUpdateOneWithoutResidentsNestedInput
+    Complaints?: ComplaintsUpdateManyWithoutResidentNestedInput
+    Payments?: PaymentsUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUpdateManyWithoutHeadOfHouseholdNestedInput
+  }
+
+  export type ResidentsUncheckedUpdateWithoutResidentDocumentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    emergencyContactName?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    movedInDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    movedOutDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    familyCode?: NullableStringFieldUpdateOperationsInput | string | null
+    residentStatus?: NullableEnumResidentStatusFieldUpdateOperationsInput | $Enums.ResidentStatus | null
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Complaints?: ComplaintsUncheckedUpdateManyWithoutResidentNestedInput
+    Payments?: PaymentsUncheckedUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUncheckedUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutHeadOfHouseholdNestedInput
   }
 
   export type UsersCreateWithoutEmployeeInput = {
@@ -24629,11 +30788,22 @@ export namespace Prisma {
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
     isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UsersCreateNestedOneWithoutResidentInput
     unit?: UnitsCreateNestedOneWithoutResidentsInput
     Payments?: PaymentsCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsCreateNestedManyWithoutHeadOfHouseholdInput
   }
 
   export type ResidentsUncheckedCreateWithoutComplaintsInput = {
@@ -24649,9 +30819,20 @@ export namespace Prisma {
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
     isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     Payments?: PaymentsUncheckedCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsUncheckedCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesUncheckedCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutHeadOfHouseholdInput
   }
 
   export type ResidentsCreateOrConnectWithoutComplaintsInput = {
@@ -24714,6 +30895,7 @@ export namespace Prisma {
     Residents?: ResidentsCreateNestedManyWithoutUnitInput
     Payments?: PaymentsCreateNestedManyWithoutUnitInput
     Bills?: BillsCreateNestedManyWithoutUnitInput
+    FamilyCodes?: FamilyCodesCreateNestedManyWithoutUnitInput
   }
 
   export type UnitsUncheckedCreateWithoutComplaintsInput = {
@@ -24732,6 +30914,7 @@ export namespace Prisma {
     Residents?: ResidentsUncheckedCreateNestedManyWithoutUnitInput
     Payments?: PaymentsUncheckedCreateNestedManyWithoutUnitInput
     Bills?: BillsUncheckedCreateNestedManyWithoutUnitInput
+    FamilyCodes?: FamilyCodesUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitsCreateOrConnectWithoutComplaintsInput = {
@@ -24761,11 +30944,22 @@ export namespace Prisma {
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutResidentNestedInput
     unit?: UnitsUpdateOneWithoutResidentsNestedInput
     Payments?: PaymentsUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUpdateManyWithoutHeadOfHouseholdNestedInput
   }
 
   export type ResidentsUncheckedUpdateWithoutComplaintsInput = {
@@ -24781,9 +30975,20 @@ export namespace Prisma {
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Payments?: PaymentsUncheckedUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUncheckedUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUncheckedUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutHeadOfHouseholdNestedInput
   }
 
   export type EmployeesUpsertWithoutComplaintsInput = {
@@ -24858,6 +31063,7 @@ export namespace Prisma {
     Residents?: ResidentsUpdateManyWithoutUnitNestedInput
     Payments?: PaymentsUpdateManyWithoutUnitNestedInput
     Bills?: BillsUpdateManyWithoutUnitNestedInput
+    FamilyCodes?: FamilyCodesUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitsUncheckedUpdateWithoutComplaintsInput = {
@@ -24876,6 +31082,7 @@ export namespace Prisma {
     Residents?: ResidentsUncheckedUpdateManyWithoutUnitNestedInput
     Payments?: PaymentsUncheckedUpdateManyWithoutUnitNestedInput
     Bills?: BillsUncheckedUpdateManyWithoutUnitNestedInput
+    FamilyCodes?: FamilyCodesUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type EmployeesCreateWithoutAnnouncementsInput = {
@@ -25391,11 +31598,22 @@ export namespace Prisma {
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
     isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UsersCreateNestedOneWithoutResidentInput
     Complaints?: ComplaintsCreateNestedManyWithoutResidentInput
     Payments?: PaymentsCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsCreateNestedManyWithoutHeadOfHouseholdInput
   }
 
   export type ResidentsUncheckedCreateWithoutUnitInput = {
@@ -25410,10 +31628,21 @@ export namespace Prisma {
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
     isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     Complaints?: ComplaintsUncheckedCreateNestedManyWithoutResidentInput
     Payments?: PaymentsUncheckedCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsUncheckedCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesUncheckedCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutHeadOfHouseholdInput
   }
 
   export type ResidentsCreateOrConnectWithoutUnitInput = {
@@ -25538,6 +31767,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type FamilyCodesCreateWithoutUnitInput = {
+    id?: string
+    code: string
+    isActive?: boolean
+    maxMembers?: number
+    createdAt?: Date | string
+    headResident: ResidentsCreateNestedOneWithoutFamilyCodesInput
+  }
+
+  export type FamilyCodesUncheckedCreateWithoutUnitInput = {
+    id?: string
+    code: string
+    headOfHousehold: string
+    isActive?: boolean
+    maxMembers?: number
+    createdAt?: Date | string
+  }
+
+  export type FamilyCodesCreateOrConnectWithoutUnitInput = {
+    where: FamilyCodesWhereUniqueInput
+    create: XOR<FamilyCodesCreateWithoutUnitInput, FamilyCodesUncheckedCreateWithoutUnitInput>
+  }
+
+  export type FamilyCodesCreateManyUnitInputEnvelope = {
+    data: FamilyCodesCreateManyUnitInput | FamilyCodesCreateManyUnitInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ResidentsUpsertWithWhereUniqueWithoutUnitInput = {
     where: ResidentsWhereUniqueInput
     update: XOR<ResidentsUpdateWithoutUnitInput, ResidentsUncheckedUpdateWithoutUnitInput>
@@ -25570,6 +31827,13 @@ export namespace Prisma {
     kprPaymentAmount?: FloatNullableFilter<"Residents"> | number | null
     kprDueDate?: DateTimeNullableFilter<"Residents"> | Date | string | null
     isKprPaid?: BoolNullableFilter<"Residents"> | boolean | null
+    registrationStatus?: EnumRegistrationStatusFilter<"Residents"> | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFilter<"Residents"> | $Enums.RegistrationMethod
+    approvedBy?: UuidNullableFilter<"Residents"> | string | null
+    approvalDate?: DateTimeNullableFilter<"Residents"> | Date | string | null
+    rejectionReason?: StringNullableFilter<"Residents"> | string | null
+    pendingApproval?: BoolFilter<"Residents"> | boolean
+    approvedByHeadOfHousehold?: UuidNullableFilter<"Residents"> | string | null
     createdAt?: DateTimeFilter<"Residents"> | Date | string
     updatedAt?: DateTimeFilter<"Residents"> | Date | string
   }
@@ -25622,6 +31886,22 @@ export namespace Prisma {
     data: XOR<ComplaintsUpdateManyMutationInput, ComplaintsUncheckedUpdateManyWithoutUnitInput>
   }
 
+  export type FamilyCodesUpsertWithWhereUniqueWithoutUnitInput = {
+    where: FamilyCodesWhereUniqueInput
+    update: XOR<FamilyCodesUpdateWithoutUnitInput, FamilyCodesUncheckedUpdateWithoutUnitInput>
+    create: XOR<FamilyCodesCreateWithoutUnitInput, FamilyCodesUncheckedCreateWithoutUnitInput>
+  }
+
+  export type FamilyCodesUpdateWithWhereUniqueWithoutUnitInput = {
+    where: FamilyCodesWhereUniqueInput
+    data: XOR<FamilyCodesUpdateWithoutUnitInput, FamilyCodesUncheckedUpdateWithoutUnitInput>
+  }
+
+  export type FamilyCodesUpdateManyWithWhereWithoutUnitInput = {
+    where: FamilyCodesScalarWhereInput
+    data: XOR<FamilyCodesUpdateManyMutationInput, FamilyCodesUncheckedUpdateManyWithoutUnitInput>
+  }
+
   export type UnitsCreateWithoutBillsInput = {
     id?: string
     unitNumber: string
@@ -25638,6 +31918,7 @@ export namespace Prisma {
     Residents?: ResidentsCreateNestedManyWithoutUnitInput
     Payments?: PaymentsCreateNestedManyWithoutUnitInput
     Complaints?: ComplaintsCreateNestedManyWithoutUnitInput
+    FamilyCodes?: FamilyCodesCreateNestedManyWithoutUnitInput
   }
 
   export type UnitsUncheckedCreateWithoutBillsInput = {
@@ -25656,6 +31937,7 @@ export namespace Prisma {
     Residents?: ResidentsUncheckedCreateNestedManyWithoutUnitInput
     Payments?: PaymentsUncheckedCreateNestedManyWithoutUnitInput
     Complaints?: ComplaintsUncheckedCreateNestedManyWithoutUnitInput
+    FamilyCodes?: FamilyCodesUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitsCreateOrConnectWithoutBillsInput = {
@@ -25765,6 +32047,7 @@ export namespace Prisma {
     Residents?: ResidentsUpdateManyWithoutUnitNestedInput
     Payments?: PaymentsUpdateManyWithoutUnitNestedInput
     Complaints?: ComplaintsUpdateManyWithoutUnitNestedInput
+    FamilyCodes?: FamilyCodesUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitsUncheckedUpdateWithoutBillsInput = {
@@ -25783,6 +32066,7 @@ export namespace Prisma {
     Residents?: ResidentsUncheckedUpdateManyWithoutUnitNestedInput
     Payments?: PaymentsUncheckedUpdateManyWithoutUnitNestedInput
     Complaints?: ComplaintsUncheckedUpdateManyWithoutUnitNestedInput
+    FamilyCodes?: FamilyCodesUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type EmployeesUpsertWithoutBillsInput = {
@@ -25857,11 +32141,22 @@ export namespace Prisma {
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
     isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UsersCreateNestedOneWithoutResidentInput
     unit?: UnitsCreateNestedOneWithoutResidentsInput
     Complaints?: ComplaintsCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsCreateNestedManyWithoutHeadOfHouseholdInput
   }
 
   export type ResidentsUncheckedCreateWithoutPaymentsInput = {
@@ -25877,9 +32172,20 @@ export namespace Prisma {
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
     isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     Complaints?: ComplaintsUncheckedCreateNestedManyWithoutResidentInput
+    ResidentDocuments?: ResidentDocumentsUncheckedCreateNestedManyWithoutResidentInput
+    FamilyCodes?: FamilyCodesUncheckedCreateNestedManyWithoutHeadResidentInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutFamilyMemberInput
+    FamilyApprovals?: FamilyApprovalsUncheckedCreateNestedManyWithoutHeadOfHouseholdInput
   }
 
   export type ResidentsCreateOrConnectWithoutPaymentsInput = {
@@ -25903,6 +32209,7 @@ export namespace Prisma {
     Residents?: ResidentsCreateNestedManyWithoutUnitInput
     Bills?: BillsCreateNestedManyWithoutUnitInput
     Complaints?: ComplaintsCreateNestedManyWithoutUnitInput
+    FamilyCodes?: FamilyCodesCreateNestedManyWithoutUnitInput
   }
 
   export type UnitsUncheckedCreateWithoutPaymentsInput = {
@@ -25921,6 +32228,7 @@ export namespace Prisma {
     Residents?: ResidentsUncheckedCreateNestedManyWithoutUnitInput
     Bills?: BillsUncheckedCreateNestedManyWithoutUnitInput
     Complaints?: ComplaintsUncheckedCreateNestedManyWithoutUnitInput
+    FamilyCodes?: FamilyCodesUncheckedCreateNestedManyWithoutUnitInput
   }
 
   export type UnitsCreateOrConnectWithoutPaymentsInput = {
@@ -26018,11 +32326,22 @@ export namespace Prisma {
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutResidentNestedInput
     unit?: UnitsUpdateOneWithoutResidentsNestedInput
     Complaints?: ComplaintsUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUpdateManyWithoutHeadOfHouseholdNestedInput
   }
 
   export type ResidentsUncheckedUpdateWithoutPaymentsInput = {
@@ -26038,9 +32357,20 @@ export namespace Prisma {
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Complaints?: ComplaintsUncheckedUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUncheckedUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUncheckedUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutHeadOfHouseholdNestedInput
   }
 
   export type UnitsUpsertWithoutPaymentsInput = {
@@ -26070,6 +32400,7 @@ export namespace Prisma {
     Residents?: ResidentsUpdateManyWithoutUnitNestedInput
     Bills?: BillsUpdateManyWithoutUnitNestedInput
     Complaints?: ComplaintsUpdateManyWithoutUnitNestedInput
+    FamilyCodes?: FamilyCodesUpdateManyWithoutUnitNestedInput
   }
 
   export type UnitsUncheckedUpdateWithoutPaymentsInput = {
@@ -26088,6 +32419,7 @@ export namespace Prisma {
     Residents?: ResidentsUncheckedUpdateManyWithoutUnitNestedInput
     Bills?: BillsUncheckedUpdateManyWithoutUnitNestedInput
     Complaints?: ComplaintsUncheckedUpdateManyWithoutUnitNestedInput
+    FamilyCodes?: FamilyCodesUncheckedUpdateManyWithoutUnitNestedInput
   }
 
   export type EmployeesUpsertWithoutPaymentsInput = {
@@ -26363,6 +32695,45 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type ResidentDocumentsCreateManyResidentInput = {
+    id?: string
+    documentType: $Enums.DocumentType
+    fileName: string
+    fileUrl: string
+    fileSize: number
+    uploadedAt?: Date | string
+    verifiedBy?: string | null
+    verifiedAt?: Date | string | null
+    isVerified?: boolean
+  }
+
+  export type FamilyCodesCreateManyHeadResidentInput = {
+    id?: string
+    code: string
+    unitId?: string | null
+    isActive?: boolean
+    maxMembers?: number
+    createdAt?: Date | string
+  }
+
+  export type FamilyApprovalsCreateManyFamilyMemberInput = {
+    id?: string
+    headOfHouseholdId: string
+    status?: $Enums.ApprovalStatus
+    requestedAt?: Date | string
+    respondedAt?: Date | string | null
+    notes?: string | null
+  }
+
+  export type FamilyApprovalsCreateManyHeadOfHouseholdInput = {
+    id?: string
+    familyMemberId: string
+    status?: $Enums.ApprovalStatus
+    requestedAt?: Date | string
+    respondedAt?: Date | string | null
+    notes?: string | null
+  }
+
   export type ComplaintsUpdateWithoutResidentInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -26448,6 +32819,123 @@ export namespace Prisma {
     billId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResidentDocumentsUpdateWithoutResidentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentType?: EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    fileSize?: IntFieldUpdateOperationsInput | number
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ResidentDocumentsUncheckedUpdateWithoutResidentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentType?: EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    fileSize?: IntFieldUpdateOperationsInput | number
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ResidentDocumentsUncheckedUpdateManyWithoutResidentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentType?: EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    fileSize?: IntFieldUpdateOperationsInput | number
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type FamilyCodesUpdateWithoutHeadResidentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    maxMembers?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    unit?: UnitsUpdateOneWithoutFamilyCodesNestedInput
+  }
+
+  export type FamilyCodesUncheckedUpdateWithoutHeadResidentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    maxMembers?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FamilyCodesUncheckedUpdateManyWithoutHeadResidentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    maxMembers?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FamilyApprovalsUpdateWithoutFamilyMemberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    headOfHousehold?: ResidentsUpdateOneRequiredWithoutFamilyApprovalsNestedInput
+  }
+
+  export type FamilyApprovalsUncheckedUpdateWithoutFamilyMemberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    headOfHouseholdId?: StringFieldUpdateOperationsInput | string
+    status?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FamilyApprovalsUncheckedUpdateManyWithoutFamilyMemberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    headOfHouseholdId?: StringFieldUpdateOperationsInput | string
+    status?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FamilyApprovalsUpdateWithoutHeadOfHouseholdInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    familyMember?: ResidentsUpdateOneRequiredWithoutFamilyMemberApprovalsNestedInput
+  }
+
+  export type FamilyApprovalsUncheckedUpdateWithoutHeadOfHouseholdInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    familyMemberId?: StringFieldUpdateOperationsInput | string
+    status?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FamilyApprovalsUncheckedUpdateManyWithoutHeadOfHouseholdInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    familyMemberId?: StringFieldUpdateOperationsInput | string
+    status?: EnumApprovalStatusFieldUpdateOperationsInput | $Enums.ApprovalStatus
+    requestedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AnnouncementsCreateManyEmployeeInput = {
@@ -26807,6 +33295,13 @@ export namespace Prisma {
     kprPaymentAmount?: number | null
     kprDueDate?: Date | string | null
     isKprPaid?: boolean | null
+    registrationStatus?: $Enums.RegistrationStatus
+    registrationMethod?: $Enums.RegistrationMethod
+    approvedBy?: string | null
+    approvalDate?: Date | string | null
+    rejectionReason?: string | null
+    pendingApproval?: boolean
+    approvedByHeadOfHousehold?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26851,6 +33346,15 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type FamilyCodesCreateManyUnitInput = {
+    id?: string
+    code: string
+    headOfHousehold: string
+    isActive?: boolean
+    maxMembers?: number
+    createdAt?: Date | string
+  }
+
   export type ResidentsUpdateWithoutUnitInput = {
     id?: StringFieldUpdateOperationsInput | string
     emergencyContactName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26862,11 +33366,22 @@ export namespace Prisma {
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutResidentNestedInput
     Complaints?: ComplaintsUpdateManyWithoutResidentNestedInput
     Payments?: PaymentsUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUpdateManyWithoutHeadOfHouseholdNestedInput
   }
 
   export type ResidentsUncheckedUpdateWithoutUnitInput = {
@@ -26881,10 +33396,21 @@ export namespace Prisma {
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Complaints?: ComplaintsUncheckedUpdateManyWithoutResidentNestedInput
     Payments?: PaymentsUncheckedUpdateManyWithoutResidentNestedInput
+    ResidentDocuments?: ResidentDocumentsUncheckedUpdateManyWithoutResidentNestedInput
+    FamilyCodes?: FamilyCodesUncheckedUpdateManyWithoutHeadResidentNestedInput
+    FamilyMemberApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutFamilyMemberNestedInput
+    FamilyApprovals?: FamilyApprovalsUncheckedUpdateManyWithoutHeadOfHouseholdNestedInput
   }
 
   export type ResidentsUncheckedUpdateManyWithoutUnitInput = {
@@ -26899,6 +33425,13 @@ export namespace Prisma {
     kprPaymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     kprDueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isKprPaid?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    registrationStatus?: EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+    registrationMethod?: EnumRegistrationMethodFieldUpdateOperationsInput | $Enums.RegistrationMethod
+    approvedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingApproval?: BoolFieldUpdateOperationsInput | boolean
+    approvedByHeadOfHousehold?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -27023,6 +33556,33 @@ export namespace Prisma {
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FamilyCodesUpdateWithoutUnitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    maxMembers?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    headResident?: ResidentsUpdateOneRequiredWithoutFamilyCodesNestedInput
+  }
+
+  export type FamilyCodesUncheckedUpdateWithoutUnitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    headOfHousehold?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    maxMembers?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FamilyCodesUncheckedUpdateManyWithoutUnitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    headOfHousehold?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    maxMembers?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PaymentsCreateManyBillInput = {

@@ -16,7 +16,7 @@ import {
   IsArray,
   IsStrongPassword,
 } from 'class-validator';
-import { ResidentStatus } from '../../common/database/generated/prisma';
+import { Gender, ResidentStatus, UserRole } from '../../common/database/generated/prisma';
 import { IsUnique } from '../../common/pipes/validators/is-unique-validators';
 
 export enum RegistrationMethod {
@@ -72,6 +72,18 @@ export class RegistRequest {
   @Type(() => Date)
   readonly dateOfBirth: Date;
 
+  @IsNotEmpty({ message: 'Peran tidak boleh kosong' })
+  @IsEnum(UserRole, {
+    message: 'Peran tidak valid: ' + Object.values(UserRole).join(', '),
+  })
+  readonly role: UserRole;
+
+  @IsNotEmpty({ message: 'Jenis kelamin tidak boleh kosong' })
+  @IsEnum(Gender, {
+    message: 'Jenis kelamin tidak valid: ' + Object.values(Gender).join(', '),
+  })
+  readonly gender: Gender;
+
   @IsString({ message: 'Nomor kontak harus berupa teks' })
   @IsOptional()
   readonly contactNumber: string;
@@ -99,7 +111,7 @@ export class RegistRequest {
       'Status penghuni tidak valid. Pilihan: ' +
       Object.values(ResidentStatus).join(', '),
   })
-  readonly residenttYPE: ResidentStatus;
+  readonly residentType: ResidentStatus;
 
   @IsNotEmpty({ message: 'metode registrasi tidak boleh kosong' })
   @IsEnum(RegistrationMethod, {
@@ -152,6 +164,7 @@ export class RegistRequest {
   @IsString()
   familyCode?: string;
 
+  @ValidateIf((o) => o.residentType === ResidentStatus.HEAD_HOUSE_HOLD)
   @IsOptional()
   @IsArray()
   @IsString({ each: true })

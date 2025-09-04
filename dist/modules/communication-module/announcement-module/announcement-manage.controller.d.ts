@@ -5,15 +5,15 @@ export declare class AnnouncementManageController {
     private readonly announcementManageService;
     constructor(announcementManageService: AnnouncementManageService);
     create(createAnnouncementManageDto: CreateAnnouncementManageDto, files?: Express.Multer.File[]): Promise<{
-        id: string;
         title: string;
+        employeeId: string;
         content: string;
         attachments: string[];
+        publishDate: Date;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        publishDate: Date;
         expiryDate: Date | null;
-        employeeId: string;
     }>;
     findAll(): Promise<{
         attachments: string[];
@@ -24,9 +24,6 @@ export declare class AnnouncementManageController {
                 lastName: string;
             };
         } & {
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
             userId: string;
             employeeNumberId: string;
             hireDate: Date;
@@ -34,15 +31,18 @@ export declare class AnnouncementManageController {
             workingHours: number;
             salary: number;
             bonus: number | null;
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
         };
-        id: string;
         title: string;
+        employeeId: string;
         content: string;
+        publishDate: Date;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        publishDate: Date;
         expiryDate: Date | null;
-        employeeId: string;
     }[]>;
     findOne(id: string): Promise<{
         attachments: string[];
@@ -53,9 +53,6 @@ export declare class AnnouncementManageController {
                 lastName: string;
             };
         } & {
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
             userId: string;
             employeeNumberId: string;
             hireDate: Date;
@@ -63,36 +60,39 @@ export declare class AnnouncementManageController {
             workingHours: number;
             salary: number;
             bonus: number | null;
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
         };
-        id: string;
         title: string;
+        employeeId: string;
         content: string;
+        publishDate: Date;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        publishDate: Date;
         expiryDate: Date | null;
-        employeeId: string;
     }>;
     update(id: string, updateAnnouncementManageDto: UpdateAnnouncementManageDto, files?: Express.Multer.File[]): Promise<{
-        id: string;
         title: string;
+        employeeId: string;
         content: string;
         attachments: string[];
+        publishDate: Date;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        publishDate: Date;
         expiryDate: Date | null;
-        employeeId: string;
     }>;
     remove(id: string): Promise<{
-        id: string;
         title: string;
+        employeeId: string;
         content: string;
         attachments: string[];
+        publishDate: Date;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        publishDate: Date;
         expiryDate: Date | null;
-        employeeId: string;
     }>;
 }

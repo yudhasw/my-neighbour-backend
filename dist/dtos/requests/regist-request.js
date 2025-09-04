@@ -26,9 +26,11 @@ class RegistRequest {
     username;
     password;
     dateOfBirth;
+    role;
+    gender;
     contactNumber;
     primaryEmail;
-    residenttYPE;
+    residentType;
     registrationMethod;
     emergencyContactName;
     emergencyContactNumber;
@@ -89,6 +91,20 @@ __decorate([
     __metadata("design:type", Date)
 ], RegistRequest.prototype, "dateOfBirth", void 0);
 __decorate([
+    (0, class_validator_1.IsNotEmpty)({ message: 'Peran tidak boleh kosong' }),
+    (0, class_validator_1.IsEnum)(prisma_1.UserRole, {
+        message: 'Peran tidak valid: ' + Object.values(prisma_1.UserRole).join(', '),
+    }),
+    __metadata("design:type", String)
+], RegistRequest.prototype, "role", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)({ message: 'Jenis kelamin tidak boleh kosong' }),
+    (0, class_validator_1.IsEnum)(prisma_1.Gender, {
+        message: 'Jenis kelamin tidak valid: ' + Object.values(prisma_1.Gender).join(', '),
+    }),
+    __metadata("design:type", String)
+], RegistRequest.prototype, "gender", void 0);
+__decorate([
     (0, class_validator_1.IsString)({ message: 'Nomor kontak harus berupa teks' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
@@ -112,7 +128,7 @@ __decorate([
             Object.values(prisma_1.ResidentStatus).join(', '),
     }),
     __metadata("design:type", String)
-], RegistRequest.prototype, "residenttYPE", void 0);
+], RegistRequest.prototype, "residentType", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'metode registrasi tidak boleh kosong' }),
     (0, class_validator_1.IsEnum)(RegistrationMethod, {
@@ -173,6 +189,7 @@ __decorate([
     __metadata("design:type", String)
 ], RegistRequest.prototype, "familyCode", void 0);
 __decorate([
+    (0, class_validator_1.ValidateIf)((o) => o.residentType === prisma_1.ResidentStatus.HEAD_HOUSE_HOLD),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsString)({ each: true }),

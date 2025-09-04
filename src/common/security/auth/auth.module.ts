@@ -7,6 +7,9 @@ import { DatabaseModule } from 'src/common/database/database.module';
 import { DatabaseService } from 'src/common/database/database.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
+import { MailerManageModule } from 'src/common/helper/mail/mailer-manage.module';
+import { MulterModule } from '@nestjs/platform-express';
+import { UploadsConfiguration } from 'src/common/helper/uploads/uploads-configuration';
 
 @Module({
   imports: [
@@ -20,9 +23,12 @@ import { PassportModule } from '@nestjs/passport';
       }),
       inject: [ConfigService],
     }),
+    MulterModule.register(UploadsConfiguration.defaultConfig),
     DatabaseModule,
+    MailerManageModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategyService, DatabaseService],
+  exports: [AuthService, JwtStrategyService],
 })
 export class AuthModule {}
