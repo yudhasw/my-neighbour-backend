@@ -1,66 +1,62 @@
 import { Strategy } from 'passport-jwt';
 import { DatabaseService } from '../../../common/database/database.service';
+import { ConfigService } from '@nestjs/config';
+export interface JwtPayload {
+    sub: string;
+    iat?: number;
+    exp?: number;
+}
 declare const JwtStrategyService_base: new (...args: [opt: import("passport-jwt").StrategyOptionsWithRequest] | [opt: import("passport-jwt").StrategyOptionsWithoutRequest]) => Strategy & {
     validate(...args: any[]): unknown;
 };
 export declare class JwtStrategyService extends JwtStrategyService_base {
     private prisma;
-    constructor(prisma: DatabaseService);
-    validate(payload: any): Promise<{
-        id: string;
+    private readonly configService;
+    constructor(prisma: DatabaseService, configService: ConfigService);
+    validate(payload: JwtPayload): Promise<{
+        sub: string;
         username: string;
-        primaryEmail: string;
+        email: string;
+        fullName: string;
         role: import("src/common/database/generated/prisma").$Enums.UserRole;
         resident: ({
             unit: {
-                status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
-                location: string;
-                unitNumber: string;
-                buildingName: string | null;
-                floorNumber: number | null;
-                numberOfRooms: number | null;
-                squareFootage: number | null;
-                priceSale: number;
                 id: string;
                 createdAt: Date;
                 updatedAt: Date;
+                status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
+                unitNumber: string;
+                buildingName: string | null;
                 unitOwnership: string[];
+                floorNumber: number | null;
+                numberOfRooms: number | null;
+                priceSale: number;
+                squareFootage: number | null;
+                location: string;
             } | null;
         } & {
-            registrationMethod: import("src/common/database/generated/prisma").$Enums.RegistrationMethod;
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            userId: string;
             emergencyContactName: string | null;
             emergencyContactNumber: string | null;
             movedInDate: Date;
+            movedOutDate: Date | null;
+            familyCode: string | null;
+            residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
             unitId: string | null;
             kprPaymentAmount: number | null;
             kprDueDate: Date | null;
             isKprPaid: boolean | null;
-            familyCode: string | null;
-            userId: string;
-            movedOutDate: Date | null;
-            residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
             registrationStatus: import("src/common/database/generated/prisma").$Enums.RegistrationStatus;
+            registrationMethod: import("src/common/database/generated/prisma").$Enums.RegistrationMethod;
             approvedBy: string | null;
             approvalDate: Date | null;
             rejectionReason: string | null;
             pendingApproval: boolean;
             approvedByHeadOfHousehold: string | null;
         }) | null;
-        employee: {
-            userId: string;
-            employeeNumberId: string;
-            hireDate: Date;
-            employeePosition: import("src/common/database/generated/prisma").$Enums.EmployeeRole;
-            workingHours: number;
-            salary: number;
-            bonus: number | null;
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
-        } | null;
     }>;
 }
 export {};

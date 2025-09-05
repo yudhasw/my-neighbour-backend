@@ -1,8 +1,10 @@
 import { MailerManageService } from './mailer-manage.service';
+import { RegistrationMethod } from '../../../common/database/generated/prisma';
 export declare class SendVerificationEmailDto {
     fullName: string;
     email: string;
-    registrationType: 'head-of-household' | 'family-member';
+    verificationCode: string;
+    registrationType?: RegistrationMethod;
     unitNumber?: string;
     propertyName?: string;
     isAdminDriven?: boolean;
@@ -20,7 +22,8 @@ export declare class SendDocumentReviewDto {
     applicantEmail: string;
     adminName: string;
     adminEmail: string;
-    documentType: 'AJB' | 'SHM' | 'KPR';
+    documentType: 'AJB' | 'SHM' | 'KPR' | 'ID_CARD' | 'KTP' | 'KK';
+    submissionDate: string;
     reviewUrl: string;
 }
 export declare class MailerManageController {

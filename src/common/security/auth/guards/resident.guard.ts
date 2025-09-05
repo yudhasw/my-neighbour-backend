@@ -6,6 +6,6 @@ export class ResidentGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    return true;
+    
   }
 }

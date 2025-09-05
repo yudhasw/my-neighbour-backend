@@ -5,8 +5,13 @@ export declare class ComplaintManageController {
     private readonly complaintManageService;
     constructor(complaintManageService: ComplaintManageService);
     create(createComplaintManageDto: CreateComplaintManageDto): Promise<{
-        unitId: string | null;
         title: string;
+        employeeId: string | null;
+        images: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        unitId: string | null;
         description: string;
         category: import("src/common/database/generated/prisma").$Enums.MaintenanceCategory;
         status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
@@ -14,15 +19,15 @@ export declare class ComplaintManageController {
         resolvedAt: Date | null;
         resolutionDetails: string | null;
         residentId: string;
-        employeeId: string | null;
-        images: string[];
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     findAll(): Promise<{
-        unitId: string | null;
         title: string;
+        employeeId: string | null;
+        images: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        unitId: string | null;
         description: string;
         category: import("src/common/database/generated/prisma").$Enums.MaintenanceCategory;
         status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
@@ -30,24 +35,22 @@ export declare class ComplaintManageController {
         resolvedAt: Date | null;
         resolutionDetails: string | null;
         residentId: string;
-        employeeId: string | null;
-        images: string[];
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
     }[]>;
     findOne(id: string): Promise<{
         employee: ({
             employeeNumberId: string;
             employeePosition: import("src/common/database/generated/prisma").$Enums.EmployeeRole;
             user: {
+                id: string;
                 fullName: string;
                 firstName: string;
                 lastName: string;
                 username: string;
-                id: string;
             };
         } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
             userId: string;
             employeeNumberId: string;
             hireDate: Date;
@@ -55,41 +58,38 @@ export declare class ComplaintManageController {
             workingHours: number;
             salary: number;
             bonus: number | null;
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
         }) | null;
         resident: {
             user: {
+                id: string;
                 fullName: string;
                 firstName: string;
                 lastName: string;
                 username: string;
-                id: string;
             };
             unit: {
                 status: import("src/common/database/generated/prisma").$Enums.UnitStatus;
-                location: string;
                 unitNumber: string;
                 buildingName: string | null;
+                location: string;
             } | null;
         } & {
-            registrationMethod: import("src/common/database/generated/prisma").$Enums.RegistrationMethod;
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            userId: string;
             emergencyContactName: string | null;
             emergencyContactNumber: string | null;
             movedInDate: Date;
+            movedOutDate: Date | null;
+            familyCode: string | null;
+            residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
             unitId: string | null;
             kprPaymentAmount: number | null;
             kprDueDate: Date | null;
             isKprPaid: boolean | null;
-            familyCode: string | null;
-            userId: string;
-            movedOutDate: Date | null;
-            residentStatus: import("src/common/database/generated/prisma").$Enums.ResidentStatus | null;
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
             registrationStatus: import("src/common/database/generated/prisma").$Enums.RegistrationStatus;
+            registrationMethod: import("src/common/database/generated/prisma").$Enums.RegistrationMethod;
             approvedBy: string | null;
             approvalDate: Date | null;
             rejectionReason: string | null;
@@ -97,8 +97,13 @@ export declare class ComplaintManageController {
             approvedByHeadOfHousehold: string | null;
         };
     } & {
-        unitId: string | null;
         title: string;
+        employeeId: string | null;
+        images: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        unitId: string | null;
         description: string;
         category: import("src/common/database/generated/prisma").$Enums.MaintenanceCategory;
         status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
@@ -106,15 +111,15 @@ export declare class ComplaintManageController {
         resolvedAt: Date | null;
         resolutionDetails: string | null;
         residentId: string;
-        employeeId: string | null;
-        images: string[];
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     update(id: string, updateComplaintManageDto: UpdateComplaintManageDto): Promise<{
-        unitId: string | null;
         title: string;
+        employeeId: string | null;
+        images: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        unitId: string | null;
         description: string;
         category: import("src/common/database/generated/prisma").$Enums.MaintenanceCategory;
         status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
@@ -122,15 +127,15 @@ export declare class ComplaintManageController {
         resolvedAt: Date | null;
         resolutionDetails: string | null;
         residentId: string;
-        employeeId: string | null;
-        images: string[];
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     remove(id: string): Promise<{
-        unitId: string | null;
         title: string;
+        employeeId: string | null;
+        images: string[];
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        unitId: string | null;
         description: string;
         category: import("src/common/database/generated/prisma").$Enums.MaintenanceCategory;
         status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
@@ -138,10 +143,5 @@ export declare class ComplaintManageController {
         resolvedAt: Date | null;
         resolutionDetails: string | null;
         residentId: string;
-        employeeId: string | null;
-        images: string[];
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
 }

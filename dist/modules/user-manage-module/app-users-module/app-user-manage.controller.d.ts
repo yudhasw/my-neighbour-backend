@@ -5,6 +5,9 @@ export declare class AppUserManageController {
     private readonly appUserManageService;
     constructor(appUserManageService: AppUserManageService);
     create(createAppUserManageDto: CreateAppUserManageDto): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         firstName: string;
         lastName: string;
@@ -13,16 +16,16 @@ export declare class AppUserManageController {
         contactNumber: string | null;
         primaryEmail: string;
         secondaryEmail: string | null;
-        role: import("src/common/database/generated/prisma").$Enums.UserRole;
-        gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
-        id: string;
         sessionToken: string | null;
         emailVerificationToken: string | null;
         passwordResetToken: string | null;
-        createdAt: Date;
-        updatedAt: Date;
+        role: import("src/common/database/generated/prisma").$Enums.UserRole;
+        gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
     }>;
     findAll(): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         firstName: string;
         lastName: string;
@@ -31,13 +34,6 @@ export declare class AppUserManageController {
         secondaryEmail: string | null;
         role: import("src/common/database/generated/prisma").$Enums.UserRole;
         gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        _count: {
-            ForumPosts: number;
-            ForumComments: number;
-        };
         Resident: {
             emergencyContactName: string | null;
             emergencyContactNumber: string | null;
@@ -52,6 +48,10 @@ export declare class AppUserManageController {
             salary: number;
             bonus: number | null;
         } | null;
+        _count: {
+            ForumPosts: number;
+            ForumComments: number;
+        };
     }[]>;
     findOne(id: string): Promise<{
         Resident: {
@@ -60,10 +60,10 @@ export declare class AppUserManageController {
             movedInDate: Date;
             movedOutDate: Date | null;
             unit: {
-                location: string;
                 unitNumber: string;
                 buildingName: string | null;
                 floorNumber: number | null;
+                location: string;
             } | null;
         } | null;
         Employee: {
@@ -73,39 +73,42 @@ export declare class AppUserManageController {
             workingHours: number;
             salary: number;
             bonus: number | null;
-            Complaints: {
-                title: string;
-                description: string;
-                status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
-                submittedAt: Date;
-            }[];
             Announcements: {
                 title: string;
                 content: string;
                 publishDate: Date;
                 expiryDate: Date | null;
             }[];
+            Complaints: {
+                title: string;
+                description: string;
+                status: import("src/common/database/generated/prisma").$Enums.ComplaintStatus;
+                submittedAt: Date;
+            }[];
         } | null;
     } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         firstName: string;
         lastName: string;
         username: string;
-        password: string;
         dateOfBirth: Date | null;
         contactNumber: string | null;
         primaryEmail: string;
         secondaryEmail: string | null;
-        role: import("src/common/database/generated/prisma").$Enums.UserRole;
-        gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
-        id: string;
+        password: string;
         sessionToken: string | null;
         emailVerificationToken: string | null;
         passwordResetToken: string | null;
-        createdAt: Date;
-        updatedAt: Date;
+        role: import("src/common/database/generated/prisma").$Enums.UserRole;
+        gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
     }>;
     update(id: string, updateAppUserManageDto: UpdateAppUserManageDto): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         firstName: string;
         lastName: string;
@@ -114,32 +117,29 @@ export declare class AppUserManageController {
         contactNumber: string | null;
         primaryEmail: string;
         secondaryEmail: string | null;
-        role: import("src/common/database/generated/prisma").$Enums.UserRole;
-        gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
-        id: string;
         sessionToken: string | null;
         emailVerificationToken: string | null;
         passwordResetToken: string | null;
-        createdAt: Date;
-        updatedAt: Date;
+        role: import("src/common/database/generated/prisma").$Enums.UserRole;
+        gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
     }>;
     remove(id: string): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         firstName: string;
         lastName: string;
         username: string;
-        password: string;
         dateOfBirth: Date | null;
         contactNumber: string | null;
         primaryEmail: string;
         secondaryEmail: string | null;
-        role: import("src/common/database/generated/prisma").$Enums.UserRole;
-        gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
-        id: string;
+        password: string;
         sessionToken: string | null;
         emailVerificationToken: string | null;
         passwordResetToken: string | null;
-        createdAt: Date;
-        updatedAt: Date;
+        role: import("src/common/database/generated/prisma").$Enums.UserRole;
+        gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
     }>;
 }

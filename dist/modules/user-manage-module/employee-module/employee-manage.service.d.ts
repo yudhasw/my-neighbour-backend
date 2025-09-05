@@ -7,6 +7,9 @@ export declare class EmployeeManageService {
     private readonly helper;
     constructor(prisma: DatabaseService, helper: GeneralHelper);
     create(createRequest: CreateEmployeeManageDto): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
         userId: string;
         employeeNumberId: string;
         hireDate: Date;
@@ -14,9 +17,6 @@ export declare class EmployeeManageService {
         workingHours: number;
         salary: number;
         bonus: number | null;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     findAll(): Promise<({
         user: {
@@ -29,13 +29,16 @@ export declare class EmployeeManageService {
             gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
         };
         _count: {
-            Complaints: number;
-            Payments: number;
-            Bills: number;
             Announcements: number;
+            Complaints: number;
+            Bills: number;
+            Payments: number;
             SecurityReports: number;
         };
     } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
         userId: string;
         employeeNumberId: string;
         hireDate: Date;
@@ -43,9 +46,6 @@ export declare class EmployeeManageService {
         workingHours: number;
         salary: number;
         bonus: number | null;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
     })[]>;
     findOne(id: string): Promise<{
         user: {
@@ -57,6 +57,13 @@ export declare class EmployeeManageService {
             primaryEmail: string;
             gender: import("src/common/database/generated/prisma").$Enums.Gender | null;
         };
+        Announcements: {
+            title: string;
+            content: string;
+            attachments: string[];
+            publishDate: Date;
+            expiryDate: Date | null;
+        }[];
         Complaints: {
             title: string;
             description: string;
@@ -66,20 +73,16 @@ export declare class EmployeeManageService {
             resolutionDetails: string | null;
         }[];
         _count: {
-            Complaints: number;
-            Payments: number;
-            Bills: number;
             Announcements: number;
+            Complaints: number;
+            Bills: number;
+            Payments: number;
             SecurityReports: number;
         };
-        Announcements: {
-            title: string;
-            content: string;
-            attachments: string[];
-            publishDate: Date;
-            expiryDate: Date | null;
-        }[];
     } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
         userId: string;
         employeeNumberId: string;
         hireDate: Date;
@@ -87,11 +90,11 @@ export declare class EmployeeManageService {
         workingHours: number;
         salary: number;
         bonus: number | null;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     update(id: string, updateRequest: UpdateEmployeeManageDto): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
         userId: string;
         employeeNumberId: string;
         hireDate: Date;
@@ -99,11 +102,11 @@ export declare class EmployeeManageService {
         workingHours: number;
         salary: number;
         bonus: number | null;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     remove(id: string): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
         userId: string;
         employeeNumberId: string;
         hireDate: Date;
@@ -111,8 +114,5 @@ export declare class EmployeeManageService {
         workingHours: number;
         salary: number;
         bonus: number | null;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
 }

@@ -15,9 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MailerManageController = exports.SendDocumentReviewDto = exports.SendApprovalNotificationDto = exports.SendVerificationEmailDto = void 0;
 const common_1 = require("@nestjs/common");
 const mailer_manage_service_1 = require("./mailer-manage.service");
+const prisma_1 = require("../../../common/database/generated/prisma");
 class SendVerificationEmailDto {
     fullName;
     email;
+    verificationCode;
     registrationType;
     unitNumber;
     propertyName;
@@ -39,6 +41,7 @@ class SendDocumentReviewDto {
     adminName;
     adminEmail;
     documentType;
+    submissionDate;
     reviewUrl;
 }
 exports.SendDocumentReviewDto = SendDocumentReviewDto;
@@ -55,8 +58,8 @@ let MailerManageController = class MailerManageController {
                 verificationCode,
             };
             let result;
-            if (dto.registrationType === 'head-of-household') {
-                if (dto.isAdminDriven) {
+            if (dto.registrationType === prisma_1.RegistrationMethod.ADMIN_DRIVEN) {
+                if (dto.isAdminDriven == true) {
                     result =
                         await this.mailerManageService.sendAdminDrivenHeadOfHouseholdEmail(emailData);
                 }
@@ -66,7 +69,7 @@ let MailerManageController = class MailerManageController {
                 }
             }
             else {
-                if (dto.isAdminDriven) {
+                if (dto.isAdminDriven == false) {
                     result =
                         await this.mailerManageService.sendAdminDrivenFamilyMemberEmail(emailData);
                 }

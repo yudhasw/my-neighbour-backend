@@ -11,11 +11,13 @@ import {
   RegistrationEmailData,
   WelcomeEmailData,
 } from './mail-interface';
+import { RegistrationMethod } from '../../../common/database/generated/prisma';
 
 export class SendVerificationEmailDto {
   fullName: string;
   email: string;
-  registrationType: 'head-of-household' | 'family-member';
+  verificationCode: string;
+  registrationType?: RegistrationMethod;
   unitNumber?: string;
   propertyName?: string;
   isAdminDriven?: boolean;
@@ -35,7 +37,8 @@ export class SendDocumentReviewDto {
   applicantEmail: string;
   adminName: string;
   adminEmail: string;
-  documentType: 'AJB' | 'SHM' | 'KPR';
+  documentType: 'AJB' | 'SHM' | 'KPR' | 'ID_CARD' | 'KTP' | 'KK';
+  submissionDate: string;
   reviewUrl: string;
 }
 
@@ -56,8 +59,8 @@ export class MailerManageController {
 
       let result: boolean;
 
-      if (dto.registrationType === 'head-of-household') {
-        if (dto.isAdminDriven) {
+      if (dto.registrationType === RegistrationMethod.ADMIN_DRIVEN) {
+        if (dto.isAdminDriven == true) {
           result =
             await this.mailerManageService.sendAdminDrivenHeadOfHouseholdEmail(
               emailData,
@@ -69,7 +72,7 @@ export class MailerManageController {
             );
         }
       } else {
-        if (dto.isAdminDriven) {
+        if (dto.isAdminDriven == false) {
           result =
             await this.mailerManageService.sendAdminDrivenFamilyMemberEmail(
               emailData,

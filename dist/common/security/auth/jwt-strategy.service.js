@@ -14,18 +14,18 @@ const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
 const passport_jwt_1 = require("passport-jwt");
 const database_service_1 = require("../../../common/database/database.service");
+const config_1 = require("@nestjs/config");
 let JwtStrategyService = class JwtStrategyService extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy) {
     prisma;
-    constructor(prisma) {
+    configService;
+    constructor(prisma, configService) {
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
-            secretOrKey: process.env.JWT_SECRET || 'fallback-secret-key',
+            secretOrKey: configService.get('JWT_SECRET') || '',
         });
         this.prisma = prisma;
-        if (!process.env.JWT_SECRET) {
-            throw new Error('JWT_SECRET environment variable is required');
-        }
+        this.configService = configService;
     }
     async validate(payload) {
         const user = await this.prisma.users.findUnique({
@@ -42,19 +42,29 @@ let JwtStrategyService = class JwtStrategyService extends (0, passport_1.Passpor
         if (!user) {
             throw new common_1.UnauthorizedException('Invalid token');
         }
+        if (!user) {
+            throw new common_1.UnauthorizedException('User not found');
+        }
+        if (user.emailVerificationToken !== null) {
+            throw new common_1.UnauthorizedException('Email not verified');
+        }
+        if (!user.sessionToken) {
+            throw new common_1.UnauthorizedException('Session expired. Please login again.');
+        }
         return {
-            id: user.id,
+            sub: user.id,
             username: user.username,
-            primaryEmail: user.primaryEmail,
+            email: user.primaryEmail,
+            fullName: user.fullName,
             role: user.role,
             resident: user.Resident,
-            employee: user.Employee,
         };
     }
 };
 exports.JwtStrategyService = JwtStrategyService;
 exports.JwtStrategyService = JwtStrategyService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [database_service_1.DatabaseService])
+    __metadata("design:paramtypes", [database_service_1.DatabaseService,
+        config_1.ConfigService])
 ], JwtStrategyService);
 //# sourceMappingURL=jwt-strategy.service.js.map

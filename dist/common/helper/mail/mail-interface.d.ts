@@ -1,11 +1,20 @@
+import { RegistrationMethod } from '../../../common/database/generated/prisma';
 export interface RegistrationEmailData {
     fullName: string;
     email: string;
     verificationCode: string;
     unitNumber?: string;
     propertyName?: string;
-    registrationType: string;
     isAdminDriven?: boolean;
+    registrationType?: RegistrationMethod;
+}
+export interface WelcomeEmailData {
+    fullName: string;
+    email: string;
+    uniqueCode: string;
+    loginUrl: string;
+    propertyName: string;
+    unitNumber?: string;
 }
 export interface FamilyMemberNotificationData {
     headOfHouseholdName: string;
@@ -20,15 +29,7 @@ export interface DocumentVerificationData {
     applicantEmail: string;
     adminName: string;
     adminEmail: string;
-    documentType: 'AJB' | 'SHM' | 'KPR';
+    documentType: 'AJB' | 'SHM' | 'KPR' | 'ID_CARD' | 'KTP' | 'KK';
     submissionDate: string;
     reviewUrl: string;
-}
-export interface WelcomeEmailData {
-    fullName: string;
-    email: string;
-    uniqueCode: string;
-    loginUrl: string;
-    propertyName: string;
-    unitNumber: string;
 }

@@ -16,7 +16,30 @@ export declare class AuthService extends UploadsService {
         userId: string;
         residentId: string;
         requiresApproval: boolean;
+        verificationCode: string;
     }>;
+    verifyEmail(token: string): Promise<{
+        message: string;
+    }>;
+    approvalSystem(approvalRequest: {
+        familyApprovalId: string;
+        headOfHouseholdId: string;
+        action: 'APPROVE' | 'REJECT';
+        notes?: string;
+    }): Promise<{
+        message: string;
+        approval: {
+            id: string;
+            status: import("../../../common/database/generated/prisma").$Enums.ApprovalStatus;
+            familyMemberId: string;
+            headOfHouseholdId: string;
+            requestedAt: Date;
+            respondedAt: Date | null;
+            notes: string | null;
+        };
+    }>;
+    private ensureFamilyCode;
+    private createFamilyApprovalRequest;
     signIn(signInRequest: SignInRequest): Promise<{
         accessToken: string;
         refreshToken: string;
@@ -25,6 +48,7 @@ export declare class AuthService extends UploadsService {
             id: string;
             username: string;
             email: string;
+            fullName: string;
             resident: ({
                 unit: {
                     unitNumber: string;
@@ -65,36 +89,14 @@ export declare class AuthService extends UploadsService {
             }) | null;
         };
     }>;
-    verifyEmail(token: string): Promise<{
-        message: string;
-    }>;
     generateTokens(userId: string): Promise<{
         accessToken: string;
         refreshToken: string;
     }>;
     jwtCompare(token: string, userId: string): Promise<boolean>;
-    approvalSystem(approvalRequest: {
-        familyApprovalId: string;
-        headOfHouseholdId: string;
-        action: 'APPROVE' | 'REJECT';
-        notes?: string;
-    }): Promise<{
-        message: string;
-        approval: {
-            id: string;
-            status: import("../../../common/database/generated/prisma").$Enums.ApprovalStatus;
-            familyMemberId: string;
-            headOfHouseholdId: string;
-            requestedAt: Date;
-            respondedAt: Date | null;
-            notes: string | null;
-        };
-    }>;
     private validateFamilyCode;
     private validateUnitOwnership;
     private handleDocumentUploads;
-    private createFamilyApprovalRequest;
-    private ensureFamilyCode;
     private generateUniqueFamilyCode;
     private saveFileToStorage;
 }

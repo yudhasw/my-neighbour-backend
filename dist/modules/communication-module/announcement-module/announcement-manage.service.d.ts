@@ -7,14 +7,14 @@ export declare class AnnouncementManageService extends UploadsService {
     constructor(prisma: DatabaseService);
     create(createRequest: CreateAnnouncementManageDto, files?: Express.Multer.File[]): Promise<{
         title: string;
-        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
+        expiryDate: Date | null;
+        employeeId: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        expiryDate: Date | null;
     }>;
     findAll(): Promise<{
         attachments: string[];
@@ -25,6 +25,9 @@ export declare class AnnouncementManageService extends UploadsService {
                 lastName: string;
             };
         } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
             userId: string;
             employeeNumberId: string;
             hireDate: Date;
@@ -32,18 +35,15 @@ export declare class AnnouncementManageService extends UploadsService {
             workingHours: number;
             salary: number;
             bonus: number | null;
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
         };
         title: string;
-        employeeId: string;
         content: string;
         publishDate: Date;
+        expiryDate: Date | null;
+        employeeId: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        expiryDate: Date | null;
     }[]>;
     findOne(id: string): Promise<{
         attachments: string[];
@@ -54,6 +54,9 @@ export declare class AnnouncementManageService extends UploadsService {
                 lastName: string;
             };
         } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
             userId: string;
             employeeNumberId: string;
             hireDate: Date;
@@ -61,40 +64,37 @@ export declare class AnnouncementManageService extends UploadsService {
             workingHours: number;
             salary: number;
             bonus: number | null;
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
         };
         title: string;
-        employeeId: string;
         content: string;
         publishDate: Date;
+        expiryDate: Date | null;
+        employeeId: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        expiryDate: Date | null;
     }>;
     update(id: string, updateRequest: UpdateAnnouncementManageDto, files?: Express.Multer.File[]): Promise<{
         title: string;
-        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
+        expiryDate: Date | null;
+        employeeId: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        expiryDate: Date | null;
     }>;
     remove(id: string): Promise<{
         title: string;
-        employeeId: string;
         content: string;
         attachments: string[];
         publishDate: Date;
+        expiryDate: Date | null;
+        employeeId: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        expiryDate: Date | null;
     }>;
     getAnnouncementFiles(id: string): Promise<{
         path: string;

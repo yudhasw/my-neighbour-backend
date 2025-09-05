@@ -6,15 +6,15 @@ export declare class SecurityManageController {
     constructor(securityManageService: SecurityManageService);
     create(createSecurityManageDto: CreateSecurityManageDto): Promise<{
         title: string;
-        description: string;
-        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
         employeeId: string;
-        location: string;
-        incidentDate: Date;
-        isPublished: boolean;
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        description: string;
+        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        location: string;
+        incidentDate: Date;
+        isPublished: boolean;
     }>;
     findAll(): Promise<({
         employee: {
@@ -26,6 +26,9 @@ export declare class SecurityManageController {
                 contactNumber: string | null;
             };
         } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
             userId: string;
             employeeNumberId: string;
             hireDate: Date;
@@ -33,21 +36,18 @@ export declare class SecurityManageController {
             workingHours: number;
             salary: number;
             bonus: number | null;
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
         };
     } & {
         title: string;
-        description: string;
-        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
         employeeId: string;
-        location: string;
-        incidentDate: Date;
-        isPublished: boolean;
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        description: string;
+        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        location: string;
+        incidentDate: Date;
+        isPublished: boolean;
     })[]>;
     findOne(id: string): Promise<{
         employee: {
@@ -59,6 +59,9 @@ export declare class SecurityManageController {
                 contactNumber: string | null;
             };
         } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
             userId: string;
             employeeNumberId: string;
             hireDate: Date;
@@ -66,44 +69,41 @@ export declare class SecurityManageController {
             workingHours: number;
             salary: number;
             bonus: number | null;
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
         };
     } & {
         title: string;
-        description: string;
-        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
         employeeId: string;
-        location: string;
-        incidentDate: Date;
-        isPublished: boolean;
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        description: string;
+        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        location: string;
+        incidentDate: Date;
+        isPublished: boolean;
     }>;
     update(id: string, updateSecurityManageDto: UpdateSecurityManageDto): Promise<{
         title: string;
-        description: string;
-        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
         employeeId: string;
-        location: string;
-        incidentDate: Date;
-        isPublished: boolean;
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        description: string;
+        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        location: string;
+        incidentDate: Date;
+        isPublished: boolean;
     }>;
     remove(id: string): Promise<{
         title: string;
-        description: string;
-        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
         employeeId: string;
-        location: string;
-        incidentDate: Date;
-        isPublished: boolean;
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        description: string;
+        status: import("src/common/database/generated/prisma").$Enums.MaintenanceStatus;
+        location: string;
+        incidentDate: Date;
+        isPublished: boolean;
     }>;
 }

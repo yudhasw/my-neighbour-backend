@@ -19,10 +19,13 @@ const regist_request_1 = require("../../../dtos/requests/regist-request");
 const platform_express_1 = require("@nestjs/platform-express");
 const sign_in_request_1 = require("../../../dtos/requests/sign-in-request");
 const jwt_auth_guard_1 = require("./guards/jwt-auth.guard");
+const database_service_1 = require("../../database/database.service");
 let AuthController = class AuthController {
     authService;
-    constructor(authService) {
+    prisma;
+    constructor(authService, prisma) {
         this.authService = authService;
+        this.prisma = prisma;
     }
     registration(registrationDto, files) {
         return this.authService.registration(registrationDto, files);
@@ -38,17 +41,80 @@ let AuthController = class AuthController {
     }
     async getProfile(req) {
         const userId = req.user.sub;
+        const userProfile = await this.prisma.users.findUnique({
+            where: { id: userId },
+            include: {
+                Resident: {
+                    include: {
+                        unit: true,
+                    },
+                },
+            },
+        });
         return {
             message: 'Profile retrieved successfully',
-            userId: userId,
+            userId: userProfile,
         };
     }
-    approveFamily(approvalId, req, approvalData) {
+    async getFamilyApprovals(req) {
+        const userId = req.user.sub;
+        const resident = await this.prisma.residents.findFirst({
+            where: { userId: userId },
+        });
+        if (!resident) {
+            throw new common_1.BadRequestException('Resident profile not found');
+        }
+        const pendingApprovals = await this.prisma.familyApprovals.findMany({
+            where: {
+                headOfHouseholdId: resident.id,
+                status: 'PENDING',
+            },
+            include: {
+                familyMember: {
+                    include: {
+                        user: {
+                            select: {
+                                id: true,
+                                fullName: true,
+                                primaryEmail: true,
+                                contactNumber: true,
+                            },
+                        },
+                    },
+                },
+            },
+            orderBy: {
+                requestedAt: 'desc',
+            },
+        });
+        return {
+            message: 'Family approvals retrieved successfully',
+            approvals: pendingApprovals,
+        };
+    }
+    async approveFamily(approvalId, req, approvalData) {
+        const userId = req.user.sub;
+        const resident = await this.prisma.residents.findFirst({
+            where: { userId: userId },
+        });
+        if (!resident) {
+            throw new common_1.BadRequestException('Resident profile not found');
+        }
         return this.authService.approvalSystem({
             familyApprovalId: approvalId,
-            headOfHouseholdId: req.user.resident?.id,
+            headOfHouseholdId: resident.id,
             ...approvalData,
         });
+    }
+    async logout(req) {
+        const userId = req.user.sub;
+        await this.prisma.users.update({
+            where: { id: userId },
+            data: { sessionToken: null },
+        });
+        return {
+            message: 'Logout successful',
+        };
     }
 };
 exports.AuthController = AuthController;
@@ -103,16 +169,33 @@ __decorate([
 ], AuthController.prototype, "getProfile", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Get)('family-approvals'),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "getFamilyApprovals", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Patch)('family-approval/:approvalId'),
     __param(0, (0, common_1.Param)('approvalId')),
     __param(1, (0, common_1.Request)()),
     __param(2, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, Object, Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AuthController.prototype, "approveFamily", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Post)('logout'),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "logout", null);
 exports.AuthController = AuthController = __decorate([
     (0, common_1.Controller)(),
-    __metadata("design:paramtypes", [auth_service_1.AuthService])
+    __metadata("design:paramtypes", [auth_service_1.AuthService,
+        database_service_1.DatabaseService])
 ], AuthController);
 //# sourceMappingURL=auth.controller.js.map
